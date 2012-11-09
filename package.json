@@ -1,0 +1,59 @@
+{
+  "name": "pdf2json",
+  "version": "0.1.2",
+  "description": "A PDF file parser that converts PDF binaries to text based JSON, powered by a fork of PDF.JS",
+  "keywords": [
+    "pdf",
+    "parser",
+    "server side PDF parser",
+    "PDF binary to text",
+    "JSON",
+    "javascript",
+    "PDF canvas",
+    "PDF.JS fork"
+  ],
+  "author": {
+    "name": "Modesty Zhang",
+    "email": "modestyz@hotmail.com",
+    "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+  },
+  "homepage": "https://github.com/modesty/pdf2json",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/modesty/pdf2json.git"
+  },
+  "main": "./pdfparser.js",
+  "scripts": {
+    "test": "./test"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "dependencies": {
+      "DOMParser" : ">=0.1.13",
+      "underscore": ">=1.4.2"
+  },
+  "devDependencies": {},
+  "maintainers": [
+    {
+        "name": "Modesty Zhang",
+        "email": "modestyz@hotmail.com",
+        "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+    }
+  ],
+  "contributors": [
+  ],
+  "bugs": {
+    "email": "modestyz@hotmail.com",
+    "url": "http://github.com/modesty/pdf2json/issues"
+  },
+  "licenses": [
+    {
+      "type": "LGPL",
+      "url": "http://www.gnu.org/licenses/lgpl.html"
+    }
+  ],
+  "readme": "",
+  "_id": "pdf2json@0.1.2",
+  "_from": "pdf2json"
+}
