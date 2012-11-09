@@ -185,7 +185,7 @@ But it does require the consumer of the payload to have the same dictionary defi
                     [2,		10,		0,		0],			//43
                     [2,		12,		0,		0],			//44
                     [2,		14,		0,		0],			//45
-                    [2,		12,		0,		0],			//46 MQZ: Changed font size from 18 tp 12
+                    [2,		12,		0,		0],			//46
                     [3,		8,		0,		0],			//47
                     [3,		10,		0,		0],			//48
                     [3,		12,		0,		0],			//49
@@ -202,6 +202,12 @@ But it does require the consumer of the payload to have the same dictionary defi
                     [5,		12,		0,		0]			//60
             ];
 
+Run Unit Test
+=====
+
+Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under 'test/data' directory in parallel and have 12 test cases need to be honored.
+
+            node test/index.js
 
 
 
