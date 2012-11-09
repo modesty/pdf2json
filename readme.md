@@ -1,6 +1,6 @@
 Introduction
 ====
-A server side PDF parser module that converts PDF binaries to JavaScript objects, which can be easily serialized to
+A server side PDF parser Node.js module that converts PDF binaries to JavaScript objects, which can be easily serialized to
 JSON when running in node.js based web service or web app.
 
 Install:
