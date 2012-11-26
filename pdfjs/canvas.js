@@ -750,7 +750,14 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         ctx.lineWidth = lineWidth;
 
         var x = 0;
-        for (var i = 0; i < glyphsLength; ++i) {
+//MQZ. 11/16/2012: added helper function
+        str = "";
+          var alphaExp = /^[0-9a-zA-Z| !@#$%^&*()]+$/;
+          var isAlphanumeric = function(char) {
+              return char.match(alphaExp);
+          };
+
+          for (var i = 0; i < glyphsLength; ++i) {
           var glyph = glyphs[i];
           if (glyph === null) {
             // word break
@@ -762,6 +769,9 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           var charWidth = glyph.width * fontSize * 0.001 +
               Util.sign(current.fontMatrix[0]) * charSpacing;
 //MQZ. Disable character-based text rendering
+            if (isAlphanumeric(glyph.fontChar))
+                str += glyph.fontChar;
+
 //          if (!glyph.disabled) {
 //            var scaledX = x / fontSizeScale;
 //            switch (textRenderingMode) {

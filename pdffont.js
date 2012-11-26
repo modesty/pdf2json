@@ -112,10 +112,6 @@ var PDFFont = (function PFPFontClosure() {
         return _name + _nextId;
     };
 
-    var _toFixedFloat = function(num) {
-        return parseFloat(num.toFixed(2));
-    };
-
     var _setFaceIndex = function() {
         var fontObj = this.fontObj;
 
@@ -203,6 +199,7 @@ var PDFFont = (function PFPFontClosure() {
             case 97: retVal = 'G'; break; //right triangle
             case 20: retVal = 'M'; break; //check mark
             default:
+                retVal = "";
                 nodeUtil._logN.call(this, "Default - SymbolicFont - (" + this.fontObj.name + ") : " + str.charCodeAt(1) + " => " + retVal);
         }
 
@@ -216,9 +213,9 @@ var PDFFont = (function PFPFontClosure() {
         this.fontStyleId = _getFontStyleIndex.call(this, fontSize);
         var text = _processSymbolicFont.call(this, str);
 
-        var oneText = {x: _toFixedFloat(PDFUnit.toFormX(p.x)) - 0.25,
-            y: _toFixedFloat(PDFUnit.toFormY(p.y)) - 0.75,
-            w: _toFixedFloat(PDFUnit.toFormX(maxWidth)),
+        var oneText = {x: PDFUnit.toFormX(p.x) - 0.25,
+            y: PDFUnit.toFormY(p.y) - 0.75,
+            w: PDFUnit.toFormX(maxWidth),
             clr: PDFUnit.findColorIndex(color),
             A: "left",
             R: [{

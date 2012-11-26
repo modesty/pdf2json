@@ -1,6 +1,6 @@
 {
   "name": "pdf2json",
-  "version": "0.1.2",
+  "version": "0.1.5",
   "description": "A PDF file parser that converts PDF binaries to text based JSON, powered by a fork of PDF.JS",
   "keywords": [
     "pdf",
@@ -30,7 +30,7 @@
     "node": ">=0.8"
   },
   "dependencies": {
-      "DOMParser" : ">=0.1.13",
+      "xmldom" : ">=0.1.13",
       "underscore": ">=1.4.2"
   },
   "devDependencies": {},

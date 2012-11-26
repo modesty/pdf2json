@@ -56,6 +56,10 @@ var PDFUnit = (function PFPUnitClosure() {
         '#000000'		// Last + 7
     ];
 
+    var _toFixedFloat = function(num) {
+        return parseFloat(num.toFixed(2));
+    };
+
     // constructor
     var cls = function () {
         // private
@@ -88,22 +92,22 @@ var PDFUnit = (function PFPUnitClosure() {
     };
 
     cls.toFormPoint = function(viewportX, viewportY) {
-        return [(viewportX / _pixelXPerGrid), (viewportY / _pixelYPerGrid)];
+        return [_toFixedFloat(viewportX / _pixelXPerGrid), _toFixedFloat(viewportY / _pixelYPerGrid)];
     };
 
     cls.toFormX = function(viewportX) {
-        return (viewportX / _pixelXPerGrid);
+        return _toFixedFloat(viewportX / _pixelXPerGrid);
     };
 
     cls.toFormY = function(viewportY) {
-        return (viewportY / _pixelYPerGrid);
+        return _toFixedFloat(viewportY / _pixelYPerGrid);
     };
 
     cls.findColorIndex = function(color) {
         var idx = kColors.indexOf(color);
         if (idx < 0) {
-            nodeUtil.log("Reaplcing new color (" + color + ") with color (7) = " + kColors[7]);
-            idx = 7;
+            nodeUtil.log("Reaplcing new color (" + color + ") with color (4) = " + kColors[4]);
+            idx = 4;
         }
         return idx;
     };

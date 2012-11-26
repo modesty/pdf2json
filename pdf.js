@@ -1,11 +1,12 @@
-'use strict';
+
 var nodeUtil = require("util"),
     nodeEvents = require("events"),
     fs = require('fs'),
     _ = require('underscore'),
     DOMParser = require('./../node_modules/xmldom').DOMParser,
     PDFCanvas = require('./pdfcanvas.js'),
-    PDFUnit = require('./pdfunit.js');
+    PDFUnit = require('./pdfunit.js'),
+    PDFField = require('./pdffield.js');
 
 var _pdfjsFiles = [
     'core.js',
@@ -46,6 +47,7 @@ eval(_fileContent);
 
 ////////////////////////////////start of helper classes
 var PDFPageParser = (function () {
+    'use strict';
     // private static
     var _nextId = 1;
     var _name = 'PDFPageParser';
@@ -55,6 +57,14 @@ var PDFPageParser = (function () {
       RUNNING: 1,
       PAUSED: 2,
       FINISHED: 3
+    };
+
+    var _addField = function(field) {
+        if (!PDFField.isFormElement(field))
+            return;
+
+        var oneField = new PDFField(field, this.viewport, this.Fields, this.Boxsets);
+        oneField.processField();
     };
 
     // constructor
@@ -76,6 +86,14 @@ var PDFPageParser = (function () {
         this.viewport = this.pdfPage.getViewport(this.scale, 0);
 
         this.renderingState = RenderingStates.INITIAL;
+
+        //form elements other than radio buttons and check boxes
+        this.Fields = [];
+        //form elements: radio buttons and check boxes
+        this.Boxsets = [];
+
+        this.currentRadioGroup = [];
+        this.currentRadioGroupName = "";
 
         //public properties
         Object.defineProperty(this, 'width', {
@@ -121,7 +139,7 @@ var PDFPageParser = (function () {
                 nodeUtil._logN.call(self, 'An error occurred while rendering the page.' + error);
             }
             else {
-                nodeUtil._logN.call(self, 'pdfPage of ' + self.id + ' is rendered successfully.');
+                nodeUtil._logN.call(self, 'page ' + (self.id + 1) + ' is rendered successfully.');
                 _.extend(self, ctx.canvas);
 
             }
@@ -135,9 +153,12 @@ var PDFPageParser = (function () {
             viewport:this.viewport
         };
 
-        this.pdfPage.render(renderContext).then(
+        self.pdfPage.render(renderContext).then(
             function pdfPageRenderCallback() {
-                pageViewDrawCallback(null);
+                self.pdfPage.getAnnotations().then(function(fields){
+                    _.each(fields, _addField, self);
+                    pageViewDrawCallback(null);
+                });
             },
             function pdfPageRenderError(error) {
                 pageViewDrawCallback(error);
@@ -151,6 +172,7 @@ var PDFPageParser = (function () {
 
 ////////////////////////////////Start of Node.js Module
 var PDFJSClass = (function () {
+    'use strict';
     // private static
     var _nextId = 1;
     var _name = 'PDFJSClass';
@@ -240,13 +262,16 @@ var PDFJSClass = (function () {
             if (!self.pageWidth)  //get PDF width
                 self.pageWidth = pageParser.width;
 
-            var page = {Height: pageParser.height};
+            PDFField.checkRadioGroup(pageParser.Boxsets);
 
-            _.extend(page, {HLines: pageParser.HLines,
+            var page = {Height: pageParser.height,
+                HLines: pageParser.HLines,
                 VLines: pageParser.VLines,
                 Fills:pageParser.Fills,
-                Texts: pageParser.Texts
-                });
+                Texts: pageParser.Texts,
+                Fields: pageParser.Fields,
+                Boxsets: pageParser.Boxsets
+            };
 
             self.pages.push(page);
 

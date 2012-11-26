@@ -29,13 +29,9 @@ var PDFLine = (function PFPLineClosure() {
         return _name + _nextId;
     };
 
-    var _toFixedFloat = function(num) {
-        return parseFloat(num.toFixed(2));
-    };
-
     var _setStartPoint = function(oneLine, x, y) {
-        oneLine.x = _toFixedFloat(PDFUnit.toFormX(x));
-        oneLine.y = _toFixedFloat(PDFUnit.toFormY(y));
+        oneLine.x = PDFUnit.toFormX(x);
+        oneLine.y = PDFUnit.toFormY(y);
     };
 
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
@@ -46,7 +42,7 @@ var PDFLine = (function PFPLineClosure() {
         var oneLine = {x:0, y:0, w:this.lineWidth, l:0};
 
         if (yDelta < 0.5) { //HLine
-            oneLine.l = _toFixedFloat(PDFUnit.toFormX(xDelta));
+            oneLine.l = PDFUnit.toFormX(xDelta);
             if (this.x1 > this.x2)
                 _setStartPoint.call(this, oneLine, this.x2, this.y2);
             else
@@ -54,7 +50,7 @@ var PDFLine = (function PFPLineClosure() {
             targetData.HLines.push(oneLine);
         }
         else if (xDelta < 0.5) {//VLine
-            oneLine.l = _toFixedFloat(PDFUnit.toFormY(yDelta));
+            oneLine.l = PDFUnit.toFormY(yDelta);
             if (this.y1 > this.y2)
                 _setStartPoint.call(this, oneLine, this.x2, this.y2);
             else

@@ -211,6 +211,158 @@ Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under '
 
             node test/index.js
 
+
+Interactive Forms Elements
+=====
+
+v0.1.5 added interactive forms element parsing, including text input, radio button, check box, link button and dropdown list.
+
+Interactive forms can be created and editted in Acrobat Pro for AcroForm, or in LiveCycle Designer ES for XFA forms. Current implementation for buttons only supports "link button": when clicked, it'll launch a URL specified in button properties. Examples can be found at f1040ezt.pdf file under test/data folder.
+
+All interactive form elements parsing output will be part of corresponding 'Page' object where they belong to, radio buttons and check boxes are in 'Boxsets' array while all other elements objects are part of 'Fields' array.
+
+Each object with in 'Boxset' can be either checkbox or radio button, the only difference is that radio button object will have more than one element in 'boxes' array, it indicates it's a radio button group. The following sample output illustrate one checkbox ( Id: F8888 ) and one radio button group ( Id: ACC ) in the 'Boxsets' array:
+
+             Boxsets: [
+                {//first element, check box
+                    boxes: [ //only one box object object in this array
+                    {
+                        x: 47,
+                        y: 40,
+                        w: 3,
+                        h: 1,
+                        style: 48,
+                        TI: 39,
+                        AM: 4,
+                        id: {
+                            Id: "F8888",
+                        },
+                        T: {
+                            Name: "box"
+                        }
+                     }
+                     ],
+                     id: {
+                        Id: "A446",
+                     }
+                },//end of first element
+                {//second element, radio button group
+                    boxes: [// has two box elements in boxes array
+                    {
+                        x: 54,
+                        y: 41,
+                        w: 3,
+                        h: 1,
+                        style: 48,
+                        TI: 43,
+                        AM: 132,
+                        id: {
+                            Id: "ACCC",
+                        },
+                        T: {
+                            Name: "box"
+                        }
+                    },
+                    {
+                        x: 67,
+                        y: 41,
+                        w: 3,
+                        h: 1,
+                        style: 48,
+                        TI: 44,
+                        AM: 132,
+                        id: {
+                            Id: "ACCS",
+                            EN: 0
+                        },
+                        T: {
+                            Name: "box"
+                        }
+                    }
+                    ],
+                    id: {
+                        Id: "ACC",
+                        EN: 0
+                    }
+                }//end of second element
+             ] //end of Boxsets array
+
+'Fields' array contains parsed object for text input (Name: 'alpha'), dropdown list (Name: 'apha', but has 'PL' object which contains label array in 'PL.D' and value array in 'PL.V'), link button (Name: 'link', linked URL is in 'FL' field). Some examples:
+
+Text input box example:
+
+                {
+                    style: 48,
+                    T: {
+                        Name: "alpha",
+                        TypeInfo: { }
+                    },
+                    id: {
+                        Id: "p1-t4[0]",
+                        EN: 0
+                    },
+                    TI: 0,
+                    x: 6.19,
+                    y: 5.15,
+                    w: 30.94,
+                    h: 0.85
+                },
+
+Dropdown list box example:
+
+               {
+                    x: 60,
+                    y: 11,
+                    w: 4,
+                    h: 1,
+                    style: 48,
+                    TI: 13,
+                    AM: 388,
+                    mxL: 2,
+                    id: {
+                        Id: "ST",
+                        EN: 0
+                    },
+                    T: {
+                        Name: "alpha",
+                        TypeInfo: {
+                        }
+                    },
+                    PL: {
+                        V: [
+                            "",
+                            "AL",
+                            "AK"
+                        ],
+                        D: [
+                        "%28no%20entry%29",
+                        "Alabama",
+                        "Alaska"
+                        ]
+                    }
+               }
+
+
+Link button example:
+
+                {
+                    style: 48,
+                    T: {
+                        Name: "link"
+                    },
+                    FL: "http://www.github.com",
+                    id: {
+                        Id: "quad8",
+                        EN: 0
+                    },
+                    TI: 0,
+                    x: 52.35,
+                    y: 28.35,
+                    w: 8.88,
+                    h: 0.85
+                }
+
+
 Notes
 =====
 

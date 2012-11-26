@@ -29,18 +29,14 @@ var PDFFill = (function PFPLineClosure() {
         return _name + _nextId;
     };
 
-    var _toFixedFloat = function(num) {
-        return parseFloat(num.toFixed(2));
-    };
-
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
     cls.prototype.processFill = function (targetData) {
         var clrId = PDFUnit.findColorIndex(this.color);
 
-        var oneFill = {x:_toFixedFloat(PDFUnit.toFormX(this.x)),
-                       y:_toFixedFloat(PDFUnit.toFormY(this.y)),
-                       w:_toFixedFloat(PDFUnit.toFormX(this.width)),
-                       h:_toFixedFloat(PDFUnit.toFormY(this.height)),
+        var oneFill = {x:PDFUnit.toFormX(this.x),
+                       y:PDFUnit.toFormY(this.y),
+                       w:PDFUnit.toFormX(this.width),
+                       h:PDFUnit.toFormY(this.height),
                        clr: clrId};
 
         targetData.Fills.push(oneFill);

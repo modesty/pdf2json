@@ -112,6 +112,18 @@ var PFParser = (function () {
         fs.readFile(pdfFilePath, _.bind(processPDFContent, self));
     };
 
+    cls.prototype.destroy = function() {
+        this.removeAllListeners();
+
+        this.context.destroy();
+        this.context = null;
+
+        this.pdfFilePath = null;
+        this.data = null;
+        this.PDFJS = null;
+        this.parsePropCount = 0;
+    };
+
     return cls;
 })();
 
