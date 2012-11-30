@@ -14,11 +14,11 @@ nodeUtil._backTrace = function logCallStack() {
     }
 };
 
-var PFParser = (function () {
+var PDFParser = (function () {
     'use strict';
     // private static
     var _nextId = 1;
-    var _name = 'PFParser';
+    var _name = 'PDFParser';
 
     var _binBuffer = {};
     var _maxBinBufferCount = 10;
@@ -120,12 +120,15 @@ var PFParser = (function () {
 
         this.pdfFilePath = null;
         this.data = null;
+
+        this.PDFJS.destroy();
         this.PDFJS = null;
+
         this.parsePropCount = 0;
     };
 
     return cls;
 })();
 
-module.exports = PFParser;
+module.exports = PDFParser;
 

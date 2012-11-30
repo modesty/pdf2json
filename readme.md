@@ -204,13 +204,6 @@ But it does require the consumer of the payload to have the same dictionary defi
                     [5,		12,		0,		0]			//60
             ];
 
-Run Unit Test
-=====
-
-Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under 'test/data' directory in parallel and have 12 test cases need to be honored.
-
-            node test/index.js
-
 
 Interactive Forms Elements
 =====
@@ -391,7 +384,31 @@ In order to run PDF.JS in Node.js, we have to address those dependencies and als
 
 After the changes and extensions listed above, this pdf2json node.js module will work either in a server environment ( I have a RESTful web service built with resitify and pdf2json, it's been running on an Amazon EC2 instance) or as a standalone commanline tool (something similar to the Vows unit tests).
 
+Known Issues
+===
 
+This pdf2json module's output does not 100% maps from PDF definitions, some of them is because of time limitation I currently have, some others result from the 'dictionary' concept for the output. Given these known issues or unsupported features in current implementation, it allows me to contribute back to the open source community with the most important features implemented while leaving some improvement space for the future. All un-supported featurs listed below can be resolved technically some way or other, if your use case really requires them:
+
+* Embedded content:
+    * All embedded content are igored, current implementation focuses on static contents and interactive forms. Un-supported PDF embedded contents includes 'Images', 'Fonts' and other dynmatic contents;
+* Text and Form Styles:
+    * text and form elements styles has partial support. This means when you have client side renderer (say in HTML5 canvas or SVG renderer), the PDF content may not look exactly the same as how Acrobat renders. The reason is that we've used "style dictionary" in order to reduce the payload size over the wire, while "style dictionary" doesn't have all styles defined. This sort of partial support can be resolved by extending those 'style dictionaries'. Primary text style issues include:
+        * Font face: only limit to the font families defined in style dictionry
+        * Font size: only limit to 6, 8, 10, 12, 14, 18 that are defined in style dictionary, all other sized font are mapped to the closest size. For example: when a PDF defines a 7px sized font, the size will be mapped to 8px in the output;
+        * Color: either font color or fill colors, are limited to the entries in color dictionry
+        * Style combinations: when style combination is not supported, say in different size, face, bold and italic, the closest entry will be selected in the output;
+* Text positioning and spacing:
+    * Since embedd font and font styles are only honored if they defined in style dictionary, when they are not in there, the final output may have word positioning and spacing issues that's noticable.
+* User input data in form element:
+    * As for interactive forms elements, their type, poisitions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, like which radio button is selected, which checkbox is checked, text in text input box, etc., should be handled in client as part of user data, so that we can treat parsed PDF data as template data.
+
+
+Run Unit Test
+=====
+
+Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under 'test/data' directory in parallel and have 12 test cases need to be honored.
+
+            node test/index.js
 
 
 

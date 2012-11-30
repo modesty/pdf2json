@@ -749,30 +749,28 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
         ctx.lineWidth = lineWidth;
 
-        var x = 0;
 //MQZ. 11/16/2012: added helper function
-        str = "";
-          var alphaExp = /^[0-9a-zA-Z| !@#$%^&*()]+$/;
-          var isAlphanumeric = function(char) {
-              return char.match(alphaExp);
+          var useGlyph = (str[0] != glyphs[0].fontChar);
+          if (useGlyph)
+              str = "";
+          var alphaExp = /[^ -~]/; //  /^[0-9a-zA-Z| !@#$%^&*():\/\\_,.]+$/; //
+          var isAlphanumeric = function (char) {
+              return (!alphaExp.test(char));//  char.match(alphaExp); //
           };
 
-          for (var i = 0; i < glyphsLength; ++i) {
+        var x = 0;
+        for (var i = 0; i < glyphsLength; ++i) {
           var glyph = glyphs[i];
           if (glyph === null) {
             // word break
             x += Util.sign(current.fontMatrix[0]) * wordSpacing;
             continue;
           }
-//MQZ. Disable character-based text rendering
-//          var character = glyph.fontChar;
+          var character = glyph.fontChar;
           var charWidth = glyph.width * fontSize * 0.001 +
               Util.sign(current.fontMatrix[0]) * charSpacing;
+          if (!glyph.disabled) {
 //MQZ. Disable character-based text rendering
-            if (isAlphanumeric(glyph.fontChar))
-                str += glyph.fontChar;
-
-//          if (!glyph.disabled) {
 //            var scaledX = x / fontSizeScale;
 //            switch (textRenderingMode) {
 //              default: // other unsupported rendering modes
@@ -792,15 +790,25 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //              case TextRenderingMode.INVISIBLE:
 //                break;
 //            }
-//          }
 
+              if (useGlyph) {
+                  if (isAlphanumeric(character) && (textRenderingMode != TextRenderingMode.INVISIBLE))
+                      str += character;
+                  else if (glyph.unicode) {
+                      str += glyph.unicode;
+                  }
+                  else {
+                      str += " ";
+//                      console.log("non-printable:\\u" + character.charCodeAt(0).toString(16) + "; unicode = " + glyph.unicode);
+                  }
+              }
+          }
           x += charWidth;
-
-          var glyphUnicode = glyph.unicode === ' ' ? '\u00A0' : glyph.unicode;
-          if (glyphUnicode in NormalizedUnicodes)
-            glyphUnicode = NormalizedUnicodes[glyphUnicode];
-
-          canvasWidth += charWidth;
+//MQZ. Nov.27.2012: comment out uesless unicode conversion
+//          var glyphUnicode = glyph.unicode === ' ' ? '\u00A0' : glyph.unicode;
+//          if (glyphUnicode in NormalizedUnicodes)
+//            glyphUnicode = NormalizedUnicodes[glyphUnicode];
+            canvasWidth += charWidth;
         }
         current.x += x * textHScale2;
 
@@ -817,7 +825,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
               case TextRenderingMode.FILL_STROKE:
               case TextRenderingMode.FILL_STROKE_ADD_TO_PATH:
                   ctx.fillText(str, 0, 0, canvasWidth, fontSize * scale);
-//                  ctx.strokeText(str, 0, 0, canvasWidth);
+    //                  ctx.strokeText(str, 0, 0, canvasWidth);
                   break;
               case TextRenderingMode.INVISIBLE:
                   break;
@@ -863,23 +871,31 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         ctx.restore();
       }
 
+        var sText = "";
       for (var i = 0; i < arrLength; ++i) {
         var e = arr[i];
         if (isNum(e)) {
-          var spacingLength = -e * 0.001 * fontSize * textHScale;
-          current.x += spacingLength;
-
-          if (textSelection)
-            canvasWidth += spacingLength;
+//MQZ. Nov.28.2012 Disable character based rendering, make it a string
+//          var spacingLength = -e * 0.001 * fontSize * textHScale;
+//          current.x += spacingLength;
+//
+//          if (textSelection)
+//            canvasWidth += spacingLength;
         } else if (isString(e)) {
-          var shownCanvasWidth = this.showText(e, true);
-
-          if (textSelection)
-            canvasWidth += shownCanvasWidth;
+//          var shownCanvasWidth = this.showText(e, true);
+//
+//          if (textSelection)
+//            canvasWidth += shownCanvasWidth;
+            sText += e;
         } else {
           error('TJ array element ' + e + ' is not string or num');
         }
       }
+
+//MQZ. Nov.28.2012 Disable character based rendering, make it a string
+        var shownCanvasWidth = this.showText(sText, true);
+        if (textSelection)
+          canvasWidth += shownCanvasWidth;
 
       if (textSelection) {
         geom.canvasWidth = canvasWidth;

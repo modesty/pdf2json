@@ -106,8 +106,8 @@ var PDFUnit = (function PFPUnitClosure() {
     cls.findColorIndex = function(color) {
         var idx = kColors.indexOf(color);
         if (idx < 0) {
-            nodeUtil.log("Reaplcing new color (" + color + ") with color (4) = " + kColors[4]);
-            idx = 4;
+            idx = 7;
+            nodeUtil.log("Reaplcing new color (" + color + ") with color (" + idx + ") = " + kColors[idx]);
         }
         return idx;
     };

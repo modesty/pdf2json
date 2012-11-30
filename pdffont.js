@@ -96,13 +96,21 @@ var PDFFont = (function PFPFontClosure() {
         this.get_name = function() { return _name + _id; };
 
         this.fontObj = fontObj;
+        var typeName = (fontObj.name || fontObj.fallbackName).toLowerCase();
+        if (this.fontObj.isSymbolicFont) {
+            if (typeName.indexOf("arial") > 0)
+                this.fontObj.isSymbolicFont = false; //lots of Arial-based font is detected as symbol in VA forms (301, 76-c, etc.) reset the flag for now
+        }
+        else {
+            if (typeName.indexOf("symbol") > 0)
+                this.fontObj.isSymbolicFont = true; //text pdf: va_ind_760c
+        }
+
         this.fontSize = 1;
 
         this.faceIdx = 0;
         this.bold = false;
         this.italic = false;
-        this.faceName = null;
-        this.faceSubName = null;
 
         this.fontStyleId = -1;
     };
@@ -117,6 +125,10 @@ var PDFFont = (function PFPFontClosure() {
 
         this.bold = fontObj.bold;
         var typeName = fontObj.name || fontObj.fallbackName;
+        if (!this.bold) {
+            this.bold = typeName.toLowerCase().indexOf("bold") >= 0;
+        }
+
         var nameArray = typeName.split('+');
         if (_.isArray(nameArray) && nameArray.length > 1) {
             typeName = nameArray[1].split("-");
@@ -124,12 +136,10 @@ var PDFFont = (function PFPFontClosure() {
                 if (!this.bold) {
                     var subName = typeName[1].toLowerCase();
                     this.bold = _boldSubNames.indexOf(subName) >= 0;
-                    this.faceSubName = subName;
                 }
                 typeName = typeName[0];
             }
         }
-        this.faceName = typeName;
 
         if (fontObj.isSerifFont) {
             if (_kFontFaces[1].indexOf(typeName) >= 0)
@@ -180,6 +190,18 @@ var PDFFont = (function PFPFontClosure() {
         }
 
         if (retVal === -1) {
+            _.each(_kFontStyles, function(element, index, list){
+                if (retVal === -1) {
+                    if (element[0] === fsa[0] ) {
+                        if (element[1] >= fsa[1]) {
+                            retVal = index;
+                        }
+                    }
+                }
+            });
+        }
+
+        if (retVal === -1) {
             retVal = 2;
         }
 
@@ -187,20 +209,24 @@ var PDFFont = (function PFPFontClosure() {
     };
 
     var _processSymbolicFont = function(str) {
+        var retVal = str;
+
+        if (!str || str.length !== 1)
+            return retVal;
+
         if (!this.fontObj.isSymbolicFont)
-            return str;
+            return retVal;
 
-        if (!str || str.length !== 2)
-            return str;
-
-        var retVal = "G";
-        switch(str.charCodeAt(1)) {
-            case 99: retVal = 'C'; break; //up triangle
-            case 97: retVal = 'G'; break; //right triangle
-            case 20: retVal = 'M'; break; //check mark
+        switch(str.charCodeAt(0)) {
+            case 99: retVal = '\u25b2'; break; //up triangle
+            case 97: retVal = '\u25b6'; break; //right triangle
+            case 20: retVal = '\u2713'; break; //check mark
+            case 70: retVal = '\u007D'; break; //right curly bracket
+            case 118: retVal = '\u2022'; break; //Bullet dot
+            case 106: retVal = ''; break; //VA 301: string j character by the checkbox, hide it for now
             default:
-                retVal = "";
-                nodeUtil._logN.call(this, "Default - SymbolicFont - (" + this.fontObj.name + ") : " + str.charCodeAt(1) + " => " + retVal);
+                nodeUtil._logN.call(this, "Default - SymbolicFont - (" + this.fontObj.name + ") : " +
+                    str.charCodeAt(0) + "::" + str.charCodeAt(1) + " => " + retVal + " length = " + str.length);
         }
 
         return retVal;
@@ -213,6 +239,10 @@ var PDFFont = (function PFPFontClosure() {
         this.fontStyleId = _getFontStyleIndex.call(this, fontSize);
         var text = _processSymbolicFont.call(this, str);
 
+        if (text == "C" || text == "G") { //prevent symbolic encoding from the client
+            text = " " + text + " ";
+        }
+
         var oneText = {x: PDFUnit.toFormX(p.x) - 0.25,
             y: PDFUnit.toFormY(p.y) - 0.75,
             w: PDFUnit.toFormX(maxWidth),
@@ -224,7 +254,20 @@ var PDFFont = (function PFPFontClosure() {
             }]
         };
 
-        targetData.Texts.push(oneText);
+//        var lastIdx = targetData.Texts.length - 1;
+//        if (lastIdx >= 0) {
+//            if (text[0] != text[0].toUpperCase()) {
+//                var lastTextBlock = targetData.Texts[lastIdx];
+//                if (lastTextBlock.y == oneText.y && lastTextBlock.R[0].S == oneText.R[0].S) {
+//                    nodeUtil._logN.call(this, "Merged text: " + text);
+//                    lastTextBlock.R[0].T += text; //add to last text run when style is the same and in the same line. Test form: VA_IND_760c.pdf
+//                    oneText = null;
+//                }
+//            }
+//        }
+//
+//        if (oneText != null)
+            targetData.Texts.push(oneText);
     };
 
     cls.prototype.clean = function() {

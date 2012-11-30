@@ -194,10 +194,6 @@ var PDFJSClass = (function () {
     // inherit from event emitter
 	nodeUtil.inherits(cls, nodeEvents.EventEmitter);
 
-    cls.prototype.checkType = function() {
-        nodeUtil._logN.call(this, "typeof(PDFJS.getDocument) == " + typeof(PDFJS.getDocument));
-    };
-
     cls.prototype.parsePDFData = function(arrayBuffer) {
         var parameters = {password: '', data: arrayBuffer};
         this.pdfDocument = null;
@@ -205,7 +201,6 @@ var PDFJSClass = (function () {
         var self = this;
         PDFJS.getDocument(parameters).then(
             function getDocumentCallback(pdfDocument) {
-                nodeUtil._logN.call(self, "getDocumentCallback(" + typeof pdfDocument + ")");
                 self.load(pdfDocument, 1);
             },
             function getDocumentError(message, exception) {
@@ -231,7 +226,7 @@ var PDFJSClass = (function () {
         var self = this;
         var pagesPromise = PDFJS.Promise.all(pagePromises);
 
-        nodeUtil._logN.call(self, "load: pagesCount = " + pagesCount);
+        nodeUtil._logN.call(self, "PDF loaded. pagesCount = " + pagesCount);
 
         pagesPromise.then(function(promisedPages) {
             self.parsePage(promisedPages, 0, 1.5);
@@ -254,7 +249,7 @@ var PDFJSClass = (function () {
     };
 
     cls.prototype.parsePage = function(promisedPages, id, scale) {
-        nodeUtil._logN.call(this, "parsePage:" + id);
+        nodeUtil._logN.call(this, "start to parse page:" + (id+1));
         var self = this;
         var pdfPage = promisedPages[id];
         var pageParser = new PDFPageParser(pdfPage, id, scale);
@@ -276,6 +271,7 @@ var PDFJSClass = (function () {
             self.pages.push(page);
 
             if (id == self.pdfDocument.numPages - 1) {
+                nodeUtil._logN.call(self, "complete parsing page:" + (id+1));
                 self.emit("pdfjs_parseDataReady", {Pages:self.pages, Width: self.pageWidth});
             }
             else {
@@ -284,6 +280,13 @@ var PDFJSClass = (function () {
                 });
             }
         });
+    };
+
+    cls.prototype.destroy = function() {
+        this.removeAllListeners();
+
+        this.pdfDocument = null;
+        this.formImage = null;
     };
 
     return cls;
