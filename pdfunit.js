@@ -104,10 +104,12 @@ var PDFUnit = (function PFPUnitClosure() {
     };
 
     cls.findColorIndex = function(color) {
+        if (color.length === 4)
+            color += "000";
         var idx = kColors.indexOf(color);
         if (idx < 0) {
             idx = 7;
-            nodeUtil.log("Reaplcing new color (" + color + ") with color (" + idx + ") = " + kColors[idx]);
+//            nodeUtil.log("Reaplcing new color (" + color + ") with color (" + idx + ") = " + kColors[idx]);
         }
         return idx;
     };

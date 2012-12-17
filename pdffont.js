@@ -8,7 +8,7 @@ var PDFFont = (function PFPFontClosure() {
     var _nextId = 1;
     var _name = 'PDFFont';
 
-    var _boldSubNames = ["bd", "bold", "demi"];
+    var _boldSubNames = ["bd", "bold", "demi", "black"];
 
     var _kFontFaces = [
        "QuickType,Arial,Helvetica,sans-serif",							// 00 - QuickType - sans-serif variable font
@@ -107,6 +107,7 @@ var PDFFont = (function PFPFontClosure() {
         }
 
         this.fontSize = 1;
+        this.typeName = typeName;
 
         this.faceIdx = 0;
         this.bold = false;
@@ -124,12 +125,12 @@ var PDFFont = (function PFPFontClosure() {
         var fontObj = this.fontObj;
 
         this.bold = fontObj.bold;
-        var typeName = fontObj.name || fontObj.fallbackName;
         if (!this.bold) {
-            this.bold = typeName.toLowerCase().indexOf("bold") >= 0;
+            this.bold = this.typeName.indexOf("bold") >= 0 || this.typeName.indexOf("black") >= 0;
         }
 
-        var nameArray = typeName.split('+');
+        var typeName = "";
+        var nameArray = this.typeName.split('+');
         if (_.isArray(nameArray) && nameArray.length > 1) {
             typeName = nameArray[1].split("-");
             if (_.isArray(typeName) && typeName.length > 1) {
@@ -157,7 +158,12 @@ var PDFFont = (function PFPFontClosure() {
             this.faceIdx = 2;
         }
 
-//        nodeUtil._logN.call(this, "faceIdx = " + this.faceIdx);
+        if (this.faceIdx == 0) {
+            if (this.typeName.indexOf("narrow") > 0)
+                this.faceIdx = 1;
+        }
+
+//        nodeUtil._logN.call(this, "typeName = " + typeName + " => faceIdx = " + this.faceIdx);
     };
 
     var _getFontStyleIndex = function(fontSize) {
@@ -235,7 +241,6 @@ var PDFFont = (function PFPFontClosure() {
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
     cls.prototype.processText = function (p, str, maxWidth, color, fontSize, targetData) {
 //        nodeUtil._logN.call(this, "processText - " + JSON.stringify(p) + ", str = " + str + ", maxWidth = " + maxWidth);
-
         this.fontStyleId = _getFontStyleIndex.call(this, fontSize);
         var text = _processSymbolicFont.call(this, str);
 
@@ -268,6 +273,8 @@ var PDFFont = (function PFPFontClosure() {
 //
 //        if (oneText != null)
             targetData.Texts.push(oneText);
+
+//        nodeUtil._logN.call(this, text + ":" + this.fontStyleId + ":" + this.typeName);
     };
 
     cls.prototype.clean = function() {

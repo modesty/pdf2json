@@ -791,8 +791,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //                break;
 //            }
 
-              if (useGlyph) {
-                  if (isAlphanumeric(character) && (textRenderingMode != TextRenderingMode.INVISIBLE))
+              if (useGlyph && (textRenderingMode != TextRenderingMode.INVISIBLE)) {
+                  if (isAlphanumeric(character))
                       str += character;
                   else if (glyph.unicode) {
                       str += glyph.unicode;
@@ -872,15 +872,23 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       }
 
         var sText = "";
+        var spacingLength = 0;
       for (var i = 0; i < arrLength; ++i) {
         var e = arr[i];
         if (isNum(e)) {
 //MQZ. Nov.28.2012 Disable character based rendering, make it a string
-//          var spacingLength = -e * 0.001 * fontSize * textHScale;
-//          current.x += spacingLength;
-//
-//          if (textSelection)
-//            canvasWidth += spacingLength;
+            spacingLength = -e * 0.001 * fontSize * textHScale;
+            if (spacingLength > 0) {
+                var spTextWidth = 0;
+                if (spacingLength > 0.1) {
+                    spTextWidth = this.showText(sText, true);
+                    sText = "";
+                }
+
+                current.x += spacingLength;
+                if (textSelection)
+                    canvasWidth += spacingLength + spTextWidth;
+            }
         } else if (isString(e)) {
 //          var shownCanvasWidth = this.showText(e, true);
 //
