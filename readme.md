@@ -355,6 +355,56 @@ Link button example:
                     h: 0.85
                 }
 
+Text Input Field Formatter Types
+=====
+
+v0.1.8 added text input field formatter types detection for
+
+* number
+* ssn
+* date
+* zip
+* phone
+
+About 5 types are detected only when the widget field type is "Tx" and the additional-actions dictionary 'AA' is set. Like what you see, not all pre-defined formatters and special formatters are supported, if you need more support, you can extend the 'processFieldAttribute' function in core.js file.
+
+For the supported types, the result data is set to the field item's T object. Example of a 'number' field in final JSON output:
+
+                {
+                    style: 48,
+                    T: {
+                        Name: "number",
+                        TypeInfo: { }
+                    },
+                    id: {
+                        Id: "FAGI",
+                        EN: 0
+                    },
+                    TI: 0,
+                    x: 68.35,
+                    y: 22.43,
+                    w: 21.77,
+                    h: 1.08
+                },
+
+Another example of 'date' field:
+
+                {
+                style: 48,
+                T: {
+                    Name: "date",
+                    TypeInfo: { }
+                },
+                id: {
+                    Id: "Your Birth Date",
+                    EN: 0
+                },
+                TI: 0,
+                x: 33.43,
+                y: 20.78,
+                w: 5.99,
+                h: 0.89
+                },
 
 Notes
 =====

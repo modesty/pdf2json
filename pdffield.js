@@ -123,7 +123,7 @@ var PDFField = (function PDFFieldClosure() {
         var anData = _.extend({
             style: 48,
             T: {
-                Name: "alpha",
+                Name: field.TName || "alpha",
                 TypeInfo: {}
             }
         }, _getFieldBaseData.call(this, field));
@@ -153,12 +153,14 @@ var PDFField = (function PDFFieldClosure() {
             }
         }, _getFieldBaseData.call(this, box));
 
-        if (!!cls.currentRadioGroupName && (cls.currentRadioGroupName !== anData.id.Id)) {
+        anData.id.Id = box.value;
+
+        if (!!cls.currentRadioGroupName && (cls.currentRadioGroupName !== box.fullName)) {
             cls.checkRadioGroup(this.Boxsets);
         }
         else {
             cls.currentRadioGroup.push(anData);
-            cls.currentRadioGroupName = anData.id.Id;
+            cls.currentRadioGroupName = box.fullName;
         }
     };
 
@@ -185,8 +187,8 @@ var PDFField = (function PDFFieldClosure() {
 
         anData.PL = {V: [], D: []};
         _.each(field.value, function(ele, idx) {
-            anData.PL.V.push(ele[0]);
-            anData.PL.D.push(ele[1]);
+            anData.PL.D.push(ele[0]);
+            anData.PL.V.push(ele[1]);
         });
 
         this.Fields.push(anData);

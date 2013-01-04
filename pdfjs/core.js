@@ -282,15 +282,16 @@ var Page = (function PageClosure() {
             //PDF Spec p.614 get normal appearance
             var nVal = ap.get('N');
             //PDF Spec p.689
-            var i = 0;
             nVal.forEach(function(key, value){
-                i++;
-                if (i == 2) {
+                if (key.toLowerCase() != "off") {
                     //value if selected
                     item.value = key;
                 }
 //                console.log("nVal KV = " + key +", " + value);
             });
+
+            if (!item.value)
+                item.value = "off";
         }
 
         function setupPushButton(annotation, item) {
@@ -330,6 +331,71 @@ var Page = (function PageClosure() {
         function setupDropDown(annotation, item) {
             //PDF Spec p.688
             item.value = annotation.get('Opt') || [];
+        }
+
+        function setupFieldAttributes(annotation, item) {
+            //MQZ. Jan.03.2013. additional-actions dictionary
+            //PDF Spec P.648. 8.5.2. Trigger Events
+            var aa = annotation.get('AA');
+            if (!aa) {
+                if (item.fullName.toLowerCase().indexOf('ssn') > 0)
+                    item.TName = AFSpecial_Format[3]; // 'ssn'
+                return;
+            }
+
+            //PDF Spec p.651 get format dictionary
+            var nVal = aa.get('F');
+            if (!nVal)
+                return;
+
+            nVal.forEach(function(key, value){
+                if (key === "JS") {
+                    processFieldAttribute(value, item);
+                }
+            });
+        }
+
+        var AFSpecial_Format = ['zip', 'zip', 'phone', 'ssn', ''];
+//        var AFNumber_Format = ['nDec', 'sepStyle', 'negStyle', 'currStyle', 'strCurrency', 'bCurrencyPrepend'];
+        //– nDec is the number of places after the decimal point;
+        //– sepStyle is an integer denoting whether to use a separator or not. If sepStyle=0, use commas. If sepStyle=1, do not separate.
+        //– negStyle is the formatting used for negative numbers: 0 = MinusBlack, 1 = Red, 2 = ParensBlack, 3 = ParensRed
+        //– currStyle is the currency style - not used
+        //- strCurrency is the currency symbol
+        //– bCurrencyPrepend
+//        var AFDate_FormatEx = ["m/d", "m/d/yy", "mm/dd/yy", "mm/yy", "d-mmm", "d-mmm-yy", "dd-mmm-yy", "yymm-dd", "mmm-yy", "mmmm-yy", "mmm d, yyyy", "mmmm d, yyyy", "m/d/yy h:MM tt", "m/d/yy HH:MM"];
+
+        function processFieldAttribute(jsFuncName, item) {
+//            console.log(item.fullName + " : value = " + jsFuncName);
+            if (item.hasOwnProperty('TName'))
+                return;
+
+            var vParts = jsFuncName.split('(');
+            if (vParts.length !== 2)
+                return;
+            var funcName = vParts[0];
+            var funcParam = vParts[1].split(')')[0];
+
+//            console.log(item.fullName + " : " + funcName + " => " + funcParam);
+//            var nfs = null;
+            switch(funcName) {
+                case 'AFSpecial_Format':
+                    item.TName = AFSpecial_Format[Number(funcParam)];
+//                    console.log(item.fullName + " : " + funcParam + " => " + item.TName);
+                    break;
+                case 'AFNumber_Format':
+//                    nfs = funcParam.split(',');
+                    //I’ve set the Money fields to use the Number type with no decimal places after, no commas, and bCurrencyPrepend is set as true; (o use a negative sign (fits the PDF layout and our print formatting as well).
+//                    if (nfs[0] === '0' && nfs[1] === '1' && nfs[5])
+//                        item.TName = 'money';
+//                    else
+                        item.TName = 'number';
+//                    console.log(item.fullName + " : AFNumber_Format : " + item.TName);
+                    break;
+                case 'AFDate_FormatEx':
+                    item.TName = 'date';
+                    break;
+            }
         }
 
         //END - MQZ 9/19/2012. Helper functions to parse acroForm elements
@@ -434,6 +500,9 @@ var Page = (function PageClosure() {
                 }
                 else if (item.fieldType == 'Ch') {
                     setupDropDown(annotation, item);
+                }
+                else if (item.fieldType == 'Tx') {
+                    setupFieldAttributes(annotation, item);
                 }
             break;
           case 'Text':
