@@ -889,6 +889,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
                 if (textSelection)
                     canvasWidth += spacingLength + spTextWidth;
             }
+            else
+                current.x -= spacingLength;
         } else if (isString(e)) {
 //          var shownCanvasWidth = this.showText(e, true);
 //

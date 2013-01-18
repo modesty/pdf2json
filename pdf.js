@@ -92,9 +92,6 @@ var PDFPageParser = (function () {
         //form elements: radio buttons and check boxes
         this.Boxsets = [];
 
-        this.currentRadioGroup = [];
-        this.currentRadioGroupName = "";
-
         //public properties
         Object.defineProperty(this, 'width', {
             get:function () {

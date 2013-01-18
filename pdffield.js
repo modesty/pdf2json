@@ -49,9 +49,9 @@ var PDFField = (function PDFFieldClosure() {
         if (!!cls.currentRadioGroupName) {
             if (cls.currentRadioGroup.length > 0) {
                 boxsets.push({boxes:cls.currentRadioGroup, id: { Id: cls.currentRadioGroupName, EN: 0}});
+                cls.currentRadioGroup = [];
+                cls.currentRadioGroupName = "";
             }
-            cls.currentRadioGroup = [];
-            cls.currentRadioGroupName = "";
         }
     };
 
@@ -158,10 +158,8 @@ var PDFField = (function PDFFieldClosure() {
         if (!!cls.currentRadioGroupName && (cls.currentRadioGroupName !== box.fullName)) {
             cls.checkRadioGroup(this.Boxsets);
         }
-        else {
-            cls.currentRadioGroup.push(anData);
-            cls.currentRadioGroupName = box.fullName;
-        }
+        cls.currentRadioGroup.push(anData);
+        cls.currentRadioGroupName = box.fullName;
     };
 
     var _addLinkButton = function(field) {

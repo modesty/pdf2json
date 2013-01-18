@@ -97,12 +97,13 @@ var PDFFont = (function PFPFontClosure() {
 
         this.fontObj = fontObj;
         var typeName = (fontObj.name || fontObj.fallbackName).toLowerCase();
+        this.isSymbol = typeName.indexOf("symbol") > 0;
         if (this.fontObj.isSymbolicFont) {
             if (typeName.indexOf("arial") > 0)
                 this.fontObj.isSymbolicFont = false; //lots of Arial-based font is detected as symbol in VA forms (301, 76-c, etc.) reset the flag for now
         }
         else {
-            if (typeName.indexOf("symbol") > 0)
+            if (this.isSymbol)
                 this.fontObj.isSymbolicFont = true; //text pdf: va_ind_760c
         }
 
@@ -224,7 +225,7 @@ var PDFFont = (function PFPFontClosure() {
             return retVal;
 
         switch(str.charCodeAt(0)) {
-            case 99: retVal = '\u25b2'; break; //up triangle
+            case 99: retVal = this.isSymbol ? '\u2022' : '\u25b2'; break; //up triangle. set to Bullet Dot for VA SchSCR
             case 97: retVal = '\u25b6'; break; //right triangle
             case 20: retVal = '\u2713'; break; //check mark
             case 70: retVal = '\u007D'; break; //right curly bracket
@@ -254,7 +255,7 @@ var PDFFont = (function PFPFontClosure() {
             clr: PDFUnit.findColorIndex(color),
             A: "left",
             R: [{
-                T: text,
+                T: this.flash_encode(text),
                 S: this.fontStyleId
             }]
         };
@@ -275,6 +276,21 @@ var PDFFont = (function PFPFontClosure() {
             targetData.Texts.push(oneText);
 
 //        nodeUtil._logN.call(this, text + ":" + this.fontStyleId + ":" + this.typeName);
+    };
+
+    cls.prototype.flash_encode = function(str) {
+        var retVal = encodeURIComponent(str);
+        retVal = retVal.replace("%C2%96", "-");
+        retVal = retVal.replace("%C2%91", "%27");
+        retVal = retVal.replace("%C2%92", "%27");
+        retVal = retVal.replace("%C2%82", "%27");
+        retVal = retVal.replace("%C2%93", "%22");
+        retVal = retVal.replace("%C2%94", "%22");
+        retVal = retVal.replace("%C2%84", "%22");
+        retVal = retVal.replace("%C2%8B", "%C2%AB");
+        retVal = retVal.replace("%C2%9B", "%C2%BB");
+
+        return retVal;
     };
 
     cls.prototype.clean = function() {
