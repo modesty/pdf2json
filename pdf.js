@@ -133,12 +133,12 @@ var PDFPageParser = (function () {
             self.renderingState = RenderingStates.FINISHED;
 
             if (error) {
-                nodeUtil._logN.call(self, 'An error occurred while rendering the page.' + error);
+                nodeUtil._logN.call(self, 'An error occurred while rendering the page ' + (self.id + 1) + ';\n' + error);
+                //TOGO: emit error event
             }
             else {
                 nodeUtil._logN.call(self, 'page ' + (self.id + 1) + ' is rendered successfully.');
                 _.extend(self, ctx.canvas);
-
             }
 
             self.stats = self.pdfPage.stats;

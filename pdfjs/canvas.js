@@ -220,6 +220,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     if (canvasCtx) {
       addContextCurrentTransform(canvasCtx);
     }
+//MQZ Jan.22.2013: trying to merged kerning spaced text
+      this.lastSTParam = [];
   }
 
   var LINE_CAP_STYLES = ['butt', 'round', 'square'];
@@ -296,7 +298,27 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         fnName = fnArray[i];
 
         if (fnName !== 'dependency') {
-          this[fnName].apply(this, argsArray[i]);
+//MQZ.Jan.22. trying to merge kerning text
+            var goOn = true;
+            if (fnName == 'showSpacedText') {
+                if (this.lastSTParam.length > 0) {
+                    this.lastSTParam[0] = this.lastSTParam[0].concat(argsArray[i][0].slice(0));
+                    console.log("merged:" + JSON.stringify(this.lastSTParam[0]));
+                    this[fnName].apply(this, this.lastSTParam);
+                    this.lastSTParam = [];
+                    goOn = false;
+                }
+                else if ( i + 3 < fnArray.length) {
+                    if (fnArray[i+1] === 'setCharSpacing' && fnArray[i+2] === 'setWordSpacing' &&
+                        fnArray[i+3] === 'showSpacedText') {
+                        this.lastSTParam = argsArray[i].slice(0); //clone it
+                        goOn = false;
+                    }
+                }
+            }
+            if (goOn) {
+                this[fnName].apply(this, argsArray[i]);
+            }
         } else {
           var deps = argsArray[i];
           for (var n = 0, nn = deps.length; n < nn; n++) {
@@ -871,8 +893,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         ctx.restore();
       }
 
-        var sText = "";
-        var spacingLength = 0;
+//        console.log("In spacedText:" + JSON.stringify(arr) + ";this.current = " + this.current.x + "," + this.current.y + ";");
+      var charWidth = {min:0.220 * fontSize * textHScale, max: 0.35 * fontSize * textHScale};
+      var sText = "";
+      var spacingLength = 0;
       for (var i = 0; i < arrLength; ++i) {
         var e = arr[i];
         if (isNum(e)) {
@@ -880,17 +904,23 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
             spacingLength = -e * 0.001 * fontSize * textHScale;
             if (spacingLength > 0) {
                 var spTextWidth = 0;
-                if (spacingLength > 0.1) {
+                if (spacingLength >= charWidth.max) {
                     spTextWidth = this.showText(sText, true);
                     sText = "";
+                    current.x += spacingLength;
+                    if (textSelection)
+                        canvasWidth += spacingLength + spTextWidth;
                 }
-
-                current.x += spacingLength;
-                if (textSelection)
-                    canvasWidth += spacingLength + spTextWidth;
+                else if (spacingLength >= charWidth.min) {
+                    sText += " ";//converting -220 to -350 kerning to be a space character
+                }
+                else {
+//                    console.log("ignored kerning of " + e + " in #" + i + " of " + JSON.stringify(arr));
+                }
             }
-            else
+            else if (i > 0)
                 current.x -= spacingLength;
+
         } else if (isString(e)) {
 //          var shownCanvasWidth = this.showText(e, true);
 //
@@ -903,9 +933,11 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       }
 
 //MQZ. Nov.28.2012 Disable character based rendering, make it a string
-        var shownCanvasWidth = this.showText(sText, true);
-        if (textSelection)
-          canvasWidth += shownCanvasWidth;
+        if (sText) {
+            var shownCanvasWidth = this.showText(sText, true);
+            if (textSelection)
+              canvasWidth += shownCanvasWidth;
+        }
 
       if (textSelection) {
         geom.canvasWidth = canvasWidth;
