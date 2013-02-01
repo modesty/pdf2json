@@ -1,9 +1,9 @@
 Introduction
 ====
 
-A server side PDF parser Node.js module that converts PDF binaries to JavaScript objects, which can be easily serialized to
+PDF2JSON module is ported from client side PDF.JS to Node.JS, it also extends PDF.JS library with form elements detections and parsing.
 
-JSON when running in node.js based web service or web app.
+The goal is to enable server side PDF parsing with interactive form elements wehn wrapped in web service, also enables parsing PDF to local JSON file when using in a commanline tool.
 
 Install:
 ====
