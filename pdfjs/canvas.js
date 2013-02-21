@@ -298,27 +298,9 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         fnName = fnArray[i];
 
         if (fnName !== 'dependency') {
-//MQZ.Jan.22. trying to merge kerning text
-            var goOn = true;
-            if (fnName == 'showSpacedText') {
-                if (this.lastSTParam.length > 0) {
-                    this.lastSTParam[0] = this.lastSTParam[0].concat(argsArray[i][0].slice(0));
-                    console.log("merged:" + JSON.stringify(this.lastSTParam[0]));
-                    this[fnName].apply(this, this.lastSTParam);
-                    this.lastSTParam = [];
-                    goOn = false;
-                }
-                else if ( i + 3 < fnArray.length) {
-                    if (fnArray[i+1] === 'setCharSpacing' && fnArray[i+2] === 'setWordSpacing' &&
-                        fnArray[i+3] === 'showSpacedText') {
-                        this.lastSTParam = argsArray[i].slice(0); //clone it
-                        goOn = false;
-                    }
-                }
-            }
-            if (goOn) {
-                this[fnName].apply(this, argsArray[i]);
-            }
+//MQZ Feb.19.2013. Trying to fix text positioning
+//          console.log(fnName + JSON.stringify(argsArray[i]));
+            this[fnName].apply(this, argsArray[i]);
         } else {
           var deps = argsArray[i];
           for (var n = 0, nn = deps.length; n < nn; n++) {
@@ -752,6 +734,13 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         ctx.restore();
       } else {
         ctx.save();
+
+//MQZ. Feb.20.2013. Adjust text positioning based on wordSpacing
+          if (str.indexOf(' ') === 0) {
+              var ns = str.replace(/^\s+/g, '');
+              current.x += (str.length - ns.length) * this.current.wordSpacing * fontSize * textHScale;
+          }
+
         this.applyTextTransforms();
 
         var lineWidth = current.lineWidth;
@@ -835,18 +824,19 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         current.x += x * textHScale2;
 
 //MQZ. 10/23/2012 Enable string rendering
+          var curFontSize = fontSize * scale * textHScale + 3;
           switch (textRenderingMode) {
               case TextRenderingMode.FILL:
               case TextRenderingMode.FILL_ADD_TO_PATH:
-                  ctx.fillText(str, 0, 0, canvasWidth, fontSize * scale);
+                  ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
                   break;
               case TextRenderingMode.STROKE:
               case TextRenderingMode.STROKE_ADD_TO_PATH:
-                  ctx.strokeText(str, 0, 0, canvasWidth, fontSize * scale);
+                  ctx.strokeText(str, 0, 0, canvasWidth, curFontSize);
                   break;
               case TextRenderingMode.FILL_STROKE:
               case TextRenderingMode.FILL_STROKE_ADD_TO_PATH:
-                  ctx.fillText(str, 0, 0, canvasWidth, fontSize * scale);
+                  ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
     //                  ctx.strokeText(str, 0, 0, canvasWidth);
                   break;
               case TextRenderingMode.INVISIBLE:
@@ -893,40 +883,46 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         ctx.restore();
       }
 
-//        console.log("In spacedText:" + JSON.stringify(arr) + ";this.current = " + this.current.x + "," + this.current.y + ";");
-      var charWidth = {min:0.220 * fontSize * textHScale, max: 0.35 * fontSize * textHScale};
+//MQZ. Dec.28. Adjust text positioning
+//      console.log("In spacedText:" + JSON.stringify(arr) + ";this.current = " + this.current.x + "," + this.current.y + ";");
       var sText = "";
       var spacingLength = 0;
+      var spaceWidthKerning = font.spaceWidth * 0.001 * fontSize * textHScale;
       for (var i = 0; i < arrLength; ++i) {
         var e = arr[i];
         if (isNum(e)) {
 //MQZ. Nov.28.2012 Disable character based rendering, make it a string
             spacingLength = -e * 0.001 * fontSize * textHScale;
             if (spacingLength > 0) {
-                var spTextWidth = 0;
-                if (spacingLength >= charWidth.max) {
-                    spTextWidth = this.showText(sText, true);
+                if (!sText) {
+                    current.x += spacingLength;
+                }
+                else if (spacingLength >= spaceWidthKerning) {
+                    var spTextWidth = this.showText(sText, true);
                     sText = "";
                     current.x += spacingLength;
+
                     if (textSelection)
                         canvasWidth += spacingLength + spTextWidth;
                 }
-                else if (spacingLength >= charWidth.min) {
-                    sText += " ";//converting -220 to -350 kerning to be a space character
-                }
-                else {
-//                    console.log("ignored kerning of " + e + " in #" + i + " of " + JSON.stringify(arr));
-                }
             }
-            else if (i > 0)
-                current.x -= spacingLength;
+            else if (!sText)
+                current.x += spacingLength;
 
         } else if (isString(e)) {
 //          var shownCanvasWidth = this.showText(e, true);
 //
 //          if (textSelection)
 //            canvasWidth += shownCanvasWidth;
-            sText += e;
+
+            if (!sText && e.indexOf(' ') === 0) {
+                var ns = e.replace(/^\s+/g, '');
+                current.x += (e.length - ns.length) * this.current.wordSpacing * fontSize * textHScale;
+                if (!!ns)
+                    sText += ns;
+            }
+            else
+                sText += e;
         } else {
           error('TJ array element ' + e + ' is not string or num');
         }

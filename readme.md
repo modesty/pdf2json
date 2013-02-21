@@ -1,9 +1,9 @@
 Introduction
 ====
 
-PDF2JSON module is ported from client side PDF.JS to Node.JS, it also extends PDF.JS library with form elements detections and parsing.
+PDF2JSON module is ported from client side PDF.JS to Node.JS, it also extends PDF.JS library with interactive form elements and text content parsing.
 
-The goal is to enable server side PDF parsing with interactive form elements wehn wrapped in web service, also enables parsing PDF to local JSON file when using in a commanline tool.
+The goal is to enable server side PDF parsing with interactive form elements wehen wrapped in web service, it also enables parsing PDF to local JSON file when using in a commanline tool.
 
 Install:
 ====
@@ -405,6 +405,40 @@ Another example of 'date' field:
                 w: 5.99,
                 h: 0.89
                 },
+
+
+Text Style data without Style Dictionary
+=====
+
+v0.1.11 added text style information in addition to style dictionary. As we discussed earlier, the idea of style dictionary is to make the parsing result payload to be compact, but I found out the limited dictionary entries for font (face, size) and style (bold, italic) can not cover majority of text contents in PDFs, because of some styles are matched with closest dictionary entry, the client rendering will have mis-aligned, gapped or overlapped text. To solve this problem, pdf2json v0.1.11 extends the dictionary approach, all previous dictionary entries stay the same, but parsing result will not try to match to a closest style entry, instead, all exact text style will be returned in a TS filed.
+
+When the actual text style doesn't match any pre-defined style dictionary entry, the text style ID (S filed) will be set as -1. The actual text style will be set in a new field (TS) with or without a matched style dictionary entry ID. This means, if your client renderer works with pdf2json v0.1.11 and later, style dictionary ID can be ignored. Otherwise, previous client renderer can still work with style dictionary ID.
+
+The new TS filed is an Array with format as:
+
+* First element in TS Array is Font Face ID (integer)
+* Second element is Font Size (px)
+* Third is 1 when font weight is bold, otherwise 0
+* Forth is 1 when font style is italic, otherwise 0
+
+For example, the following is a text block data in the parsing result:
+
+                {
+                    x: 7.11,
+                    y: 2.47,
+                    w: 1.6,
+                    clr: 0,
+                    A: "left",
+                    R: [
+                        {
+                            T: "Modesty%20PDF%20Parser%20NodeJS",
+                            S: -1,
+                            TS: [0, 15, 1, 0]
+                        }
+                    ]
+                },
+
+The text is "Modesty PDF Parser NodeJS", text style dictionary entry ID is -1 (S field, meaning no match), and its Font Face ID is 0 (TS[0], "QuickType,Arial,Helvetica,sans-serif"), Font Size is 15px (TS[1]), Font weight is bold (TS[2]) and font style is normal (TS[3]).
 
 Notes
 =====

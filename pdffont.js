@@ -183,35 +183,6 @@ var PDFFont = (function PFPFontClosure() {
             }
         });
 
-        if (retVal === -1) {
-            _.each(_kFontStyles, function(element, index, list){
-                if (retVal === -1) {
-                    if (element[0] === fsa[0] &&
-                        element[2] === fsa[2] && element[3] === fsa[3]) {
-                        if (element[1] >= fsa[1]) {
-                            retVal = index;
-                        }
-                    }
-                }
-            });
-        }
-
-        if (retVal === -1) {
-            _.each(_kFontStyles, function(element, index, list){
-                if (retVal === -1) {
-                    if (element[0] === fsa[0] ) {
-                        if (element[1] >= fsa[1]) {
-                            retVal = index;
-                        }
-                    }
-                }
-            });
-        }
-
-        if (retVal === -1) {
-            retVal = 2;
-        }
-
         return retVal;
     };
 
@@ -249,6 +220,10 @@ var PDFFont = (function PFPFontClosure() {
             text = " " + text + " ";
         }
 
+        // when this.fontStyleId === -1, it means the text style doesn't match any entry in the dictionary
+        // adding TS to better describe text style [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic];
+        var TS = [this.faceIdx, this.fontSize, this.bold?1:0, this.italic?1:0];
+
         var oneText = {x: PDFUnit.toFormX(p.x) - 0.25,
             y: PDFUnit.toFormY(p.y) - 0.75,
             w: PDFUnit.toFormX(maxWidth),
@@ -256,24 +231,12 @@ var PDFFont = (function PFPFontClosure() {
             A: "left",
             R: [{
                 T: this.flash_encode(text),
-                S: this.fontStyleId
+                S: this.fontStyleId,
+                TS: TS
             }]
         };
 
-//        var lastIdx = targetData.Texts.length - 1;
-//        if (lastIdx >= 0) {
-//            if (text[0] != text[0].toUpperCase()) {
-//                var lastTextBlock = targetData.Texts[lastIdx];
-//                if (lastTextBlock.y == oneText.y && lastTextBlock.R[0].S == oneText.R[0].S) {
-//                    nodeUtil._logN.call(this, "Merged text: " + text);
-//                    lastTextBlock.R[0].T += text; //add to last text run when style is the same and in the same line. Test form: VA_IND_760c.pdf
-//                    oneText = null;
-//                }
-//            }
-//        }
-//
-//        if (oneText != null)
-            targetData.Texts.push(oneText);
+        targetData.Texts.push(oneText);
 
 //        nodeUtil._logN.call(this, text + ":" + this.fontStyleId + ":" + this.typeName);
     };
