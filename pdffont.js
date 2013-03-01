@@ -170,7 +170,7 @@ var PDFFont = (function PFPFontClosure() {
     var _getFontStyleIndex = function(fontSize) {
         _setFaceIndex.call(this);
 
-        this.fontSize = fontSize;
+        this.fontSize = this.bold ? fontSize + 1 : fontSize; //MQZ Feb.28.2013. Adjust bold text fontsize to work around word spacing issue
         var fsa = [this.faceIdx, this.fontSize, this.bold?1:0, this.italic?1:0];
         var retVal = -1;
 
@@ -212,7 +212,7 @@ var PDFFont = (function PFPFontClosure() {
 
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
     cls.prototype.processText = function (p, str, maxWidth, color, fontSize, targetData) {
-//        nodeUtil._logN.call(this, "processText - " + JSON.stringify(p) + ", str = " + str + ", maxWidth = " + maxWidth);
+//        console.log(str + ", " + JSON.stringify({x:p.x, y:p.y, width: PDFUnit.toPixelX(maxWidth)}));
         this.fontStyleId = _getFontStyleIndex.call(this, fontSize);
         var text = _processSymbolicFont.call(this, str);
 
@@ -226,7 +226,7 @@ var PDFFont = (function PFPFontClosure() {
 
         var oneText = {x: PDFUnit.toFormX(p.x) - 0.25,
             y: PDFUnit.toFormY(p.y) - 0.75,
-            w: PDFUnit.toFormX(maxWidth),
+            w: maxWidth,
             clr: PDFUnit.findColorIndex(color),
             A: "left",
             R: [{
@@ -237,8 +237,6 @@ var PDFFont = (function PFPFontClosure() {
         };
 
         targetData.Texts.push(oneText);
-
-//        nodeUtil._logN.call(this, text + ":" + this.fontStyleId + ":" + this.typeName);
     };
 
     cls.prototype.flash_encode = function(str) {

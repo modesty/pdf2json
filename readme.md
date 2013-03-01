@@ -481,8 +481,9 @@ This pdf2json module's output does not 100% maps from PDF definitions, some of t
         * Font size: only limit to 6, 8, 10, 12, 14, 18 that are defined in style dictionary, all other sized font are mapped to the closest size. For example: when a PDF defines a 7px sized font, the size will be mapped to 8px in the output;
         * Color: either font color or fill colors, are limited to the entries in color dictionry
         * Style combinations: when style combination is not supported, say in different size, face, bold and italic, the closest entry will be selected in the output;
+    * Note: v0.1.11 started to add support for actual font style (size, bold, itlic), but still no full support on font family;
 * Text positioning and spacing:
-    * Since embedd font and font styles are only honored if they defined in style dictionary, when they are not in there, the final output may have word positioning and spacing issues that's noticable.
+    * Since embedd font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed JSON data in browser (HTML5 canvas and IE's SVG).
 * User input data in form element:
     * As for interactive forms elements, their type, poisitions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, like which radio button is selected, which checkbox is checked, text in text input box, etc., should be handled in client as part of user data, so that we can treat parsed PDF data as template data.
 

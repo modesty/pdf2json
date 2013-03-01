@@ -738,7 +738,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //MQZ. Feb.20.2013. Adjust text positioning based on wordSpacing
           if (str.indexOf(' ') === 0) {
               var ns = str.replace(/^\s+/g, '');
-              current.x += (str.length - ns.length) * this.current.wordSpacing * fontSize * textHScale;
+              var spaceFactor = Math.max(this.current.wordSpacing, font.spaceWidth * 0.001);
+              current.x += (str.length - ns.length) * spaceFactor * fontSize * textHScale;
           }
 
         this.applyTextTransforms();
@@ -886,18 +887,16 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //MQZ. Dec.28. Adjust text positioning
 //      console.log("In spacedText:" + JSON.stringify(arr) + ";this.current = " + this.current.x + "," + this.current.y + ";");
       var sText = "";
-      var spacingLength = 0;
-      var spaceWidthKerning = font.spaceWidth * 0.001 * fontSize * textHScale;
       for (var i = 0; i < arrLength; ++i) {
         var e = arr[i];
         if (isNum(e)) {
 //MQZ. Nov.28.2012 Disable character based rendering, make it a string
-            spacingLength = -e * 0.001 * fontSize * textHScale;
+            var spacingLength = -e * 0.001 * fontSize * textHScale;
             if (spacingLength > 0) {
                 if (!sText) {
                     current.x += spacingLength;
                 }
-                else if (spacingLength >= spaceWidthKerning) {
+                else if (-e >= font.spaceWidth) {
                     var spTextWidth = this.showText(sText, true);
                     sText = "";
                     current.x += spacingLength;
@@ -917,7 +916,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
             if (!sText && e.indexOf(' ') === 0) {
                 var ns = e.replace(/^\s+/g, '');
-                current.x += (e.length - ns.length) * this.current.wordSpacing * fontSize * textHScale;
+                var spaceFactor = Math.max(this.current.wordSpacing, font.spaceWidth * 0.001);
+                current.x += (e.length - ns.length) * spaceFactor * fontSize * textHScale;
                 if (!!ns)
                     sText += ns;
             }
