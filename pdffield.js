@@ -183,6 +183,7 @@ var PDFField = (function PDFFieldClosure() {
             }
         }, _getFieldBaseData.call(this, field));
 
+        anData.w -= 0.5; //adjust combobox width
         anData.PL = {V: [], D: []};
         _.each(field.value, function(ele, idx) {
             anData.PL.D.push(ele[0]);

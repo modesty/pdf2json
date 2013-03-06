@@ -122,6 +122,7 @@ var PDFFont = (function PFPFontClosure() {
         return _name + _nextId;
     };
 
+    // private
     var _setFaceIndex = function() {
         var fontObj = this.fontObj;
 
@@ -210,8 +211,26 @@ var PDFFont = (function PFPFontClosure() {
         return retVal;
     };
 
+    var _textRotationAngle = function (matrix2D) {
+        var retVal = 0;
+        if (matrix2D[0][0] === 0 && matrix2D[1][1] === 0) {
+            if (matrix2D[0][1] != 0 && matrix2D[1][0] != 0) {
+                if ((matrix2D[0][1] / matrix2D[1][0]) + 1 < 0.0001)
+                    retVal = 90;
+            }
+        }
+        else if (matrix2D[0][0] !== 0 && matrix2D[1][1] !== 0) {
+            var r1 = Math.atan(-matrix2D[0][1] / matrix2D[0][0]);
+            var r2 = Math.atan(matrix2D[1][0] / matrix2D[1][1]);
+            if (Math.abs(r1) > 0.0001 && (r1 - r2 < 0.0001)) {
+                retVal = r1 * 180 / Math.PI;
+            }
+        }
+        return retVal;
+    };
+
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
-    cls.prototype.processText = function (p, str, maxWidth, color, fontSize, targetData) {
+    cls.prototype.processText = function (p, str, maxWidth, color, fontSize, targetData, matrix2D) {
 //        console.log(str + ", " + JSON.stringify({x:p.x, y:p.y, width: PDFUnit.toPixelX(maxWidth)}));
         this.fontStyleId = _getFontStyleIndex.call(this, fontSize);
         var text = _processSymbolicFont.call(this, str);
@@ -235,6 +254,12 @@ var PDFFont = (function PFPFontClosure() {
                 TS: TS
             }]
         };
+        var rAngle = _textRotationAngle.call(this, matrix2D);
+        if (rAngle != 0) {
+            nodeUtil._logN.call(this, str + ": rotated " + rAngle + " degree.");
+            _.extend(oneText.R[0], {RA: rAngle});
+            console.log(oneText);
+        }
 
         targetData.Texts.push(oneText);
     };

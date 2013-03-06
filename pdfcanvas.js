@@ -184,7 +184,7 @@ var nodeUtil = require("util"),
         var a = processStyle(this.fillStyle || this.strokeStyle);
         var color = (!!a) ? a.color : '#000000';
 
-        this.currentFont.processText(p, text, maxWidth, color, fontSize, this.canvas);
+        this.currentFont.processText(p, text, maxWidth, color, fontSize, this.canvas, this.m_);
     };
 
     contextPrototype.strokeText = function(text, x, y, maxWidth) {

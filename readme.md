@@ -440,6 +440,28 @@ For example, the following is a text block data in the parsing result:
 
 The text is "Modesty PDF Parser NodeJS", text style dictionary entry ID is -1 (S field, meaning no match), and its Font Face ID is 0 (TS[0], "QuickType,Arial,Helvetica,sans-serif"), Font Size is 15px (TS[1]), Font weight is bold (TS[2]) and font style is normal (TS[3]).
 
+Rotated Text Support
+=====
+
+V0.1.13 added text rotation value (degree) in the R array's object, if and only if the text rotation angle is not 0. For example, if text is not rotated, the parsed output would be the same as above. When the rotation angle is 90 degree, the R array object would be extended with "RA" field:
+
+                {
+                    x: 7.11,
+                    y: 2.47,
+                    w: 1.6,
+                    clr: 0,
+                    A: "left",
+                    R: [
+                        {
+                            T: "Modesty%20PDF%20Parser%20NodeJS",
+                            S: -1,
+                            TS: [0, 15, 1, 0],
+                            RA: 90
+                        }
+                    ]
+                },
+
+
 Notes
 =====
 
