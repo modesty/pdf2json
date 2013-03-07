@@ -5,7 +5,7 @@ var vows = require('vows'),
     assert = require('assert'),
     nodeEvents = require("events"),
     _ = require('underscore'),
-    PFParser = require("../pfparser");
+    PFParser = require("../pdfparser");
 
 var suite = vows.describe('PDF Node Parser');
 
