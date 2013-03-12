@@ -258,7 +258,6 @@ var PDFFont = (function PFPFontClosure() {
         if (rAngle != 0) {
             nodeUtil._logN.call(this, str + ": rotated " + rAngle + " degree.");
             _.extend(oneText.R[0], {RA: rAngle});
-            console.log(oneText);
         }
 
         targetData.Texts.push(oneText);

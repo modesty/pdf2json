@@ -115,8 +115,11 @@ var PDFParser = (function () {
     cls.prototype.destroy = function() {
         this.removeAllListeners();
 
-        this.context.destroy();
-        this.context = null;
+        //context object will be set in Web Service project, but not in command line utility
+        if (this.context) {
+            this.context.destroy();
+            this.context = null;
+        }
 
         this.pdfFilePath = null;
         this.data = null;

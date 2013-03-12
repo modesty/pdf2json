@@ -1,12 +1,16 @@
 {
   "name": "pdf2json",
-  "version": "0.1.14",
-  "description": "A PDF file parser that converts PDF binaries to text based JSON, powered by a fork of PDF.JS",
+  "_id": "pdf2json@0.1.15",
+  "version": "0.1.15",
+  "description": "A PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
   "keywords": [
     "pdf",
-    "parser",
+    "pdf parser",
+    "convert pdf to json",
     "server side PDF parser",
+    "port pdf.js to node.js",
     "PDF binary to text",
+    "commandline utility to parse pdf to json",
     "JSON",
     "javascript",
     "PDF canvas",
@@ -54,7 +58,6 @@
       "url": "http://www.gnu.org/licenses/lgpl.html"
     }
   ],
-  "readme": "",
-  "_id": "pdf2json@0.1.14",
+  "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
   "_from": "pdf2json"
 }

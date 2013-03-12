@@ -517,7 +517,24 @@ Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under '
 
             node test/index.js
 
+Run As a Commandline Utility
+=====
 
+v0.1.15 added the capability to run pdf2json as command line tool, implemented in pdf2json.js file, and it enables the use case that when running the parser as a web service is not absolutely necessary while transcoding pdf files to JSON format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same JSON payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result JSON files onto web server, client side JSON form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
+
+This command line capability is added as an extension, it doesn't break previous functionalities of running winthin a web service wrapper. In my real use case, I have a web service wrapper written in restify.js to run pdf2json with a RESTful web service interface, I also have the needs to pre-process some pdfs through the command line capability without changing the actual pdf2json module code.
+
+            node pdf2json.js -f [input directory or pdf file]
+
+When -f is a PDF file, it'll be converted to JSON file with the same name and saved in the same directory. If -f is a directory, it'll scan all ".pdf" files within the specified directory to transcode them one by one.
+
+Optionally, you can specify the output directory: -o:
+
+            node pdf2json.js -f [input directory or pdf file] -o [output directory]
+
+The output directory must exist, otherwise, it'll exit with an error.
+
+Additionally, you can also use -v or --version to show version number or to display more help info with -h.
 
 
 

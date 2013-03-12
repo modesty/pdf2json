@@ -282,7 +282,9 @@ var PDFJSClass = (function () {
     cls.prototype.destroy = function() {
         this.removeAllListeners();
 
+        this.pdfDocument.destroy();
         this.pdfDocument = null;
+
         this.formImage = null;
     };
 
