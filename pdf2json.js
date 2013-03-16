@@ -139,6 +139,8 @@ var PDF2JSONUtil = (function () {
 })();
 
 var PDFProcessor = (function () {
+    var _PRO_TIMER = "pdf2json transcoder";
+
     // constructor
     var cls = function () {
         this.inputCount = 0;
@@ -150,6 +152,7 @@ var PDFProcessor = (function () {
     };
 
     cls.prototype.initialize = function(){
+        console.time(_PRO_TIMER);
         var retVal = true;
         try {
             if (_.has(argv, 'v')) {
@@ -174,8 +177,10 @@ var PDFProcessor = (function () {
     };
 
     cls.prototype.start = function(){
-        if (!this.initialize())
+        if (!this.initialize()) {
+            console.timeEnd(_PRO_TIMER);
             return;
+        }
 
         try {
             var inputStatus = fs.statSync(argv.f);
@@ -189,6 +194,7 @@ var PDFProcessor = (function () {
         }
         catch(e) {
             console.log("Exception: " + e.message);
+            console.timeEnd(_PRO_TIMER);
         }
     };
 
@@ -198,6 +204,7 @@ var PDFProcessor = (function () {
 
         var self = this;
         process.nextTick( function() {
+            console.timeEnd(_PRO_TIMER);
             var exitCode = (self.inputCount === self.successCount) ? 0 : 1;
             process.exit(exitCode);
         });

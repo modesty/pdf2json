@@ -3,7 +3,7 @@ Introduction
 
 PDF2JSON module is ported from client side PDF.JS to Node.JS, it also extends PDF.JS library with interactive form elements and text content parsing.
 
-The goal is to enable server side PDF parsing with interactive form elements wehen wrapped in web service, it also enables parsing PDF to local JSON file when using in a commanline tool.
+The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, it also enables parsing local PDF files to JSON files when using in a commanline tool.
 
 Install:
 ====
@@ -520,9 +520,11 @@ Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under '
 Run As a Commandline Utility
 =====
 
-v0.1.15 added the capability to run pdf2json as command line tool, implemented in pdf2json.js file, and it enables the use case that when running the parser as a web service is not absolutely necessary while transcoding pdf files to JSON format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same JSON payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result JSON files onto web server, client side JSON form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
+v0.1.15 added the capability to run pdf2json as command line tool, implemented in pdf2json.js file. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to JSON format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same JSON payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result JSON files onto web server, client side JSON form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
 
-This command line capability is added as an extension, it doesn't break previous functionalities of running winthin a web service wrapper. In my real use case, I have a web service wrapper written in restify.js to run pdf2json with a RESTful web service interface, I also have the needs to pre-process some pdfs through the command line capability without changing the actual pdf2json module code.
+This command line capability is added as an extension, it doesn't break previous functionalities of running winthin a web service context. In my real project, I have a web service written in restify.js to run pdf2json with a RESTful web service interface, I also have the needs to pre-process some local static pdfs through the command line capability without changing the actual pdf2json module code.
+
+To use the command line utility to transcode a folder or a file:
 
             node pdf2json.js -f [input directory or pdf file]
 
