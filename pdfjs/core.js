@@ -14,6 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/* globals assertWellFormed, calculateMD5, Catalog, error, info, isArray,
+           isArrayBuffer, isDict, isName, isStream, isString, Lexer,
+           Linearization, NullStream, PartialEvaluator, shadow, Stream,
+           StreamsSequenceStream, stringToPDFString, TODO, Util, warn, XRef */
 
 'use strict';
 
@@ -77,7 +81,7 @@ function getPdf(arg, callback) {
         calledErrorBack = true;
         params.error();
       }
-    }
+    };
   }
 
   xhr.onreadystatechange = function getPdfOnreadystatechange(e) {
@@ -98,8 +102,8 @@ globalScope.PDFJS.getPdf = getPdf;
 globalScope.PDFJS.pdfBug = false;
 
 var Page = (function PageClosure() {
-  function Page(xref, pageNumber, pageDict, ref) {
-    this.pageNumber = pageNumber;
+  function Page(xref, pageIndex, pageDict, ref) {
+    this.pageIndex = pageIndex;
     this.pageDict = pageDict;
     this.xref = xref;
     this.ref = ref;
@@ -157,7 +161,7 @@ var Page = (function PageClosure() {
     get rotate() {
       var rotate = this.inheritPageProp('Rotate') || 0;
       // Normalize rotation so it's a multiple of 90 and between 0 and 270
-      if (rotate % 90 != 0) {
+      if (rotate % 90 !== 0) {
         rotate = 0;
       } else if (rotate >= 360) {
         rotate = rotate % 360;
@@ -168,14 +172,11 @@ var Page = (function PageClosure() {
       }
       return shadow(this, 'rotate', rotate);
     },
-
-    getOperatorList: function Page_getOperatorList(handler, dependency) {
-      var xref = this.xref;
+    getContentStream: function Page_getContentStream() {
       var content = this.content;
-      var resources = this.resources;
       if (isArray(content)) {
         // fetching items
-        var streams = [];
+        var xref = this.xref;
         var i, n = content.length;
         var streams = [];
         for (i = 0; i < n; ++i)
@@ -185,13 +186,21 @@ var Page = (function PageClosure() {
         content.reset();
       } else if (!content) {
         // replacing non-existent page content with empty one
-        content = new Stream(new Uint8Array(0));
+        content = new NullStream();
       }
-
+      return content;
+    },
+    getOperatorList: function Page_getOperatorList(handler, dependency) {
+      var xref = this.xref;
+      var contentStream = this.getContentStream();
+      var resources = this.resources;
       var pe = this.pe = new PartialEvaluator(
-                                xref, handler, 'p' + this.pageNumber + '_');
+                                xref, handler, this.pageIndex,
+                                'p' + this.pageIndex + '_');
 
-      return pe.getOperatorList(content, resources, dependency);
+      var list = pe.getOperatorList(contentStream, resources, dependency);
+      pe.optimizeQueue(list);
+      return list;
     },
     extractTextContent: function Page_extractTextContent() {
       var handler = {
@@ -200,40 +209,13 @@ var Page = (function PageClosure() {
       };
 
       var xref = this.xref;
-      var content = xref.fetchIfRef(this.content);
+      var contentStream = this.getContentStream();
       var resources = xref.fetchIfRef(this.resources);
-      if (isArray(content)) {
-        // fetching items
-        var i, n = content.length;
-        var streams = [];
-        for (i = 0; i < n; ++i)
-          streams.push(xref.fetchIfRef(content[i]));
-        content = new StreamsSequenceStream(streams);
-      } else if (isStream(content)) {
-        content.reset();
-      }
 
       var pe = new PartialEvaluator(
-                     xref, handler, 'p' + this.pageNumber + '_');
-      return pe.getTextContent(content, resources);
-    },
-
-    ensureFonts: function Page_ensureFonts(fonts, callback) {
-      this.stats.time('Font Loading');
-      // Convert the font names to the corresponding font obj.
-      for (var i = 0, ii = fonts.length; i < ii; i++) {
-        fonts[i] = this.objs.objs[fonts[i]].data;
-      }
-
-      // Load all the fonts
-      FontLoader.bind(
-        fonts,
-        function pageEnsureFontsFontObjs(fontObjs) {
-          this.stats.timeEnd('Font Loading');
-
-          callback.call(this);
-        }.bind(this)
-      );
+                     xref, handler, this.pageIndex,
+                     'p' + this.pageIndex + '_');
+      return pe.getTextContent(contentStream, resources);
     },
     getLinks: function Page_getLinks() {
       var links = [];
@@ -405,7 +387,7 @@ var Page = (function PageClosure() {
       var items = [];
       for (i = 0; i < n; ++i) {
         var annotationRef = annotations[i];
-        var annotation = xref.fetch(annotationRef);
+        var annotation = xref.fetchIfRef(annotationRef);
         if (!isDict(annotation))
           continue;
         var subtype = annotation.get('Subtype');
@@ -432,8 +414,23 @@ var Page = (function PageClosure() {
                 case 'GoTo':
                   item.dest = a.get('D');
                   break;
+                case 'GoToR':
+                  var url = a.get('F');
+                  if (isDict(url)) {
+                    // We assume that the 'url' is a Filspec dictionary
+                    // and fetch the url without checking any further
+                    url = url.get('F') || '';
+                  }
+
+                  // TODO: pdf reference says that GoToR
+                  // can also have 'NewWindow' attribute
+                  if (!isValidUrl(url))
+                    url = '';
+                  item.url = url;
+                  item.dest = a.get('D');
+                  break;
                 default:
-                  TODO('other link types');
+                  TODO('unrecognized link type: ' + a.get('S').name);
               }
             } else if (annotation.has('Dest')) {
               // simple destination link
@@ -448,7 +445,9 @@ var Page = (function PageClosure() {
             item.fieldType = fieldType.name;
             // Building the full field name by collecting the field and
             // its ancestors 'T' properties and joining them using '.'.
+
 //BEGIN:MQZ. 9/19/2012. comment out the fullname routin, replace it with getInheritableProperty('T') //PDF Spec P.689
+
 //            var fieldName = [];
 //            var namedItem = annotation, ref = annotationRef;
 //            while (namedItem) {
@@ -478,6 +477,7 @@ var Page = (function PageClosure() {
 //            item.fullName = fieldName.join('.');
 //END:MQZ. 9/19/2012. comment out the fullname routin, replace it with getInheritableProperty('T') //PDF Spec P.689
                 item.fullName = stringToPDFString(getInheritableProperty(annotation,'T') || '');
+
             var alternativeText = stringToPDFString(annotation.get('TU') || '');
             item.alternativeText = alternativeText;
             var da = getInheritableProperty(annotation, 'DA') || '';
@@ -486,6 +486,7 @@ var Page = (function PageClosure() {
               item.fontSize = parseFloat(m[1]);
             item.textAlignment = getInheritableProperty(annotation, 'Q');
             item.flags = getInheritableProperty(annotation, 'Ff') || 0;
+
 //MQZ.Sep.19.2012: adding field value
                 if (item.fieldType == 'Btn') { //PDF Spec p.675
                     if (item.flags & 32768) {
@@ -504,6 +505,7 @@ var Page = (function PageClosure() {
                 else if (item.fieldType == 'Tx') {
                     setupFieldAttributes(annotation, item);
                 }
+
             break;
           case 'Text':
             var content = annotation.get('Contents');
@@ -596,6 +598,7 @@ var PDFDocument = (function PDFDocumentClosure() {
         } catch (err) {
           warn('The linearization data is not available ' +
                'or unreadable pdf data is found');
+          linearization = false;
         }
       }
       // shadow the prototype getter with a data property
@@ -656,6 +659,17 @@ var PDFDocument = (function PDFDocumentClosure() {
       if (find(stream, '%PDF-', 1024)) {
         // Found the header, trim off any garbage before it.
         stream.moveStart();
+        // Reading file format version
+        var MAX_VERSION_LENGTH = 12;
+        var version = '', ch;
+        while ((ch = stream.getChar()) > ' ') {
+          if (version.length >= MAX_VERSION_LENGTH) {
+            break;
+          }
+          version += ch;
+        }
+        // removing "%PDF-"-prefix
+        this.pdfFormatVersion = version.substring(5);
         return;
       }
       // May not be a PDF file, continue anyway.
@@ -676,11 +690,13 @@ var PDFDocument = (function PDFDocumentClosure() {
       return shadow(this, 'numPages', num);
     },
     getDocumentInfo: function PDFDocument_getDocumentInfo() {
-      var docInfo;
+      var docInfo = {
+        PDFFormatVersion: this.pdfFormatVersion,
+        IsAcroFormPresent: !!this.acroForm
+      };
       if (this.xref.trailer.has('Info')) {
         var infoDict = this.xref.trailer.get('Info');
 
-        docInfo = {};
         var validEntries = DocumentInfoValidators.entries;
         // Only fill the document info with valid entries from the spec.
         for (var key in validEntries) {

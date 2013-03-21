@@ -14,6 +14,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/* globals CanvasGraphics, combineUrl, createScratchCanvas, error, ErrorFont,
+           Font, FontLoader, globalScope, info, isArrayBuffer, loadJpegStream,
+           MessageHandler, PDFJS, PDFObjects, Promise, StatTimer, warn,
+           WorkerMessageHandler */
 
  'use strict';
 
@@ -91,6 +95,13 @@ var PDFDocumentProxy = (function PDFDocumentProxyClosure() {
       return this.pdfInfo.fingerprint;
     },
     /**
+     * @return {boolean} true if embedded document fonts are in use. Will be
+     * set during rendering of the pages.
+     */
+    get embeddedFontsUsed() {
+      return this.transport.embeddedFontsUsed;
+    },
+    /**
      * @param {number} The page number to get. The first page is 1.
      * @return {Promise} A promise that is resolved with a {PDFPageProxy}
      * object.
@@ -106,6 +117,16 @@ var PDFDocumentProxy = (function PDFDocumentProxyClosure() {
       var promise = new PDFJS.Promise();
       var destinations = this.pdfInfo.destinations;
       promise.resolve(destinations);
+      return promise;
+    },
+    /**
+     * @return {Promise} A promise that is resolved with an array of all the
+     * JavaScript strings in the name tree.
+     */
+    getJavaScript: function PDFDocumentProxy_getDestinations() {
+      var promise = new PDFJS.Promise();
+      var js = this.pdfInfo.javaScript;
+      promise.resolve(js);
       return promise;
     },
     /**
@@ -172,8 +193,10 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
     this.transport = transport;
     this.stats = new StatTimer();
     this.stats.enabled = !!globalScope.PDFJS.enableStats;
-    this.objs = transport.objs;
+    this.commonObjs = transport.commonObjs;
+    this.objs = new PDFObjects();
     this.renderInProgress = false;
+    this.cleanupAfterRender = false;
   }
   PDFPageProxy.prototype = {
     /**
@@ -234,6 +257,8 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
      *   canvasContext(required): A 2D context of a DOM Canvas object.,
      *   textLayer(optional): An object that has beginLayout, endLayout, and
      *                        appendText functions.,
+     *   imageLayer(optional): An object that has beginLayout, endLayout and
+     *                         appendImage functions.,
      *   continueCallback(optional): A function that will be called each time
      *                               the rendering is paused.  To continue
      *                               rendering call the function that is the
@@ -263,16 +288,17 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
       var self = this;
       function complete(error) {
         self.renderInProgress = false;
-        if (self.destroyed) {
-          delete self.operatorList;
+        if (self.destroyed || self.cleanupAfterRender) {
           delete self.displayReadyPromise;
+          delete self.operatorList;
+          self.objs.clear();
         }
 
         if (error)
           promise.reject(error);
         else
           promise.resolve();
-      };
+      }
       var continueCallback = params.continueCallback;
 
       // Once the operatorList and fonts are loaded, do the actual rendering.
@@ -283,8 +309,8 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
             return;
           }
 
-          var gfx = new CanvasGraphics(params.canvasContext,
-            this.objs, params.textLayer);
+          var gfx = new CanvasGraphics(params.canvasContext, this.commonObjs,
+            this.objs, params.textLayer, params.imageLayer);
           try {
             this.display(gfx, params.viewport, complete, continueCallback);
           } catch (e) {
@@ -329,15 +355,18 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
       // Convert the font names to the corresponding font obj.
       var fontObjs = [];
       for (var i = 0, ii = fonts.length; i < ii; i++) {
-        var obj = this.objs.objs[fonts[i]].data;
+        var obj = this.commonObjs.getData(fonts[i]);
         if (obj.error) {
           warn('Error during font loading: ' + obj.error);
           continue;
         }
+        if (!obj.coded) {
+          this.transport.embeddedFontsUsed = true;
+        }
         fontObjs.push(obj);
       }
 
-      //MQZ Oct.17.2012 - Disable ensureFonts
+//MQZ Oct.17.2012 - Disable ensureFonts
       // Load all the fonts
 //      FontLoader.bind(
 //        fontObjs,
@@ -371,7 +400,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
 
       var continueWrapper;
       if (continueCallback)
-        continueWrapper = function() { continueCallback(next); }
+        continueWrapper = function() { continueCallback(next); };
       else
         continueWrapper = next;
 
@@ -424,6 +453,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
       if (!this.renderInProgress) {
         delete this.operatorList;
         delete this.displayReadyPromise;
+        this.objs.clear();
       }
     }
   };
@@ -435,11 +465,11 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
 var WorkerTransport = (function WorkerTransportClosure() {
   function WorkerTransport(workerInitializedPromise, workerReadyPromise) {
     this.workerReadyPromise = workerReadyPromise;
-    this.objs = new PDFObjects();
+    this.commonObjs = new PDFObjects();
 
     this.pageCache = [];
     this.pagePromises = [];
-    this.fontsLoading = {};
+    this.embeddedFontsUsed = false;
 
     // If worker support isn't disabled explicit and the browser has worker
     // support, create a new web worker and test if it/the browser fullfills
@@ -453,19 +483,9 @@ var WorkerTransport = (function WorkerTransportClosure() {
       }
 
       try {
-        var worker;
-//#if !(FIREFOX || MOZCENTRAL)
         // Some versions of FF can't create a worker on localhost, see:
         // https://bugzilla.mozilla.org/show_bug.cgi?id=683280
-        worker = new Worker(workerSrc);
-//#else
-//      // The firefox extension can't load the worker from the resource://
-//      // url so we have to inline the script and then use the blob loader.
-//      var script = document.querySelector('#PDFJS_SCRIPT_TAG');
-//      var blob = PDFJS.createBlob(script.textContent, script.type);
-//      var blobUrl = window.URL.createObjectURL(blob);
-//      worker = new Worker(blobUrl);
-//#endif
+        var worker = new Worker(workerSrc);
         var messageHandler = new MessageHandler('main', worker);
         this.messageHandler = messageHandler;
 
@@ -540,6 +560,18 @@ var WorkerTransport = (function WorkerTransportClosure() {
         this.workerReadyPromise.reject(data.exception.message, data.exception);
       }, this);
 
+      messageHandler.on('InvalidPDF', function transportInvalidPDF(data) {
+        this.workerReadyPromise.reject(data.exception.name, data.exception);
+      }, this);
+
+      messageHandler.on('MissingPDF', function transportMissingPDF(data) {
+        this.workerReadyPromise.reject(data.exception.message, data.exception);
+      }, this);
+
+      messageHandler.on('UnknownError', function transportUnknownError(data) {
+        this.workerReadyPromise.reject(data.exception.message, data.exception);
+      }, this);
+
       messageHandler.on('GetPage', function transportPage(data) {
         var pageInfo = data.pageInfo;
         var page = new PDFPageProxy(pageInfo, this);
@@ -562,21 +594,13 @@ var WorkerTransport = (function WorkerTransportClosure() {
         page.startRenderingFromOperatorList(data.operatorList, depFonts);
       }, this);
 
-      messageHandler.on('obj', function transportObj(data) {
+      messageHandler.on('commonobj', function transportObj(data) {
         var id = data[0];
         var type = data[1];
-        if (this.objs.hasData(id))
+        if (this.commonObjs.hasData(id))
           return;
 
         switch (type) {
-          case 'JpegStream':
-            var imageData = data[2];
-            loadJpegStream(id, imageData, this.objs);
-            break;
-          case 'Image':
-            var imageData = data[2];
-            this.objs.resolve(id, imageData);
-            break;
           case 'Font':
             var exportedData = data[2];
 
@@ -587,10 +611,39 @@ var WorkerTransport = (function WorkerTransportClosure() {
               font = new ErrorFont(exportedData.error);
             else
               font = new Font(exportedData);
-            this.objs.resolve(id, font);
+            this.commonObjs.resolve(id, font);
             break;
           default:
-            error('Got unkown object type ' + type);
+            error('Got unknown common object type ' + type);
+        }
+      }, this);
+
+      messageHandler.on('obj', function transportObj(data) {
+        var id = data[0];
+        var pageIndex = data[1];
+        var type = data[2];
+        var pageProxy = this.pageCache[pageIndex];
+        if (pageProxy.objs.hasData(id))
+          return;
+
+        switch (type) {
+          case 'JpegStream':
+            var imageData = data[3];
+            loadJpegStream(id, imageData, pageProxy.objs);
+            break;
+          case 'Image':
+            var imageData = data[3];
+            pageProxy.objs.resolve(id, imageData);
+
+            // heuristics that will allow not to store large data
+            var MAX_IMAGE_SIZE_TO_STORE = 8000000;
+            if ('data' in imageData &&
+                imageData.data.length > MAX_IMAGE_SIZE_TO_STORE) {
+              pageProxy.cleanupAfterRender = true;
+            }
+            break;
+          default:
+            error('Got unknown object type ' + type);
         }
       }, this);
 
@@ -645,7 +698,7 @@ var WorkerTransport = (function WorkerTransportClosure() {
           promise.resolve({ data: buf, width: width, height: height});
         }).bind(this);
 
-        //MQZ. Oct.17.2012 - disable image drawing
+//MQZ. Oct.17.2012 - disable image drawing
 //        var src = 'data:image/jpeg;base64,' + window.btoa(imageData);
 //        img.src = src;
       });

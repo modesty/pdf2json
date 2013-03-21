@@ -1,5 +1,23 @@
 /* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
 /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
+/* Copyright 2012 Mozilla Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* globals assertWellFormed, bytesToString, CipherTransformFactory, error, info,
+           InvalidPDFException, isArray, isCmd, isDict, isInt, isName, isRef,
+           isStream, JpegStream, Lexer, log, Page, Parser, Promise, shadow,
+           stringToPDFString, stringToUTF8String, warn, isString */
 
 'use strict';
 
@@ -86,7 +104,7 @@ var Dict = (function DictClosure() {
         callback(key, this.get(key));
       }
     };
-  };
+  }
 
   return Dict;
 })();
@@ -274,31 +292,50 @@ var Catalog = (function CatalogClosure() {
         });
       }
       if (nameTreeRef) {
-        // reading name tree
-        var processed = new RefSet();
-        processed.put(nameTreeRef);
-        var queue = [nameTreeRef];
-        while (queue.length > 0) {
-          var i, n;
-          obj = xref.fetch(queue.shift());
-          if (obj.has('Kids')) {
-            var kids = obj.get('Kids');
-            for (i = 0, n = kids.length; i < n; i++) {
-              var kid = kids[i];
-              if (processed.has(kid))
-                error('invalid destinations');
-              queue.push(kid);
-              processed.put(kid);
-            }
+        var nameTree = new NameTree(nameTreeRef, xref);
+        var names = nameTree.getAll();
+        for (var name in names) {
+          if (!names.hasOwnProperty(name)) {
             continue;
           }
-          var names = obj.get('Names');
-          for (i = 0, n = names.length; i < n; i += 2) {
-            dests[names[i]] = fetchDestination(xref.fetchIfRef(names[i + 1]));
-          }
+          dests[name] = fetchDestination(names[name]);
         }
       }
       return shadow(this, 'destinations', dests);
+    },
+    get javaScript() {
+      var xref = this.xref;
+      var obj = this.catDict.get('Names');
+
+      var javaScript = [];
+      if (obj && obj.has('JavaScript')) {
+        var nameTree = new NameTree(obj.getRaw('JavaScript'), xref);
+        var names = nameTree.getAll();
+        for (var name in names) {
+          if (!names.hasOwnProperty(name)) {
+            continue;
+          }
+          // We don't really use the JavaScript right now so this code is
+          // defensive so we don't cause errors on document load.
+          var jsDict = names[name];
+          if (!isDict(jsDict)) {
+            continue;
+          }
+          var type = jsDict.get('S');
+          if (!isName(type) || type.name !== 'JavaScript') {
+            continue;
+          }
+          var js = jsDict.get('JS');
+          if (!isString(js) && !isStream(js)) {
+            continue;
+          }
+          if (isStream(js)) {
+            js = bytesToString(js.getBytes());
+          }
+          javaScript.push(stringToPDFString(js));
+        }
+      }
+      return shadow(this, 'javaScript', javaScript);
     },
     getPage: function Catalog_getPage(n) {
       var pageCache = this.pageCache;
@@ -326,8 +363,9 @@ var XRef = (function XRefClosure() {
 
     var encrypt = trailerDict.get('Encrypt');
     if (encrypt) {
-      var fileId = trailerDict.get('ID');
-      this.encrypt = new CipherTransformFactory(encrypt, fileId[0], password);
+      var ids = trailerDict.get('ID');
+      var fileId = (ids && ids.length) ? ids[0] : '';
+      this.encrypt = new CipherTransformFactory(encrypt, fileId, password);
     }
 
     // get the root dictionary (catalog) object
@@ -425,7 +463,7 @@ var XRef = (function XRefClosure() {
           for (j = 0; j < typeFieldWidth; ++j)
             type = (type << 8) | stream.getByte();
           // if type field is absent, its default value = 1
-          if (typeFieldWidth == 0)
+          if (typeFieldWidth === 0)
             type = 1;
           for (j = 0; j < offsetFieldWidth; ++j)
             offset = (offset << 8) | stream.getByte();
@@ -560,7 +598,8 @@ var XRef = (function XRefClosure() {
       if (dict)
         return dict;
       // nothing helps
-      error('Invalid PDF structure');
+      // calling error() would reject worker with an UnknownErrorException.
+      throw new InvalidPDFException('Invalid PDF structure');
     },
     readXRef: function XRef_readXRef(startXRef, recoveryMode) {
       var stream = this.stream;
@@ -660,7 +699,7 @@ var XRef = (function XRefClosure() {
         }
         if (!isCmd(obj3, 'obj')) {
           // some bad pdfs use "obj1234" and really mean 1234
-          if (obj3.cmd.indexOf('obj') == 0) {
+          if (obj3.cmd.indexOf('obj') === 0) {
             num = parseInt(obj3.cmd.substring(3), 10);
             if (!isNaN(num))
               return num;
@@ -686,7 +725,8 @@ var XRef = (function XRefClosure() {
       }
 
       // compressed entry
-      stream = this.fetch(new Ref(e.offset, 0));
+      var tableOffset = e.offset;
+      stream = this.fetch(new Ref(tableOffset, 0));
       if (!isStream(stream))
         error('bad ObjStm stream');
       var first = stream.parameters.get('First');
@@ -695,6 +735,7 @@ var XRef = (function XRefClosure() {
         error('invalid first and n parameters for ObjStm stream');
       }
       parser = new Parser(new Lexer(stream), false, this);
+      parser.allowStreams = true;
       var i, entries = [], nums = [];
       // read the object numbers to populate cache
       for (i = 0; i < n; ++i) {
@@ -711,7 +752,11 @@ var XRef = (function XRefClosure() {
       // read stream objects for cache
       for (i = 0; i < n; ++i) {
         entries.push(parser.getObj());
-        this.cache[nums[i]] = entries[i];
+        num = nums[i];
+        var entry = this.entries[num];
+        if (entry && entry.offset === tableOffset && entry.gen === i) {
+          this.cache[num] = entries[i];
+        }
       }
       e = entries[e.gen];
       if (!e) {
@@ -728,6 +773,58 @@ var XRef = (function XRefClosure() {
 })();
 
 /**
+ * A NameTree is like a Dict but has some adventagous properties, see the spec
+ * (7.9.6) for more details.
+ * TODO: implement all the Dict functions and make this more efficent.
+ */
+var NameTree = (function NameTreeClosure() {
+  function NameTree(root, xref) {
+    this.root = root;
+    this.xref = xref;
+  }
+
+  NameTree.prototype = {
+    getAll: function NameTree_getAll() {
+      var dict = {};
+      if (!this.root) {
+        return dict;
+      }
+      var xref = this.xref;
+      // reading name tree
+      var processed = new RefSet();
+      processed.put(this.root);
+      var queue = [this.root];
+      while (queue.length > 0) {
+        var i, n;
+        var obj = xref.fetchIfRef(queue.shift());
+        if (!isDict(obj)) {
+          continue;
+        }
+        if (obj.has('Kids')) {
+          var kids = obj.get('Kids');
+          for (i = 0, n = kids.length; i < n; i++) {
+            var kid = kids[i];
+            if (processed.has(kid))
+              error('invalid destinations');
+            queue.push(kid);
+            processed.put(kid);
+          }
+          continue;
+        }
+        var names = obj.get('Names');
+        if (names) {
+          for (i = 0, n = names.length; i < n; i += 2) {
+            dict[names[i]] = xref.fetchIfRef(names[i + 1]);
+          }
+        }
+      }
+      return dict;
+    }
+  };
+  return NameTree;
+})();
+
+/**
  * A PDF document and page is built of many objects. E.g. there are objects
  * for fonts, images, rendering code and such. These objects might get processed
  * inside of a worker. The `PDFObjects` implements some basic functions to
@@ -739,8 +836,6 @@ var PDFObjects = (function PDFObjectsClosure() {
   }
 
   PDFObjects.prototype = {
-    objs: null,
-
     /**
      * Internal function.
      * Ensures there is an object defined for `objId`. Stores `data` on the
@@ -818,12 +913,28 @@ var PDFObjects = (function PDFObjectsClosure() {
     },
 
     /**
+     * Returns the data of `objId` if object exists, null otherwise.
+     */
+    getData: function PDFObjects_getData(objId) {
+      var objs = this.objs;
+      if (!objs[objId] || !objs[objId].hasData) {
+        return null;
+      } else {
+        return objs[objId].data;
+      }
+    },
+
+    /**
      * Sets the data of an object but *doesn't* resolve it.
      */
     setData: function PDFObjects_setData(objId, data) {
       // Watchout! If you call `this.ensureObj(objId, data)` you're going to
       // create a *resolved* promise which shouldn't be the case!
       this.ensureObj(objId).data = data;
+    },
+
+    clear: function PDFObjects_clear() {
+      this.objs = {};
     }
   };
   return PDFObjects;

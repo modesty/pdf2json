@@ -14,116 +14,126 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/* globals assert, assertWellFormed, ColorSpace, Dict, Encodings, error,
+           ErrorFont, Font, FONT_IDENTITY_MATRIX, fontCharsToUnicode, FontFlags,
+           IDENTITY_MATRIX, info, isArray, isCmd, isDict, isEOF, isName, isNum,
+           isStream, isString, JpegStream, Lexer, Metrics, Name, Parser,
+           Pattern, PDFImage, PDFJS, serifFonts, stdFontMap, symbolsFonts,
+           TilingPattern, TODO, warn */
 
 'use strict';
 
 var PartialEvaluator = (function PartialEvaluatorClosure() {
-  function PartialEvaluator(xref, handler, uniquePrefix) {
+  function PartialEvaluator(xref, handler, pageIndex, uniquePrefix) {
     this.state = new EvalState();
     this.stateStack = [];
 
     this.xref = xref;
     this.handler = handler;
+    this.pageIndex = pageIndex;
     this.uniquePrefix = uniquePrefix;
     this.objIdCounter = 0;
     this.fontIdCounter = 0;
   }
 
+  // Specifies properties for each command
+  //
+  // If variableArgs === true: [0, `numArgs`] expected
+  // If variableArgs === false: exactly `numArgs` expected
   var OP_MAP = {
-    // Graphics state
-    w: 'setLineWidth',
-    J: 'setLineCap',
-    j: 'setLineJoin',
-    M: 'setMiterLimit',
-    d: 'setDash',
-    ri: 'setRenderingIntent',
-    i: 'setFlatness',
-    gs: 'setGState',
-    q: 'save',
-    Q: 'restore',
-    cm: 'transform',
+    // Graphic state
+    w: { fnName: 'setLineWidth', numArgs: 1, variableArgs: false },
+    J: { fnName: 'setLineCap', numArgs: 1, variableArgs: false },
+    j: { fnName: 'setLineJoin', numArgs: 1, variableArgs: false },
+    M: { fnName: 'setMiterLimit', numArgs: 1, variableArgs: false },
+    d: { fnName: 'setDash', numArgs: 2, variableArgs: false },
+    ri: { fnName: 'setRenderingIntent', numArgs: 1, variableArgs: false },
+    i: { fnName: 'setFlatness', numArgs: 1, variableArgs: false },
+    gs: { fnName: 'setGState', numArgs: 1, variableArgs: false },
+    q: { fnName: 'save', numArgs: 0, variableArgs: false },
+    Q: { fnName: 'restore', numArgs: 0, variableArgs: false },
+    cm: { fnName: 'transform', numArgs: 6, variableArgs: false },
 
     // Path
-    m: 'moveTo',
-    l: 'lineTo',
-    c: 'curveTo',
-    v: 'curveTo2',
-    y: 'curveTo3',
-    h: 'closePath',
-    re: 'rectangle',
-    S: 'stroke',
-    s: 'closeStroke',
-    f: 'fill',
-    F: 'fill',
-    'f*': 'eoFill',
-    B: 'fillStroke',
-    'B*': 'eoFillStroke',
-    b: 'closeFillStroke',
-    'b*': 'closeEOFillStroke',
-    n: 'endPath',
+    m: { fnName: 'moveTo', numArgs: 2, variableArgs: false },
+    l: { fnName: 'lineTo', numArgs: 2, variableArgs: false },
+    c: { fnName: 'curveTo', numArgs: 6, variableArgs: false },
+    v: { fnName: 'curveTo2', numArgs: 4, variableArgs: false },
+    y: { fnName: 'curveTo3', numArgs: 4, variableArgs: false },
+    h: { fnName: 'closePath', numArgs: 0, variableArgs: false },
+    re: { fnName: 'rectangle', numArgs: 4, variableArgs: false },
+    S: { fnName: 'stroke', numArgs: 0, variableArgs: false },
+    s: { fnName: 'closeStroke', numArgs: 0, variableArgs: false },
+    f: { fnName: 'fill', numArgs: 0, variableArgs: false },
+    F: { fnName: 'fill', numArgs: 0, variableArgs: false },
+    'f*': { fnName: 'eoFill', numArgs: 0, variableArgs: false },
+    B: { fnName: 'fillStroke', numArgs: 0, variableArgs: false },
+    'B*': { fnName: 'eoFillStroke', numArgs: 0, variableArgs: false },
+    b: { fnName: 'closeFillStroke', numArgs: 0, variableArgs: false },
+    'b*': { fnName: 'closeEOFillStroke', numArgs: 0, variableArgs: false },
+    n: { fnName: 'endPath', numArgs: 0, variableArgs: false },
 
     // Clipping
-    W: 'clip',
-    'W*': 'eoClip',
+    W: { fnName: 'clip', numArgs: 0, variableArgs: false },
+    'W*': { fnName: 'eoClip', numArgs: 0, variableArgs: false },
 
     // Text
-    BT: 'beginText',
-    ET: 'endText',
-    Tc: 'setCharSpacing',
-    Tw: 'setWordSpacing',
-    Tz: 'setHScale',
-    TL: 'setLeading',
-    Tf: 'setFont',
-    Tr: 'setTextRenderingMode',
-    Ts: 'setTextRise',
-    Td: 'moveText',
-    TD: 'setLeadingMoveText',
-    Tm: 'setTextMatrix',
-    'T*': 'nextLine',
-    Tj: 'showText',
-    TJ: 'showSpacedText',
-    "'": 'nextLineShowText',
-    '"': 'nextLineSetSpacingShowText',
+    BT: { fnName: 'beginText', numArgs: 0, variableArgs: false },
+    ET: { fnName: 'endText', numArgs: 0, variableArgs: false },
+    Tc: { fnName: 'setCharSpacing', numArgs: 1, variableArgs: false },
+    Tw: { fnName: 'setWordSpacing', numArgs: 1, variableArgs: false },
+    Tz: { fnName: 'setHScale', numArgs: 1, variableArgs: false },
+    TL: { fnName: 'setLeading', numArgs: 1, variableArgs: false },
+    Tf: { fnName: 'setFont', numArgs: 2, variableArgs: false },
+    Tr: { fnName: 'setTextRenderingMode', numArgs: 1, variableArgs: false },
+    Ts: { fnName: 'setTextRise', numArgs: 1, variableArgs: false },
+    Td: { fnName: 'moveText', numArgs: 2, variableArgs: false },
+    TD: { fnName: 'setLeadingMoveText', numArgs: 2, variableArgs: false },
+    Tm: { fnName: 'setTextMatrix', numArgs: 6, variableArgs: false },
+    'T*': { fnName: 'nextLine', numArgs: 0, variableArgs: false },
+    Tj: { fnName: 'showText', numArgs: 1, variableArgs: false },
+    TJ: { fnName: 'showSpacedText', numArgs: 1, variableArgs: false },
+    '\'': { fnName: 'nextLineShowText', numArgs: 1, variableArgs: false },
+    '"': { fnName: 'nextLineSetSpacingShowText', numArgs: 3,
+      variableArgs: false },
 
     // Type3 fonts
-    d0: 'setCharWidth',
-    d1: 'setCharWidthAndBounds',
+    d0: { fnName: 'setCharWidth', numArgs: 2, variableArgs: false },
+    d1: { fnName: 'setCharWidthAndBounds', numArgs: 6, variableArgs: false },
 
     // Color
-    CS: 'setStrokeColorSpace',
-    cs: 'setFillColorSpace',
-    SC: 'setStrokeColor',
-    SCN: 'setStrokeColorN',
-    sc: 'setFillColor',
-    scn: 'setFillColorN',
-    G: 'setStrokeGray',
-    g: 'setFillGray',
-    RG: 'setStrokeRGBColor',
-    rg: 'setFillRGBColor',
-    K: 'setStrokeCMYKColor',
-    k: 'setFillCMYKColor',
+    CS: { fnName: 'setStrokeColorSpace', numArgs: 1, variableArgs: false },
+    cs: { fnName: 'setFillColorSpace', numArgs: 1, variableArgs: false },
+    SC: { fnName: 'setStrokeColor', numArgs: 4, variableArgs: true },
+    SCN: { fnName: 'setStrokeColorN', numArgs: 33, variableArgs: true },
+    sc: { fnName: 'setFillColor', numArgs: 4, variableArgs: true },
+    scn: { fnName: 'setFillColorN', numArgs: 33, variableArgs: true },
+    G: { fnName: 'setStrokeGray', numArgs: 1, variableArgs: false },
+    g: { fnName: 'setFillGray', numArgs: 1, variableArgs: false },
+    RG: { fnName: 'setStrokeRGBColor', numArgs: 3, variableArgs: false },
+    rg: { fnName: 'setFillRGBColor', numArgs: 3, variableArgs: false },
+    K: { fnName: 'setStrokeCMYKColor', numArgs: 4, variableArgs: false },
+    k: { fnName: 'setFillCMYKColor', numArgs: 4, variableArgs: false },
 
     // Shading
-    sh: 'shadingFill',
+    sh: { fnName: 'shadingFill', numArgs: 1, variableArgs: false },
 
     // Images
-    BI: 'beginInlineImage',
-    ID: 'beginImageData',
-    EI: 'endInlineImage',
+    BI: { fnName: 'beginInlineImage', numArgs: 0, variableArgs: false },
+    ID: { fnName: 'beginImageData', numArgs: 0, variableArgs: false },
+    EI: { fnName: 'endInlineImage', numArgs: 0, variableArgs: false },
 
     // XObjects
-    Do: 'paintXObject',
-
-    // Marked content
-    MP: 'markPoint',
-    DP: 'markPointProps',
-    BMC: 'beginMarkedContent',
-    BDC: 'beginMarkedContentProps',
-    EMC: 'endMarkedContent',
+    Do: { fnName: 'paintXObject', numArgs: 1, variableArgs: false },
+    MP: { fnName: 'markPoint', numArgs: 1, variableArgs: false },
+    DP: { fnName: 'markPointProps', numArgs: 2, variableArgs: false },
+    BMC: { fnName: 'beginMarkedContent', numArgs: 1, variableArgs: false },
+    BDC: { fnName: 'beginMarkedContentProps', numArgs: 2, variableArgs: false },
+    EMC: { fnName: 'endMarkedContent', numArgs: 0, variableArgs: false },
 
     // Compatibility
-    BX: 'beginCompat',
-    EX: 'endCompat',
+    BX: { fnName: 'beginCompat', numArgs: 0, variableArgs: false },
+    EX: { fnName: 'endCompat', numArgs: 0, variableArgs: false },
 
     // (reserved partial commands for the lexer)
     BM: null,
@@ -145,15 +155,21 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
       assert(fontRes, 'fontRes not available');
 
-      font = xref.fetchIfRef(font) || fontRes.get(fontName);
-      assertWellFormed(isDict(font));
-
       ++this.fontIdCounter;
+
+      font = xref.fetchIfRef(font) || fontRes.get(fontName);
+      if (!isDict(font)) {
+        return {
+          translated: new ErrorFont('Font ' + fontName + ' is not available'),
+          loadedName: 'g_font_' + this.uniquePrefix + this.fontIdCounter
+        };
+      }
+
       var loadedName = font.loadedName;
       if (!loadedName) {
         // keep track of each font we translated so the caller can
         // load them asynchronously before calling display on a page
-        loadedName = 'font_' + this.uniquePrefix + this.fontIdCounter;
+        loadedName = 'g_font_' + this.uniquePrefix + this.fontIdCounter;
         font.loadedName = loadedName;
 
         var translated;
@@ -161,7 +177,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           translated = this.translateFont(font, xref, resources,
                                           dependency);
         } catch (e) {
-          translated = { error: e };
+          translated = new ErrorFont(e instanceof Error ? e.message : e);
         }
         font.translated = translated;
 
@@ -191,6 +207,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       var self = this;
       var xref = this.xref;
       var handler = this.handler;
+      var pageIndex = this.pageIndex;
       var uniquePrefix = this.uniquePrefix || '';
 
       function insertDependency(depList) {
@@ -209,12 +226,9 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
         var loadedName = font.loadedName;
         if (!font.sent) {
-          var data = font.translated;
+          var data = font.translated.exportData();
 
-          if (data instanceof Font)
-            data = data.exportData();
-
-          handler.send('obj', [
+          handler.send('commonobj', [
               loadedName,
               'Font',
               data
@@ -228,6 +242,60 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         // page.
         insertDependency([loadedName]);
         return loadedName;
+      }
+
+      function buildFormXObject(xobj, smask) {
+        var matrix = xobj.dict.get('Matrix');
+        var bbox = xobj.dict.get('BBox');
+        var group = xobj.dict.get('Group');
+        if (group) {
+          var groupOptions = {
+            matrix: matrix,
+            bbox: bbox,
+            smask: !!smask,
+            isolated: false,
+            knockout: false
+          };
+
+          var groupSubtype = group.get('S');
+          if (isName(groupSubtype) && groupSubtype.name === 'Transparency') {
+            groupOptions.isolated = group.get('I') || false;
+            groupOptions.knockout = group.get('K') || false;
+            // There is also a group colorspace, but since we put everything in
+            // RGB I'm not sure we need it.
+          }
+          fnArray.push('beginGroup');
+          argsArray.push([groupOptions]);
+        }
+
+        fnArray.push('paintFormXObjectBegin');
+        argsArray.push([matrix, bbox]);
+
+        // This adds the operatorList of the xObj to the current queue.
+        var depIdx = dependencyArray.length;
+
+        // Pass in the current `queue` object. That means the `fnArray`
+        // and the `argsArray` in this scope is reused and new commands
+        // are added to them.
+        self.getOperatorList(xobj,
+            xobj.dict.get('Resources') || resources,
+            dependencyArray, queue);
+
+        self.getOperatorList(xobj,
+                             xobj.dict.get('Resources') || resources,
+                             dependencyArray, queue);
+
+        // Add the dependencies that are required to execute the
+        // operatorList.
+        insertDependency(dependencyArray.slice(depIdx));
+
+        fnArray.push('paintFormXObjectEnd');
+        argsArray.push([]);
+
+        if (group) {
+          fnArray.push('endGroup');
+          argsArray.push([groupOptions]);
+        }
       }
 
       function buildPaintImageXObject(image, inline) {
@@ -255,36 +323,41 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           return;
         }
 
+        var softMask = dict.get('SMask', 'SM') || false;
+        var mask = dict.get('Mask') || false;
+
+        var SMALL_IMAGE_DIMENSIONS = 200;
+        // Inlining small images into the queue as RGB data
+        if (inline && !softMask && !mask &&
+            !(image instanceof JpegStream) &&
+            (w + h) < SMALL_IMAGE_DIMENSIONS) {
+          var imageObj = new PDFImage(xref, resources, image,
+                                      inline, null, null);
+          var imgData = imageObj.getImageData();
+          fn = 'paintInlineImageXObject';
+          args = [imgData];
+          return;
+        }
+
         // If there is no imageMask, create the PDFImage and a lot
         // of image processing can be done here.
         var objId = 'img_' + uniquePrefix + (++self.objIdCounter);
         insertDependency([objId]);
         args = [objId, w, h];
 
-        var softMask = dict.get('SMask', 'SM') || false;
-        var mask = dict.get('Mask') || false;
-
         if (!softMask && !mask && image instanceof JpegStream &&
             image.isNativelySupported(xref, resources)) {
           // These JPEGs don't need any more processing so we can just send it.
           fn = 'paintJpegXObject';
-          handler.send('obj', [objId, 'JpegStream', image.getIR()]);
+          handler.send('obj', [objId, pageIndex, 'JpegStream', image.getIR()]);
           return;
         }
 
         fn = 'paintImageXObject';
 
         PDFImage.buildImage(function(imageObj) {
-            var drawWidth = imageObj.drawWidth;
-            var drawHeight = imageObj.drawHeight;
-            var imgData = {
-              width: drawWidth,
-              height: drawHeight,
-              data: new Uint8Array(drawWidth * drawHeight * 4)
-            };
-            var pixels = imgData.data;
-            imageObj.fillRgbaBuffer(pixels, drawWidth, drawHeight);
-            handler.send('obj', [objId, 'Image', imgData]);
+            var imgData = imageObj.getImageData();
+            handler.send('obj', [objId, pageIndex, 'Image', imgData]);
           }, handler, xref, resources, image, inline);
       }
 
@@ -304,6 +377,8 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       resources = resources || new Dict();
       var xobjs = resources.get('XObject') || new Dict();
       var patterns = resources.get('Pattern') || new Dict();
+      // TODO(mduan): pass array of knownCommands rather than OP_MAP
+      // dictionary
       var parser = new Parser(new Lexer(stream, OP_MAP), false, xref);
       var res = resources;
       var args = [], obj;
@@ -311,13 +386,42 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
       while (true) {
         obj = parser.getObj();
-        if (isEOF(obj))
+        if (isEOF(obj)) {
           break;
+        }
 
         if (isCmd(obj)) {
           var cmd = obj.cmd;
-          var fn = OP_MAP[cmd];
-          assertWellFormed(fn, 'Unknown command "' + cmd + '"');
+
+          // Check that the command is valid
+          var opSpec = OP_MAP[cmd];
+          if (!opSpec) {
+            warn('Unknown command "' + cmd + '"');
+            continue;
+          }
+
+          var fn = opSpec.fnName;
+
+          // Validate the number of arguments for the command
+          if (opSpec.variableArgs) {
+            if (args.length > opSpec.numArgs) {
+              info('Command ' + fn + ': expected [0,' + opSpec.numArgs +
+                  '] args, but received ' + args.length + ' args');
+            }
+          } else {
+            if (args.length < opSpec.numArgs) {
+              // If we receive too few args, it's not possible to possible
+              // to execute the command, so skip the command
+              info('Command ' + fn + ': because expected ' + opSpec.numArgs +
+                  ' args, but received ' + args.length + ' args; skipping');
+              args = [];
+              continue;
+            } else if (args.length > opSpec.numArgs) {
+              info('Command ' + fn + ': expected ' + opSpec.numArgs +
+                  ' args, but received ' + args.length + ' args');
+            }
+          }
+
           // TODO figure out how to type-check vararg functions
 
           if ((cmd == 'SCN' || cmd == 'scn') && !args[args.length - 1].code) {
@@ -367,28 +471,9 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               );
 
               if ('Form' == type.name) {
-                var matrix = xobj.dict.get('Matrix');
-                var bbox = xobj.dict.get('BBox');
-
-                fnArray.push('paintFormXObjectBegin');
-                argsArray.push([matrix, bbox]);
-
-                // This adds the operatorList of the xObj to the current queue.
-                var depIdx = dependencyArray.length;
-
-                // Pass in the current `queue` object. That means the `fnArray`
-                // and the `argsArray` in this scope is reused and new commands
-                // are added to them.
-                this.getOperatorList(xobj,
-                    xobj.dict.get('Resources') || resources,
-                    dependencyArray, queue);
-
-               // Add the dependencies that are required to execute the
-               // operatorList.
-               insertDependency(dependencyArray.slice(depIdx));
-
-                fn = 'paintFormXObjectEnd';
+                buildFormXObject(xobj);
                 args = [];
+                continue;
               } else if ('Image' == type.name) {
                 buildPaintImageXObject(xobj, false);
               } else {
@@ -447,6 +532,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                     case 'FL':
                     case 'CA':
                     case 'ca':
+                    case 'BM':
                       gsStateObj.push([key, value]);
                       break;
                     case 'Font':
@@ -455,11 +541,6 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                         handleSetFont(null, value[0]),
                         value[1]
                       ]);
-                      break;
-                    case 'BM':
-                      // We support the default so don't trigger the TODO.
-                      if (!isName(value) || value.name != 'Normal')
-                        TODO('graphic state operator ' + key);
                       break;
                     case 'SMask':
                       // We support the default so don't trigger the TODO.
@@ -498,18 +579,136 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           fnArray.push(fn);
           argsArray.push(args);
           args = [];
-        } else if (obj != null) {
-          assertWellFormed(args.length <= 33, 'Too many arguments');
+        } else if (obj !== null && obj !== undefined) {
           args.push(obj instanceof Dict ? obj.getAll() : obj);
+          assertWellFormed(args.length <= 33, 'Too many arguments');
         }
       }
 
       return queue;
     },
 
-    getTextContent: function partialEvaluatorGetIRQueue(
+    optimizeQueue: function PartialEvaluator_optimizeQueue(queue) {
+      var fnArray = queue.fnArray, argsArray = queue.argsArray;
+      // grouping paintInlineImageXObject's into paintInlineImageXObjectGroup
+      // searching for (save, transform, paintInlineImageXObject, restore)+
+      var MIN_IMAGES_IN_INLINE_IMAGES_BLOCK = 10;
+      var MAX_IMAGES_IN_INLINE_IMAGES_BLOCK = 200;
+      var MAX_WIDTH = 1000;
+      var IMAGE_PADDING = 1;
+      for (var i = 0, ii = fnArray.length; i < ii; i++) {
+        if (fnArray[i] === 'paintInlineImageXObject' &&
+            fnArray[i - 2] === 'save' && fnArray[i - 1] === 'transform' &&
+            fnArray[i + 1] === 'restore') {
+          var j = i - 2;
+          for (i += 2; i < ii && fnArray[i - 4] === fnArray[i]; i++) {
+          }
+          var count = Math.min((i - j) >> 2,
+                               MAX_IMAGES_IN_INLINE_IMAGES_BLOCK);
+          if (count < MIN_IMAGES_IN_INLINE_IMAGES_BLOCK) {
+            continue;
+          }
+          // assuming that heights of those image is too small (~1 pixel)
+          // packing as much as possible by lines
+          var maxX = 0;
+          var map = [], maxLineHeight = 0;
+          var currentX = IMAGE_PADDING, currentY = IMAGE_PADDING;
+          for (var q = 0; q < count; q++) {
+            var transform = argsArray[j + (q << 2) + 1];
+            var img = argsArray[j + (q << 2) + 2][0];
+            if (currentX + img.width > MAX_WIDTH) {
+              // starting new line
+              maxX = Math.max(maxX, currentX);
+              currentY += maxLineHeight + 2 * IMAGE_PADDING;
+              currentX = 0;
+              maxLineHeight = 0;
+            }
+            map.push({
+              transform: transform,
+              x: currentX, y: currentY,
+              w: img.width, h: img.height
+            });
+            currentX += img.width + 2 * IMAGE_PADDING;
+            maxLineHeight = Math.max(maxLineHeight, img.height);
+          }
+          var imgWidth = Math.max(maxX, currentX) + IMAGE_PADDING;
+          var imgHeight = currentY + maxLineHeight + IMAGE_PADDING;
+          var imgData = new Uint8Array(imgWidth * imgHeight * 4);
+          var imgRowSize = imgWidth << 2;
+          for (var q = 0; q < count; q++) {
+            var data = argsArray[j + (q << 2) + 2][0].data;
+            // copy image by lines and extends pixels into padding
+            var rowSize = map[q].w << 2;
+            var dataOffset = 0;
+            var offset = (map[q].x + map[q].y * imgWidth) << 2;
+            imgData.set(
+              data.subarray(0, rowSize), offset - imgRowSize);
+            for (var k = 0, kk = map[q].h; k < kk; k++) {
+              imgData.set(
+                data.subarray(dataOffset, dataOffset + rowSize), offset);
+              dataOffset += rowSize;
+              offset += imgRowSize;
+            }
+            imgData.set(
+              data.subarray(dataOffset - rowSize, dataOffset), offset);
+            while (offset >= 0) {
+              data[offset - 4] = data[offset];
+              data[offset - 3] = data[offset + 1];
+              data[offset - 2] = data[offset + 2];
+              data[offset - 1] = data[offset + 3];
+              data[offset + rowSize] = data[offset + rowSize - 4];
+              data[offset + rowSize + 1] = data[offset + rowSize - 3];
+              data[offset + rowSize + 2] = data[offset + rowSize - 2];
+              data[offset + rowSize + 3] = data[offset + rowSize - 1];
+              offset -= imgRowSize;
+            }
+          }
+          // replacing queue items
+          fnArray.splice(j, count * 4, ['paintInlineImageXObjectGroup']);
+          argsArray.splice(j, count * 4,
+            [{width: imgWidth, height: imgHeight, data: imgData}, map]);
+          i = j;
+          ii = fnArray.length;
+        }
+      }
+      // grouping paintImageMaskXObject's into paintImageMaskXObjectGroup
+      // searching for (save, transform, paintImageMaskXObject, restore)+
+      var MIN_IMAGES_IN_MASKS_BLOCK = 10;
+      var MAX_IMAGES_IN_MASKS_BLOCK = 100;
+      for (var i = 0, ii = fnArray.length; i < ii; i++) {
+        if (fnArray[i] === 'paintImageMaskXObject' &&
+            fnArray[i - 2] === 'save' && fnArray[i - 1] === 'transform' &&
+            fnArray[i + 1] === 'restore') {
+          var j = i - 2;
+          for (i += 2; i < ii && fnArray[i - 4] === fnArray[i]; i++) {
+          }
+          var count = Math.min((i - j) >> 2,
+                               MAX_IMAGES_IN_MASKS_BLOCK);
+          if (count < MIN_IMAGES_IN_MASKS_BLOCK) {
+            continue;
+          }
+          var images = [];
+          for (var q = 0; q < count; q++) {
+            var transform = argsArray[j + (q << 2) + 1];
+            var maskParams = argsArray[j + (q << 2) + 2];
+            images.push({data: maskParams[0], width: maskParams[2],
+              height: maskParams[3], transform: transform,
+              inverseDecode: maskParams[1]});
+          }
+          // replacing queue items
+          fnArray.splice(j, count * 4, ['paintImageMaskXObjectGroup']);
+          argsArray.splice(j, count * 4, [images]);
+          i = j;
+          ii = fnArray.length;
+        }
+      }
+    },
+
+    getTextContent: function PartialEvaluator_getTextContent(
                                                     stream, resources, state) {
       var bidiTexts;
+      var SPACE_FACTOR = 0.35;
+      var MULTI_SPACE_FACTOR = 1.5;
 
       if (!state) {
         bidiTexts = [];
@@ -551,8 +750,13 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                 if (typeof items[j] === 'string') {
                   chunk += fontCharsToUnicode(items[j], font);
                 } else if (items[j] < 0 && font.spaceWidth > 0) {
-                  var numFakeSpaces = Math.round(-items[j] / font.spaceWidth);
-                  if (numFakeSpaces > 0) {
+                  var fakeSpaces = -items[j] / font.spaceWidth;
+                  if (fakeSpaces > MULTI_SPACE_FACTOR) {
+                    fakeSpaces = Math.round(fakeSpaces);
+                    while (fakeSpaces--) {
+                      chunk += ' ';
+                    }
+                  } else if (fakeSpaces > SPACE_FACTOR) {
                     chunk += ' ';
                   }
                 }
@@ -561,7 +765,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
             case 'Tj':
               chunk += fontCharsToUnicode(args[0], font);
               break;
-            case "'":
+            case '\'':
               // For search, adding a extra white space for line breaks would be
               // better here, but that causes too much spaces in the
               // text-selection divs.
@@ -623,13 +827,14 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
           } // switch
 
           if (chunk !== '') {
-            bidiTexts.push(PDFJS.bidi(chunk, -1));
+            var bidiText = PDFJS.bidi(chunk, -1, font.vertical);
+            bidiTexts.push(bidiText);
 
             chunk = '';
           }
 
           args = [];
-        } else if (obj != null) {
+        } else if (obj !== null && obj !== undefined) {
           assertWellFormed(args.length <= 33, 'Too many arguments');
           args.push(obj);
         }
@@ -839,7 +1044,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       var result = [];
       for (var j = 0, jj = glyphsData.length; j < jj; j++) {
         var glyphID = (glyphsData[j++] << 8) | glyphsData[j];
-        if (glyphID == 0)
+        if (glyphID === 0)
           continue;
 
         var code = j >> 1;
@@ -854,25 +1059,43 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                                                    properties) {
       var glyphsWidths = [];
       var defaultWidth = 0;
+      var glyphsVMetrics = [];
+      var defaultVMetrics;
       if (properties.composite) {
         defaultWidth = dict.get('DW') || 1000;
 
         var widths = dict.get('W');
         if (widths) {
-          var start = 0, end = 0;
           for (var i = 0, ii = widths.length; i < ii; i++) {
+            var start = widths[i++];
             var code = xref.fetchIfRef(widths[i]);
             if (isArray(code)) {
               for (var j = 0, jj = code.length; j < jj; j++)
                 glyphsWidths[start++] = code[j];
-              start = 0;
-            } else if (start) {
+            } else {
               var width = widths[++i];
               for (var j = start; j <= code; j++)
                 glyphsWidths[j] = width;
-              start = 0;
-            } else {
-              start = code;
+            }
+          }
+        }
+
+        if (properties.vertical) {
+          var vmetrics = dict.get('DW2') || [880, -1000];
+          defaultVMetrics = [vmetrics[1], defaultWidth * 0.5, vmetrics[0]];
+          vmetrics = dict.get('W2');
+          if (vmetrics) {
+            for (var i = 0, ii = vmetrics.length; i < ii; i++) {
+              var start = vmetrics[i++];
+              var code = xref.fetchIfRef(vmetrics[i]);
+              if (isArray(code)) {
+                for (var j = 0, jj = code.length; j < jj; j++)
+                  glyphsVMetrics[start++] = [code[j++], code[j++], code[j]];
+              } else {
+                var vmetric = [vmetrics[++i], vmetrics[++i], vmetrics[++i]];
+                for (var j = start; j <= code; j++)
+                  glyphsVMetrics[j] = vmetric;
+              }
             }
           }
         }
@@ -916,11 +1139,34 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
       properties.defaultWidth = defaultWidth;
       properties.widths = glyphsWidths;
+      properties.defaultVMetrics = defaultVMetrics;
+      properties.vmetrics = glyphsVMetrics;
+    },
+
+    isSerifFont: function PartialEvaluator_isSerifFont(baseFontName) {
+
+      // Simulating descriptor flags attribute
+      var fontNameWoStyle = baseFontName.split('-')[0];
+      return (fontNameWoStyle in serifFonts) ||
+          (fontNameWoStyle.search(/serif/gi) !== -1);
     },
 
     getBaseFontMetrics: function PartialEvaluator_getBaseFontMetrics(name) {
       var defaultWidth = 0, widths = [], monospace = false;
-      var glyphWidths = Metrics[stdFontMap[name] || name];
+
+      var lookupName = stdFontMap[name] || name;
+
+      if (!(lookupName in Metrics)) {
+        // Use default fonts for looking up font metrics if the passed
+        // font is not a base font
+        if (this.isSerifFont(name)) {
+          lookupName = 'Times-Roman';
+        } else {
+          lookupName = 'Helvetica';
+        }
+      }
+      var glyphWidths = Metrics[lookupName];
+
       if (isNum(glyphWidths)) {
         defaultWidth = glyphWidths;
         monospace = true;
@@ -982,8 +1228,8 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
 
           // Simulating descriptor flags attribute
           var fontNameWoStyle = baseFontName.split('-')[0];
-          var flags = (serifFonts[fontNameWoStyle] ||
-            (fontNameWoStyle.search(/serif/gi) != -1) ? FontFlags.Serif : 0) |
+          var flags = (
+            this.isSerifFont(fontNameWoStyle) ? FontFlags.Serif : 0) |
             (metrics.monospace ? FontFlags.FixedPitch : 0) |
             (symbolsFonts[fontNameWoStyle] ? FontFlags.Symbolic :
             FontFlags.Nonsymbolic);
@@ -1009,10 +1255,28 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       // a variant.
       var firstChar = dict.get('FirstChar') || 0;
       var lastChar = dict.get('LastChar') || maxCharIndex;
+
       var fontName = descriptor.get('FontName');
+      var baseFont = dict.get('BaseFont');
       // Some bad pdf's have a string as the font name.
-      if (isString(fontName))
+      if (isString(fontName)) {
         fontName = new Name(fontName);
+      }
+      if (isString(baseFont)) {
+        baseFont = new Name(baseFont);
+      }
+
+      if (type.name !== 'Type3') {
+        var fontNameStr = fontName && fontName.name;
+        var baseFontStr = baseFont && baseFont.name;
+        if (fontNameStr !== baseFontStr) {
+          warn('The FontDescriptor\'s FontName is "' + fontNameStr +
+               '" but should be the same as the Font\'s BaseFont "' +
+               baseFontStr + '"');
+        }
+      }
+      fontName = fontName || baseFont;
+
       assertWellFormed(isName(fontName), 'invalid font name');
 
       var fontFile = descriptor.get('FontFile', 'FontFile2', 'FontFile3');
@@ -1038,7 +1302,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         composite: composite,
         wideChars: composite,
         fixedPitch: false,
-        fontMatrix: dict.get('FontMatrix') || IDENTITY_MATRIX,
+        fontMatrix: dict.get('FontMatrix') || FONT_IDENTITY_MATRIX,
         firstChar: firstChar || 0,
         lastChar: lastChar || maxCharIndex,
         bbox: descriptor.get('FontBBox'),
@@ -1050,6 +1314,14 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         italicAngle: descriptor.get('ItalicAngle'),
         coded: false
       };
+
+      if (composite) {
+        var cidEncoding = baseDict.get('Encoding');
+        if (isName(cidEncoding)) {
+          properties.cidEncoding = cidEncoding.name;
+          properties.vertical = /-V$/.test(cidEncoding.name);
+        }
+      }
       this.extractWidths(dict, xref, descriptor, properties);
       this.extractDataStructures(dict, baseDict, xref, properties);
 

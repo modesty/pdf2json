@@ -14,6 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/* globals CanvasGraphics, ColorSpace, createScratchCanvas, DeviceRgbCS, error,
+           info, isArray, isPDFFunction, isStream, PDFFunction, TODO, Util,
+           warn */
 
 'use strict';
 
@@ -115,11 +118,29 @@ Shadings.RadialAxial = (function RadialAxialClosure() {
     this.extendEnd = extendEnd;
 
     var fnObj = dict.get('Function');
-    if (isArray(fnObj))
-      error('No support for array of functions');
-    if (!isPDFFunction(fnObj))
-      error('Invalid function');
-    var fn = PDFFunction.parse(xref, fnObj);
+    var fn;
+    if (isArray(fnObj)) {
+      var fnArray = [];
+      for (var j = 0, jj = fnObj.length; j < jj; j++) {
+        var obj = xref.fetchIfRef(fnObj[j]);
+        if (!isPDFFunction(obj)) {
+          error('Invalid function');
+        }
+        fnArray.push(PDFFunction.parse(xref, obj));
+      }
+      fn = function radialAxialColorFunction(arg) {
+        var out = [];
+        for (var i = 0, ii = fnArray.length; i < ii; i++) {
+          out.push(fnArray[i](arg)[0]);
+        }
+        return out;
+      };
+    } else {
+      if (!isPDFFunction(fnObj)) {
+        error('Invalid function');
+      }
+      fn = PDFFunction.parse(xref, fnObj);
+    }
 
     // 10 samples seems good enough for now, but probably won't work
     // if there are sharp color changes. Ideally, we would implement
@@ -138,15 +159,15 @@ Shadings.RadialAxial = (function RadialAxialClosure() {
     }
 
     for (var i = t0; i <= t1; i += step) {
-      var rgbColor = cs.getRgb(fn([i]));
-      var cssColor = Util.makeCssRgb(rgbColor[0], rgbColor[1], rgbColor[2]);
+      var rgbColor = cs.getRgb(fn([i]), 0);
+      var cssColor = Util.makeCssRgb(rgbColor);
       colorStops.push([(i - t0) / diff, cssColor]);
     }
 
     var background = 'transparent';
     if (dict.has('Background')) {
-      var rgbColor = cs.getRgb(dict.get('Background'));
-      background = Util.makeCssRgb(rgbColor[0], rgbColor[1], rgbColor[2]);
+      var rgbColor = cs.getRgb(dict.get('Background'), 0);
+      background = Util.makeCssRgb(rgbColor);
     }
 
     if (!extendStart) {
@@ -247,11 +268,11 @@ var TilingPattern = (function TilingPatternClosure() {
     COLORED: 1,
     UNCOLORED: 2
   };
-  var MAX_PATTERN_SIZE = 512;
+  var MAX_PATTERN_SIZE = 4096;
 
-  function TilingPattern(IR, color, ctx, objs) {
+  function TilingPattern(IR, color, ctx, objs, commonObjs) {
     var operatorList = IR[2];
-    this.matrix = IR[3];
+    this.matrix = IR[3] || [1, 0, 0, 1, 0, 0];
     var bbox = IR[4];
     var xstep = IR[5];
     var ystep = IR[6];
@@ -273,51 +294,38 @@ var TilingPattern = (function TilingPatternClosure() {
     var width = botRight[0] - topLeft[0];
     var height = botRight[1] - topLeft[1];
 
-    // TODO: hack to avoid OOM, we would ideally compute the tiling
-    // pattern to be only as large as the acual size in device space
-    // This could be computed with .mozCurrentTransform, but still
-    // needs to be implemented
-    while (Math.abs(width) > MAX_PATTERN_SIZE ||
-           Math.abs(height) > MAX_PATTERN_SIZE) {
-      width = height = MAX_PATTERN_SIZE;
-    }
+    // Obtain scale from matrix and current transformation matrix.
+    var matrixScale = Util.singularValueDecompose2dScale(this.matrix);
+    var curMatrixScale = Util.singularValueDecompose2dScale(this.curMatrix);
+    var combinedScale = [matrixScale[0] * curMatrixScale[0],
+                         matrixScale[1] * curMatrixScale[1]];
+
+    // MAX_PATTERN_SIZE is used to avoid OOM situation.
+    // Use width and height values that are as close as possible to the end
+    // result when the pattern is used. Too low value makes the pattern look
+    // blurry. Too large value makes it look too crispy.
+    width = Math.min(Math.ceil(Math.abs(width * combinedScale[0])),
+                     MAX_PATTERN_SIZE);
+
+    height = Math.min(Math.ceil(Math.abs(height * combinedScale[1])),
+                      MAX_PATTERN_SIZE);
 
     var tmpCanvas = createScratchCanvas(width, height);
 
     // set the new canvas element context as the graphics context
     var tmpCtx = tmpCanvas.getContext('2d');
-    var graphics = new CanvasGraphics(tmpCtx, objs);
+    var graphics = new CanvasGraphics(tmpCtx, commonObjs, objs);
 
-    switch (paintType) {
-      case PaintType.COLORED:
-        tmpCtx.fillStyle = ctx.fillStyle;
-        tmpCtx.strokeStyle = ctx.strokeStyle;
-        break;
-      case PaintType.UNCOLORED:
-        var cssColor = Util.makeCssRgb(this, color[0], color[1], color[2]);
-        tmpCtx.fillStyle = cssColor;
-        tmpCtx.strokeStyle = cssColor;
-        break;
-      default:
-        error('Unsupported paint type: ' + paintType);
-    }
+    this.setFillAndStrokeStyleToContext(tmpCtx, paintType, color);
 
-    var scale = [width / xstep, height / ystep];
-    this.scale = scale;
+    this.setScale(width, height, xstep, ystep);
+    this.transformToScale(graphics);
 
     // transform coordinates to pattern space
     var tmpTranslate = [1, 0, 0, 1, -topLeft[0], -topLeft[1]];
-    var tmpScale = [scale[0], 0, 0, scale[1], 0, 0];
-    graphics.transform.apply(graphics, tmpScale);
     graphics.transform.apply(graphics, tmpTranslate);
 
-    if (bbox && isArray(bbox) && 4 == bbox.length) {
-      var bboxWidth = x1 - x0;
-      var bboxHeight = y1 - y0;
-      graphics.rectangle(x0, y0, bboxWidth, bboxHeight);
-      graphics.clip();
-      graphics.endPath();
-    }
+    this.clipBbox(graphics, bbox, x0, y0, x1, y1);
 
     graphics.executeOperatorList(operatorList);
 
@@ -339,19 +347,58 @@ var TilingPattern = (function TilingPatternClosure() {
   };
 
   TilingPattern.prototype = {
+    setScale: function TilingPattern_setScale(width, height, xstep, ystep) {
+      this.scale = [width / xstep, height / ystep];
+    },
+
+    transformToScale: function TilingPattern_transformToScale(graphics) {
+      var scale = this.scale;
+      var tmpScale = [scale[0], 0, 0, scale[1], 0, 0];
+      graphics.transform.apply(graphics, tmpScale);
+    },
+
+    scaleToContext: function TilingPattern_scaleToContext() {
+      var scale = this.scale;
+      this.ctx.scale(1 / scale[0], 1 / scale[1]);
+    },
+
+    clipBbox: function clipBbox(graphics, bbox, x0, y0, x1, y1) {
+      if (bbox && isArray(bbox) && 4 == bbox.length) {
+        var bboxWidth = x1 - x0;
+        var bboxHeight = y1 - y0;
+        graphics.rectangle(x0, y0, bboxWidth, bboxHeight);
+        graphics.clip();
+        graphics.endPath();
+      }
+    },
+
+    setFillAndStrokeStyleToContext:
+      function setFillAndStrokeStyleToContext(context, paintType, color) {
+      switch (paintType) {
+        case PaintType.COLORED:
+          var ctx = this.ctx;
+          context.fillStyle = ctx.fillStyle;
+          context.strokeStyle = ctx.strokeStyle;
+          break;
+        case PaintType.UNCOLORED:
+          var rgbColor = new DeviceRgbCS().getRgb(color, 0);
+          var cssColor = Util.makeCssRgb(rgbColor);
+          context.fillStyle = cssColor;
+          context.strokeStyle = cssColor;
+          break;
+        default:
+          error('Unsupported paint type: ' + paintType);
+      }
+    },
+
     getPattern: function TilingPattern_getPattern() {
       var matrix = this.matrix;
       var curMatrix = this.curMatrix;
       var ctx = this.ctx;
 
-      if (curMatrix)
-        ctx.setTransform.apply(ctx, curMatrix);
-
-      if (matrix)
-        ctx.transform.apply(ctx, matrix);
-
-      var scale = this.scale;
-      ctx.scale(1 / scale[0], 1 / scale[1]);
+      ctx.setTransform.apply(ctx, curMatrix);
+      ctx.transform.apply(ctx, matrix);
+      this.scaleToContext();
 
       return ctx.createPattern(this.canvas, 'repeat');
     }
