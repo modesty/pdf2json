@@ -1208,7 +1208,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
                     current.x += spacingLength;
             }
 
-
           if (textSelection)
             spacingAccumulator += spacingLength;
 
@@ -1224,7 +1223,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
             if (!sText && e.indexOf(' ') === 0) {
                 var ns = e.replace(/^\s+/g, '');
                 var spaceFactor = Math.max(this.current.wordSpacing, font.spaceWidth * 0.001);
-                current.x += (e.length - ns.length) * spaceFactor * fontSize * textHScale;
+                current.x += (e.length - ns.length) * spaceFactor * fontSize * current.textHScale * current.fontDirection;
                 if (!!ns)
                     sText += ns;
             }
