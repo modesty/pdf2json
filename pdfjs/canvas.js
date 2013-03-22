@@ -254,6 +254,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
   }
 
   function putBinaryImageData(ctx, data, w, h) {
+      console.log("pre-putBinaryImageData");
+      nodeUtil._backTrace();
     var tmpImgData = 'createImageData' in ctx ? ctx.createImageData(w, h) :
       ctx.getImageData(0, 0, w, h);
 
@@ -416,6 +418,16 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       'shadingFill': true
     },
 
+//MQZ.Mar.22 Disabled Operators (to prevent image painting)
+      disabledCommands: [
+        'paintJpegXObject',
+        'paintImageXObject',
+        'paintInlineImageXObject',
+        'paintInlineImageXObjectGroup',
+        'paintImageMaskXObject',
+        'paintImageMaskXObjectGroup'
+      ],
+
     beginDrawing: function CanvasGraphics_beginDrawing(viewport) {
       var transform = viewport.transform;
       this.ctx.save();
@@ -460,7 +472,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         fnName = fnArray[i];
 
         if (fnName !== 'dependency') {
-          this[fnName].apply(this, argsArray[i]);
+//MQZ.Mar.22 Disabled Operators (to prevent image painting)
+            if (this.disabledCommands.indexOf(fnName) < 0 ) {
+                this[fnName].apply(this, argsArray[i]);
+            }
         } else {
           var deps = argsArray[i];
           for (var n = 0, nn = deps.length; n < nn; n++) {

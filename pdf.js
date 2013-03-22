@@ -282,7 +282,8 @@ var PDFJSClass = (function () {
     cls.prototype.destroy = function() {
         this.removeAllListeners();
 
-        this.pdfDocument.destroy();
+        if (this.pdfDocument)
+            this.pdfDocument.destroy();
         this.pdfDocument = null;
 
         this.formImage = null;
