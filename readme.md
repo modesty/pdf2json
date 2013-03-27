@@ -3,13 +3,13 @@ Introduction
 
 PDF2JSON module is ported from client side PDF.JS to Node.JS, it also extends PDF.JS library with interactive form elements and text content parsing.
 
-The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, it also enables parsing local PDF files to JSON files when using in a commanline tool.
+The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, it also enables parsing local PDF to JSON files when using as a command line utility.
 
-Install:
+Install
 ====
 >npm install pdf2json
 
-Example:
+Example
 ====
 ```javascript
 
@@ -36,13 +36,10 @@ API Reference
 
         function loadPDF(pdfFilePath);
 
-        load PDF file from specified file path asynchroniously
+load PDF file from specified file path asynchronously.
 
-        if failed, event pdfParser_dataError will be raised with error object
-
-        when success, event pdfParser_dataReady will be raised with JavaScript data object, which can be saved as
-
-        JSON file in test or serialized to JSON when running in web service
+If failed, event "pdfParser_dataError" will be raised with error object;
+If success, event "pdfParser_dataReady" will be raised with output data object, which can be saved as JSON file (in command line) or serialized to JSON when running in web service.
 
 
 Output format Reference
@@ -62,16 +59,16 @@ Each page object within 'Pages' array describes page elements and attributes wit
 
 * 'Height': height of the page in page unit
 * 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
-* 'Vline': vetical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
+* 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
 * 'Fills': an array of rectangular area with solid color fills, same as lines, each 'fill' object has 'x', 'y' in relative coordinates for positioning, 'w' and 'h' for width and height in page unit, plus 'clr' to reference a color with index in color dictionary. More info about 'color dictionary' can be found at 'Dictionary Reference' section.
-* 'Texts': an array of text blocks with position, actual text and stylying informations:
+* 'Texts': an array of text blocks with position, actual text and styling informations:
     * 'x' and 'y': relative coordinates for positioning
     * 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object
     * 'A': text alignment, including:
         * left
         * center
         * right
-    * 'R': an array of text run, each text run object has two main foelds:
+    * 'R': an array of text run, each text run object has two main fields:
         * 'T': actual text
         * 'S': style index from style dictionary. More info about 'Style Dictionary' can be found at 'Dictionary Reference' section
 
@@ -79,8 +76,8 @@ Dictionary Reference
 -----
 
 Same reason to having "HLines" and "VLines" array in 'Page' object, color and style dictionary will help to reduce the size of payload when transporting the parsing object over the wire.
-This dictionary data contract design will allow the pageload object just reference a dictionary key (a number), rather than the actual full defintion of the color or font style.
-But it does require the consumer of the payload to have the same dictionary definition to make sense out of the color and style reference.
+This dictionary data contract design will allow the output just reference a dictionary key , rather than the actual full definition of color or font style.
+It does require the client of the payload to have the same dictionary definition to make sense out of it when render the parser output on to screen.
 
 * Color Dictionary
 
@@ -208,9 +205,9 @@ But it does require the consumer of the payload to have the same dictionary defi
 Interactive Forms Elements
 =====
 
-v0.1.5 added interactive forms element parsing, including text input, radio button, check box, link button and dropdown list.
+v0.1.5 added interactive forms element parsing, including text input, radio button, check box, link button and drop down list.
 
-Interactive forms can be created and editted in Acrobat Pro for AcroForm, or in LiveCycle Designer ES for XFA forms. Current implementation for buttons only supports "link button": when clicked, it'll launch a URL specified in button properties. Examples can be found at f1040ezt.pdf file under test/data folder.
+Interactive forms can be created and edited in Acrobat Pro for AcroForm, or in LiveCycle Designer ES for XFA forms. Current implementation for buttons only supports "link button": when clicked, it'll launch a URL specified in button properties. Examples can be found at f1040ezt.pdf file under test/data folder.
 
 All interactive form elements parsing output will be part of corresponding 'Page' object where they belong to, radio buttons and check boxes are in 'Boxsets' array while all other elements objects are part of 'Fields' array.
 
@@ -280,7 +277,7 @@ Each object with in 'Boxset' can be either checkbox or radio button, the only di
                 }//end of second element
              ] //end of Boxsets array
 
-'Fields' array contains parsed object for text input (Name: 'alpha'), dropdown list (Name: 'apha', but has 'PL' object which contains label array in 'PL.D' and value array in 'PL.V'), link button (Name: 'link', linked URL is in 'FL' field). Some examples:
+'Fields' array contains parsed object for text input (Name: 'alpha'), drop down list (Name: 'apha', but has 'PL' object which contains label array in 'PL.D' and value array in 'PL.V'), link button (Name: 'link', linked URL is in 'FL' field). Some examples:
 
 Text input box example:
 
@@ -301,7 +298,7 @@ Text input box example:
                     h: 0.85
                 },
 
-Dropdown list box example:
+Drop down list box example:
 
                {
                     x: 60,
@@ -465,7 +462,7 @@ V0.1.13 added text rotation value (degree) in the R array's object, if and only 
 Notes
 =====
 
-PDF.JS is designed and implemented to run within browsers that have HTML5 support, it has some depencies that's only available from browser's JavaScript runtime, including:
+PDF.JS is designed and implemented to run within browsers that have HTML5 support, it has some dependencies that's only available from browser's JavaScript runtime, including:
 
 * XHR Level 2 (for Ajax)
 * DOMParser (for parsing embedded XML from PDF)
@@ -473,14 +470,14 @@ PDF.JS is designed and implemented to run within browsers that have HTML5 suppor
 * Canvas (to draw lines, fills, colors, shapes in browser)
 * Others (like web fonts, canvas image, DOM manipulations, etc.)
 
-In order to run PDF.JS in Node.js, we have to address those dependencies and also extend/modify the fork of PDF.JS. Here below are some works implemented in this pdf2json module to enable pdf.js running with node.js:
+In order to run PDF.JS in Node.js, we have to address those dependencies and also extend/modify the fork of PDF.JS. Here below are some works implemented in this pdf2json module to enable pdf.js running with Node.js:
 
 * Global Variables
     * pdf.js' global objects (like PDFJS and globalScope) need to be wrapped in a node module's scope
 * API Dependencies
     * XHR Level 2: I don't need XMLHttpRequest to load PDF asynchronously in node.js, so replaced it with node's fs (File System) to load PDF file based on request parameters;
     * DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at https://github.com/jindw/xmldom;
-    * Web Wroker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
+    * Web Worker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
     * Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the JSON format above, rather than drawing graphics on html5 canvas;
 * Extend/Modify PDF.JS
     * Fonts: no need to call ensureFonts to make sure fonts downloaded, only need to parse out font info in CSS font format to be used in JSON's texts array.
@@ -488,26 +485,28 @@ In order to run PDF.JS in Node.js, we have to address those dependencies and als
     * Interactive Forms elements: (in process to support them)
     * Leave out the support to embedded images
 
-After the changes and extensions listed above, this pdf2json node.js module will work either in a server environment ( I have a RESTful web service built with resitify and pdf2json, it's been running on an Amazon EC2 instance) or as a standalone commanline tool (something similar to the Vows unit tests).
+After the changes and extensions listed above, this pdf2json node.js module will work either in a server environment ( I have a RESTful web service built with resitify and pdf2json, it's been running on an Amazon EC2 instance) or as a standalone command line tool (something similar to the Vows unit tests).
+
+More porting notes can be found at [Porting and Extending PDFJS to NodeJS](http://www.codeproject.com/Articles/568136/Porting-and-Extending-PDFJS-to-NodeJS).
 
 Known Issues
 ===
 
-This pdf2json module's output does not 100% maps from PDF definitions, some of them is because of time limitation I currently have, some others result from the 'dictionary' concept for the output. Given these known issues or unsupported features in current implementation, it allows me to contribute back to the open source community with the most important features implemented while leaving some improvement space for the future. All un-supported featurs listed below can be resolved technically some way or other, if your use case really requires them:
+This pdf2json module's output does not 100% maps from PDF definitions, some of them is because of time limitation I currently have, some others result from the 'dictionary' concept for the output. Given these known issues or unsupported features in current implementation, it allows me to contribute back to the open source community with the most important features implemented while leaving some improvement space for the future. All un-supported features listed below can be resolved technically some way or other, if your use case really requires them:
 
 * Embedded content:
-    * All embedded content are igored, current implementation focuses on static contents and interactive forms. Un-supported PDF embedded contents includes 'Images', 'Fonts' and other dynmatic contents;
+    * All embedded content are igored, current implementation focuses on static contents and interactive forms. Un-supported PDF embedded contents includes 'Images', 'Fonts' and other dynamic contents;
 * Text and Form Styles:
     * text and form elements styles has partial support. This means when you have client side renderer (say in HTML5 canvas or SVG renderer), the PDF content may not look exactly the same as how Acrobat renders. The reason is that we've used "style dictionary" in order to reduce the payload size over the wire, while "style dictionary" doesn't have all styles defined. This sort of partial support can be resolved by extending those 'style dictionaries'. Primary text style issues include:
-        * Font face: only limit to the font families defined in style dictionry
+        * Font face: only limit to the font families defined in style dictionary
         * Font size: only limit to 6, 8, 10, 12, 14, 18 that are defined in style dictionary, all other sized font are mapped to the closest size. For example: when a PDF defines a 7px sized font, the size will be mapped to 8px in the output;
-        * Color: either font color or fill colors, are limited to the entries in color dictionry
+        * Color: either font color or fill colors, are limited to the entries in color dictionary
         * Style combinations: when style combination is not supported, say in different size, face, bold and italic, the closest entry will be selected in the output;
-    * Note: v0.1.11 started to add support for actual font style (size, bold, itlic), but still no full support on font family;
+    * Note: v0.1.11 started to add support for actual font style (size, bold, italic), but still no full support on font family;
 * Text positioning and spacing:
-    * Since embedd font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed JSON data in browser (HTML5 canvas and IE's SVG).
+    * Since embedded font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticeable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed JSON data in browser (HTML5 canvas and IE's SVG).
 * User input data in form element:
-    * As for interactive forms elements, their type, poisitions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, like which radio button is selected, which checkbox is checked, text in text input box, etc., should be handled in client as part of user data, so that we can treat parsed PDF data as template data.
+    * As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, like which radio button is selected, which checkbox is checked, text in text input box, etc., should be handled in client as part of user data, so that we can treat parsed PDF data as template data.
 
 
 Run Unit Test
@@ -517,12 +516,12 @@ Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under '
 
             node test/index.js
 
-Run As a Commandline Utility
+Run As a Command Line Utility
 =====
 
 v0.1.15 added the capability to run pdf2json as command line tool, implemented in pdf2json.js file. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to JSON format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same JSON payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result JSON files onto web server, client side JSON form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
 
-This command line capability is added as an extension, it doesn't break previous functionalities of running winthin a web service context. In my real project, I have a web service written in restify.js to run pdf2json with a RESTful web service interface, I also have the needs to pre-process some local static pdfs through the command line capability without changing the actual pdf2json module code.
+This command line capability is added as an extension, it doesn't break previous functionalities of running with a web service context. In my real project, I have a web service written in restify.js to run pdf2json with a RESTful web service interface, I also have the needs to pre-process some local static pdfs through the command line capability without changing the actual pdf2json module code.
 
 To use the command line utility to transcode a folder or a file:
 
