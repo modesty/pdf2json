@@ -1130,6 +1130,16 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
 //MQZ. 10/23/2012 Enable string rendering
           var curFontSize = fontSize * scale * textHScale + 3;
+          if (this.current.wordSpacing > 0 && (font.spaceWidth) &&
+              (str.indexOf(' ') > 0) && (str.match(/\S+/g).length < 5)) {//when words count less than 5. 760pff has issues without it
+//              console.log("this.current.wordSpacing = " + this.current.wordSpacing + "; str = " + str + "; spaceCount = " + spaceCount);
+              var spaceCount = this.current.wordSpacing*1000 / font.spaceWidth + 1;
+              var rsps = " ";
+              for (var si = 0; si < spaceCount; si++) {
+                  rsps += " ";
+              }
+              str = str.replace(/\s/g, rsps);
+          }
           switch (textRenderingMode) {
               case TextRenderingMode.FILL:
               case TextRenderingMode.FILL_ADD_TO_PATH:
@@ -1207,21 +1217,14 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
             if (vertical) {
                 current.y += spacingLength;
             } else {
-                if (spacingLength > 0) {
-                    if (!sText) {
-                        current.x += spacingLength;
-                    }
-                    else if (-e >= font.spaceWidth) {
-                        var spTextWidth = this.showText(sText, true);
-                        sText = "";
-                        current.x += spacingLength;
-
-                        if (textSelection)
-                            spacingLength += spTextWidth;
-                    }
-                }
-                else if (!sText)
+                if (!sText) {//MQZ. could move to left (positive e) or right (negative e)
                     current.x += spacingLength;
+                }
+                else if (Math.abs(e) >= font.spaceWidth) {
+                    this.showText(sText, true);
+                    sText = "";
+                    current.x += spacingLength;
+                }
             }
 
           if (textSelection)
