@@ -1105,7 +1105,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //                clipCtx.fillText(accent.fontChar, scaledAccentX, scaledAccentY);
 //              }
 //            }
-              if (useGlyph && (textRenderingMode != TextRenderingMode.INVISIBLE)) {
+              if (useGlyph && (textRenderingMode != TextRenderingMode.INVISIBLE) &&
+                              (textRenderingMode != TextRenderingMode.ADD_TO_PATH)) {
                   if (isAlphanumeric(character))
                       str += character;
                   else if (glyph.unicode) {
@@ -1137,13 +1138,13 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
               case TextRenderingMode.STROKE:
               case TextRenderingMode.STROKE_ADD_TO_PATH:
                   ctx.strokeText(str, 0, 0, canvasWidth, curFontSize);
-                  break;
+                  break;//ctx.strokeText(str, 0, 0, canvasWidth);
               case TextRenderingMode.FILL_STROKE:
               case TextRenderingMode.FILL_STROKE_ADD_TO_PATH:
                   ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
-    //                  ctx.strokeText(str, 0, 0, canvasWidth);
                   break;
               case TextRenderingMode.INVISIBLE:
+              case TextRenderingMode.ADD_TO_PATH:
                   break;
               default: // other unsupported rendering modes
           }
@@ -1189,7 +1190,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       }
 
 //MQZ. Dec.28. Adjust text positioning
-//      console.log("In spacedText:" + JSON.stringify(arr) + ";this.current = " + this.current.x + "," + this.current.y + ";");
+//    console.log("showSpacedText:" + JSON.stringify(arr) + ";this.current = " + this.current.x + "," + this.current.y + ";");
       var sText = "";
 
       for (var i = 0; i < arrLength; ++i) {

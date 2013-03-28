@@ -171,7 +171,9 @@ var PDFFont = (function PFPFontClosure() {
     var _getFontStyleIndex = function(fontSize) {
         _setFaceIndex.call(this);
 
-        this.fontSize = this.bold ? fontSize + 1 : fontSize; //MQZ Feb.28.2013. Adjust bold text fontsize to work around word spacing issue
+        //MQZ Feb.28.2013. Adjust bold text fontsize to work around word spacing issue
+        this.fontSize = (this.bold && (fontSize > 12)) ? fontSize + 1 : fontSize;
+
         var fsa = [this.faceIdx, this.fontSize, this.bold?1:0, this.italic?1:0];
         var retVal = -1;
 
@@ -238,6 +240,10 @@ var PDFFont = (function PFPFontClosure() {
         if (text == "C" || text == "G") { //prevent symbolic encoding from the client
             text = " " + text + " ";
         }
+
+        //adjust bold big text positioning, like in va_ind_301
+        if (this.bold && this.fontSize >= 20)
+            p.y -= this.fontSize * 0.375;
 
         // when this.fontStyleId === -1, it means the text style doesn't match any entry in the dictionary
         // adding TS to better describe text style [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic];
