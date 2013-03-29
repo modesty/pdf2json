@@ -168,7 +168,9 @@ var PDFField = (function PDFFieldClosure() {
             T: {
                 Name: "link"
             },
-            FL: field.FL
+            FL: {
+                form: {Id: field.FL}
+            }
         }, _getFieldBaseData.call(this, field));
 
         this.Fields.push(anData);

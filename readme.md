@@ -277,7 +277,7 @@ Each object with in 'Boxset' can be either checkbox or radio button, the only di
                 }//end of second element
              ] //end of Boxsets array
 
-'Fields' array contains parsed object for text input (Name: 'alpha'), drop down list (Name: 'apha', but has 'PL' object which contains label array in 'PL.D' and value array in 'PL.V'), link button (Name: 'link', linked URL is in 'FL' field). Some examples:
+'Fields' array contains parsed object for text input (Name: 'alpha'), drop down list (Name: 'apha', but has 'PL' object which contains label array in 'PL.D' and value array in 'PL.V'), link button (Name: 'link', linked URL is in 'FL.form.Id' field). Some examples:
 
 Text input box example:
 
@@ -340,7 +340,7 @@ Link button example:
                     T: {
                         Name: "link"
                     },
-                    FL: "http://www.github.com",
+                    FL: {form: {Id:"http://www.github.com"},
                     id: {
                         Id: "quad8",
                         EN: 0
