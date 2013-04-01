@@ -363,8 +363,8 @@ var nodeUtil = require("util"),
 
     contextPrototype.stroke = function (aFill) {
         if (this.currentPath_.length < 2) {
-//            nodeUtil._logN.call(this, "stroke(fill - " + aFill + ", currentPath = " + this.currentPath_.length + ")");
-//            nodeUtil._logN.call(this, "Invalid currentPath_:" + nodeUtil.inspect(this.currentPath_));
+            nodeUtil._logN.call(this, "stroke(fill - " + aFill + ", currentPath = " + this.currentPath_.length + ")");
+            nodeUtil._logN.call(this, "Invalid currentPath_:" + nodeUtil.inspect(this.currentPath_));
             return;
         }
 
@@ -392,7 +392,7 @@ var nodeUtil = require("util"),
                 case 'close':
                     if (!aFill) { //lines
                         if (i > 0) {
-                            _drawPDFLine.call(this, p, this.currentPath_[0], lineWidth);
+                            _drawPDFLine.call(this, this.currentPath_[i-1], this.currentPath_[0], lineWidth);
                         }
                     }
                     p = null;

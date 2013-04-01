@@ -455,7 +455,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         return i;
       }
 
-      var executionEndIdx;
       var endTime = Date.now() + EXECUTION_TIME;
 
       var commonObjs = this.commonObjs;
@@ -474,6 +473,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         if (fnName !== 'dependency') {
 //MQZ.Mar.22 Disabled Operators (to prevent image painting)
             if (this.disabledCommands.indexOf(fnName) < 0 ) {
+//                console.log(fnName + ":" + JSON.stringify(argsArray[i]));
                 this[fnName].apply(this, argsArray[i]);
             }
         } else {
@@ -663,8 +663,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       this.ctx.closePath();
     },
     rectangle: function CanvasGraphics_rectangle(x, y, width, height) {
-        if (width > 10 || height > 10) //MQZ. 9/12/2012. Avoid to draw check box
-          this.ctx.rect(x, y, width, height);
+      this.ctx.rect(x, y, width, height);
     },
     stroke: function CanvasGraphics_stroke(consumePath) {
       consumePath = typeof consumePath !== 'undefined' ? consumePath : true;
