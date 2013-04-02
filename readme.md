@@ -23,7 +23,7 @@ Example
 
         pdfParser.on("pdfParser_dataError", _.bind(_onPFBinDataError, self));
 
-        var pdfFilePath = "data/" + taxYear + "/" + stateName + "/" + pdfId + ".pdf";
+        var pdfFilePath = _pdfPathBase + folderName + "/" + pdfId + ".pdf";
 
         pdfParser.loadPDF(pdfFilePath);
 

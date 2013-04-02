@@ -195,6 +195,10 @@ var PDFFont = (function PFPFontClosure() {
         if (!str || str.length !== 1)
             return retVal;
 
+        if (retVal == "C" || retVal == "G") { //prevent symbolic encoding from the client
+            retVal = " " + retVal + " "; //sample: va_ind_760c
+        }
+
         if (!this.fontObj.isSymbolicFont)
             return retVal;
 
@@ -203,6 +207,7 @@ var PDFFont = (function PFPFontClosure() {
             case 97: retVal = '\u25b6'; break; //right triangle
             case 20: retVal = '\u2713'; break; //check mark
             case 70: retVal = '\u007D'; break; //right curly bracket
+            case 103: retVal = '\u27A8'; break; //right arrow. sample: va_ind_760pff and pmt
             case 118: retVal = '\u2022'; break; //Bullet dot
             case 106: retVal = ''; break; //VA 301: string j character by the checkbox, hide it for now
             default:
@@ -236,10 +241,6 @@ var PDFFont = (function PFPFontClosure() {
 //        console.log(str + ", " + JSON.stringify({x:p.x, y:p.y, width: PDFUnit.toPixelX(maxWidth)}));
         this.fontStyleId = _getFontStyleIndex.call(this, fontSize);
         var text = _processSymbolicFont.call(this, str);
-
-        if (text == "C" || text == "G") { //prevent symbolic encoding from the client
-            text = " " + text + " ";
-        }
 
         //adjust bold big text positioning, like in va_ind_301
         if (this.bold && this.fontSize >= 20)
