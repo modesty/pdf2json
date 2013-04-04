@@ -476,7 +476,9 @@ var Page = (function PageClosure() {
 //            }
 //            item.fullName = fieldName.join('.');
 //END:MQZ. 9/19/2012. comment out the fullname routin, replace it with getInheritableProperty('T') //PDF Spec P.689
-                item.fullName = stringToPDFString(getInheritableProperty(annotation,'T') || '');
+//It matches a sequence of at least one period or space, which is then replaced by a single underscore
+            var itemNameStr = stringToPDFString(getInheritableProperty(annotation,'T') || '');
+            item.fullName = itemNameStr.replace(/[.\s]+/g, '_');
 
             var alternativeText = stringToPDFString(annotation.get('TU') || '');
             item.alternativeText = alternativeText;
