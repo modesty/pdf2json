@@ -174,6 +174,22 @@ var PDFJSClass = (function () {
     var _nextId = 1;
     var _name = 'PDFJSClass';
 
+    var _getMetaDataString = function(metadata, key){
+        var retVal = "unknown";
+        if (metadata && metadata.has(key)) {
+            retVal = encodeURIComponent(metadata.get(key));
+        }
+        return retVal;
+    };
+
+    var _getMetaDataInt = function(metadata, key){
+        var retVal = _getMetaDataString(metadata, key);
+        retVal = parseInt(retVal);
+        if (retVal == null || isNaN(retVal))
+            retVal = -1;
+        return retVal;
+    };
+
     // constructor
     var cls = function () {
         nodeEvents.EventEmitter.call(this);
@@ -212,7 +228,7 @@ var PDFJSClass = (function () {
     cls.prototype.load = function(pdfDocument, scale) {
         this.pdfDocument = pdfDocument;
 
-        var pages = this.pages = [];
+        this.pages = [];
         this.pageWidth = 0;
 
         var pagesCount = pdfDocument.numPages;
@@ -230,19 +246,38 @@ var PDFJSClass = (function () {
         });
 
         pdfDocument.getMetadata().then(function(data) {
-            var info = data.info, metadata = data.metadata;
-            self.documentInfo = info;
-            self.metadata = metadata;
+            self.documentInfo = data.info;
+            self.metadata = data.metadata;
 
-            var pdfTile = "";
-            if (metadata && metadata.has('dc:title')) {
-                pdfTile = metadata.get('dc:title');
-            }
-            else if (info && info['Title'])
-                pdfTile = info['Title'];
-
-            self.emit("pdfjs_parseDataReady", {Agency:pdfTile, Id: info});
+            self.parseMetaData();
         });
+    };
+
+    cls.prototype.parseMetaData = function() {
+        var self = this;
+
+        var info = self.documentInfo;
+        var metadata = self.metadata;
+
+        var pdfTile = "";
+        if (metadata && metadata.has('dc:title')) {
+            pdfTile = metadata.get('dc:title');
+        }
+        else if (info && info['Title'])
+            pdfTile = info['Title'];
+
+        var formAttr = {AgencyId:"", Name: "", MC: false, Max: 1};
+        if (metadata) {
+            formAttr.AgencyId = _getMetaDataString(metadata, 'pdfx:agencyid');
+            if (formAttr.AgencyId != "unknown")
+                pdfTile = formAttr.AgencyId;
+
+            formAttr.Name = _getMetaDataString(metadata, 'pdfx:name');
+            formAttr.MC = _getMetaDataString(metadata, 'pdfx:mc') === 'true';
+            formAttr.Max = _getMetaDataInt(metadata, 'pdfx:max');
+        }
+
+        self.emit("pdfjs_parseDataReady", {Agency:pdfTile, Id: formAttr});
     };
 
     cls.prototype.parsePage = function(promisedPages, id, scale) {

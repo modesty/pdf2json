@@ -47,8 +47,14 @@ Output format Reference
 
 Current parsed data has four main sub objects to describe the PDF document.
 
-* 'Agency': the main text identifier for the PDF document
+* 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title;
 * 'Id': the XML meta data that embedded in PDF document
+    * all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
+    * v0.1.22 added support for the following custom properties:
+        * AgencyId: default "unknown";
+        * Name: default "unknown";
+        * MC: default false;
+        * Max: default -1;
 * 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
 * 'Width': the PDF page width in page unit
 
