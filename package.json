@@ -36,7 +36,8 @@
   "dependencies": {
       "xmldom" : ">=0.1.13",
       "underscore": ">=1.4.2",
-      "optimist": ">=0.3.5"
+      "optimist": ">=0.3.5",
+      "async": ">=0.2.6"
   },
   "devDependencies": {},
   "maintainers": [

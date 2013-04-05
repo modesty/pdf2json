@@ -2,7 +2,8 @@ var nodeUtil = require("util"),
 	nodeEvents = require("events"),
     _ = require("underscore"),
     fs = require('fs'),
-    PDFJS = require("./pdf.js");
+    PDFJS = require("./pdf.js"),
+    async = require("async");
 
 nodeUtil._logN = function logWithClassName(msg) { nodeUtil.log(this.get_name() + " - " + msg);};
 nodeUtil._backTrace = function logCallStack() {
@@ -99,6 +100,10 @@ var PDFParser = (function () {
         }
     };
 
+    var fq = async.queue(function (task, callback) {
+        fs.readFile(task.path, callback);
+     }, 250);
+
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
     cls.prototype.loadPDF = function (pdfFilePath) {
         var self = this;
@@ -109,7 +114,8 @@ var PDFParser = (function () {
         if (processBinaryCache.call(this))
             return;
 
-        fs.readFile(pdfFilePath, _.bind(processPDFContent, self));
+//        fs.readFile(pdfFilePath, _.bind(processPDFContent, self));
+        fq.push({path: pdfFilePath}, _.bind(processPDFContent, self));
     };
 
     cls.prototype.destroy = function() {
