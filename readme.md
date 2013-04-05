@@ -55,6 +55,7 @@ Current parsed data has four main sub objects to describe the PDF document.
         * Name: default "unknown";
         * MC: default false;
         * Max: default -1;
+        * Parent: parent name, default "unknown";
 * 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
 * 'Width': the PDF page width in page unit
 

@@ -266,7 +266,7 @@ var PDFJSClass = (function () {
         else if (info && info['Title'])
             pdfTile = info['Title'];
 
-        var formAttr = {AgencyId:"", Name: "", MC: false, Max: 1};
+        var formAttr = {AgencyId:"", Name: "", MC: false, Max: 1, Parent:""};
         if (metadata) {
             formAttr.AgencyId = _getMetaDataString(metadata, 'pdfx:agencyid');
             if (formAttr.AgencyId != "unknown")
@@ -275,6 +275,7 @@ var PDFJSClass = (function () {
             formAttr.Name = _getMetaDataString(metadata, 'pdfx:name');
             formAttr.MC = _getMetaDataString(metadata, 'pdfx:mc') === 'true';
             formAttr.Max = _getMetaDataInt(metadata, 'pdfx:max');
+            formAttr.Parent = _getMetaDataInt(metadata, 'pdfx:parent');
         }
 
         self.emit("pdfjs_parseDataReady", {Agency:pdfTile, Id: formAttr});
