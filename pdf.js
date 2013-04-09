@@ -5,7 +5,8 @@ var nodeUtil = require("util"),
     DOMParser = require('xmldom').DOMParser,
     PDFCanvas = require('./pdfcanvas.js'),
     PDFUnit = require('./pdfunit.js'),
-    PDFField = require('./pdffield.js');
+    PDFField = require('./pdffield.js'),
+    Image = require('./pdfimage.js');
 
 var _pdfjsFiles = [
     'core.js',
@@ -35,37 +36,6 @@ function createScratchCanvas(width, height) { return new PDFCanvas({}, width, he
 
 var PDFJS = {};
 var globalScope = {};
-
-////////////////////////////////start of fake image
-var PDFImage = (function() {
-	'use strict';
-	
-	var _src = '';
-	var _onload = null;
-	
-	this.__defineSetter__("onload", function(val) {
-		_onload = val;
-	});
-	
-	this.__defineGetter__("onload", function() {
-		return _onload;
-	});
-	
-	this.__defineSetter__("src", function(val) {
-		_src = val;
-		if (_onload) _onload();
-	});
-	
-	this.__defineGetter__("src", function() {
-		return _src;
-	});
-});
-
-var Image = PDFImage;
-var window = {};
-window.btoa = function(val) {
-	return (new Buffer(val, 'ascii')).toString('base64');
-};
 
 var _basePath = __dirname + "/pdfjs/";
 var _fileContent = '';

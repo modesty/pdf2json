@@ -547,10 +547,11 @@ var FontLoader = {
 
     // User agent string sniffing is bad, but there is no reliable way to tell
     // if font is fully loaded and ready to be used with canvas.
-    var userAgent = window.navigator.userAgent;
-    var m = /Mozilla\/5.0.*?rv:(\d+).*? Gecko/.exec(userAgent);
-    if (m && m[1] >= 14)
-      return true;
+//MQZ. Apr.09.2013. Disable font loader
+//    var userAgent = window.navigator.userAgent;
+//    var m = /Mozilla\/5.0.*?rv:(\d+).*? Gecko/.exec(userAgent);
+//    if (m && m[1] >= 14)
+//      return true;
     // TODO other browsers
     return false;
   })(),
