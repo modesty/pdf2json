@@ -2,7 +2,7 @@ var nodeUtil = require("util"),
 	nodeEvents = require("events"),
     _ = require("underscore"),
     fs = require('fs'),
-    PDFJS = require("./pdf.js"),
+    PDFJS = require("./lib/pdf.js"),
     async = require("async");
 
 nodeUtil._logN = function logWithClassName(msg) { nodeUtil.log(this.get_name() + " - " + msg);};
