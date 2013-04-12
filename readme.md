@@ -544,6 +544,13 @@ The output directory must exist, otherwise, it'll exit with an error.
 
 Additionally, you can also use -v or --version to show version number or to display more help info with -h.
 
+Run in a RESful Web Service
+=====
+
+More info can be found at [Restful Web Service for PDF2JSON.](https://github.com/modesty/p2jsvc)
+
+
+
 
 
 
