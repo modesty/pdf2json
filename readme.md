@@ -544,6 +544,17 @@ The output directory must exist, otherwise, it'll exit with an error.
 
 Additionally, you can also use -v or --version to show version number or to display more help info with -h.
 
+Note: v0.2.1 added the ability to run pdf2json directly from the command line without specifying "node" and the path of pdf2json. To run this self-executable in command line, first install pdf2json globally:
+
+            npm install pdf2json -g
+
+Then run it in command line:
+
+            pdf2json -f [input directory or pdf file]
+            or
+            pdf2json -f [input directory or pdf file] -o [output directory]
+
+
 Run in a RESful Web Service
 =====
 
