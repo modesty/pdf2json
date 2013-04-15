@@ -526,9 +526,9 @@ Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under '
 Run As a Command Line Utility
 =====
 
-v0.1.15 added the capability to run pdf2json as command line tool, implemented in pdf2json.js file. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to JSON format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same JSON payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result JSON files onto web server, client side JSON form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
+v0.1.15 added the capability to run pdf2json as command line tool. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to JSON format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same JSON payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result JSON files onto web server, client side form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
 
-This command line capability is added as an extension, it doesn't break previous functionalities of running with a web service context. In my real project, I have a web service written in restify.js to run pdf2json with a RESTful web service interface, I also have the needs to pre-process some local static pdfs through the command line capability without changing the actual pdf2json module code.
+This command line utility is added as an extension, it doesn't break previous functionalities of running with a web service context. In my real project, I have a web service written in [restify.js to run pdf2json with a RESTful web service interface](https://github.com/modesty/p2jsvc), I also have the needs to pre-process some local static pdfs through the command line tool without changing the actual pdf2json module code.
 
 To use the command line utility to transcode a folder or a file:
 
@@ -544,7 +544,9 @@ The output directory must exist, otherwise, it'll exit with an error.
 
 Additionally, you can also use -v or --version to show version number or to display more help info with -h.
 
-Note: v0.2.1 added the ability to run pdf2json directly from the command line without specifying "node" and the path of pdf2json. To run this self-executable in command line, first install pdf2json globally:
+###Note:###
+
+v0.2.1 added the ability to run pdf2json directly from the command line without specifying "node" and the path of pdf2json. To run this self-executable in command line, first install pdf2json globally:
 
             npm install pdf2json -g
 
@@ -555,7 +557,7 @@ Then run it in command line:
             pdf2json -f [input directory or pdf file] -o [output directory]
 
 
-Run in a RESful Web Service
+Run in a RESTful Web Service
 =====
 
 More info can be found at [Restful Web Service for PDF2JSON.](https://github.com/modesty/p2jsvc)
