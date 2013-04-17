@@ -295,7 +295,7 @@ Text input box example:
                         TypeInfo: { }
                     },
                     id: {
-                        Id: "p1-t4[0]",
+                        Id: "p1_t40",
                         EN: 0
                     },
                     TI: 0,
@@ -356,6 +356,26 @@ Link button example:
                     x: 52.35,
                     y: 28.35,
                     w: 8.88,
+                    h: 0.85
+                }
+
+v0.2.2 added support for "field attribute mask", it'd be common for all fields, form author can set it in Acrobat Pro's Form Editing mode: if a field is ReadOnly, it's AM field will be set as 0x00000400, otherwise AM will be set as 0. Example:
+
+                {
+                    style: 48,
+                    T: {
+                        Name: "alpha",
+                        TypeInfo: { }
+                    },
+                    id: {
+                        Id: "p1_t40",
+                        EN: 0
+                    },
+                    TI: 0,
+                    AM: 1024, //If (AM & 0x00000400) set, it indicates this is a read-only filed
+                    x: 6.19,
+                    y: 5.15,
+                    w: 30.94,
                     h: 0.85
                 }
 

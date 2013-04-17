@@ -325,6 +325,10 @@ var Page = (function PageClosure() {
                 return;
             }
 
+            //MQZ. Apr.17.2013. TABLE 8.70 Field flags common to all field types
+            //PDF Spec P.676. ReadOnly/Requires/NoExport flags
+            item.Ff = annotation.get('Ff');
+
             //PDF Spec p.651 get format dictionary
             var nVal = aa.get('F');
             if (!nVal)
