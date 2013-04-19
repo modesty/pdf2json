@@ -135,7 +135,6 @@ function addContextCurrentTransform(ctx) {
         m[0] * e + m[2] * f + m[4],
         m[1] * e + m[3] * f + m[5]
       ];
-
       ctx._originalTransform(a, b, c, d, e, f);
     };
 
@@ -1025,7 +1024,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         ctx.lineWidth = lineWidth;
 
 //MQZ. 11/16/2012: added helper function
-          var useGlyph = (str[0] != glyphs[0].fontChar);
+          var useGlyph = (glyphsLength > 0) && (str[0] != glyphs[0].fontChar);
           if (useGlyph)
               str = "";
           var alphaExp = /[^ -~]/; //  /^[0-9a-zA-Z| !@#$%^&*():\/\\_,.]+$/; //

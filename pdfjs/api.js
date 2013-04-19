@@ -700,7 +700,7 @@ var WorkerTransport = (function WorkerTransportClosure() {
 
 //MQZ. Oct.17.2012 - disable image drawing
 //        var src = 'data:image/jpeg;base64,' + window.btoa(imageData);
-//        img.src = src;
+        img.src = 'data:image/jpeg;base64,' + img.btoa(imageData);
       });
     },
 

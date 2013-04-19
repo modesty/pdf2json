@@ -455,14 +455,6 @@ var PDFImage = (function PDFImageClosure() {
   return PDFImage;
 })();
 
-//MQZ. 04/09/2013 Added window.btoa
-function windowBtoa(val) {
-    if (window && typeof(window.btoa) == 'function')
-        return window.btoa(val);
-    else
-        return (new Buffer(val, 'ascii')).toString('base64');
-}
-
 function loadJpegStream(id, imageData, objs) {
   var img = new Image();
   img.onload = (function loadJpegStream_onloadClosure() {
@@ -470,6 +462,6 @@ function loadJpegStream(id, imageData, objs) {
   });
 //MQZ. 04/09/2013 calls windows.btoa safely
 //  img.src = 'data:image/jpeg;base64,' + window.btoa(imageData);
-    img.src = 'data:image/jpeg;base64,' + windowBtoa(imageData);
+    img.src = 'data:image/jpeg;base64,' + img.btoa(imageData);
 }
 
