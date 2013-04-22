@@ -359,7 +359,10 @@ Link button example:
                     h: 0.85
                 }
 
-v0.2.2 added support for "field attribute mask", it'd be common for all fields, form author can set it in Acrobat Pro's Form Editing mode: if a field is ReadOnly, it's AM field will be set as 0x00000400, otherwise AM will be set as 0. Example:
+v0.2.2 added support for "field attribute mask", it'd be common for all fields, form author can set it in Acrobat Pro's Form Editing mode: if a field is ReadOnly, it's AM field will be set as 0x00000400, otherwise AM will be set as 0.
+Anpther supported field attributes is "required": when form author mark a field is "required" in Acrobat, the parsing result for 'AM" will have the 1st bit set (0x00000010).
+
+"Read-Only" filed attribute mask example:
 
                 {
                     style: 48,
