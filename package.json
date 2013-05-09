@@ -43,6 +43,7 @@
       "async": ">=0.2.6"
   },
   "devDependencies": {},
+  "bundledDependencies" : ["xmldom", "underscore", "optimist", "async"],
   "maintainers": [
     {
         "name": "Modesty Zhang",
