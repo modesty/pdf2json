@@ -64,53 +64,53 @@ function checkResult_pageContent(Pages, fileName) {
 suite.addBatch({
     'Parse 1040ez first':{
         topic:function () {
-            return pdfParserPromise("xfa_1040ez");
+            return pdfParserPromise("f1040ez");
         },
         'has parsing data':function (err, stat) {
-            checkResult_parseStatus(err, stat, "xfa_1040ez");
+            checkResult_parseStatus(err, stat, "f1040ez");
         },
         'has four main objects': function(err, stat) {
-            checkResult_mainFields(stat, "xfa_1040ez");
+            checkResult_mainFields(stat, "f1040ez");
         },
         'has pages': function(err, stat) {
-            checkResult_pageCount(stat.Pages, 1, "xfa_1040ez");
+            checkResult_pageCount(stat.Pages, 1, "f1040ez");
         },
         'has page elements': function(err, stat) {
-            checkResult_pageContent(stat.Pages, "xfa_1040ez");
+            checkResult_pageContent(stat.Pages, "f1040ez");
         }
     },
     'Parse 1040a':{
         topic:function () {
-            return pdfParserPromise("xfa_1040a");
+            return pdfParserPromise("f1040a");
         },
         'has parsing data':function (err, stat) {
-            checkResult_parseStatus(err, stat, "xfa_1040a");
+            checkResult_parseStatus(err, stat, "f1040a");
         },
         'has four main objects': function(err, stat) {
-            checkResult_mainFields(stat, "xfa_1040a");
+            checkResult_mainFields(stat, "f1040a");
         },
         'has pages': function(err, stat) {
-            checkResult_pageCount(stat.Pages, 2, "xfa_1040a");
+            checkResult_pageCount(stat.Pages, 2, "f1040a");
         },
         'has page elements': function(err, stat) {
-            checkResult_pageContent(stat.Pages, "xfa_1040a");
+            checkResult_pageContent(stat.Pages, "f1040a");
         }
     },
     'Parse 1040':{
         topic:function () {
-            return pdfParserPromise("xfa_1040");
+            return pdfParserPromise("f1040");
         },
         'has parsing data':function (err, stat) {
-            checkResult_parseStatus(err, stat, "xfa_1040");
+            checkResult_parseStatus(err, stat, "f1040");
         },
         'has four main objects': function(err, stat) {
-            checkResult_mainFields(stat, "xfa_1040");
+            checkResult_mainFields(stat, "f1040");
         },
         'has pages': function(err, stat) {
-            checkResult_pageCount(stat.Pages, 2, "xfa_1040");
+            checkResult_pageCount(stat.Pages, 2, "f1040");
         },
         'has page elements': function(err, stat) {
-            checkResult_pageContent(stat.Pages, "xfa_1040");
+            checkResult_pageContent(stat.Pages, "f1040");
         }
     }
 });
