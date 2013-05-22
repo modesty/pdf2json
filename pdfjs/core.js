@@ -479,7 +479,7 @@ var Page = (function PageClosure() {
 //It matches a sequence of at least one period or space, which is then replaced by a single underscore
             var itemNameStr = stringToPDFString(getInheritableProperty(annotation,'T') || '');
             itemNameStr = itemNameStr.replace(/[.\s\W]+/g, '_'); //replace spaces and non-word character (not [^a-zA-Z0-9_]) with _
-            item.fullName = itemNameStr.replace(/^[\s_,:.;\/\\\d]+/, ''); //replace starting punctuation
+            item.fullName = itemNameStr.replace(/^[\s_,:.;\/\\]+/, ''); //replace starting punctuation
 
             var alternativeText = stringToPDFString(annotation.get('TU') || '');
             item.alternativeText = alternativeText;
