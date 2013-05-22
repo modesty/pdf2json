@@ -478,7 +478,8 @@ var Page = (function PageClosure() {
 //END:MQZ. 9/19/2012. comment out the fullname routin, replace it with getInheritableProperty('T') //PDF Spec P.689
 //It matches a sequence of at least one period or space, which is then replaced by a single underscore
             var itemNameStr = stringToPDFString(getInheritableProperty(annotation,'T') || '');
-            item.fullName = itemNameStr.replace(/[.\s]+/g, '_');
+            itemNameStr = itemNameStr.replace(/[.\s\W]+/g, '_'); //replace spaces and non-word character (not [^a-zA-Z0-9_]) with _
+            item.fullName = itemNameStr.replace(/^[\s_,:.;\/\\\d]+/, ''); //replace starting punctuation
 
             var alternativeText = stringToPDFString(annotation.get('TU') || '');
             item.alternativeText = alternativeText;
