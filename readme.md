@@ -48,6 +48,7 @@ Output format Reference
 Current parsed data has four main sub objects to describe the PDF document.
 
 * 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title;
+* 'Transcoder': pdf2json version number
 * 'Id': the XML meta data that embedded in PDF document
     * all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
     * v0.1.22 added support for the following custom properties:
