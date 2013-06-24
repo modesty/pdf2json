@@ -60,7 +60,7 @@ var PDFParser = (function () {
         }
     };
 
-    var _onPDFHSParserDataError = function(data) {
+    var _onPDFJSParserDataError = function(data) {
         this.data = data;
         this.emit("pdfParser_dataError", this);
     };
@@ -70,7 +70,7 @@ var PDFParser = (function () {
         this.parsePropCount = 0;
 
         this.PDFJS.on("pdfjs_parseDataReady", _.bind(_onPDFJSParseDataReady, this));
-        this.PDFJS.on("pdfjs_parseDataError", _.bind(_onPDFHSParserDataError, this));
+        this.PDFJS.on("pdfjs_parseDataError", _.bind(_onPDFJSParserDataError, this));
 
         this.PDFJS.parsePDFData(_binBuffer[this.pdfFilePath]);
     };
