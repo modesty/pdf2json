@@ -9,6 +9,12 @@ Install
 ====
 >npm install pdf2json
 
+Or, install it globally:
+>sudo npm install pdf2json -g
+
+To update with latest version:
+>sudo npm update pdf2json -g
+
 Example
 ====
 ```javascript
