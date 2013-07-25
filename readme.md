@@ -1,7 +1,7 @@
 Introduction
 ====
 
-PDF2JSON module is ported from client side PDF.JS to Node.JS, it also extends PDF.JS library with interactive form elements and text content parsing.
+PDF2JSON is a node.js module ported from PDF.JS, it also extends PDF.JS library with interactive form elements and text content parsing outside browser.
 
 The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, it also enables parsing local PDF to JSON files when using as a command line utility.
 
@@ -14,6 +14,9 @@ Or, install it globally:
 
 To update with latest version:
 >sudo npm update pdf2json -g
+
+To Run in RESTful Web Servie or as Commandline Utility
+* More details can be found at the bottom of this document.
 
 Example
 ====
@@ -305,6 +308,7 @@ Text input box example:
                         Id: "p1_t40",
                         EN: 0
                     },
+                    TU: "alternative text", //for accessibility, added only when available from PDF stream. (v0.3.6).
                     TI: 0,
                     x: 6.19,
                     y: 5.15,
@@ -543,7 +547,7 @@ This pdf2json module's output does not 100% maps from PDF definitions, some of t
 * Text positioning and spacing:
     * Since embedded font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticeable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed JSON data in browser (HTML5 canvas and IE's SVG).
 * User input data in form element:
-    * As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, like which radio button is selected, which checkbox is checked, text in text input box, etc., should be handled in client as part of user data, so that we can treat parsed PDF data as template data.
+    * As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, including radio button selection, checkbox status, text input box value, etc., these values should be handled in client renderer as part of user data, so that we can treat parsed PDF data as form template.
 
 
 Run Unit Test
