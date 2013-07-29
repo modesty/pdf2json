@@ -98,7 +98,6 @@ It does require the client of the payload to have the same dictionary definition
 
 * Color Dictionary
 
-
         var kColors = [
                 '#000000',		// 0
                 '#ffffff',		// 1
@@ -477,6 +476,8 @@ For example, the following is a text block data in the parsing result:
                 },
 
 The text is "Modesty PDF Parser NodeJS", text style dictionary entry ID is -1 (S field, meaning no match), and its Font Face ID is 0 (TS[0], "QuickType,Arial,Helvetica,sans-serif"), Font Size is 15px (TS[1]), Font weight is bold (TS[2]) and font style is normal (TS[3]).
+
+Note: (v0.3.7) When a color is not in style dictionary, "clr" value will be set to -1. Item's (fills and text) original color in hex string format will be added to "oc" field. In other word, "oc" only exists if and only if "clr" is -1;
 
 Rotated Text Support
 =====
