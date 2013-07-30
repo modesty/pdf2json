@@ -403,6 +403,10 @@ v0.1.8 added text input field formatter types detection for
 * zip
 * phone
 
+v0.3.8 added two more field formatter types detection for
+* pin5: 5 digit PIN field
+* rtn: 9 digit routing number
+
 About 5 types are detected only when the widget field type is "Tx" and the additional-actions dictionary 'AA' is set. Like what you see, not all pre-defined formatters and special formatters are supported, if you need more support, you can extend the 'processFieldAttribute' function in core.js file.
 
 For the supported types, the result data is set to the field item's T object. Example of a 'number' field in final JSON output:

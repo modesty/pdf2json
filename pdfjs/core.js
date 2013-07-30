@@ -320,15 +320,18 @@ var Page = (function PageClosure() {
             //PDF Spec P.648. 8.5.2. Trigger Events
             var aa = annotation.get('AA');
             if (!aa) {
-                if (item.fullName.toLowerCase().indexOf('ssn') > 0)
-                    item.TName = AFSpecial_Format[3]; // 'ssn'
+//                if (item.fullName.toLowerCase().indexOf('ssn') > 0)
+//                    item.TName = AFSpecial_Format[3]; // 'ssn'
                 return;
             }
 
             //PDF Spec p.651 get format dictionary
             var nVal = aa.get('F');
-            if (!nVal)
-                return;
+            if (!nVal) {
+                nVal = aa.get('K');
+                if (!nVal)
+                    return;
+            }
 
             nVal.forEach(function(key, value){
                 if (key === "JS") {
@@ -359,7 +362,6 @@ var Page = (function PageClosure() {
             var funcParam = vParts[1].split(')')[0];
 
 //            console.log(item.fullName + " : " + funcName + " => " + funcParam);
-//            var nfs = null;
             switch(funcName) {
                 case 'AFSpecial_Format':
                     item.TName = AFSpecial_Format[Number(funcParam)];
@@ -372,10 +374,18 @@ var Page = (function PageClosure() {
 //                        item.TName = 'money';
 //                    else
                         item.TName = 'number';
-//                    console.log(item.fullName + " : AFNumber_Format : " + item.TName);
                     break;
                 case 'AFDate_FormatEx':
                     item.TName = 'date';
+                    break;
+                case 'AFSpecial_KeystrokeEx': //special format: "arbitrary mask"
+                    if (funcParam == '"99999"') {
+                        item.TName = 'pin5'; //5 digit PIN field
+                    }
+                    else if (funcParam == '"999999999"') {
+                        item.TName = 'rtn'; //9 digit routing number field
+                    }
+                    console.log(item.fullName + " : " + funcParam + " => " + item.TName);
                     break;
             }
         }
