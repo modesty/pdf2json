@@ -403,9 +403,12 @@ v0.1.8 added text input field formatter types detection for
 * zip
 * phone
 
-v0.3.8 added two more field formatter types detection for
-* pin5: 5 digit PIN field
-* rtn: 9 digit routing number
+v0.3.9 added "arbitrary mask" (in "special" format category) support, the input field format type is "mask" and the mask string is added as "MV", its value can be found at Format => Special => Arbitrary Mask in Acrobat;
+Some examples of "mask" format including:
+* 9999: 4 digit PIN field
+* 99999: 5 digit PIN field
+* 99-9999999: formatted 9 digit EIN number
+* 999999999: 9 digit routing number
 
 About 5 types are detected only when the widget field type is "Tx" and the additional-actions dictionary 'AA' is set. Like what you see, not all pre-defined formatters and special formatters are supported, if you need more support, you can extend the 'processFieldAttribute' function in core.js file.
 
