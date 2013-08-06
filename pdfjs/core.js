@@ -366,6 +366,11 @@ var Page = (function PageClosure() {
             item.flags = getInheritableProperty(annotation, 'Ff') || 0;
 
 //MQZ.Sep.19.2012: adding field value
+            if (item.fieldType == 'Tx') {
+                var fieldValue = stringToPDFString(getInheritableProperty(annotation,'V') || '');
+                if (fieldValue.length > 0)
+                    item.V = fieldValue;
+            }
             PDFAnno.processAnnotation(annotation, item);
           break;
           case 'Text':

@@ -312,7 +312,8 @@ Text input box example:
                     x: 6.19,
                     y: 5.15,
                     w: 30.94,
-                    h: 0.85
+                    h: 0.85,
+                    V: "field value" //only availabe when the text input box has value
                 },
 
 Drop down list box example:
