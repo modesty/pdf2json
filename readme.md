@@ -411,7 +411,12 @@ Some examples of "mask" format including:
 * 99-9999999: formatted 9 digit EIN number
 * 999999999: 9 digit routing number
 
-About 5 types are detected only when the widget field type is "Tx" and the additional-actions dictionary 'AA' is set. Like what you see, not all pre-defined formatters and special formatters are supported, if you need more support, you can extend the 'processFieldAttribute' function in core.js file.
+v0.4.1 added more date format detection, these formats are set in Acrobat's field's Properties => Format => Date => Custom:
+* mmdd: 2 digit month and and 2 digit day in 'mm/dd'
+* yyyy: 4 digit year
+* date: mm/dd/year if other than mmdd and yyyy are detected
+
+Types above are detected only when the widget field type is "Tx" and the additional-actions dictionary 'AA' is set. Like what you see, not all pre-defined formatters and special formatters are supported, if you need more support, you can extend the 'processFieldAttribute' function in core.js file.
 
 For the supported types, the result data is set to the field item's T object. Example of a 'number' field in final JSON output:
 
