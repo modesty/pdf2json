@@ -76,11 +76,11 @@ Each page object within 'Pages' array describes page elements and attributes wit
 
 * 'Height': height of the page in page unit
 * 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
-* 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
+* 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit; v0.4.3 added Line color support, it's default to black, other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
 * 'Fills': an array of rectangular area with solid color fills, same as lines, each 'fill' object has 'x', 'y' in relative coordinates for positioning, 'w' and 'h' for width and height in page unit, plus 'clr' to reference a color with index in color dictionary. More info about 'color dictionary' can be found at 'Dictionary Reference' section.
 * 'Texts': an array of text blocks with position, actual text and styling informations:
     * 'x' and 'y': relative coordinates for positioning
-    * 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object
+    * 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object. If a color can be found in color dictionary, 'oc' field will be added to the field as 'original color" value.
     * 'A': text alignment, including:
         * left
         * center
@@ -440,20 +440,20 @@ For the supported types, the result data is set to the field item's T object. Ex
 Another example of 'date' field:
 
                 {
-                style: 48,
-                T: {
-                    Name: "date",
-                    TypeInfo: { }
-                },
-                id: {
-                    Id: "Your Birth Date",
-                    EN: 0
-                },
-                TI: 0,
-                x: 33.43,
-                y: 20.78,
-                w: 5.99,
-                h: 0.89
+                    style: 48,
+                    T: {
+                        Name: "date",
+                        TypeInfo: { }
+                    },
+                    id: {
+                        Id: "Your Birth Date",
+                        EN: 0
+                    },
+                    TI: 0,
+                    x: 33.43,
+                    y: 20.78,
+                    w: 5.99,
+                    h: 0.89
                 },
 
 
