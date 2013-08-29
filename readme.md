@@ -76,7 +76,9 @@ Each page object within 'Pages' array describes page elements and attributes wit
 
 * 'Height': height of the page in page unit
 * 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
-* 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit; v0.4.3 added Line color support, it's default to black, other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
+* 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit;
+    * v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
+    * v0.4.4 added dashed line support. Default is 'solid', if line style is dashed line, {dsh:1} is added to line object;
 * 'Fills': an array of rectangular area with solid color fills, same as lines, each 'fill' object has 'x', 'y' in relative coordinates for positioning, 'w' and 'h' for width and height in page unit, plus 'clr' to reference a color with index in color dictionary. More info about 'color dictionary' can be found at 'Dictionary Reference' section.
 * 'Texts': an array of text blocks with position, actual text and styling informations:
     * 'x' and 'y': relative coordinates for positioning
