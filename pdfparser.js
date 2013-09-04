@@ -112,16 +112,16 @@ var PDFParser = (function () {
 
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
     cls.prototype.loadPDF = function (pdfFilePath) {
-        var self = this;
-        self.pdfFilePath = pdfFilePath;
-
         nodeUtil._logN.call(this, " is about to load PDF file " + pdfFilePath);
+
+        this.pdfFilePath = pdfFilePath;
+        this.PDFJS.tryLoadFieldInfoXML(pdfFilePath);
 
         if (processBinaryCache.call(this))
             return;
 
-//        fs.readFile(pdfFilePath, _.bind(processPDFContent, self));
-        fq.push({path: pdfFilePath}, _.bind(processPDFContent, self));
+//        fs.readFile(pdfFilePath, _.bind(processPDFContent, this));
+        fq.push({path: pdfFilePath}, _.bind(processPDFContent, this));
     };
 
     cls.prototype.destroy = function() {

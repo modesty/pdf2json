@@ -91,6 +91,8 @@ Each page object within 'Pages' array describes page elements and attributes wit
         * 'T': actual text
         * 'S': style index from style dictionary. More info about 'Style Dictionary' can be found at 'Dictionary Reference' section
 
+v0.4.5 added support when fields attributes information is defined in external xml file. pdf2json will always try load field attributes xml file based on file name convention (pdffilename.pdf's field XML file must be named pdffilename_fieldInfo.xml in the same directory). If found, fields info will be injected.
+
 Dictionary Reference
 -----
 
