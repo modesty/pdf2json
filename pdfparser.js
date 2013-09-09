@@ -41,6 +41,7 @@ var PDFParser = (function () {
         this.data = null; //if file read success, data is PDF content; if failed, data is "err" object
         this.PDFJS = new PDFJS();
         this.parsePropCount = 0;
+        this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
     };
     // inherit from event emitter
 	nodeUtil.inherits(cls, nodeEvents.EventEmitter);
@@ -115,7 +116,9 @@ var PDFParser = (function () {
         nodeUtil._logN.call(this, " is about to load PDF file " + pdfFilePath);
 
         this.pdfFilePath = pdfFilePath;
-        this.PDFJS.tryLoadFieldInfoXML(pdfFilePath);
+        if (this.processFieldInfoXML) {
+            this.PDFJS.tryLoadFieldInfoXML(pdfFilePath);
+        }
 
         if (processBinaryCache.call(this))
             return;
