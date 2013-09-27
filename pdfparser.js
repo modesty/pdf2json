@@ -1,11 +1,15 @@
 var nodeUtil = require("util"),
-	nodeEvents = require("events"),
+  nodeEvents = require("events"),
     _ = require("underscore"),
     fs = require('fs'),
     PDFJS = require("./lib/pdf.js"),
     async = require("async");
 
-nodeUtil._logN = function logWithClassName(msg) { nodeUtil.log(this.get_name() + " - " + msg);};
+var enableLogging = true;
+var BUFFER_KEY_PREFIX = 'buffer_';
+var BUFFER_KEY_INDEX = 1;
+
+nodeUtil._logN = function logWithClassName(msg) { if (enableLogging) { nodeUtil.log(this.get_name() + " - " + msg); } };
 nodeUtil._backTrace = function logCallStack() {
     try {
         throw new Error();
@@ -26,9 +30,9 @@ var PDFParser = (function () {
 
     // constructor
     var cls = function (context) {
-		//call constructor for super class
-		nodeEvents.EventEmitter.call(this);
-	
+    //call constructor for super class
+    nodeEvents.EventEmitter.call(this);
+
         // private
         var _id = _nextId++;
 
@@ -44,7 +48,7 @@ var PDFParser = (function () {
         this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
     };
     // inherit from event emitter
-	nodeUtil.inherits(cls, nodeEvents.EventEmitter);
+  nodeUtil.inherits(cls, nodeEvents.EventEmitter);
 
     // public static
     cls.get_nextId = function () {
@@ -126,6 +130,23 @@ var PDFParser = (function () {
 //        fs.readFile(pdfFilePath, _.bind(processPDFContent, this));
         fq.push({path: pdfFilePath}, _.bind(processPDFContent, this));
     };
+
+    // Introduce a way to directly process buffers without the need to write it to a temporary file
+    cls.prototype.parsePDFBuffer = function (pdfBuffer) {
+        nodeUtil._logN.call(this, " is about to load PDF file " + pdfFilePath);
+
+        // create a property key for processPDFContent
+        this.pdfFilePath = BUFFER_KEY_PREFIX + BUFFER_KEY_INDEX++;
+        if (processBinaryCache.call(this))
+            return;
+
+        _.bind(processPDFContent, this);
+        processPDFContent(null, pdfBuffer);
+    };
+
+    cls.prototype.enableLogging = function (enable) {
+      enableLogging = enable
+    }
 
     cls.prototype.destroy = function() {
         this.removeAllListeners();
