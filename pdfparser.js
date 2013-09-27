@@ -6,8 +6,6 @@ var nodeUtil = require("util"),
     async = require("async");
 
 var enableLogging = true;
-var BUFFER_KEY_PREFIX = 'buffer_';
-var BUFFER_KEY_INDEX = 1;
 
 nodeUtil._logN = function logWithClassName(msg) { if (enableLogging) { nodeUtil.log(this.get_name() + " - " + msg); } };
 nodeUtil._backTrace = function logCallStack() {
@@ -70,14 +68,14 @@ var PDFParser = (function () {
         this.emit("pdfParser_dataError", this);
     };
 
-    var startPasringPDF = function() {
+    var startPasringPDF = function(buffer) {
         this.data = {};
         this.parsePropCount = 0;
 
         this.PDFJS.on("pdfjs_parseDataReady", _.bind(_onPDFJSParseDataReady, this));
         this.PDFJS.on("pdfjs_parseDataError", _.bind(_onPDFJSParserDataError, this));
 
-        this.PDFJS.parsePDFData(_binBuffer[this.pdfFilePath]);
+        this.PDFJS.parsePDFData(buffer ? buffer : _binBuffer[this.pdfFilePath]);
     };
 
     var processBinaryCache = function() {
@@ -133,13 +131,7 @@ var PDFParser = (function () {
 
     // Introduce a way to directly process buffers without the need to write it to a temporary file
     cls.prototype.parsePDFBuffer = function (pdfBuffer) {
-
-        // create a property key for processPDFContent
-        this.pdfFilePath = BUFFER_KEY_PREFIX + BUFFER_KEY_INDEX++;
-        if (processBinaryCache.call(this))
-            return;
-
-        _.bind(processPDFContent, this)(null, pdfBuffer);
+        startPasringPDF.call(this, pdfBuffer);
     };
 
     cls.prototype.enableLogging = function (enable) {
