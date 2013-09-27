@@ -133,15 +133,13 @@ var PDFParser = (function () {
 
     // Introduce a way to directly process buffers without the need to write it to a temporary file
     cls.prototype.parsePDFBuffer = function (pdfBuffer) {
-        nodeUtil._logN.call(this, " is about to load PDF file " + pdfFilePath);
 
         // create a property key for processPDFContent
         this.pdfFilePath = BUFFER_KEY_PREFIX + BUFFER_KEY_INDEX++;
         if (processBinaryCache.call(this))
             return;
 
-        _.bind(processPDFContent, this);
-        processPDFContent(null, pdfBuffer);
+        _.bind(processPDFContent, this)(null, pdfBuffer);
     };
 
     cls.prototype.enableLogging = function (enable) {
