@@ -1,3 +1,10 @@
+About
+====
+
+This is a fork of the PDF2JSON  module by modesty, because I wanted the following features:
+1. Parse PDFs directly from buffers without creating files first
+2. Get PostScript point coordinates for texts
+
 Introduction
 ====
 
