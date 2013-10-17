@@ -22,7 +22,7 @@
 
 //MQZ. Oct.11.2012. Add Worker's postMessage API
 globalScope.postMessage = function WorkerTransport_postMessage(obj) {
-  console.log("Inside globalScope.postMessage:" + JSON.stringify(obj));
+  log("Inside globalScope.postMessage:" + JSON.stringify(obj));
 };
 
 function MessageHandler(name, comObj) {
