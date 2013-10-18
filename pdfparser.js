@@ -1,19 +1,9 @@
-var nodeUtil = require("util"),
+var PDFJS = require("./lib/pdf.js"),
+    nodeUtil = require("util"),
 	nodeEvents = require("events"),
     _ = require("underscore"),
     fs = require('fs'),
-    PDFJS = require("./lib/pdf.js"),
     async = require("async");
-
-nodeUtil._logN = function logWithClassName(msg) { nodeUtil.log(this.get_name() + " - " + msg);};
-nodeUtil._backTrace = function logCallStack() {
-    try {
-        throw new Error();
-    } catch (e) {
-        var msg = e.stack ? e.stack.split('\n').slice(2).join('\n') : '';
-        nodeUtil.log(msg);
-    }
-};
 
 var PDFParser = (function () {
     'use strict';
@@ -57,7 +47,7 @@ var PDFParser = (function () {
         this.parsePropCount++;
         if (this.parsePropCount >= 2) {
             this.emit("pdfParser_dataReady", this);
-            nodeUtil._logN.call(this, "PDF parsing completed.");
+            nodeUtil.p2jinfo("PDF parsing completed.");
         }
     };
 
@@ -89,14 +79,14 @@ var PDFParser = (function () {
             _binBuffer[key] = null;
             delete _binBuffer[key];
 
-            nodeUtil._logN.call(this, "re-cycled cache for " + key);
+            nodeUtil.p2jinfo("re-cycled cache for " + key);
         }
 
         return false;
     };
 
     var processPDFContent = function(err, data) {
-        nodeUtil._logN.call(this, "Load PDF file status:" + (!!err ? "Error!" : "Success!") );
+        nodeUtil.p2jinfo("Load PDF file status:" + (!!err ? "Error!" : "Success!") );
         if (err) {
             this.data = err;
             this.emit("pdfParser_dataError", this);
@@ -113,7 +103,7 @@ var PDFParser = (function () {
 
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
     cls.prototype.loadPDF = function (pdfFilePath) {
-        nodeUtil._logN.call(this, " is about to load PDF file " + pdfFilePath);
+        nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
         this.pdfFilePath = pdfFilePath;
         if (this.processFieldInfoXML) {

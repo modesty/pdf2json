@@ -765,3 +765,12 @@ PDFJS.createBlob = function createBlob(data, contentType) {
   bb.append(data);
   return bb.getBlob(contentType);
 };
+
+//MQZ 10/18/2013 expose util methods
+var nodeUtil = require("util");
+nodeUtil.p2jlog = log;
+nodeUtil.p2jinfo = info;
+nodeUtil.p2jwarn = warn;
+nodeUtil.p2jerror = error;
+nodeUtil.verbosity = function(verbo) {verbosity = verbo || INFOS; };
+nodeUtil.verbosity();

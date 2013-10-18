@@ -253,8 +253,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
   }
 
   function putBinaryImageData(ctx, data, w, h) {
-      //console.log("pre-putBinaryImageData");
-      nodeUtil._backTrace();
     var tmpImgData = 'createImageData' in ctx ? ctx.createImageData(w, h) :
       ctx.getImageData(0, 0, w, h);
 
