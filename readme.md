@@ -608,6 +608,19 @@ Then run it in command line:
             or
             pdf2json -f [input directory or pdf file] -o [output directory]
 
+v0.5.4 added "-s" or "--silent" commandline parameter to suppress informative logging output. When using pdf2json as a commandline tool, the default verbosity is 5 (INFOS). While when running as a web service, default verbosity is 9 (ERRORS).
+Examples to suppress logging info from commandline:
+
+            pdf2json -f [input directory or pdf file] -o [output directory] -s
+            or
+            pdf2json -f [input directory or pdf file] -o [output directory] --silent
+
+Examples to turn on logging info in web service:
+
+            var pdfParser = new PFParser();
+            ...
+            pdfParser.loadPDF(pdfFilePath, 5);
+
 
 Run in a RESTful Web Service
 =====

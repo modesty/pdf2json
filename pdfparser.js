@@ -102,7 +102,8 @@ var PDFParser = (function () {
      }, 250);
 
     // public (every instance will share the same method, but has no access to private fields defined in constructor)
-    cls.prototype.loadPDF = function (pdfFilePath) {
+    cls.prototype.loadPDF = function (pdfFilePath, verbosity) {
+        nodeUtil.verbosity(verbosity);
         nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
         this.pdfFilePath = pdfFilePath;
