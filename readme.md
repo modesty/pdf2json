@@ -375,6 +375,7 @@ Link button example:
                 }
 
 v0.2.2 added support for "field attribute mask", it'd be common for all fields, form author can set it in Acrobat Pro's Form Editing mode: if a field is ReadOnly, it's AM field will be set as 0x00000400, otherwise AM will be set as 0.
+
 Another supported field attributes is "required": when form author mark a field is "required" in Acrobat, the parsing result for 'AM' will be set as 0x00000010.
 
 "Read-Only" filed attribute mask example:
@@ -414,6 +415,12 @@ Some examples of "mask" format including:
 * 99999: 5 digit PIN field
 * 99-9999999: formatted 9 digit EIN number
 * 999999999: 9 digit routing number
+* aaa: 3 letters input
+
+Additionally, the "arbitrary mask" length is extended from 1 characters to 64 characters. And when the mask has only one character, it has the following meanings:
+* a: alphabet only input, no numeric input allowed
+* -: negative number only, no alphabet or special characters allowed
+* +: positive number only, no alphabet or special characters allowed
 
 v0.4.1 added more date format detection, these formats are set in Acrobat's field's Properties => Format => Date => Custom:
 * mmdd: 2 digit month and and 2 digit day in 'mm/dd'
