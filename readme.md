@@ -408,6 +408,7 @@ v0.1.8 added text input field formatter types detection for
 * date
 * zip
 * phone
+* percent (added v0.5.6)
 
 v0.3.9 added "arbitrary mask" (in "special" format category) support, the input field format type is "mask" and the mask string is added as "MV", its value can be found at Format => Special => Arbitrary Mask in Acrobat;
 Some examples of "mask" format including:
