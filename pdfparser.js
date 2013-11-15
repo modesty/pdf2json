@@ -123,10 +123,6 @@ var PDFParser = (function () {
         startPasringPDF.call(this, pdfBuffer);
     };
 
-    cls.prototype.enableLogging = function (enable) {
-      enableLogging = enable
-    }
-
     cls.prototype.destroy = function() {
         this.removeAllListeners();
 
