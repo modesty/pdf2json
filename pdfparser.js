@@ -16,9 +16,9 @@ var PDFParser = (function () {
 
     // constructor
     var cls = function (context) {
-		//call constructor for super class
-		nodeEvents.EventEmitter.call(this);
-	
+    //call constructor for super class
+    nodeEvents.EventEmitter.call(this);
+
         // private
         var _id = _nextId++;
 
@@ -34,7 +34,7 @@ var PDFParser = (function () {
         this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
     };
     // inherit from event emitter
-	nodeUtil.inherits(cls, nodeEvents.EventEmitter);
+  nodeUtil.inherits(cls, nodeEvents.EventEmitter);
 
     // public static
     cls.get_nextId = function () {
@@ -56,14 +56,14 @@ var PDFParser = (function () {
         this.emit("pdfParser_dataError", this);
     };
 
-    var startPasringPDF = function() {
+    var startPasringPDF = function(buffer) {
         this.data = {};
         this.parsePropCount = 0;
 
         this.PDFJS.on("pdfjs_parseDataReady", _.bind(_onPDFJSParseDataReady, this));
         this.PDFJS.on("pdfjs_parseDataError", _.bind(_onPDFJSParserDataError, this));
 
-        this.PDFJS.parsePDFData(_binBuffer[this.pdfFilePath]);
+        this.PDFJS.parsePDFData(buffer ? buffer : _binBuffer[this.pdfFilePath]);
     };
 
     var processBinaryCache = function() {
@@ -116,6 +116,11 @@ var PDFParser = (function () {
 
 //        fs.readFile(pdfFilePath, _.bind(processPDFContent, this));
         fq.push({path: pdfFilePath}, _.bind(processPDFContent, this));
+    };
+
+    // Introduce a way to directly process buffers without the need to write it to a temporary file
+    cls.prototype.parsePDFBuffer = function (pdfBuffer) {
+        startPasringPDF.call(this, pdfBuffer);
     };
 
     cls.prototype.destroy = function() {

@@ -27,7 +27,7 @@
 var isWorker = (typeof window == 'undefined');
 
 var ERRORS = 0, WARNINGS = 1, INFOS = 5;
-var verbosity = WARNINGS;
+var verbosity = ERRORS;
 
 // The global PDFJS object exposes the API
 // In production, it will be declared outside a global wrapper
