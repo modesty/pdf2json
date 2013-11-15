@@ -384,6 +384,7 @@ Link button example:
                 }
 
 v0.2.2 added support for "field attribute mask", it'd be common for all fields, form author can set it in Acrobat Pro's Form Editing mode: if a field is ReadOnly, it's AM field will be set as 0x00000400, otherwise AM will be set as 0.
+
 Another supported field attributes is "required": when form author mark a field is "required" in Acrobat, the parsing result for 'AM' will be set as 0x00000010.
 
 "Read-Only" filed attribute mask example:
@@ -416,6 +417,7 @@ v0.1.8 added text input field formatter types detection for
 * date
 * zip
 * phone
+* percent (added v0.5.6)
 
 v0.3.9 added "arbitrary mask" (in "special" format category) support, the input field format type is "mask" and the mask string is added as "MV", its value can be found at Format => Special => Arbitrary Mask in Acrobat;
 Some examples of "mask" format including:
@@ -423,6 +425,12 @@ Some examples of "mask" format including:
 * 99999: 5 digit PIN field
 * 99-9999999: formatted 9 digit EIN number
 * 999999999: 9 digit routing number
+* aaa: 3 letters input
+
+Additionally, the "arbitrary mask" length is extended from 1 characters to 64 characters. And when the mask has only one character, it has the following meanings:
+* a: alphabet only input, no numeric input allowed
+* -: negative number only, no alphabet or special characters allowed
+* +: positive number only, no alphabet or special characters allowed
 
 v0.4.1 added more date format detection, these formats are set in Acrobat's field's Properties => Format => Date => Custom:
 * mmdd: 2 digit month and and 2 digit day in 'mm/dd'
@@ -616,6 +624,19 @@ Then run it in command line:
             pdf2json -f [input directory or pdf file]
             or
             pdf2json -f [input directory or pdf file] -o [output directory]
+
+v0.5.4 added "-s" or "--silent" commandline parameter to suppress informative logging output. When using pdf2json as a commandline tool, the default verbosity is 5 (INFOS). While when running as a web service, default verbosity is 9 (ERRORS).
+Examples to suppress logging info from commandline:
+
+            pdf2json -f [input directory or pdf file] -o [output directory] -s
+            or
+            pdf2json -f [input directory or pdf file] -o [output directory] --silent
+
+Examples to turn on logging info in web service:
+
+            var pdfParser = new PFParser();
+            ...
+            pdfParser.loadPDF(pdfFilePath, 5);
 
 
 Run in a RESTful Web Service

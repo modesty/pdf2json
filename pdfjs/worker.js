@@ -22,7 +22,7 @@
 
 //MQZ. Oct.11.2012. Add Worker's postMessage API
 globalScope.postMessage = function WorkerTransport_postMessage(obj) {
-  console.log("Inside globalScope.postMessage:" + JSON.stringify(obj));
+  log("Inside globalScope.postMessage:" + JSON.stringify(obj));
 };
 
 function MessageHandler(name, comObj) {
@@ -294,8 +294,9 @@ var WorkerMessageHandler = {
         return;
       }
 
-      log('page=%d - getOperatorList: time=%dms, len=%d', pageNum,
-                              Date.now() - start, operatorList.fnArray.length);
+      //MQZ 10/18/2013 disable log for now
+//      log('page=%d - getOperatorList: time=%dms, len=%d', pageNum,
+//                              Date.now() - start, operatorList.fnArray.length);
 
       // Filter the dependecies for fonts.
       var fonts = {};
