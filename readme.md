@@ -629,6 +629,7 @@ Examples to turn on logging info in web service:
             ...
             pdfParser.loadPDF(pdfFilePath, 5);
 
+v0.5.7 added the capability to skip input PDF files if filename begins with any one of "!@#$%^&*()+=[]\\\';,/{}|\":<>?~`.-_  ", usually these files are created by PDF authoring tools as backup files.
 
 Run in a RESTful Web Service
 =====
