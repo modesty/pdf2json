@@ -405,7 +405,7 @@ v0.1.8 added text input field formatter types detection for
 
 * number
 * ssn
-* date
+* date (tested date formatter: mm/dd/yyyy, mm/dd, mm/yyyy and Custom yyyy)
 * zip
 * phone
 * percent (added v0.5.6)
@@ -424,9 +424,7 @@ Additionally, the "arbitrary mask" length is extended from 1 characters to 64 ch
 * +: positive number only, no alphabet or special characters allowed
 
 v0.4.1 added more date format detection, these formats are set in Acrobat's field's Properties => Format => Date => Custom:
-* mmdd: 2 digit month and and 2 digit day in 'mm/dd'
 * yyyy: 4 digit year
-* date: mm/dd/year if other than mmdd and yyyy are detected
 
 Types above are detected only when the widget field type is "Tx" and the additional-actions dictionary 'AA' is set. Like what you see, not all pre-defined formatters and special formatters are supported, if you need more support, you can extend the 'processFieldAttribute' function in core.js file.
 
