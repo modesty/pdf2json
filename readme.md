@@ -1,7 +1,7 @@
 Introduction
 ====
 
-PDF2JSON is a node.js module ported from PDF.JS, it also extends PDF.JS library with interactive form elements and text content parsing outside browser.
+PDF2JSON is a node.js module ported from pdf.js, it also extends pdf.js with interactive form elements and text content parsing outside browser.
 
 The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, it also enables parsing local PDF to JSON files when using as a command line utility.
 
@@ -527,7 +527,7 @@ V0.1.13 added text rotation value (degree) in the R array's object, if and only 
 Notes
 =====
 
-PDF.JS is designed and implemented to run within browsers that have HTML5 support, it has some dependencies that's only available from browser's JavaScript runtime, including:
+pdf.js is designed and implemented to run within browsers that have HTML5 support, it has some dependencies that's only available from browser's JavaScript runtime, including:
 
 * XHR Level 2 (for Ajax)
 * DOMParser (for parsing embedded XML from PDF)
@@ -535,7 +535,7 @@ PDF.JS is designed and implemented to run within browsers that have HTML5 suppor
 * Canvas (to draw lines, fills, colors, shapes in browser)
 * Others (like web fonts, canvas image, DOM manipulations, etc.)
 
-In order to run PDF.JS in Node.js, we have to address those dependencies and also extend/modify the fork of PDF.JS. Here below are some works implemented in this pdf2json module to enable pdf.js running with Node.js:
+In order to run pdf.js in Node.js, we have to address those dependencies and also extend/modify the fork of pdf.js. Here below are some works implemented in this pdf2json module to enable pdf.js running with Node.js:
 
 * Global Variables
     * pdf.js' global objects (like PDFJS and globalScope) need to be wrapped in a node module's scope
@@ -544,7 +544,7 @@ In order to run PDF.JS in Node.js, we have to address those dependencies and als
     * DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at https://github.com/jindw/xmldom;
     * Web Worker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
     * Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the JSON format above, rather than drawing graphics on html5 canvas;
-* Extend/Modify PDF.JS
+* Extend/Modify pdf.js
     * Fonts: no need to call ensureFonts to make sure fonts downloaded, only need to parse out font info in CSS font format to be used in JSON's texts array.
     * DOM: all DOM manipulation code in pdf.js are commented out, including creating canvas and div for screen rendering and font downloading purpose.
     * Interactive Forms elements: (in process to support them)
