@@ -1,12 +1,11 @@
-Introduction
-====
+# pdf2json
 
-PDF2JSON is a node.js module ported from pdf.js, it also extends pdf.js with interactive form elements and text content parsing outside browser.
+pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends it with interactive form elements and text content parsing outside browser.
 
-The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, it also enables parsing local PDF to JSON files when using as a command line utility.
+The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, it also enables parsing local PDF to json files when using as a command line utility.
 
-Install
-====
+## Install
+
 >npm install pdf2json
 
 Or, install it globally:
@@ -18,8 +17,8 @@ To update with latest version:
 To Run in RESTful Web Servie or as Commandline Utility
 * More details can be found at the bottom of this document.
 
-Example
-====
+## Code Example
+
 ```javascript
 
         var nodeUtil = require("util"),
@@ -38,8 +37,7 @@ Example
 
 ```
 
-API Reference
-=====
+## API Reference
 
 * loadPDF:
 
@@ -48,11 +46,10 @@ API Reference
 load PDF file from specified file path asynchronously.
 
 If failed, event "pdfParser_dataError" will be raised with error object;
-If success, event "pdfParser_dataReady" will be raised with output data object, which can be saved as JSON file (in command line) or serialized to JSON when running in web service.
+If success, event "pdfParser_dataReady" will be raised with output data object, which can be saved as json file (in command line) or serialized to json when running in web service.
 
 
-Output format Reference
-=====
+## Output format Reference
 
 Current parsed data has four main sub objects to describe the PDF document.
 
@@ -69,8 +66,7 @@ Current parsed data has four main sub objects to describe the PDF document.
 * 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
 * 'Width': the PDF page width in page unit
 
-Page object Reference
------
+### Page object Reference
 
 Each page object within 'Pages' array describes page elements and attributes with 5 main fields:
 
@@ -93,8 +89,7 @@ Each page object within 'Pages' array describes page elements and attributes wit
 
 v0.4.5 added support when fields attributes information is defined in external xml file. pdf2json will always try load field attributes xml file based on file name convention (pdffilename.pdf's field XML file must be named pdffilename_fieldInfo.xml in the same directory). If found, fields info will be injected.
 
-Dictionary Reference
------
+### Dictionary Reference
 
 Same reason to having "HLines" and "VLines" array in 'Page' object, color and style dictionary will help to reduce the size of payload when transporting the parsing object over the wire.
 This dictionary data contract design will allow the output just reference a dictionary key , rather than the actual full definition of color or font style.
@@ -222,8 +217,7 @@ It does require the client of the payload to have the same dictionary definition
             ];
 
 
-Interactive Forms Elements
-=====
+## Interactive Forms Elements
 
 v0.1.5 added interactive forms element parsing, including text input, radio button, check box, link button and drop down list.
 
@@ -398,8 +392,7 @@ Another supported field attributes is "required": when form author mark a field 
                     h: 0.85
                 }
 
-Text Input Field Formatter Types
-=====
+## Text Input Field Formatter Types
 
 v0.1.8 added text input field formatter types detection for
 
@@ -428,7 +421,7 @@ v0.4.1 added more date format detection, these formats are set in Acrobat's fiel
 
 Types above are detected only when the widget field type is "Tx" and the additional-actions dictionary 'AA' is set. Like what you see, not all pre-defined formatters and special formatters are supported, if you need more support, you can extend the 'processFieldAttribute' function in core.js file.
 
-For the supported types, the result data is set to the field item's T object. Example of a 'number' field in final JSON output:
+For the supported types, the result data is set to the field item's T object. Example of a 'number' field in final json output:
 
                 {
                     style: 48,
@@ -467,8 +460,7 @@ Another example of 'date' field:
                 },
 
 
-Text Style data without Style Dictionary
-=====
+## Text Style data without Style Dictionary
 
 v0.1.11 added text style information in addition to style dictionary. As we discussed earlier, the idea of style dictionary is to make the parsing result payload to be compact, but I found out the limited dictionary entries for font (face, size) and style (bold, italic) can not cover majority of text contents in PDFs, because of some styles are matched with closest dictionary entry, the client rendering will have mis-aligned, gapped or overlapped text. To solve this problem, pdf2json v0.1.11 extends the dictionary approach, all previous dictionary entries stay the same, but parsing result will not try to match to a closest style entry, instead, all exact text style will be returned in a TS filed.
 
@@ -502,8 +494,7 @@ The text is "Modesty PDF Parser NodeJS", text style dictionary entry ID is -1 (S
 
 Note: (v0.3.7) When a color is not in style dictionary, "clr" value will be set to -1. Item's (fills and text) original color in hex string format will be added to "oc" field. In other word, "oc" only exists if and only if "clr" is -1;
 
-Rotated Text Support
-=====
+## Rotated Text Support
 
 V0.1.13 added text rotation value (degree) in the R array's object, if and only if the text rotation angle is not 0. For example, if text is not rotated, the parsed output would be the same as above. When the rotation angle is 90 degree, the R array object would be extended with "RA" field:
 
@@ -524,8 +515,7 @@ V0.1.13 added text rotation value (degree) in the R array's object, if and only 
                 },
 
 
-Notes
-=====
+## Notes
 
 pdf.js is designed and implemented to run within browsers that have HTML5 support, it has some dependencies that's only available from browser's JavaScript runtime, including:
 
@@ -543,9 +533,9 @@ In order to run pdf.js in Node.js, we have to address those dependencies and als
     * XHR Level 2: I don't need XMLHttpRequest to load PDF asynchronously in node.js, so replaced it with node's fs (File System) to load PDF file based on request parameters;
     * DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at https://github.com/jindw/xmldom;
     * Web Worker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
-    * Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the JSON format above, rather than drawing graphics on html5 canvas;
+    * Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the json format above, rather than drawing graphics on html5 canvas;
 * Extend/Modify pdf.js
-    * Fonts: no need to call ensureFonts to make sure fonts downloaded, only need to parse out font info in CSS font format to be used in JSON's texts array.
+    * Fonts: no need to call ensureFonts to make sure fonts downloaded, only need to parse out font info in CSS font format to be used in json's texts array.
     * DOM: all DOM manipulation code in pdf.js are commented out, including creating canvas and div for screen rendering and font downloading purpose.
     * Interactive Forms elements: (in process to support them)
     * Leave out the support to embedded images
@@ -554,8 +544,7 @@ After the changes and extensions listed above, this pdf2json node.js module will
 
 More porting notes can be found at [Porting and Extending PDFJS to NodeJS](http://www.codeproject.com/Articles/568136/Porting-and-Extending-PDFJS-to-NodeJS).
 
-Known Issues
-===
+## Known Issues
 
 This pdf2json module's output does not 100% maps from PDF definitions, some of them is because of time limitation I currently have, some others result from the 'dictionary' concept for the output. Given these known issues or unsupported features in current implementation, it allows me to contribute back to the open source community with the most important features implemented while leaving some improvement space for the future. All un-supported features listed below can be resolved technically some way or other, if your use case really requires them:
 
@@ -569,22 +558,20 @@ This pdf2json module's output does not 100% maps from PDF definitions, some of t
         * Style combinations: when style combination is not supported, say in different size, face, bold and italic, the closest entry will be selected in the output;
     * Note: v0.1.11 started to add support for actual font style (size, bold, italic), but still no full support on font family;
 * Text positioning and spacing:
-    * Since embedded font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticeable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed JSON data in browser (HTML5 canvas and IE's SVG).
+    * Since embedded font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticeable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed json data in browser (HTML5 canvas and IE's SVG).
 * User input data in form element:
     * As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, including radio button selection, checkbox status, text input box value, etc., these values should be handled in client renderer as part of user data, so that we can treat parsed PDF data as form template.
 
 
-Run Unit Test
-=====
+## Run Unit Test
 
-Test suite for PDF2JSON is created with Vows.js, it'll parse 3 PDF files under 'test/data' directory in parallel and have 12 test cases need to be honored.
+Test suite for pdf2json is created with Vows.js, it'll parse 3 PDF files under 'test/data' directory in parallel and have 12 test cases need to be honored.
 
             node test/index.js
 
-Run As a Command Line Utility
-=====
+## Run As a Command Line Utility
 
-v0.1.15 added the capability to run pdf2json as command line tool. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to JSON format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same JSON payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result JSON files onto web server, client side form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
+v0.1.15 added the capability to run pdf2json as command line tool. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to json format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same json payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result json files onto web server, client side form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
 
 This command line utility is added as an extension, it doesn't break previous functionalities of running with a web service context. In my real project, I have a web service written in [restify.js to run pdf2json with a RESTful web service interface](https://github.com/modesty/p2jsvc), I also have the needs to pre-process some local static pdfs through the command line tool without changing the actual pdf2json module code.
 
@@ -592,7 +579,7 @@ To use the command line utility to transcode a folder or a file:
 
             node pdf2json.js -f [input directory or pdf file]
 
-When -f is a PDF file, it'll be converted to JSON file with the same name and saved in the same directory. If -f is a directory, it'll scan all ".pdf" files within the specified directory to transcode them one by one.
+When -f is a PDF file, it'll be converted to json file with the same name and saved in the same directory. If -f is a directory, it'll scan all ".pdf" files within the specified directory to transcode them one by one.
 
 Optionally, you can specify the output directory: -o:
 
@@ -602,7 +589,7 @@ The output directory must exist, otherwise, it'll exit with an error.
 
 Additionally, you can also use -v or --version to show version number or to display more help info with -h.
 
-###Note:###
+### Note:
 
 v0.2.1 added the ability to run pdf2json directly from the command line without specifying "node" and the path of pdf2json. To run this self-executable in command line, first install pdf2json globally:
 
@@ -629,10 +616,9 @@ Examples to turn on logging info in web service:
 
 v0.5.7 added the capability to skip input PDF files if filename begins with any one of "!@#$%^&*()+=[]\\\';,/{}|\":<>?~`.-_  ", usually these files are created by PDF authoring tools as backup files.
 
-Run in a RESTful Web Service
-=====
+## Run in a RESTful Web Service
 
-More info can be found at [Restful Web Service for PDF2JSON.](https://github.com/modesty/p2jsvc)
+More info can be found at [Restful Web Service for pdf2json.](https://github.com/modesty/p2jsvc)
 
 
 
