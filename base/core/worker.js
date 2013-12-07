@@ -329,12 +329,12 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
       pdfManager.getPage(data.pageIndex).then(function(page) {
 
         var pageNum = data.pageIndex + 1;
-        var start = Date.now();
+//        var start = Date.now();
         // Pre compile the pdf page and fetch the fonts/images.
         page.getOperatorList(handler).then(function(operatorList) {
 
-          info('page=%d - getOperatorList: time=%dms, len=%d', pageNum,
-              Date.now() - start, operatorList.fnArray.length);
+//          log('page=%d - getOperatorList: time=%dms, len=%d', pageNum,
+//              Date.now() - start, operatorList.fnArray.length);
 
         }, function(e) {
 
