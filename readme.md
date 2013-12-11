@@ -616,6 +616,23 @@ Examples to turn on logging info in web service:
 
 v0.5.7 added the capability to skip input PDF files if filename begins with any one of "!@#$%^&*()+=[]\\\';,/{}|\":<>?~`.-_  ", usually these files are created by PDF authoring tools as backup files.
 
+v0.6.2 added "-t" command line switch to generate fields json file in addition to parsed json. The fields json file will contain one Array which contains fieldInfo object for each field, and each fieldInfo object will have 4 fields:
+* id: field ID
+* type: string name of field type, like radio, alpha, etc
+* calc: true if read only, otherwise false
+* value: initial value of the field
+
+Example of fields.json content:
+
+            [
+             {"id":"ADDRCH","type":"alpha","calc":false,"value":"user input data"},
+             {"id":"FSRB","type":"radio","calc":false,"value":"Single"},
+             {"id":"APPROVED","type":"alpha","calc":true,"value":"Approved Form"}
+            ...
+            ]
+
+The fields.json output can be used to validate fields IDs with other data source, automation data and/or to extract data value from user submitted PDFs.
+
 ## Run in a RESTful Web Service
 
 More info can be found at [Restful Web Service for pdf2json.](https://github.com/modesty/p2jsvc)
