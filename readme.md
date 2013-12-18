@@ -413,6 +413,7 @@ Some examples of "mask" format including:
 
 Additionally, the "arbitrary mask" length is extended from 1 characters to 64 characters. And when the mask has only one character, it has the following meanings:
 * a: alphabet only input, no numeric input allowed
+* n: numeric only input, no alphabet or special characters allowed
 * -: negative number only, no alphabet or special characters allowed
 * +: positive number only, no alphabet or special characters allowed
 
