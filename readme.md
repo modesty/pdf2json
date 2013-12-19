@@ -471,9 +471,10 @@ Some examples of "mask" format including:
 
 Additionally, the "arbitrary mask" length is extended from 1 characters to 64 characters. And when the mask has only one character, it has the following meanings:
 * a: alphabet only input, no numeric input allowed
-* n: numeric only input, no alphabet or special characters allowed
-* -: negative number only, no alphabet or special characters allowed
-* +: positive number only, no alphabet or special characters allowed
+* n: numeric only input, no locale based number formatting, no alphabet or special characters allowed
+* d: numeric only input, with locale based number formatting, one decimal point allowed, no rounding expected and no alphabet or special characters allowed
+* -: negative number only, with locale based number formatting, no alphabet or special characters allowed
+* +: positive number only, with locale based number formatting, no alphabet or special characters allowed
 
 v0.4.1 added more date format detection, these formats are set in Acrobat's field's Properties => Format => Date => Custom:
 * yyyy: 4 digit year
