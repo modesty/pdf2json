@@ -81,7 +81,7 @@ mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ pd
 
         var nodeUtil = require("util"),
             _ = require('underscore'),
-            PFParser = require("./pdf2json/pfparser");
+            PFParser = require('pdf2json/pdfparser');
 
         var pdfParser = new PFParser();
 
