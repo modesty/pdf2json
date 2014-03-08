@@ -22,17 +22,17 @@ To Run in RESTful Web Servie or as Commandline Utility
 For newcomers, make sure to have the binary "node" installed.
 
 ```shell
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $  which node
+$  which node
 /usr/sbin/node
 
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ node --version
+$ node --version
 v0.10.22
 ```
 
 If you don't have it correctly configured, you will not even get the version output from pdf2json binary:
 
 ```
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ pdf2json -v
+$ pdf2json -v
 
 ```
 
@@ -41,37 +41,38 @@ If the version does not get printed, then you need to properly install nodejs co
 * Install nodejs as described in http://stackoverflow.com/a/16303380/433814. You should have the following:
 
 ```
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ nodejs --version
+$ nodejs --version
 v0.10.22
 ```
 
 * Create a symbolic link from node to nodejs
 
 ```
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ sudo rm -f /usr/sbin/node
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ sudo ln -s /usr/bin/nodejs /usr/sbin/node
+$ sudo rm -f /usr/sbin/node
+$ sudo ln -s /usr/bin/nodejs /usr/sbin/node
 ```
 * Verify the version of node and install 
 
 ```
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ which node
+$ which node
 /usr/sbin/node
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ node --version
+
+$ node --version
 v0.10.22
 ```
 * Proceed with the install of pdf2json as described.
 
 ```
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ sudo npm install -g pdf2json
+$ sudo npm install -g pdf2json
 npm http GET https://registry.npmjs.org/pdf2json
 npm http 304 https://registry.npmjs.org/pdf2json
 /usr/bin/pdf2json -> /usr/lib/node_modules/pdf2json/bin/pdf2json
 pdf2json@0.6.1 /usr/lib/node_modules/pdf2json
 
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ which pdf2json 
+$ which pdf2json 
 /usr/bin/pdf2json
 
-mdesales@mdesales-quadf-dev64-vm ~/dev/cfp/sp/services/quadf/trunk (master) $ pdf2json --version
+$ pdf2json --version
 0.6.2
 ```
 
