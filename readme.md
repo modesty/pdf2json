@@ -82,7 +82,7 @@ $ pdf2json --version
 
         var nodeUtil = require("util"),
             _ = require('underscore'),
-            PFParser = require("./pdf2json/pfparser");
+            PFParser = require('pdf2json/pdfparser');
 
         var pdfParser = new PFParser();
 
