@@ -56,14 +56,14 @@ var PDFParser = (function () {
         this.emit("pdfParser_dataError", this);
     };
 
-    var startParsingPDF = function() {
+    var startParsingPDF = function(buffer) {
         this.data = {};
         this.parsePropCount = 0;
 
         this.PDFJS.on("pdfjs_parseDataReady", _.bind(_onPDFJSParseDataReady, this));
         this.PDFJS.on("pdfjs_parseDataError", _.bind(_onPDFJSParserDataError, this));
 
-        this.PDFJS.parsePDFData(_binBuffer[this.pdfFilePath]);
+        this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath]);
     };
 
     var processBinaryCache = function() {
@@ -118,7 +118,10 @@ var PDFParser = (function () {
         fq.push({path: pdfFilePath}, _.bind(processPDFContent, this));
     };
 
-    // 
+    // Introduce a way to directly process buffers without the need to write it to a temporary file
+    cls.prototype.parseBuffer = function (pdfBuffer) {
+        startParsingPDF.call(this, pdfBuffer);
+    };
 
     cls.prototype.destroy = function() {
         this.removeAllListeners();

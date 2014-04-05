@@ -3,13 +3,14 @@
 
 var vows = require('vows'),
     assert = require('assert'),
+    fs = require('fs')
     nodeEvents = require("events"),
     _ = require('underscore'),
     PFParser = require("../pdfparser");
 
 var suite = vows.describe('PDF Node Parser');
 
-function pdfParserPromise(fileName) {
+function pdfParserPromise(fileName, fromBuffer) {
     var promise = new(nodeEvents.EventEmitter);
 
      var pdfParser = new PFParser();
@@ -28,7 +29,12 @@ function pdfParserPromise(fileName) {
      });
 
      var pdfFilePath = __dirname + "/data/" + fileName + ".pdf";
-     pdfParser.loadPDF(pdfFilePath);
+     if (fromBuffer) {
+       pdf = fs.readFileSync(pdfFilePath);
+       pdfParser.parseBuffer(pdf);
+     } else {
+       pdfParser.loadPDF(pdfFilePath);
+     }
 
      return promise;
 }
@@ -62,9 +68,9 @@ function checkResult_pageContent(Pages, fileName) {
 
 
 suite.addBatch({
-    'Parse 1040ez first':{
+    'Parse 1040ez first (from file)':{
         topic:function () {
-            return pdfParserPromise("f1040ez");
+            return pdfParserPromise("f1040ez", false);
         },
         'has parsing data':function (err, stat) {
             checkResult_parseStatus(err, stat, "f1040ez");
@@ -79,9 +85,26 @@ suite.addBatch({
             checkResult_pageContent(stat.Pages, "f1040ez");
         }
     },
-    'Parse 1040a':{
+    'Parse 1040ez first (from buffer)':{
         topic:function () {
-            return pdfParserPromise("f1040a");
+            return pdfParserPromise("f1040ez", true);
+        },
+        'has parsing data':function (err, stat) {
+            checkResult_parseStatus(err, stat, "f1040ez");
+        },
+        'has four main objects': function(err, stat) {
+            checkResult_mainFields(stat, "f1040ez");
+        },
+        'has pages': function(err, stat) {
+            checkResult_pageCount(stat.Pages, 1, "f1040ez");
+        },
+        'has page elements': function(err, stat) {
+            checkResult_pageContent(stat.Pages, "f1040ez");
+        }
+    },
+    'Parse 1040a (from file)':{
+        topic:function () {
+            return pdfParserPromise("f1040a", false);
         },
         'has parsing data':function (err, stat) {
             checkResult_parseStatus(err, stat, "f1040a");
@@ -96,9 +119,43 @@ suite.addBatch({
             checkResult_pageContent(stat.Pages, "f1040a");
         }
     },
-    'Parse 1040':{
+    'Parse 1040a (from buffer)':{
         topic:function () {
-            return pdfParserPromise("f1040");
+            return pdfParserPromise("f1040a", true);
+        },
+        'has parsing data':function (err, stat) {
+            checkResult_parseStatus(err, stat, "f1040a");
+        },
+        'has four main objects': function(err, stat) {
+            checkResult_mainFields(stat, "f1040a");
+        },
+        'has pages': function(err, stat) {
+            checkResult_pageCount(stat.Pages, 2, "f1040a");
+        },
+        'has page elements': function(err, stat) {
+            checkResult_pageContent(stat.Pages, "f1040a");
+        }
+    },
+    'Parse 1040 (from file)':{
+        topic:function () {
+            return pdfParserPromise("f1040", false);
+        },
+        'has parsing data':function (err, stat) {
+            checkResult_parseStatus(err, stat, "f1040");
+        },
+        'has four main objects': function(err, stat) {
+            checkResult_mainFields(stat, "f1040");
+        },
+        'has pages': function(err, stat) {
+            checkResult_pageCount(stat.Pages, 2, "f1040");
+        },
+        'has page elements': function(err, stat) {
+            checkResult_pageContent(stat.Pages, "f1040");
+        }
+    },
+    'Parse 1040 (from buffer)':{
+        topic:function () {
+            return pdfParserPromise("f1040", true);
         },
         'has parsing data':function (err, stat) {
             checkResult_parseStatus(err, stat, "f1040");
