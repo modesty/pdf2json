@@ -56,7 +56,7 @@ var PDFParser = (function () {
         this.emit("pdfParser_dataError", this);
     };
 
-    var startPasringPDF = function() {
+    var startParsingPDF = function() {
         this.data = {};
         this.parsePropCount = 0;
 
@@ -68,7 +68,7 @@ var PDFParser = (function () {
 
     var processBinaryCache = function() {
         if (_.has(_binBuffer, this.pdfFilePath)) {
-            startPasringPDF.call(this);
+            startParsingPDF.call(this);
             return true;
         }
 
@@ -93,7 +93,7 @@ var PDFParser = (function () {
         }
         else {
             _binBuffer[this.pdfFilePath] = data;
-            startPasringPDF.call(this);
+            startParsingPDF.call(this);
         }
     };
 
@@ -117,6 +117,8 @@ var PDFParser = (function () {
 //        fs.readFile(pdfFilePath, _.bind(processPDFContent, this));
         fq.push({path: pdfFilePath}, _.bind(processPDFContent, this));
     };
+
+    // 
 
     cls.prototype.destroy = function() {
         this.removeAllListeners();
