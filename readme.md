@@ -81,6 +81,7 @@ $ pdf2json --version
 ```javascript
 
         var nodeUtil = require("util"),
+            fs = require('fs'),
             _ = require('underscore'),
             PFParser = require("./pdf2json/pfparser");
 
@@ -93,6 +94,13 @@ $ pdf2json --version
         var pdfFilePath = _pdfPathBase + folderName + "/" + pdfId + ".pdf";
 
         pdfParser.loadPDF(pdfFilePath);
+
+        // or call directly with buffer
+        fs.readFileSync(pdfFilePath, function (err, pdfBuffer) {
+          if (!err) {
+            pdfParser.parseBuffer(pdfBuffer);
+          }
+        })
 
 ```
 
