@@ -56,19 +56,19 @@ var PDFParser = (function () {
         this.emit("pdfParser_dataError", this);
     };
 
-    var startPasringPDF = function() {
+    var startParsingPDF = function(buffer) {
         this.data = {};
         this.parsePropCount = 0;
 
         this.PDFJS.on("pdfjs_parseDataReady", _.bind(_onPDFJSParseDataReady, this));
         this.PDFJS.on("pdfjs_parseDataError", _.bind(_onPDFJSParserDataError, this));
 
-        this.PDFJS.parsePDFData(_binBuffer[this.pdfFilePath]);
+        this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath]);
     };
 
     var processBinaryCache = function() {
         if (_.has(_binBuffer, this.pdfFilePath)) {
-            startPasringPDF.call(this);
+            startParsingPDF.call(this);
             return true;
         }
 
@@ -93,7 +93,7 @@ var PDFParser = (function () {
         }
         else {
             _binBuffer[this.pdfFilePath] = data;
-            startPasringPDF.call(this);
+            startParsingPDF.call(this);
         }
     };
 
@@ -116,6 +116,11 @@ var PDFParser = (function () {
 
 //        fs.readFile(pdfFilePath, _.bind(processPDFContent, this));
         fq.push({path: pdfFilePath}, _.bind(processPDFContent, this));
+    };
+
+    // Introduce a way to directly process buffers without the need to write it to a temporary file
+    cls.prototype.parseBuffer = function (pdfBuffer) {
+        startParsingPDF.call(this, pdfBuffer);
     };
 
     cls.prototype.destroy = function() {
