@@ -83,9 +83,9 @@ $ pdf2json --version
         var nodeUtil = require("util"),
             fs = require('fs'),
             _ = require('underscore'),
-            PFParser = require("./pdf2json/pfparser");
+            PDFParser = require("./pdf2json/pdfparser");
 
-        var pdfParser = new PFParser();
+        var pdfParser = new PDFParser();
 
         pdfParser.on("pdfParser_dataReady", _.bind(_onPFBinDataReady, self));
 
@@ -96,7 +96,7 @@ $ pdf2json --version
         pdfParser.loadPDF(pdfFilePath);
 
         // or call directly with buffer
-        fs.readFileSync(pdfFilePath, function (err, pdfBuffer) {
+        fs.readFile(pdfFilePath, function (err, pdfBuffer) {
           if (!err) {
             pdfParser.parseBuffer(pdfBuffer);
           }
