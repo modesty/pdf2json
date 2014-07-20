@@ -15,7 +15,7 @@ var PDFParser = (function () {
     var _maxBinBufferCount = 10;
 
     // constructor
-    var cls = function (context) {
+    var cls = function (context, needRawText) {
 		//call constructor for super class
 		nodeEvents.EventEmitter.call(this);
 	
@@ -26,10 +26,12 @@ var PDFParser = (function () {
         this.get_id = function() { return _id; };
         this.get_name = function() { return _name + _id; };
 
+        // service context object, only used in Web Service project; null in command line
         this.context = context;
+
         this.pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
         this.data = null; //if file read success, data is PDF content; if failed, data is "err" object
-        this.PDFJS = new PDFJS();
+        this.PDFJS = new PDFJS(needRawText);
         this.parsePropCount = 0;
         this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
     };
@@ -121,6 +123,10 @@ var PDFParser = (function () {
     // Introduce a way to directly process buffers without the need to write it to a temporary file
     cls.prototype.parseBuffer = function (pdfBuffer) {
         startParsingPDF.call(this, pdfBuffer);
+    };
+
+    cls.prototype.getRawTextContent = function() {
+        return this.PDFJS.getRawTextContent();
     };
 
     cls.prototype.destroy = function() {
