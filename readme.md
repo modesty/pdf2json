@@ -381,8 +381,10 @@ Text input box example:
                     y: 5.15,
                     w: 30.94,
                     h: 0.85,
-                    V: "field value" //only availabe when the text input box has value
+                    V: "field value" //only available when the text input box has value
                 },
+
+Note: v0.7.0 extends TU (Alternative Text) to all interactive fields to better support accessibility.
 
 Drop down list box example:
 
