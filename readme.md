@@ -716,7 +716,8 @@ This example extracts only texts:
 
             pdf2json -f [input directory or pdf file] -o [output directory] -e .Texts
 
-The selector for the specified fields is in css mode. For the selector reference please read the [JSONSelect library](https://github.com/lloyd/JSONSelect)
+The selector for the specified fields is in css mode. 
+For selectors reference please read the [JSONSelect library](https://github.com/lloyd/JSONSelect)
 
 
 ## Run in a RESTful Web Service
