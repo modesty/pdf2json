@@ -710,6 +710,15 @@ The fields.json output can be used to validate fields IDs with other data source
 v0.6.8 added "-c" or "--content" command line argument to generate raw text content from PDF. It'll be a separated output file named as (pdf_file_name).content.txt.
 This feature is added to answer some inquiries on retrieving raw text content from PDF, it's in experimental phase at this point, needs more testing.
 
+## Extract only selected fields from pdf
+Using the -e option in the command line you not extract the complete informations from pdf but only the json fields you have specified.
+This example extracts only texts:
+
+            pdf2json -f [input directory or pdf file] -o [output directory] -e .Texts
+
+The selector for the specified fields is in css mode. For the selector reference please read the [JSONSelect library](https://github.com/lloyd/JSONSelect)
+
+
 ## Run in a RESTful Web Service
 
 More info can be found at [Restful Web Service for pdf2json.](https://github.com/modesty/p2jsvc)
