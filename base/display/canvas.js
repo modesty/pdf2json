@@ -1220,15 +1220,16 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
           if (str && !font.disableFontFace) {
               var curFontSize = fontSize * scale * textHScale + 3;
+              var spaceWidth = font.spaceWidth * fontSize * current.fontMatrix[0];
               switch (current.textRenderingMode) {
                 case TextRenderingMode.FILL:
-                    ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
+                    ctx.fillText(str, 0, 0, canvasWidth, curFontSize, wordSpacing, spaceWidth);
                     break;
                 case TextRenderingMode.STROKE:
-                    ctx.strokeText(str, 0, 0, canvasWidth, curFontSize);
+                    ctx.strokeText(str, 0, 0, canvasWidth, curFontSize, wordSpacing, spaceWidth);
                     break;
                 case TextRenderingMode.FILL_STROKE:
-                    ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
+                    ctx.fillText(str, 0, 0, canvasWidth, curFontSize, wordSpacing, spaceWidth);
                     break;
                 case TextRenderingMode.INVISIBLE:
                 case TextRenderingMode.ADD_TO_PATH:

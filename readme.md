@@ -104,6 +104,62 @@ $ pdf2json --version
 
 ```
 
+```javascript
+        var X_SPACE_ERROR_FACTOR = 0.2;
+        var Y_LINE_ERROR_RANGE = 0.1;
+
+        /** Order the text, according to y then x */
+        var textOrder = function(a, b) {
+          if (a.y < b.y - Y_LINE_ERROR_RANGE || Math.abs(a.y - b.y) < Y_LINE_ERROR_RANGE && a.x < b.x) {
+            return -1;
+          }
+          if (a.y == b.y && a.x == b.x) {
+            return 0;
+          }
+          return 1;
+        };
+
+        var _onPFBinDataReady = function(pdf) {
+          var pdfTxt = [];
+          for (var p = 0; p < pdf.data.Pages.length; p++) {
+            var line = [];
+            var page = pdf.data.Pages[p];
+
+            page.Texts.sort(textOrder);
+            var prevText = null;
+            for (var i = 0; i < page.Texts.length; i++) {
+              //about the text object, see more details in pdffont.js  
+              var text = page.Texts[i];
+              var block += decodeURIComponent(text.R[0].T);
+            
+              var isDistanceSmallerThanASpace, isTheSameFont, isSameFontStyle, isNotRotated;
+              if (prevText) {
+                isDistanceSmallerThanASpace = (text.x - prevText.x - prevText.w) < text.sw * X_SPACE_ERROR_FACTOR;
+                isSameFont = (prevText.R[0].S === text.R[0].S);
+                isSameFontStyle = true;
+                for (var j=0; j < prevText.R[0].TS.length; j++) {
+                  isSameFontStyle = isSameFontStyle && (prevText.R[0].TS[j] === text.R[0].TS[j]);
+                }
+                isNotRotated = (typeof prevText.R[0].RA === 'undefined') && (typeof text.R[0].RA === 'undefined');
+              }
+
+              if (prevText && text.y - prevText.y > Y_LINE_ERROR_RANGE) {
+                pdfTxt.push(line.join(' '));
+                line = [block];
+              } else if (prevText && isDistanceSmallerThanASpace && isSameFont && isSameFontStyle && isNotRotated) {
+                line[line.length-1] += block;
+              } else {
+                line.push(block);
+              }
+              prevText = text;
+            }
+            pdfTxt.push(line.join(' '));
+          }
+          console.log(pdfTxt.join('\n'));
+          //do sth with the result
+        }
+```
+
 ## API Reference
 
 * loadPDF:
