@@ -276,9 +276,10 @@ var FontFace = (function FontFaceClosure() {
     if (arguments.length === 1) {
       // importing translated data
       var data = arguments[0];
-      for (var i in data) {
+      var keys = Object.keys(data);
+      keys.forEach(function(i) {
         this[i] = data[i];
-      }
+      }.bind(this));
       return;
     }
   }

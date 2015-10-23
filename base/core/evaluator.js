@@ -159,7 +159,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       if (!isDict(resources)) {
         return false;
       }
-
+      //////  check types in here!
       var nodes = [resources];
       while (nodes.length) {
         var node = nodes.shift();
@@ -339,7 +339,6 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       var loadedName = font.loadedName;
       if (!font.sent) {
         var fontData = font.translated.exportData();
-
         self.handler.send('commonobj', [
           loadedName,
           'Font',
@@ -439,10 +438,11 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       // This array holds the converted/processed state data.
       var gStateObj = [];
       var gStateMap = gState.map;
-      for (var key in gStateMap) {
+
+      gStateMap.forEach(function(key) {
         var value = gStateMap[key];
         setGStateForKey(gStateObj, key, value);
-      }
+      });
 
       operatorList.addOp(OPS.setGState, [gStateObj]);
     },
@@ -450,7 +450,6 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
     loadFont: function PartialEvaluator_loadFont(fontName, font, xref,
                                                  resources,
                                                  parentOperatorList) {
-
       function errorFont() {
         return {
           translated: new ErrorFont('Font ' + fontName + ' is not available'),
@@ -1029,7 +1028,8 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       } else if (isStream(cmapObj)) {
         var cmap = CMapFactory.create(cmapObj).map;
         // Convert UTF-16BE
-        for (var i in cmap) {
+        var keys = Object.keys(cmap);
+        keys.forEach(function(i) {
           var token = cmap[i];
           var str = [];
           for (var k = 0; k < token.length; k += 2) {
@@ -1043,7 +1043,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
             str.push(((w1 & 0x3ff) << 10) + (w2 & 0x3ff) + 0x10000);
           }
           cmap[i] = String.fromCharCode.apply(String, str);
-        }
+        });
         return cmap;
       }
       return charToUnicode;

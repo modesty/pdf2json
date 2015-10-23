@@ -206,9 +206,10 @@ var RefSetCache = (function RefSetCacheClosure() {
     },
 
     forEach: function RefSetCache_forEach(fn, thisArg) {
-      for (var i in this.dict) {
+      var keys = Object.keys(this.dict);
+      keys.forEach(function(i) {
         fn.call(thisArg, this.dict[i]);
-      }
+      });
     },
 
     clear: function RefSetCache_clear() {

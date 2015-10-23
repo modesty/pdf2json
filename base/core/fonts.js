@@ -2799,10 +2799,11 @@ var Font = (function FontClosure() {
 
     exportData: function Font_exportData() {
       var data = {};
-      for (var i in this) {
+      var keys = Object.keys(this);
+      keys.forEach(function(i) {
         if (this.hasOwnProperty(i))
           data[i] = this[i];
-      }
+      }.bind(this));
       return data;
     },
 
