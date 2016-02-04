@@ -28,7 +28,7 @@
   },
   "main": "./pdfparser.js",
   "scripts": {
-    "test": "./test"
+    "test": "vows ./test"
   },
   "engines": {
     "node": ">=0.8"
@@ -37,22 +37,28 @@
     "pdf2json": "./bin/pdf2json"
   },
   "dependencies": {
-      "xmldom" : ">=0.1.13",
-      "underscore": ">=1.4.2",
-      "optimist": ">=0.3.5",
-      "async": ">=0.2.6"
+    "xmldom": ">=0.1.13",
+    "underscore": ">=1.4.2",
+    "optimist": ">=0.3.5",
+    "async": ">=0.2.6"
   },
-  "devDependencies": {},
-  "bundledDependencies" : ["xmldom", "underscore", "optimist", "async"],
+  "devDependencies": {
+    "vows": "^0.8.1"
+  },
+  "bundledDependencies": [
+    "xmldom",
+    "underscore",
+    "optimist",
+    "async"
+  ],
   "maintainers": [
     {
-        "name": "Modesty Zhang",
-        "email": "modestyz@hotmail.com",
-        "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+      "name": "Modesty Zhang",
+      "email": "modestyz@hotmail.com",
+      "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
     }
   ],
-  "contributors": [
-  ],
+  "contributors": [],
   "bugs": {
     "email": "modestyz@hotmail.com",
     "url": "http://github.com/modesty/pdf2json/issues"
