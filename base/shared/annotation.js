@@ -316,6 +316,9 @@ var WidgetAnnotation = (function WidgetAnnotationClosure() {
     data.fieldValue = stringToPDFString(
       Util.getInheritableProperty(dict, 'V') || '');
     data.alternativeText = stringToPDFString(dict.get('TU') || '');
+    
+    data.alternativeID = stringToPDFString(dict.get('TM') || '');
+
     data.defaultAppearance = Util.getInheritableProperty(dict, 'DA') || '';
     var fieldType = Util.getInheritableProperty(dict, 'FT');
     data.fieldType = isName(fieldType) ? fieldType.name : '';
