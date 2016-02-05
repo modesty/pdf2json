@@ -464,7 +464,8 @@ var PDFDocument = (function PDFDocumentClosure() {
       if (infoDict) {
         var validEntries = DocumentInfoValidators.entries;
         // Only fill the document info with valid entries from the spec.
-        for (var key in validEntries) {
+        var validEntryKeys = Object.keys(validEntries);
+        validEntryKeys.forEach(function(key) {
           if (infoDict.has(key)) {
             var value = infoDict.get(key);
             // Make sure the value conforms to the spec.
@@ -475,7 +476,7 @@ var PDFDocument = (function PDFDocumentClosure() {
               info('Bad value in document info for "' + key + '"');
             }
           }
-        }
+        });
       }
       return shadow(this, 'documentInfo', docInfo);
     },

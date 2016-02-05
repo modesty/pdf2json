@@ -312,14 +312,14 @@ var ChunkedStreamManager = (function ChunkedStreamManagerClosure() {
       this.callbacksByRequest[requestId] = callback;
 
       var chunksToRequest = [];
-      for (var chunk in chunksNeeded) {
+      chunksNeeded.forEach(function(chunk) {
         chunk = chunk | 0;
         if (!(chunk in this.requestsByChunk)) {
           this.requestsByChunk[chunk] = [];
           chunksToRequest.push(chunk);
         }
         this.requestsByChunk[chunk].push(requestId);
-      }
+      }.bind(this));
 
       if (!chunksToRequest.length) {
         return;
