@@ -637,12 +637,6 @@ This pdf2json module's output does not 100% maps from PDF definitions, some of t
     * As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, including radio button selection, checkbox status, text input box value, etc., these values should be handled in client renderer as part of user data, so that we can treat parsed PDF data as form template.
 
 
-## Run Unit Test
-
-Test suite for pdf2json is created with Vows.js, it'll parse 3 PDF files under 'test/data' directory in parallel and have 12 test cases need to be honored.
-
-            node test/index.js
-
 ## Run As a Command Line Utility
 
 v0.1.15 added the capability to run pdf2json as command line tool. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to json format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same json payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result json files onto web server, client side form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
@@ -709,6 +703,46 @@ The fields.json output can be used to validate fields IDs with other data source
 
 v0.6.8 added "-c" or "--content" command line argument to generate raw text content from PDF. It'll be a separated output file named as (pdf_file_name).content.txt.
 This feature is added to answer some inquiries on retrieving raw text content from PDF, it's in experimental phase at this point, needs more testing.
+
+## Run Unit Test (commandline)
+
+pdf2json can parses 261 PDFs under `test/pdf` folder within 1 minute, it usually takes about 40 seconds or so to parses all of them, together with the parimary JSON file for each PDF file, it also generates text content JSON and form fields JSON file for further testing.
+
+The 265 PDFs are all fillable tax forms from government agencies for tax year 2013, including 165 federal forms, 23 efile instructions and 9 other state tax forms.
+
+Shell script is current driver for unit test. To parse one agency's pdfs, run the command line:
+
+````
+	cd test
+	sh p2f.one.sh [2_character_agency_name]
+````
+
+For example, to parse and generate all 165 federal forms together with text content and forms fields:
+
+````
+	cd test
+	sh p2f.one.sh fd
+````
+
+To parse and generate all VA forms together with text content and forms fields:
+
+````
+	cd test
+	sh p2f.one.sh va
+````
+
+Additionally, to parse all 261 PDFs from commandline:
+
+````
+	cd test
+	sh p2f.forms.sh
+````
+
+Or, from `npm scripts`:
+
+````
+	npm test
+````  
 
 ## Run in a RESTful Web Service
 
