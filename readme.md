@@ -706,7 +706,7 @@ This feature is added to answer some inquiries on retrieving raw text content fr
 
 ## Run Unit Test (commandline)
 
-pdf2json can parses 261 PDFs under `test/pdf` folder within 1 minute, it usually takes about 40 seconds or so to parses all of them, together with the parimary JSON file for each PDF file, it also generates text content JSON and form fields JSON file for further testing.
+It takes less than 1 minutes for pdf2json to parse 261 PDFs under `test/pdf` directory. Usually, it takes about 40 seconds or so to parses all of them. Besides the parimary JSON for each PDF, it also generates text content JSON and form fields JSON file (by `-c` and `-t` parameters) for further testing. 
 
 The 265 PDFs are all fillable tax forms from government agencies for tax year 2013, including 165 federal forms, 23 efile instructions and 9 other state tax forms.
 
@@ -742,11 +742,28 @@ Or, from `npm scripts`:
 
 ````
 	npm test
-````  
+````
+
+## Upgrading to ~v1.0.x
+
+If you have an early version of pdf2json, please remove your local `node_modules` directory and re-run `npm install` to upgrade to pdf2json@1.0.x. 
+
+v1.0.x upgraded dependency packages, removed some unnecessary dependencies, started to assumes ES6 / ES2015 with node ~v4.x. More PDFs are added for unit testing.
+
+No change on output data format in ~v1.0.x. 
 
 ## Run in a RESTful Web Service
 
 More info can be found at [Restful Web Service for pdf2json.](https://github.com/modesty/p2jsvc)
+
+## License and Contribution
+
+Licensed under the [Apache License Version 2.0](https://github.com/modesty/pdf2json/blob/scratch/quadf-forms/license.txt).
+
+I'm currently running this project in my spare time. Participating in this project, you are expected to honor [open code of conduct](http://todogroup.org/opencodeofconduct/#Open+Code+of+Conduct/abuse@todogroup.org). Thanks all for your generous [support](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=modestyZ%40gmail%2ecom&lc=GB&item_name=modesty%20zhang&item_number=git%40github%2ecom%3amodesty%2fpdf2json%2egit&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted).
+
+
+
 
 
 
