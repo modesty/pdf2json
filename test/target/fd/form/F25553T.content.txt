@@ -1,0 +1,160 @@
+Form 2555 (2013) 
+Page  
+3 
+Part V 
+All Taxpayers 
+27 
+Enter the amount from line 26 
+......................
+27 
+Are you claiming the housing exclusion or housing deduction? 
+Part VI 
+Taxpayers Claiming the Housing Exclusion and/or Deduction 
+28 
+Qualified housing expenses for the tax year (see instructions) 
+............
+28 
+29a
+Enter location where housing expenses incurred (see instructions) 
+a
+b 
+Enter limit on housing expenses (see instructions) 
+...............
+29b 
+30 
+...................
+30 
+31 
+ 
+Number of days in your qualifying period that fall within your 2013 tax 
+year (see instructions) 
+................
+31 
+days 
+32 
+Multiply $42.78 by the number of days on line 31. If 365 is entered on line 31, enter $15,616.00 here
+32 
+33 
+ 
+Subtract line 32 from line 30. If the result is zero or less, do not complete the rest of this part or 
+any of Part IX 
+...........................
+33 
+34 
+Enter employer-provided amounts (see instructions) 
+......
+34 
+35 
+ 
+Divide line 34 by line 27. Enter the result as a decimal (rounded to at least three places), but do 
+not enter more than “1.000” 
+.......................
+35 
+×
+. 
+36 
+ 
+amount on line 34. Also, complete Part VIII 
+................. 
+a
+36 
+income exclusion, complete Parts VII and VIII before Part IX. 
+Part VII 
+Taxpayers Claiming the Foreign Earned Income Exclusion 
+37 
+Maximum foreign earned income exclusion 
+.....................
+37 
+38 
+• If you completed Part VI, enter the number from line 31.  
+• All others, enter the number of days in your qualifying period that 
+fall within your 2013 tax year (see the instructions for line 31). 
+}
+38 
+days 
+39 
+• 
+If line 38 and the number of days in your 2013 tax year (usually 365) are the same, enter “1.000.” 
+• Otherwise, divide line 38 by the number of days in your 2013 tax year and enter the result  as 
+a decimal (rounded to at least three places). 
+}
+39 
+×
+. 
+40 
+Multiply line 37 by line 39 
+.......................
+40 
+41 
+Subtract line 36 from line 27 
+......................
+41 
+42 
+ 
+a
+42 
+Part VIII 
+Taxpayers Claiming the Housing Exclusion, Foreign Earned Income Exclusion, or Both 
+43 
+Add lines 36 and 42 
+.........................
+43 
+44 
+ 
+to the excluded income. See instructions and attach computation 
+..........
+44 
+45 
+ 
+ 
+Next to the amount enter “Form 2555.” On Form 1040, subtract this amount from your income 
+to arrive at total income on Form 1040, line 22 
+................
+45 
+Part IX 
+Taxpayers Claiming the Housing Deduction
+46 
+Subtract line 36 from line 33 
+......................
+46 
+47 
+Subtract line 43 from line 27 
+......................
+47 
+48 
+...................
+48 
+because of the 2012 limit, use the housing deduction carryover worksheet in the instructions to 
+figure the amount to enter on line 49. Otherwise, go to line 50. 
+49 
+ 
+Housing deduction carryover from 2012 (from housing deduction carryover worksheet in the
+instructions) 
+............................
+49 
+50 
+ 
+ 
+line 36. Next to the amount on Form 1040, enter “Form 2555.” Add it to the total adjustments 
+reported on that line
+ ........................ 
+a
+50 
+Form 
+2555 
+(2013) 
+$97,600  00
+Housing deduction. Add lines 48 and 49. Enter the total here and on Form 1040 to the left of 
+Note: If line 47 is more than line 48 and you could not deduct all of your 2012 housing deduction 
+Enter the smaller of line 46 or line 47 
+Complete this part only if (a) line 33 is more than line 36 and 
+(b) line 27 is more than line 43. 
+Subtract line 44 from line 43. Enter the result here and in parentheses on Form 1040, line 21. 
+Deductions allowed in figuring your adjusted gross income (Form 1040, line 37) that are allocable 
+Foreign earned income exclusion. Enter the smaller of line 40 or line 41. Also, complete Part VIII
+Note:  The housing deduction is figured in Part IX. If you choose to claim the foreign earned 
+Housing exclusion.  Multiply line 33 by line 35. Enter the result but do not enter more than the 
+Enter the smaller of line 28 or line 29b 
+Yes. Complete Part VI.
+No. Go to Part VII.
+----------------Page (0) Break----------------

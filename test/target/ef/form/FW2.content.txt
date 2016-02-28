@@ -1,0 +1,103 @@
+In addition to wage and withholding information, employee/employer names, addresses, and identification numbers are required
+ a
+ Employee’s social security number
+Safe, accurate,
+IRS
+Visit the IRS website
+OMB No. 1545-0008
+FAST!  Use
+e-file
+at 
+www.irs.gov/efile
+.
+b
+Employer identification number(EIN)
+1
+Wages, tips, other compensation
+2
+Federal income tax withheld
+c
+Employer’s name, address, and ZIP code
+3
+Social security wages
+4
+Social security tax withheld
+Name
+Name
+5
+Medicare wages and tips
+6
+Medicare tax withheld
+Street
+City
+7
+Social security tips
+8
+Allocated tips
+State
+ZIP Code
+Foreign Country
+d
+Control number
+9
+10
+Dependent care benefits
+e
+Employee’s first name and initial
+Last name
+Suff.
+11
+Nonqualified plans
+12
+a
+code
+See instructions for box 12
+First
+M.I.
+13
+Statutory employee
+Retirement plan
+Third-party sick pay
+12
+b
+code
+Last
+Suff.
+12
+c
+code
+f
+Employee’s address and ZIP code
+14
+Other
+12
+d
+code
+Description
+Amount
+Street
+City
+State
+ZIP Code
+Foreign Country
+15
+State
+Employer’s state I.D. no.
+16 
+State wages, tips, etc.
+17 
+State income tax
+18 
+Local wages, tips, etc.
+19 
+Local income tax
+20 
+Locality name
+Form 
+W-2
+ Wage and Tax Statement
+Department of the Treasury - Internal Revenue Service
+Copy B - To Be Filed With Employee’s FEDERAL Tax Return. 
+This information is being furnished to the Internal Revenue Service.
+2013
+----------------Page (0) Break----------------

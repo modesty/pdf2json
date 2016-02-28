@@ -1,0 +1,220 @@
+Form  
+4972
+Department of the Treasury 
+Internal Revenue Service (99) 
+Tax on Lump-Sum Distributions 
+(From Qualified Plans of Participants Born Before January 2, 1936)
+a
+ 
+Information about Form 4972 and its instructions is available at 
+www.irs.gov/form4972.
+a
+ 
+Attach to Form 1040, Form 1040NR, or Form 1041.
+OMB No. 1545-0193
+20
+13
+Attachment 
+Sequence No. 
+28
+Name of recipient of distribution
+Identifying number
+Part I
+Complete this part to see if you can use Form 4972
+1 
+ 
+ 
+Was this a distribution of a plan participant’s entire balance (excluding deductible voluntary employee 
+contributions and certain forfeited amounts) from all of an employer’s qualified plans of one kind (pension, 
+profit-sharing, or stock bonus)? If “No,” 
+do not
+ use this form 
+................
+Yes
+No
+1 
+2 
+Did you roll over any part of the distribution? If “Yes,” 
+do not 
+use this form 
+...........
+2 
+3 
+Was this distribution paid to you as a beneficiary of a plan participant who was born before January 2, 1936? 
+3 
+4 
+ 
+Were you 
+(a)
+ a plan participant who received this distribution, 
+(b)
+ born before January 2, 1936, 
+and (c)
+ a 
+participant in the plan for at least 5 years before the year of the distribution?  
+..........
+4 
+If you answered “No” to both questions 3 
+and 
+4, 
+do not
+ use this form.
+5 
+ 
+a 
+ 
+Did you use Form 4972 after 1986 for a previous distribution from your own plan? If “Yes,” 
+do not
+ use this 
+form for a 2013 distribution from your own plan 
+....................
+5a 
+b 
+  
+ 
+If you are receiving this distribution as a beneficiary of a plan participant who died, did you use Form 4972 
+for a previous distribution received for that participant after 1986? If “Yes,”  
+do not 
+ use the form for this
+distribution 
+................................
+5b
+Part II
+Complete this part to choose the 20% capital gain election  
+(see instructions)
+6 
+Capital gain part from Form 1099-R, box 3 
+...................
+6 
+7 
+Multiply line 6 by 20% (.20) 
+....................... 
+a
+7 
+If you also choose to use Part III, go to line 8. Otherwise, include the amount from line 7 in the total on 
+Form 1040, line 44, Form 1040NR, line 42, or Form 1041, Schedule G, line 1b, whichever applies.
+Part III
+Complete this part to choose the 10-year tax option 
+(see instructions)
+8 
+ 
+Enter the amount from Form 1099-R, box 2a minus box 3. If you did not complete Part II, enter the
+amount from box 2a. Multiple recipients (and recipients who elect to include NUA in taxable
+income) see instructions
+.........................
+8 
+9 
+Death benefit exclusion for a beneficiary of a plan participant who died before August 21, 1996    .
+9 
+10 
+Total taxable amount. Subtract line 9 from line 8 
+.................
+10 
+11 
+Current actuarial value of annuity from Form 1099-R, box 8. If none, enter -0- 
+.......
+11 
+12 
+ 
+Adjusted total taxable amount. Add lines 10 and 11. If this amount is $70,000 or more, 
+skip
+ lines
+13 through 16, enter this amount on line 17, and go to line 18 
+............
+12 
+13 
+Multiply line 12 by 50% (.50), but 
+do not 
+enter more than $10,000   .    .
+13 
+14 
+ 
+Subtract $20,000 from line 12. If line 12 is 
+$20,000 or less, enter -0- 
+......
+14 
+15 
+Multiply line 14 by 20% (.20) 
+..............
+15 
+16 
+Minimum distribution allowance. Subtract line 15 from line 13 
+............
+16 
+17 
+Subtract line 16 from line 12 
+.......................
+17 
+18 
+Federal estate tax attributable to lump-sum distribution 
+..............
+18 
+19 
+Subtract line 18 from line 17. If line 11 is zero, 
+skip
+ lines 20 through 22 and go to line 23      .    .    .
+19 
+20 
+ 
+Divide line 11 by line 12 and enter the result as a decimal (rounded to at 
+least three places) 
+..................
+20 
+.
+21 
+Multiply line 16 by the decimal on line 20 
+..........
+21 
+22 
+Subtract line 21 from line 11 
+..............
+22 
+23 
+Multiply line 19 by 10% (.10) 
+.......................
+23 
+24 
+Tax on amount on line 23. Use the Tax Rate Schedule in the instructions 
+.........
+24 
+25 
+ 
+Multiply line 24 by ten (10). If line 11 is zero, 
+skip
+ lines 26 through 28, enter this amount on 
+line  29, and go to line 30 
+........................
+25 
+26 
+Multiply line 22 by 10% (.10) 
+..............
+26 
+27 
+ 
+Tax on amount on line 26. Use the Tax Rate Schedule in the 
+instructions 
+....................
+27 
+28 
+Multiply line 27 by ten (10) 
+........................
+28 
+29 
+Subtract line 28 from line 25. Multiple recipients see instructions 
+.......... 
+a
+29 
+30 
+ 
+Tax on lump-sum distribution.  
+Add lines 7 and 29. Also include this amount in the total on Form
+ 
+1040, line 44, Form 1040NR, line 42, or Form 1041, Schedule G, line 1b, whichever applies .    .   
+a
+30 
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 13187U
+Form 
+4972
+ (2013)
+----------------Page (0) Break----------------

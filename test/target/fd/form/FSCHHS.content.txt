@@ -1,0 +1,291 @@
+SCHEDULE H  
+(Form 1040) 
+Department of the Treasury  
+Internal Revenue Service (99) 
+Household Employment Taxes  
+(For Social Security, Medicare, Withheld Income, and Federal Unemployment (FUTA) Taxes)
+a
+ 
+Attach to Form 1040, 1040NR, 1040-SS, or 1041.
+ 
+a
+ 
+Information about Schedule H and its separate instructions is at 
+www.irs.gov/form1040.
+OMB No. 1545-1971
+20
+13
+Attachment   
+Sequence No. 
+44
+ 
+Name of employer 
+Social security number 
+Employer identification number
+Calendar year taxpayers having no household employees in 2013 do not have to complete this form for 2013.
+A 
+Did you pay 
+any one
+ household employee cash wages of $1,800 or more in 2013? (If any household employee was your 
+spouse, your child under age 21, your parent, or anyone under age 18, see the line A instructions before you answer this
+question.) 
+Yes.
+  Skip lines B and C and go to line 1.
+No.   
+Go to line B.
+B 
+Did you withhold federal income tax during 2013 for any household employee? 
+Yes.
+  Skip line C and go to line 7.
+No.   
+Go to line C.
+C 
+Did you pay 
+total
+ cash wages of $1,000 or more in 
+any
+ calendar 
+quarter
+ of 2012 or 2013 to 
+all
+ household employees? 
+(
+Do not 
+count cash wages paid in 2012 or 2013 to your spouse, your child under age 21, or your parent.) 
+No.   Stop. 
+Do not file this schedule. 
+Yes. 
+Skip lines 1-9 and go to line 10. 
+Part I 
+Social Security, Medicare, and Federal Income Taxes 
+1 
+Total cash wages subject to social security tax
+........ 
+1 
+2 
+Social security tax. Multiply line 1 by 12.4% (.124)
+................
+2 
+3 
+Total cash wages subject to Medicare tax 
+.......... 
+3 
+4 
+Medicare tax. Multiply line 3 by 2.9% (.029)
+.................. 
+4 
+5 
+Total cash wages subject to Additional Medicare Tax withholding  .    .
+5
+6
+Additional Medicare Tax withholding. Multiply line 5 by 0.9% (.009) 
+..........
+6
+7
+Federal income tax withheld, if any
+..................... 
+7
+8   Total social security, Medicare, and federal income taxes. 
+Add lines 2, 4, 6, and 7
+.... 
+8
+9
+Did you pay 
+total
+ cash wages of $1,000 or more in 
+any
+ calendar 
+quarter
+ of 2012 or 2013 to 
+all
+ household employees? 
+(
+Do not
+ count cash wages paid in 2012 or 2013 to your spouse, your child under age 21, or your parent.) 
+No.  Stop. 
+Include the amount from line 8 above on Form 1040, line 59a. If you are not
+ 
+required to file Form 1040, see the
+line 9 instructions. 
+Yes.
+  Go to line 10.
+For Privacy Act and Paperwork Reduction Act Notice, see the instructions. 
+Cat. No. 12187K 
+Schedule H (Form 1040) 2013 
+----------------Page (0) Break----------------
+Schedule H (Form 1040) 2013
+Page 
+ 2 
+Part II 
+Federal Unemployment (FUTA) Tax 
+Yes 
+No 
+10
+Did you pay unemployment contributions to only one state? (If you paid contributions to a credit reduction
+state, see instructions and check “No.”) 
+.......................
+10
+11
+Did you pay all state unemployment contributions for 2013 by April 15, 2014? Fiscal year filers see instructions   
+11
+12 
+Were all wages that are taxable for FUTA tax also taxable for your state’s unemployment tax?
+..... 
+12
+Next: 
+If you checked the 
+“Yes”
+ box on 
+all 
+ the lines above, complete Section A.
+ 
+If you checked the 
+“No”
+ box on 
+any
+ of the lines above, skip Section A and complete Section B. 
+Section A 
+13 
+Name of the state where you paid unemployment contributions 
+a
+14 
+Contributions paid to your state unemployment fund  
+......
+14
+15
+Total cash wages subject to FUTA tax 
+....................
+15
+16   FUTA tax. 
+Multiply line 15 by .6% (.006). Enter the result here, skip Section B, and go to line 25
+16
+Section B 
+17
+Complete all columns below that apply (if you need more space, see instructions):
+(a)
+ 
+Name  of state 
+(b)   
+Taxable wages (as 
+ 
+defined in state act) 
+(c)   
+State experience rate 
+ 
+period 
+From 
+To 
+(d)         
+State  
+experience 
+rate 
+(e)   
+Multiply col. (b) 
+ 
+by .054 
+(f)   
+Multiply col. (b) 
+ 
+by col. (d) 
+(g)   
+Subtract col. (f) 
+ 
+from col. (e). If 
+ 
+zero or less, 
+ 
+enter -0-. 
+(h)   
+Contributions 
+ 
+paid to state 
+ 
+unemployment 
+ 
+fund 
+                                                                                                                                                                                                                            
+18
+Totals 
+............................ 
+18
+19
+Add columns (g) and (h) of line 18 
+............
+19
+20
+Total cash wages subject to FUTA tax (see the line 15 instructions) 
+..........
+20
+21
+Multiply line 20 by 6.0% (.060)  
+......................
+21
+22
+Multiply line 20 by 5.4% (.054) 
+.............
+22
+23
+Enter the 
+smaller
+ of line 19 or line 22 
+....................
+(Employers in a credit reduction state must use the worksheet on page H-7 and check here)  .
+23
+24   FUTA tax. 
+Subtract line 23 from line 21. Enter the result here and go to line 25 
+......
+24
+Part III 
+Total Household Employment Taxes 
+25
+Enter the amount from line 8. If you checked the “Yes” box on line C of page 1, enter -0-   .    .    .
+25
+26
+Add line 16 (or line 24) and line 25  
+.....................
+26
+27 
+Are you required to file Form 1040? 
+Yes. Stop. 
+Include the amount from line 26 above on Form 1040, line 59a. 
+Do not
+ complete Part IV below.
+No.
+ You may have to complete Part IV. See instructions for details.
+Part IV 
+Address and Signature— 
+Complete this part
+ only 
+if required. See the line 27 instructions.
+Address (number and street) or P.O. box if mail is not delivered to street address 
+Apt., room, or suite no. 
+City, town or post office, state, and ZIP code 
+Under penalties of perjury, I declare that I have examined this schedule, including accompanying statements, and to the best of
+ my knowledge and belief, it is true,
+correct, and complete. No part of any payment made to a state unemployment fund claimed as a credit was, or is to be, deducted 
+from the payments to employees. 
+Declaration of preparer (other than taxpayer) is based on all information of which preparer has any knowledge. 
+F
+Employer’s signature 
+F
+Date 
+Paid 
+Preparer 
+Use Only
+Print/Type preparer’s name
+Preparer's signature
+Date
+Check         if 
+self-employed
+PTIN
+Firm’s name      
+a
+Firm's address  
+a
+Firm's EIN  
+a
+Phone no.
+Schedule H (Form 1040) 2013 
+mm/dd/yy
+mm/dd/yy
+----------------Page (1) Break----------------

@@ -1,0 +1,79 @@
+Form 
+1099-INT
+20
+13
+Interest Income
+Copy B
+For Recipient
+Department of the Treasury - Internal Revenue Service
+This is important tax 
+information and is 
+being furnished to the 
+Internal Revenue 
+Service. If you are 
+required to file a 
+return, a negligence 
+penalty or other 
+sanction may be 
+ imposed on you if 
+this income is 
+taxable and the IRS 
+determines that it has 
+not been reported.
+OMB No. 1545-0112
+CORRECTED (if checked)
+PAYER’S federal identification number
+RECIPIENT’S identification number
+RECIPIENT’S name
+Street address (including apt. no.)
+City or town, province or state, country, and ZIP or foreign postal code
+Account number (see instructions)
+Payer's RTN (optional)
+1 
+Interest income
+$
+2 
+Early withdrawal penalty
+$
+3 
+Interest on U.S. Savings Bonds and Treas. obligations
+$
+4 
+Federal income tax withheld
+$
+5 
+Investment expenses
+$
+6 
+Foreign tax paid
+$
+7 
+Foreign country or U.S. possession
+8 
+Tax-exempt interest
+$
+9  
+Specified private activity bond 
+interest
+$
+10 
+Tax-exempt bond CUSIP no.
+11 
+State
+12 
+State identification no.
+13 
+State tax withheld
+$
+$
+Form 
+1099-INT
+(keep for your records)
+www.irs.gov/form1099int
+City
+State       ZIP Code
+Payer’s Name
+Street address (including apt. no.)
+Telephone no.
+PAYER’S INFORMATION
+----------------Page (0) Break----------------

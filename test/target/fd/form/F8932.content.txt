@@ -1,0 +1,55 @@
+Form   
+8932
+(Rev. December 2012) 
+Department of the Treasury  
+Internal Revenue Service
+Credit for Employer Differential Wage Payments 
+a
+ Attach to your tax return. 
+a
+ Information about Form 8932 and its instructions is at 
+www.irs.gov/form8932
+. 
+OMB No. 1545-2126 
+Attachment   
+Sequence No. 
+161
+ 
+Name(s) shown on return 
+Identifying number 
+1 
+Eligible differential wage payments paid during the tax year (see instructions) 
+.......
+1 
+2 
+Multiply line 1 by 20% (.20) (see instructions for the adjustment you must make) 
+......
+2 
+3 
+Credit for employer differential wage payments from partnerships, S corporations, cooperatives, 
+estates, and trusts (see instructions) 
+.....................
+3
+4 
+Add lines 2 and 3. Cooperatives, estates, and trusts, go to line 5. Partnerships and S corporations, 
+report this amount on Schedule K. All others, report this amount on Form 3800, line 1w 
+....
+4
+5 
+Amount allocated to patrons of the cooperative or beneficiaries of the estate or trust  (see 
+instructions) 
+.............................
+5 
+6 
+Cooperatives, estates, and trusts,
+ 
+subtract line 5 from line 4. Report this amount on Form 3800, 
+line 1w 
+...............................
+6 
+For Paperwork Reduction Act Notice, see instructions. 
+Cat. No. 37747W 
+Form 
+8932
+ (Rev.12-2012) 
+----------------Page (0) Break----------------

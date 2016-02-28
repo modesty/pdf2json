@@ -1,0 +1,85 @@
+Required Information For Electronic Filing - Complete All 4 Sections Below
+Per North Dakota Office of State Tax Commissioner
+Section 1: Federal Information Needed for North Dakota Return
+multiple forms, use the Add button to enter information from each form separately. 
+Example: 
+If you received two Forms W-2, click the "Add" button next to the Form W-2 and enter the information for your first Form 
+W-2. After completing the first Form W-2, select the Add button again and enter the information for the second Form W-2. Repeat
+Form W-2
+ Wage & Tax Statement
+G
+Form 1099-R
+G
+Form W-2G
+ Certain Gambling Winnings 
+G
+Form 1099-G
+ Certain Government Payments
+G
+Form 1099-MISC
+ Miscellaneous Income
+G
+Check the box if you do not have any of the above forms
+G
+ 
+IMPORTANT: Identifying information from your North Dakota return
+Note:
+ If you are married filing joint, and you filed together in 2012, enter the same amount in the taxpayer and spouse columns.
+ Taxpayer
+Spouse
+Prior Year North Dakota Taxable Income
+. . . . . . . . . . . . . . . . . . . . .
+Section 3: Additional Information Needed to E-file Your North Dakota Return
+A. Enter Email Address
+E-mail address (for confirmation e-mail)
+. . . . . . . . . . . . . . . . . .
+Re-enter e-mail address (must match)
+. . . . . . . . . . . . . . . . . . . .
+Enter your 2012 North Dakota taxable income (Form ND-1, line 18). The North Dakota Office of State Tax Commissioner uses 
+this information to verify your identity. This information must match what they have in their records, so don't guess. Do not use 
+amounts from an amended 2012 North Dakota tax return. The 2012 taxable income must come from your originally filed tax return.
+ this for each of the types of forms listed below that you received.
+B. International ACH Transactions - Required if using direct deposit or electronic funds withdrawal
+Yes
+No
+Will the funds go to or originate from an account outside the U.S.?
+ - You will receive a check unless you entered direct deposit information directly on Form ND-1.
+Section 4: Refund/Payment Options
+A. Refund
+B. Paying Tax Due by Check- 
+ If you are paying with a check, print form ND-1V payment voucher and mail it with your check to 
+Routing number
+. . . . . . . . . . . 
+G
+Account number
+. . . . . . . . . . 
+G
+Type:
+. . . . . . . . . . . . . . . . . . . . . 
+G
+Date to make withdrawal
+. 
+G
+Note
+: Do 
+not
+ enter direct deposit information here, enter it on Form ND-1.
+C. Electronic Funds Withdrawal of Tax Due 
+ - If you would like to pay your tax balance due using electronic funds withdrawal, enter 
+the required information below.
+Checking
+Saving
+If you received a form W-2, 1099-R, W-2G, 1099-G, or 1099-MISC that has North Dakota Witholding on it, you are required to enter
+specific information for each of the forms received. You must enter the information exactly as it appears on the form. If you have
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+ Distributions from Pensions, Annuities, Retirement or Profit-Sharing Plans, IRAs, Insurance Contracts, etc
+  . . . .  .  . . . . . . . . . . . . .  .
+the North Dakota Officeof State Tax Commissioner. 
+By checking the box and entering the information below, I agree to pay my tax balance due by electronic funds withdrawal
+Section 2: Verifying Your Identity 
+Check the box to authorize electronic funds withdrawal
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+----------------Page (0) Break----------------

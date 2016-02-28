@@ -1,0 +1,165 @@
+cannot 
+Form 8863 (2013)
+Page 
+2 
+Name(s) shown on return 
+Your social security number
+F
+!
+CAUTION
+Complete Part III for each student for whom you are claiming either the American  
+opportunity credit or lifetime learning credit. Use additional copies of Page 2 as needed for 
+each student.
+Part III 
+Student and Educational Institution Information                                                                                
+        
+ 
+See instructions.
+20
+Student name (as shown on page 1 of your tax return)
+21
+Student social security number (as shown on page 1 of your tax return)
+22
+Educational institution information (see instructions)
+a.
+ Name of first educational institution
+(1)
+   Address. Number and street (or P.O. box). City, town or 
+post office, state, and ZIP code. If a foreign address, see 
+instructions.
+(2)   
+Did the student receive Form 1098-T 
+from this institution for 2013?
+Yes
+No
+(3)
+   Did the student receive Form 1098-T 
+from this institution for 2012 with Box 
+2 filled in and Box 7 checked?
+Yes
+No
+If you checked “No” in 
+both (2) and (3)
+, skip 
+(4).
+(4)
+If you checked “Yes” in 
+(2) or (3)
+, enter the institution's 
+federal identification number (from Form 1098-T).
+–
+b.
+ Name of second educational institution (if any)
+(1)
+   Address. Number and street (or P.O. box). City, town or 
+post office, state, and ZIP code. If a foreign address, see 
+instructions.
+(2)
+   Did the student receive Form 1098-T 
+from this institution for 2013?
+Yes
+No
+(3)
+   Did the student receive Form 1098-T 
+from this institution for 2012 with Box 2 
+filled in and Box 7 checked?
+Yes
+No
+If you checked “No” in 
+both (2) and (3)
+, skip 
+(4).
+(4)
+If you checked “Yes” in 
+(2) or (3)
+, enter the institution's 
+federal identification number (from Form 1098-T).
+–
+23
+Has the Hope Scholarship Credit or American opportunity 
+credit been claimed for this student for any 4 tax years 
+before 2013?
+Yes — 
+Stop!
+ 
+Go to line 31 for this student.
+No — Go to line 24.
+24
+Was the student enrolled at least half-time for at least one 
+academic period that began in 2013 at an eligible 
+educational institution in a program leading towards a 
+postsecondary degree, certificate, or other recognized 
+postsecondary educational credential? (see instructions)
+Yes — Go to line 25.
+No — 
+Stop! 
+Go to line 31 
+for this student.
+25
+Did the student complete the first 4 years of post-secondary 
+education before 2013?
+Yes — 
+Stop! 
+                     
+Go to line 31 for this  
+student.
+No — Go to line 26.
+26
+Was the student convicted, before the end of 2013, of a 
+felony for possession or distribution of a controlled 
+substance?
+Yes — 
+Stop!
+                      
+Go to line 31 for this  
+student.
+No — See 
+Tip
+ below and 
+complete 
+either
+ lines 27-30 
+or 
+line 31 for this student.
+TIP
+When you figure your taxes, you may want to compare the American opportunity credit and lifetime learning credits, and 
+choose the credit for each student that gives you the lower tax liability. You 
+take the American opportunity credit 
+and the lifetime learning credit for the 
+same student 
+in the same year. If you complete lines 27 through 30 for this student, 
+do not complete line 31.
+American Opportunity Credit 
+27
+Adjusted qualified education expenses (see instructions).
+ Do not enter more than $4,000 
+....
+27
+28
+Subtract $2,000 from line 27. If zero or less enter -0-
+.................
+28
+29
+Multiply line 28 by 25% (.25)
+.........................
+29
+30
+If line 28 is zero, enter the amount from line 27. Otherwise, add $2,000 to the amount on line 29 and 
+enter the result. Skip line 31. Include the total of all amounts from all Parts III, line 30 on Part I, line 1    .
+30
+Lifetime Learning Credit
+31
+Adjusted qualified education expenses (see instructions). Include the total of all amounts from all Parts 
+III, line 31, on Part II, line 10
+.........................
+31
+Form 
+8863
+ (2013)
+address
+address
+city
+zip
+city
+zip
+----------------Page (0) Break----------------

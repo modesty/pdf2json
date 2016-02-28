@@ -1,0 +1,222 @@
+ Name(s) as shown on IA 1040 or IA 1041
+SSN or FEIN
+Iowa Minimum Tax Computation
+PART 1: Adjustments and Preferences. See instructions.
+If you itemized deductions on Schedule A, start on line 1. If you did not itemize on your IA 1040, start on line 7.
+1. Medical and dental from line 2, federal form 6251
+........................................................................................
+1.
+__________________
+2. Taxes from line 3, federal form 6251, less any Iowa income tax included on that line
+..........................
+2.
+__________________
+3. 
+Certain interest on a home mortgage not used to build, buy, or improve your home, from line 4, federal form 6251
+.
+3.
+__________________
+4. Miscellaneous itemized deductions from line 5, federal form 6251
+...........................................................
+4.
+__________________
+5. Refund of taxes from line 7, federal form 6251, less any Iowa income tax included on that line
+........
+5.
+__________________
+6. Investment interest from line 8, federal form 6251, less interest and expense related to private
+activity bonds issued 
+after 08/07/86
+...............................................................................................................
+6.
+__________________
+7. Post - 1986 depreciation from line 18, federal form 6251
+...........................................................................
+7.
+__________________
+8. Adjusted gain or loss from line 17, federal form 6251
+..................................................................................
+8.
+__________________
+9. Incentive stock options from line 14, federal form 6251
+..............................................................................
+9.
+__________________
+10. Passive activities from line 19, federal form 6251
+........................................................................................
+10.
+__________________
+11. Beneficiaries of estates and trusts from line 15, federal form 6251
+..........................................................
+11.
+__________________
+12. 
+Enter the amount for each corresponding item from federal form 6251. Enter total on line 12.
+a.
+Circulation expenditures (line 21)
+.
+a.
+___________
+h.
+Patron’s adjustment
+................................
+h.
+__________
+b.
+Depreciation (pre-1987)
+.............
+b.
+___________
+i.
+Pollution control facilities
+.......................
+i.
+__________
+c.
+Installment sales (line 25)
+.........
+c.
+___________
+j.
+Research and experimental (line 24)
+...
+j.
+__________
+d.
+Large partnerships (line 16)
+......
+d.
+___________
+k.
+Section 1202 exclusion (line 13)
+..........
+k.
+__________
+e.
+Long-term contracts (line 22)
+....
+e.
+___________
+l.
+Tax shelter farm activities
+......................
+l.
+__________
+f.
+Loss limitations (line 20)
+.............
+f.
+___________
+m.
+Related adjustments (see inst.) (line 27)
+.
+m.
+___________
+g.
+Mining costs (line 23)
+.................
+g.
+___________
+12.
+__________________
+13.
+ Total Adjustments and Preferences.
+ Combine lines 1 through 12.
+........................................................
+13.
+__________________
+PART II: Alternative Minimum Taxable Income
+14. Taxable income from IA 1040, line 42; or IA 1041, line 22
+.........................................................................
+14.
+__________________
+15. Net operating loss deduction. Do not enter as a negative amount.
+...........................................................
+15.
+__________________
+16. Combine lines 14 and 15.
+..................................................................................................................................
+16.
+__________________
+17. Add lines 13 and 16.
+...........................................................................................................................................
+17.
+__________________
+18. Alternative tax net operating loss deduction. See instructions.
+.................................................................
+18.
+__________________
+19. Alternative Minimum Taxable Income. Subtract line 18 from line 17.
+.......................................................
+19.
+__________________
+PART III: Exemption Amount and Alternative Minimum Tax
+20. 
+Enter $35,000 (*$17,500 if filing status 3 or 4; $26,000 if single, head of household or qualifying widow(er
+)
+...
+20.
+__________________
+21. 
+Enter $150,000 (*$75,000 if filing status 3 or 4; $112,500 if single, head of household or qualifying widow(er)
+.......
+21.
+__________________
+22. Subtract line 21 from line 19. If the result is zero or less, enter zero.
+......................................................
+22.
+__________________
+23. Multiply line 22 by 25% (0.25).
+.........................................................................................................................
+23.
+__________________
+24. Subtract line 23 from line 20. If the result is zero or less, enter zero.
+......................................................
+24.
+__________________
+25. Subtract line 24 from line 19.
+If the result is zero or less, enter zero.
+..............................................................
+25.
+__________________
+26. Multiply line 25 by 6.7% (0.067).
+......................................................................................................................
+26.
+__________________
+27. Regular tax after credits. See instructions.
+....................................................................................................
+27.
+__________________
+28. Iowa Minimum Tax. Subtract line 27 from line 26, enter here and on IA 1040, line 45, or IA 1041,
+line 25. See instructions for Minimum Tax Limited to Net Worth. If less than zero, enter zero.
+.........
+28.
+__________________
+PART IV: NONRESIDENTS AND PART-YEAR RESIDENTS ONLY - Complete lines 29 - 32.
+29
+.
+ Enter Iowa net income plus Iowa adjustments and preferences. See instructions. If less than zero, enter zero.
+......
+29.
+__________________
+30. Total net income plus total adjustments and preferences. See instructions.
+..........................................
+30.
+__________________
+31. Divide line 29 by line 30 and enter the result to three (3) decimal places.
+..............................................
+31.
+__________________
+32. Iowa Minimum Tax. Multiply line 28 by line 31. Enter here and on IA 1040, line 45, or IA 1041,
+line 25. See instructions for Minimum Tax Limited to Net Worth. If less than zero, enter zero.
+.........
+32.
+__________________
+                                                                                                *
+Exemption levels of $17,500 and $75,000 on lines 20 and 21,
+                                                                                                         respectively, also apply to an estate or trust.
+2012 IA 6251
+41-131a (08/08/12)
+www.iowa.gov/tax
+Iowa Department of Revenue
+----------------Page (0) Break----------------

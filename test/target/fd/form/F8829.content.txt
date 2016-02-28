@@ -1,0 +1,239 @@
+Form
+ 
+8829
+Department of the Treasury  
+Internal Revenue Service (99) 
+Expenses for Business Use of Your Home
+a
+ 
+File only with Schedule C (Form 1040). Use a separate Form 8829 for each
+ 
+home you used for business during the year.
+ 
+a
+ 
+.
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No. 
+176
+ 
+Name(s) of proprietor(s) 
+Your social security number 
+Part I 
+Part of Your Home Used for Business 
+1 
+Area used regularly and exclusively for business, regularly for daycare, or for storage of
+inventory  or product samples (see instructions)
+................  
+1 
+2 
+Total area of home
+.........................  
+2 
+3 
+Divide line 1 by line 2. Enter the result as a percentage 
+.............
+3 
+% 
+For daycare facilities not used exclusively for business, go to line 4. All others go to line 7. 
+4 
+Multiply days used for daycare during year by hours used per day 
+4 
+hr.
+5 
+Total hours available for use during the year (365 days x 24 hours) (see instructions) 
+5 
+6 
+Divide line 4 by line 5. Enter the result as a decimal amount  .    .    .
+6 
+. 
+7 
+Business percentage. For daycare facilities not used exclusively for business, multiply line 6 by 
+line 3 (enter the result as a percentage). All others, enter the amount from line 3
+.....
+a
+7 
+% 
+Part II 
+Figure Your Allowable Deduction 
+8 
+ 
+Enter the amount from Schedule C, line 29, 
+plus
+ any gain derived from the business use of your 
+home and shown on Schedule D or Form 4797, minus any loss from the trade or business not derived 
+from the business use of your home and shown on Schedule D or Form 4797.  See instructions     .    .
+8 
+See instructions for columns (a) and (b) before 
+completing lines 9...21. 
+(a)  
+Direct expenses 
+ 
+ 
+ 
+ 
+(b)  
+Indirect expenses
+ 
+ 
+ 
+ 
+9 
+Casualty losses (see instructions)
+..... 
+9 
+10 
+Deductible mortgage interest (see instructions) 
+10 
+11 
+Real estate taxes (see instructions)
+.... 
+11 
+12 
+Add lines 9, 10, and 11
+........ 
+12 
+13 
+Multiply line 12, column (b) by line 7
+.... 
+13 
+14 
+Add line 12, column (a) and line 13
+....
+14 
+15 
+Subtract line 14 from line 8. If zero or less, enter -0-
+15 
+16 
+Excess mortgage interest (see instructions)    .
+16 
+17 
+Insurance
+............
+17 
+18 
+Rent
+.............. 
+18 
+19 
+Repairs and maintenance
+....... 
+19 
+20 
+Utilities
+............. 
+20 
+21 
+Other expenses (see instructions)
+.....
+21 
+22 
+Add lines 16 through 21
+........
+22 
+23 
+Multiply line 22, column (b) by line 7
+...........
+23 
+24 
+Carryover of operating expenses from 2012 Form 8829, line 42 .    .    
+24 
+25 
+Add line 22, column (a), line 23, and line 24
+.................
+25 
+26 
+Allowable operating expenses. Enter the 
+smaller
+ of line 15 or line 25
+.........
+26 
+27 
+Limit on excess casualty losses and depreciation. Subtract line 26 from line 15
+.....  
+27 
+28 
+Excess casualty losses (see instructions)
+.........
+28 
+29 
+Depreciation of your home from line 41 below
+....... 
+29 
+30 
+Carryover of excess casualty losses and depreciation from 2012 Form 8829, line 43 
+30 
+31 
+Add lines 28 through 30
+........................  
+31 
+32 
+Allowable excess casualty losses and depreciation. Enter the 
+smaller
+ of line 27 or line 31  .    .      
+32 
+33 
+Add lines 14, 26, and 32
+........................
+33 
+34 
+Casualty loss portion, if any, from lines 14 and 32. Carry amount to 
+Form 4684
+ (see instructions)  
+34 
+35 
+Allowable expenses for business use of your home. 
+Subtract line 34 from line 33. Enter here 
+and on Schedule C, line 30. If your home was used for more than one business, see instructions 
+ 
+a
+35 
+Part III 
+Depreciation of Your Home 
+36 
+Enter the 
+smaller
+ of your home’s adjusted basis or its fair market value (see instructions)   .    .
+36 
+37 
+Value of land included on line 36
+.....................
+37 
+38 
+Basis of building. Subtract line 37 from line 36
+................
+38 
+39 
+Business basis of building. Multiply line 38 by line 7
+...............
+39 
+40 
+40 
+% 
+41 
+Depreciation allowable (see instructions). Multiply line 39 by line 40. Enter here and on line 29 above
+41 
+Part IV 
+Carryover of Unallowed Expenses to 2014
+42 
+Operating expenses. Subtract line 26 from line 25. If less than zero, enter -0-
+......
+42 
+43 
+Excess casualty losses and depreciation. Subtract line 32 from line 31. If less than zero, enter -0-
+43 
+For Paperwork Reduction Act Notice, see your tax return instructions.
+ 
+ 
+Cat. No. 13232M 
+Form 
+8829
+ (2013) 
+hr.
+8,760
+Information about Form 8829 and its separate instructions is at www.irs.gov/form8829
+Depreciation percentage (see instructions) (Enter as percent, for example 10.1234 for 10.1234%)
+----------------Page (0) Break----------------

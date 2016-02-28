@@ -1,0 +1,127 @@
+2012 IA 4562A
+Iowa Depreciation Adjustment Schedule
+www.iowa.gov/tax
+Iowa Department of Revenue
+Enclose this form with your Iowa income tax return.
+1234567890123456
+1234567890123456
+1234567890123456
+123456789012345678
+123456789012345678
+123456789012345678
+C
+Total amounts in columns E, F, H, and I
+Description
+Date Placed
+Life of
+Cost or
+Federal                                     Federal
+Accumulated
+Iowa 179 Expense
+MACRS Iowa
+Accumulated
+of Property
+in Service
+Asset
+Other Basis
+179 Expense
+Depreciation Deduction
+Federal Depreciation
+Depreciation Deduction
+Iowa Depreciation
+J
+I
+H
+G
+F
+E
+D
+B
+A
+41-105a (09/20/12)
+PART I - Computation of Iowa depreciation adjustment
+PART  II - Disposition adjustments             
+  
+If you have not 
+sold or disposed of any bonus depreciation or section 179 property, skip to Part III of this form.
+I
+f you have 
+disposed of bonus depreciation or section 179 property, and an Iowa depreciation adjustment applied to this property in a prior year, continue to Part II.
+1234567890123456789012345678901212345678901234567890123456789012123456789012345678901234567890
+1234567890123456789012345678901212345678901234567890123456789012123456789012345678901234567890
+1234567890123456789012345678901212345678901234567890123456789012123456789012345678901234567890
+1234567890123456789012345678901212345678901234567890123456789012123456789012345678901234567890
+Description of Property
+sold or disposed
+A
+Date placed in
+service - mo/day/yr
+B
+Date sold
+or disposed
+C
+Total Iowa depreciation
++ Sec. 179 expense taken
+Adjustment (subtract
+column E from column D)
+E
+F
+Total amounts in column F
+D
+Total federal depreciation
++ Sec. 179 expense taken
+1.  Enter the sum of amounts from
+Part I, columns E & F.
+..............
+1.
+______________________
+2.  Enter the sum of amounts from
+Part I, columns H & I.
+...............
+2.
+______________________
+3.  Adjustment to depreciation.
+Subtract line 2 from line 1.
+.......
+3.
+______________________
+4.  Enter amount from
+Part II, column F.
+.....................
+4.
+______________________
+5. Add lines 3 and 4.
+......................
+5.
+______________________
+PART  III - Summary of adjustments to net income
+ 
+ Name(s)
+SSN
+ 
+ Name of Partnership or Corporation (if applicable)
+FEIN
+ 
+For Iowa Form:   Enter positive amounts from line 5 on:
+    Enter negative amounts from line 5 on:
+1040                Other Income, line 14
+    Other Income, line 14
+1041
+Other Income, line 8
+    Other Income, line 8
+1065
+Part I, line 3
+    Part I, line 6
+1120
+Schedule A, depreciation adj., line 8
+    Schedule A, depreciation adj., line 8
+1120A
+Schedule A, other additions, line 4
+    Schedule A, other reductions, line 4
+1120S
+Schedule S, line 3
+    Schedule S, line 7
+1120F
+Schedule A, line 7
+    Schedule D, line 7
+----------------Page (0) Break----------------

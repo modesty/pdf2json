@@ -1,0 +1,129 @@
+Form  
+8885
+Department of the Treasury  
+Internal Revenue Service 
+Health Coverage Tax Credit
+a
+ Attach to Form 1040, Form 1040NR, Form 1040-SS, or Form 1040-PR.
+a
+ 
+.
+OMB No. 1545-0074
+20
+13
+Attachment 
+Sequence No. 
+134
+Name of recipient (if both spouses are recipients, complete a separate form for each spouse)
+Recipient•s social security number
+Before you begin: 
+See 
+Definitions and Special Rules 
+in the instructions.
+F
+!
+CAUTION
+Do not 
+complete this form if you can be claimed as a dependent on someone else’s 2013 tax return.
+Part I
+Complete This Part To See if You Are Eligible To Take This Credit
+1
+Check the boxes below for each month in 2013 that 
+all 
+of the following statements were 
+true 
+on the 
+first day 
+of that month.
+• You were an eligible trade adjustment assistance (TAA) recipient, alternative TAA (ATAA) recipient, reemployment TAA (RTAA) 
+recipient, or Pension Benefit Guaranty Corporation (PBGC) pension payee; or you were a qualified family member of an
+individual who fell under one of the categories listed above when he or she passed away or with whom you finalized 
+a divorce. 
+• You and/or your family member(s) were covered by a qualified health insurance plan for which you paid the entire premiums, 
+or your portion of the premiums, directly to your health plan or to “U.S. Treasury–HCTC.”
+• You were 
+not 
+enrolled in Medicare Part A, B, or C, or you were enrolled in Medicare but your family member(s) qualified for 
+the HCTC.
+• You were 
+not 
+enrolled in Medicaid or the Children’s Health Insurance Program (CHIP).
+• You were 
+not 
+enrolled in the Federal Employees Health Benefits Program (FEHBP) or eligible to receive benefits under the
+U.S. military health system (TRICARE).
+• You were 
+not 
+imprisoned under federal, state, or local authority.
+• Your employer 
+did not
+ pay 50% or more of the cost of coverage.
+• You 
+did not 
+receive a 65% COBRA premium reduction from your former employer or COBRA administrator.
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+Part II
+Health Coverage Tax Credit
+2
+Enter the total amount paid directly to your health plan for qualified health insurance coverage for 
+the months checked on line 1 (see instructions). 
+Do not 
+include on line 2 any qualified health
+insurance premiums paid to “U.S. Treasury–HCTC” or any insurance premiums on coverage that 
+was actually paid for with a National Emergency Grant. Also, 
+do not 
+include any advance 
+(monthly) payments or reimbursement credits you received as shown on Form 1099-H, box 1  .    .
+2
+F
+!
+CAUTION
+You 
+must 
+attach the required documents listed in the instructions for any amounts
+included on line 2. If you do not attach the required documents, your credit will be
+disallowed.
+3
+Enter the total amount of any Archer MSA or health savings accounts distributions used to pay for 
+qualified health insurance coverage for the months checked on line 1   .    .    .
+........
+3
+4
+Subtract line 3 from line 2. If zero or less, 
+stop;
+you cannot take the credit 
+........
+4
+5 
+ 
+Health Coverage Tax Credit. 
+If you received an advance (monthly) payment in any month not 
+checked on line 1, see the instructions for line 5 for more details. Otherwise, multiply the amount 
+on line 4 by 72.5% (.725). Enter the result here and on Form 1040, line 71 (check box
+ c
+); Form
+1040NR, line 67
+ 
+(check box 
+c
+); Form 1040-SS, line 10; or Form 1040-PR, line 10 
+......
+5 
+For Paperwork Reduction Act Notice, see your tax return instructions.
+Cat. No. 34641D
+Form 
+8885
+ (2013)
+Information about Form 8885 and its instructions is at www.irs.gov/form8885
+----------------Page (0) Break----------------

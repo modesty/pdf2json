@@ -1,0 +1,33 @@
+www.iowa.gov/tax
+Iowa Department of Revenue
+IA 4562B
+Iowa Depreciation Accumulated Adjustment Schedule
+Name(s)
+SSN
+Name of Partnership or Corporation (if applicable)
+FEIN
+Use this form to record the cumulative effect
+of the Bonus Depreciation Adjustment computed on form IA 4562A.
+IA 4562A
+Adjustment
+TAX PERIOD
+Amount from
+ENDING DATE
+Part III, Line 5
+BALANCE
+INSTRUCTIONS
+In the Tax Period Ending Date column, start with the tax period when you first made an adjustment for bonus
+depreciation on the Iowa return. Continue entering each subsequent tax period up to, and including, the
+current period.
+In the IA 4562A Adjustment column, enter the amount added/deducted on the Iowa return for each tax period.
+This should be the amount entered in Part III, line 5 of the IA 4562A. Enter negative numbers in parenthesis. If
+the IA 4562A adjustment was changed from the amount originally claimed, place an asterisk (*) after the tax
+period. If requested by the Department, failure to provide copies of the prior tax periods’ IA 4562As will delay
+the processing of your return or cause the denial of your adjustment. Do not send copies of the asset listings
+that are required with the IA 4562A.
+In the Balance column, the balance amount for the first tax period should be the same as the amount of the
+adjustment. For each subsequent tax period, the balance amount should be changed by the amount of that tax
+period’s IA 4562A adjustment.
+Include this form with your Iowa individual or corporation income tax return.
+41-106 (06/13/11)
+----------------Page (0) Break----------------

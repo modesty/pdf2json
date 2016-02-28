@@ -1,0 +1,118 @@
+City
+Form 
+8891
+(Rev. December 2012)
+Department of the Treasury  
+Internal Revenue Service 
+U.S. Information Return for Beneficiaries of  
+Certain Canadian Registered Retirement Plans 
+a
+ 
+Information about Form 8891 and its instructions is at 
+www.irs.gov/form8891.
+               
+a
+ 
+Attach to Form 1040.                                
+ 
+OMB No. 1545-0074
+Attachment   
+Sequence No. 
+139
+ 
+For calendar year 20           , or tax year beginning
+, 20         , and ending
+, 20         .
+Name as shown on Form 1040
+Identifying number 
+(see instructions)
+Address
+1 
+Name of plan custodian 
+2 
+Account number of plan 
+3 
+Address of plan custodian 
+4 
+Type of plan (check one box): 
+Registered Retirement Savings Plan (RRSP) 
+Registered Retirement Income Fund (RRIF) 
+5 
+Beneficiary
+Annuitant (Complete only lines 7a, 7b, and 8.)
+6 a 
+Have you previously made an election under Article XVIII(7) of the U.S.-Canada income tax treaty to 
+defer U.S. income tax on the undistributed earnings of the plan? 
+...........
+ 
+a
+Yes
+No
+b 
+If “Yes,” enter the first year the election came into effect 
+ and go to line 7a. If “No,” go to line 6c.
+c 
+If you have not previously made the election described on line 6a above, you can make an irrevocable 
+election for this year and subsequent years by checking this box 
+...........
+ 
+a
+7 a 
+Distributions received from the plan during the year. Enter here and include on Form 1040, line
+7a 
+b 
+Taxable distributions received from the plan during the year. Enter here and include on Form
+1040, line 16b
+...........................
+7b 
+8 
+Plan balance at the end of the year. If you checked the “Annuitant” box on line 5, the “Yes” box 
+on line 6a, or the box on line 6c, 
+stop here. Do not 
+complete the rest of the form
+.....
+8 
+9 
+Contributions to the plan during the year 
+..................
+9 
+10 
+Undistributed earnings of the plan during the year: 
+Interest income. Enter here and include on Form 1040, line 8a
+...........
+10a 
+b
+Total ordinary dividends. Enter here and include on Form 1040, line 9a 
+........
+10b 
+Qualified dividends. Enter here and include on Form 1040, line 9b
+..........
+ 
+10c 
+Capital gains. Enter here and include on Form 1040, line 13
+............
+10d 
+e
+Other income. Enter here and include on Form 1040, line 21. List type and amount 
+a
+10e 
+For Paperwork Reduction Act Notice, see instructions. 
+Cat. No. 37699X 
+Form 
+8891 
+(Rev. 12-2012) 
+City, state, zip
+Addr
+State
+Zip
+If foreign country enter
+Country
+Province
+Postal Code
+Check the applicable box for your status in the plan (see Definitions in the instructions): 
+...............................
+16a
+d
+c 
+a 
+----------------Page (0) Break----------------

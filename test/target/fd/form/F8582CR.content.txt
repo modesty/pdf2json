@@ -1,0 +1,293 @@
+do not
+Low-Income Housing Credits for Property Placed in Service After 1989 Lines 3a through 3c (See
+Form 
+8582-CR
+ 
+(Rev. January 2012)
+Department of the Treasury  
+Internal Revenue Service
+Passive Activity Credit Limitations
+a
+ 
+See separate instructions.
+a
+ 
+Attach to Form 1040 or 1041.
+OMB No. 1545-1034
+Attachment   
+Sequence No. 
+89
+Name(s) shown on return
+Identifying number
+Part I
+Passive Activity Credits
+instructions.
+Credits From Rental Real Estate Activities With Active Participation (Other Than Rehabilitation 
+1 a
+Credits from Worksheet 1, column (a)
+..........
+1a 
+b 
+Prior year unallowed credits from Worksheet 1, column (b) .    .    .
+1b
+c 
+Add lines 1a and 1b
+.........................
+1c 
+Rehabilitation Credits From Rental Real Estate Activities and Low-Income Housing Credits for  
+Property Placed in Service Before 1990 (or From Pass-Through Interests Acquired Before 1990)   
+2 a
+Credits from Worksheet 2, column (a)
+..........
+2a 
+b 
+Prior year unallowed credits from Worksheet 2, column (b) .    .    .
+2b
+c 
+Add lines 2a and 2b
+.........................
+2c 
+in the instructions.)
+3a
+Credits from Worksheet 3, column (a)
+..........
+3a 
+b 
+Prior year unallowed credits from Worksheet 3, column (b) .    .    .
+3b
+c 
+Add lines 3a and 3b
+.........................
+3c 
+4 a
+Credits from Worksheet 4, column (a)
+..........
+4a 
+b 
+Prior year unallowed credits from Worksheet 4, column (b) .    .    .
+4b
+c 
+Add lines 4a and 4b
+.........................
+4c 
+5 
+Add lines 1c, 2c, 3c, and 4c
+.......................
+5 
+6 
+Enter the tax attributable to net passive income (see instructions)
+..........
+6 
+7 
+Subtract line 6 from line 5. If line 6 is more than or equal to line 5, enter -0- and see instructions 
+7 
+Note: 
+ 
+ 
+ 
+Part II
+Special Allowance for Rental Real Estate Activities With Active Participation
+Note: 
+Complete this part only if you have an amount on line 1c. Otherwise, go to Part III.
+8 
+Enter the smaller of line 1c or line 7
+....................
+8 
+9 
+Enter $150,000. If married filing separately, see instructions    .    .
+9 
+10 
+Enter modified adjusted gross income, but not less than zero (see 
+instructions). If line 10 is equal to or more than line 9, skip lines 11 
+through 15 and enter -0- on line 16
+..........
+10 
+11 
+Subtract line 10 from line 9
+.............
+11 
+12 
+married filing separately, see instructions
+........
+12 
+13a
+Enter the amount, if any, from line 10 
+of Form 8582
+.........
+13a
+b 
+Enter the amount, if any, from line 14 
+of Form 8582
+.........
+13b
+c 
+Add lines 13a and 13b
+...............
+13c
+14 
+Subtract line 13c from line 12
+............
+14 
+15 
+Enter the tax attributable to the amount on line 14 (see instructions)
+..........
+15 
+16 
+....................
+16 
+For Paperwork Reduction Act Notice, see instructions. 
+Cat. No. 64641R
+Form 
+8582-CR
+ (Rev. 01-2012) 
+Caution: If you have credits from a publicly traded partnership, see Publicly Traded Partnerships (PTPs) in the 
+(See Lines 2a through 2c in the instructions.)
+Credits and Low-Income Housing Credits) (See Lines 1a through 1c in the instructions.)
+ 
+All Other Passive Activity Credits (See Lines 4a through 4c in the instructions.)
+Multiply line 11 by 50% (.50). Do not enter more than $25,000. If
+Enter the smaller of line 8 or line 15
+If your filing status is married filing separately and you lived with your spouse at any time during 
+the year,
+complete Part II, III, or IV. Instead, go to line 37.
+----------------Page (0) Break----------------
+Form 8582-CR (Rev. 01-2012)
+Page 
+2 
+Part III
+Special Allowance for Rehabilitation Credits From Rental Real Estate Activities and Low-Income Housing 
+Credits for Property Placed in Service Before 1990 (or From Pass-Through Interests Acquired Before 1990)
+Note: 
+Complete this part only if you have an amount on line 2c. Otherwise, go to Part IV.
+17 
+Enter the amount from line 7
+.......................
+17 
+18 
+Enter the amount from line 16
+......................
+18 
+19 
+Subtract line 18 from line 17. If zero, enter -0- here and on lines 30 and 36, and then go to 
+Part V
+..............................
+19 
+20 
+....................
+20 
+21 
+Enter $250,000. If married filing separately, see instructions to find 
+out if you can skip lines 21 through 26
+.........
+21 
+22 
+Enter modified adjusted gross income, but not less than zero. (See 
+instructions for line 10.) If line 22 is equal to or more than line 21, 
+skip lines 23 through 29 and enter -0- on line 30
+......
+22 
+23 
+Subtract line 22 from line 21
+.............
+23 
+24 
+Multiply line 23 by 50% (.50). Do not enter more than $25,000. If
+married filing separately, see instructions
+........
+24 
+25a
+Enter the amount, if any, from line 10 
+of Form 8582
+.........
+25a
+b 
+Enter the amount, if any, from line 14 
+of Form 8582
+.........
+25b
+c 
+Add lines 25a and 25b
+...............
+25c
+26 
+Subtract line 25c from line 24
+............
+26 
+27 
+Enter the tax attributable to the amount on line 26 (see instructions) 
+27 
+28 
+Enter the amount, if any, from line 18
+..........
+28 
+29 
+Subtract line 28 from line 27
+.......................
+29 
+30 
+....................
+30 
+Part IV
+Special Allowance for Low-Income Housing Credits for Property Placed in Service After 1989
+Note: 
+Complete this part only if you have an amount on line 3c. Otherwise, go to Part V.
+31 
+If you completed Part III, enter the amount from line 19. Otherwise, subtract line 16 from line 7 .
+31 
+32 
+Enter the amount from line 30
+......................
+32 
+33 
+Subtract line 32 from line 31. If zero, enter -0- here and on line 36
+..........
+33 
+34 
+....................
+34 
+35 
+Tax attributable to the remaining special allowance (see instructions)
+.........
+35 
+36 
+....................
+36 
+Part V
+Passive Activity Credit Allowed
+37 
+Passive Activity Credit Allowed. 
+Add lines 6, 16, 30, and 36. See instructions to find out how to
+ 
+ 
+you have more than one credit or credits from more than one activity. If you have any credits 
+37 
+Part VI
+Election To Increase Basis of Credit Property
+38 
+elect to increase your basis in credit property used in that activity by the unallowed credit that reduced your basis in the 
+property, check this box. See instructions
+..........................   
+a
+39 
+Name of passive activity disposed of  
+a
+40 
+Description of the credit property for which the election is being made  
+a
+41 
+Amount of unallowed credit that reduced your basis in the property
+........ 
+a
+ 
+$ 
+Form 
+8582-CR
+ (Rev. 01-2012) 
+Enter the smaller of line 2c or line 19
+Enter the smaller of line 20 or line 29
+Enter the smaller of line 3c or line 33
+Enter the smaller of line 34 or line 35
+from a publicly traded partnership, see Publicly Traded Partnerships (PTPs) in the instructions. 
+If you disposed of your entire interest in a passive activity or former passive activity in a fully taxable transaction, and you 
+report the allowed credit on your tax return and how to allocate allowed and unallowed credits if
+----------------Page (1) Break----------------

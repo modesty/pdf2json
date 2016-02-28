@@ -1,0 +1,152 @@
+Compensation (see instructions) from the employer maintaining the high deductible  health plan. (If 
+Form    
+8853
+Department of the Treasury  
+Internal Revenue Service  (99)
+Archer MSAs and 
+Long-Term Care Insurance Contracts
+a
+ 
+a
+ 
+Attach to Form 1040 or Form 1040NR.      
+OMB No. 1545-0074 
+20
+13
+Attachment   
+Sequence No. 
+39
+Name(s) shown on return
+Social security number of MSA  
+account holder. If both spouses  
+have MSAs, see instructions  
+a
+Section A.  Archer MSAs. 
+If you have only a Medicare Advantage MSA, skip Section A and complete Section B.
+Part I
+Archer MSA Contributions and Deductions. 
+ 
+ 
+separate Part I for each spouse.
+1
+Total employer contributions to your Archer MSA(s) for 2013 
+....
+1
+2
+Archer MSA contributions you made for 2013, including those made from January 1, 2014, 
+through April 15, 2014, that were for 2013. Do not include rollovers (see instructions)
+..... 
+2
+3
+Limitation from the Line 3 Limitation Chart and Worksheet in the instructions 
+.......
+3
+4
+self-employed, enter your earned income from the trade or business under which  the high 
+deductible health plan was established.) 
+...................
+4
+5      Archer MSA deduction. 
+Enter the 
+smallest 
+of line 2, 3, or 4 here. Also include this amount on
+ 
+Form 1040, line 36, or Form 1040NR, line 35. On the dotted line next to Form 1040, line 36, or
+ 
+Form 1040NR, line 35, enter “MSA” and the amount 
+................
+5
+Caution: 
+If line 2 is more than line 5, you may have to pay an additional tax (see instructions).
+Part II
+Archer MSA Distributions
+6a
+Total distributions you and your spouse received in 2013 from all Archer MSAs (see instructions)  .
+6a
+b
+Distributions included on line 6a that you rolled over to another Archer MSA or a health savings  
+account. Also include any excess contributions (and the earnings on those excess contributions)  
+included on line 6a that were withdrawn by the due date of your return (see instructions) 
+....
+6b
+c
+Subtract line 6b from line 6a 
+.......................
+6c
+7
+Unreimbursed qualified medical expenses (see instructions) 
+.............
+7
+8
+Taxable Archer MSA distributions. 
+Subtract line 7 from line 6c. If zero or less, enter -0-. Also 
+ 
+include this amount in the total on Form 1040, line 21, or Form 1040NR, line 21. On the dotted 
+ 
+line next to line 21, enter “MSA” and the amount 
+.................
+8
+9a
+If any of the distributions included on line 8 meet any of the 
+Exceptions to the Additional  
+20% Tax
+  (see instructions), check here 
+..................
+a
+b
+Additional 20% tax 
+(see instructions). Enter 20% (.20) of the distributions included on line 8 that 
+ 
+or Form 1040NR, line 59. On the dotted line next to Form 1040, line 60, or Form 1040NR, line 59, 
+enter “MSA” and the amount 
+.......................
+9b
+Section B.  Medicare Advantage MSA Distributions. 
+If you are filing jointly and both you and your spouse received 
+distributions in 2013 from a Medicare Advantage MSA, complete a separate Section B for each spouse
+ 
+(see 
+instructions).
+10
+Total distributions you received in 2013 from all Medicare Advantage MSAs (see instructions)   .    .
+10
+11
+Unreimbursed qualified medical expenses (see instructions) 
+.............
+11
+12
+Taxable Medicare Advantage MSA distributions. 
+Subtract line 11 from line 10. If zero or less, 
+ 
+enter -0-. Also include this amount in the total on Form 1040, line 21, or Form 1040NR, line 21. 
+ 
+On the dotted line next to line 21, enter “Med MSA” and the amount 
+..........
+12
+13a
+If any of the distributions included on line 12 meet any of the 
+Exceptions to the Additional  
+50% Tax
+ (see instructions), check here 
+..................
+a
+b
+Additional 50% tax 
+(see instructions). Enter 50% (.50) of the distributions included on line 12 that 
+ 
+or Form 1040NR, line 59. On the dotted line next to Form 1040, line 60, or Form 1040NR, line 59, 
+enter “Med MSA” and the amount 
+......................
+13b
+For Paperwork Reduction Act Notice, see your tax return instructions.
+Cat. No. 24091H
+Form 
+8853
+ (2013) 
+Form 8853 page 2
+Information about Form 8853 and its separate instructions is available at www.irs.gov/form8853.
+See instructions before completing this part. If you are filing 
+jointly and both you and your spouse have high deductible health plans with self-only coverage, complete a 
+are subject to the additional 50% tax. Also include this amount in the total on Form 1040, line 60, 
+are subject to the additional 20% tax. Also include this amount in the total on Form 1040, line 60, 
+----------------Page (0) Break----------------

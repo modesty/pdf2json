@@ -1,0 +1,52 @@
+Form  
+8881 
+(Rev. December 2013)
+Department of the Treasury 
+Internal Revenue Service 
+Credit for Small Employer Pension Plan 
+Startup Costs 
+a
+ Attach to your tax return. 
+a
+ Information about Form 8881 and its instructions is at 
+www.irs.gov/form8881
+.
+OMB No. 1545-1810 
+Attachment   
+Sequence No.  
+130
+Name(s) shown on return 
+Identifying number 
+1 
+Qualified startup costs incurred during the tax year. 
+Do not 
+enter 
+more  than $1,000
+.................
+1 
+2 
+Enter one-half of line 1
+.........................
+2 
+3 
+Credit for small employer pension plan startup costs from partnerships and S corporations    .    .  
+3 
+4 
+Add lines 2 and 3
+........................... 
+4 
+5 
+Enter the 
+smaller
+ of line 4 or 
+$500
+. Partnerships and S corporations, report this amount on 
+Schedule K. All others, report this amount on Form 3800, line 1j
+...........
+5 
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 33435N 
+Form 
+8881 
+(Rev. 12-2013)
+----------------Page (0) Break----------------
