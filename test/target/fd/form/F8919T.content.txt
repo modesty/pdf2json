@@ -1,0 +1,154 @@
+Form  
+8919
+Department of the Treasury 
+Internal Revenue Service
+Uncollected Social Security and  
+Medicare Tax on Wages
+a
+ 
+ 
+Information about Form 8919 and its instructions is at 
+www.irs.gov/form8919.
+a
+ 
+ 
+Attach to your tax return. 
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No.  
+72
+Name of person who must file this form. If married, complete a separate Form 8919 for each spouse who must file this form.
+Social security number
+Who must file.
+You must file Form 8919 if 
+all 
+of the following apply.
+• You performed services for a firm.
+• You believe your pay from the firm was not for services as an independent contractor.
+• The firm did not withhold your share of social security and Medicare taxes from your pay.
+• One of the reasons listed below under 
+Reason codes 
+applies to you.
+Reason codes:
+For each firm listed below, enter in column (c) the applicable reason code for filing this form. If none of the reason 
+codes apply to you, but you believe you should have been treated as an employee, enter reason code G, and 
+file 
+Form SS-8 on or before the date you file your tax return
+.
+A
+I filed Form SS-8 and received a determination letter stating that I am an employee of this firm.
+C
+I received other correspondence from the IRS that states I am an employee.
+G
+I filed Form SS-8 with the IRS and have not received a reply.
+H
+I received a Form W-2 and a Form 1099-MISC from this firm for 2013. The amount on Form 1099-MISC should have 
+been included as wages on Form W-2. 
+(Do not file Form SS-8 if you select reason code H.)
+(a) 
+Name of firm
+(b) 
+Firm’s
+ 
+federal
+ 
+identification
+ 
+number       
+(see instructions) 
+(c) 
+Enter
+ 
+reason code    
+from
+ 
+above
+(d) 
+Date of IRS
+ 
+determination or
+ 
+correspondence 
+ 
+(MM/DD/YYYY)
+ 
+(see instructions)
+(e) 
+Check 
+ 
+if Form
+ 
+1099-MISC
+ 
+was received
+(f) 
+Total wages received
+ 
+with no social security or
+ 
+Medicare tax
+ 
+withholding and not
+ 
+reported on Form W-2
+ 
+ 
+   
+   
+   
+   
+   
+       
+1
+2
+3
+4
+5
+6 Total wages. 
+Combine lines 1 through 5 in column (f). Enter here and include on Form 1040, 
+ 
+line 7; Form 1040NR, line 8; or Form 1040NR-EZ, line 3 
+.............
+6
+7
+Maximum amount of wages subject to social security tax   .    .    .
+7
+8 
+ 
+ 
+Total social security wages and social security tips (total of boxes 3 
+and 7 on Form(s) W-2), railroad retirement (RRTA) compensation 
+(subject to the 6.2% rate), and unreported tips subject to social 
+security tax from Form 4137, line 10. See instructions 
+....
+8
+9
+Subtract line 8 from line 7. If line 8 is more than line 7, enter -0- here and on line 10 
+....
+9
+10
+Wages subject to social security tax. Enter the smaller of line 6 or line 9 
+........
+10
+11
+Multiply line 10 by .062 (social security tax rate for 2013) 
+.............
+11
+12
+Multiply line 6 by .0145 (Medicare tax rate) 
+..................
+12
+13 
+Add lines 11 and 12. Enter here and on Form 1040, line 57; Form 1040NR, line 55; or  
+Form 1040NR-EZ, line 16. (Form 1040-SS and Form 1040-PR filers, see instructions)  .    .    .    
+a
+13
+For Paperwork Reduction Act Notice, see your tax return instructions.
+Cat. No. 37730B
+Form 
+8919 
+(2013)
+113,700 00
+----------------Page (0) Break----------------

@@ -1,0 +1,334 @@
+Form  
+8938
+(December 2013)
+Department of the Treasury  
+Internal Revenue Service 
+Statement of Specified Foreign Financial Assets
+a
+ 
+Information about Form 8938 and its separate instructions is at 
+www.irs.gov/form8938
+.       
+a
+ 
+Attach to your tax return.
+OMB No. 1545-2195
+Attachment  
+Sequence No.
+ 175 
+If you have attached continuation statements, check here
+Number of continuation statements
+Name(s) shown on return
+Identifying number
+Part I
+Foreign Deposit and Custodial Accounts Summary
+1
+Number of Deposit Accounts (reported on Form 8938) 
+................  
+a
+2
+Maximum Value of All Deposit Accounts 
+.....................
+ $
+3
+Number of Custodial Accounts (reported on Form 8938) 
+...............  
+a
+4
+Maximum Value of All Custodial Accounts 
+.....................
+ $
+5
+Were any foreign deposit or custodial accounts closed during the tax year? 
+..........
+Yes
+No
+Part II
+Other Foreign Assets Summary
+1
+Number of Foreign Assets (reported on Form 8938) 
+.................  
+a
+  
+2
+Maximum Value of All Assets 
+.........................
+ $
+3
+Were any foreign assets acquired or sold during the tax year? 
+..............
+Yes
+No
+Part III
+Summary of Tax Items Attributable to Specified Foreign Financial Assets 
+(see instructions)
+(a)
+ Asset Category
+(b)
+ Tax item
+(c)
+ Amount reported on 
+form or schedule
+Where reported
+                                                                                                 
+(d)
+ Form and line
+(
+e)
+ Schedule and line
+   
+1
+  Foreign Deposit and
+1a
+  Interest
+$
+ Custodial Accounts
+1b
+  Dividends
+$
+     
+1c
+  Royalties
+$
+     
+1d
+  Other income
+$
+     
+1e
+  Gains (losses)
+$
+     
+1f
+   Deductions
+$
+      
+1g
+  Credits
+$
+ 
+ 
+2
+  Other Foreign Assets
+2a
+  Interest
+$
+     
+2b
+  Dividends
+$
+     
+2c
+  Royalties
+$
+     
+2d
+  Other income
+$
+      
+2e
+  Gains (losses)
+$
+     
+2f
+   Deductions
+$
+     
+2g
+  Credits
+$
+Part IV
+Excepted Specified Foreign Financial Assets 
+(see instructions)
+If you reported specified foreign financial assets on one or more of the following forms, enter the number of such forms filed.
+ You do 
+not need to include these assets on Form 8938 for the tax year. 
+1. Number of Forms 3520
+2. Number of Forms 3520-A
+3. Number of Forms 5471
+4. Number of Forms 8621
+5. Number of Forms 8865
+6. Number of Forms 8891
+Part V
+Detailed Information for Each Foreign Deposit and Custodial Account Included in the Part I Summary 
+(see instructions) 
+If you have more than one account to report, attach a continuation statement for each additional account (see instructions).
+1
+Type of account
+Deposit
+Custodial
+2
+   Account number or other designation
+3
+Check all that apply
+a
+Account opened during tax year
+b
+Account closed during tax year 
+c
+Account jointly owned with spouse
+d
+No tax item reported in Part III with respect to this asset
+4
+Maximum value of account during tax year 
+.....................
+ $
+5
+Did you use a foreign currency exchange rate to convert the value of the account into U.S. dollars?   .    .
+Yes
+No
+6
+If you answered “Yes” to line 5, complete all that apply.
+(1)  
+Foreign currency in which 
+account is maintained
+(2)  
+Foreign currency exchange rate used to 
+convert to U.S. dollars
+(3)  
+Source of exchange rate used if not from 
+U.S. Treasury Financial Management Service
+For Paperwork Reduction Act Notice, see the separate instructions. 
+Cat. No. 37753A
+Form 
+8938
+  (12-2013) 
+----------------Page (0) Break----------------
+Form 8938 (12-2013)
+Page 
+2 
+Part V
+Detailed Information for Each Foreign Deposit and Custodial Account Included in the Part I Summary 
+(see instructions) (continued) 
+7 
+Name of financial institution in which account is maintained
+8 
+Mailing address of financial institution in which account is maintained. Number, street, and room or suite no.
+9 
+City or town
+Part VI
+Detailed Information for Each "Other Foreign Asset" Included in the Part II Summary 
+(see instructions) 
+Note.
+ 
+If you reported specified foreign financial assets on Forms 3520, 3520-A, 5471, 8621, 8865, or 8891, you do not have to include
+ 
+the assets on Form 8938. You must complete Part IV. See instructions.
+If you have more than one asset to report, attach a continuation statement for each additional asset (see instructions).
+1 
+Description of asset
+2  
+Identifying number or other designation
+3
+Complete all that apply. See instructions for reporting of multiple acquisition or disposition dates.
+a
+Date asset acquired during tax year, if applicable 
+..................
+b
+Date asset disposed of during tax year, if applicable 
+.................
+c
+Check if asset jointly owned with spouse
+d
+Check if no tax item reported in Part III with respect to this asset
+4
+Maximum value of asset during tax year (check box that applies)
+a
+$0 - $50,000
+b
+$50,001 - $100,000
+c
+$100,001 - $150,000
+d
+$150,001 - $200,000
+e
+If more than $200,000, list value 
+........................
+$
+5
+Did you use a foreign currency exchange rate to convert the value of the asset into U.S. dollars?  .    .    .
+Yes
+No
+6
+If you answered “Yes” to line 5, complete all that apply.
+(1)  
+Foreign currency in which asset 
+is denominated
+(2)  
+Foreign currency exchange rate used to 
+convert to U.S. dollars
+(3)  
+Source of exchange rate used if not from 
+U.S. Treasury Financial Management Service
+7
+If asset reported on line 1 is stock of a foreign entity or an interest in a foreign entity, enter the following information fo
+r the asset.
+a
+Name of foreign entity
+b
+Type of foreign entity
+(1)
+Partnership
+(2)
+Corporation
+(3)
+Trust
+(4)
+Estate
+c
+Mailing address of foreign entity. Number, street, and room or suite no.
+d
+8 
+ 
+If asset reported on line 1 is not stock of a foreign entity or an interest in a foreign entity, enter the following informatio
+n for the 
+asset.
+Note.
+ 
+If this asset has more than one issuer or counterparty, attach a continuation statement with the same information for each 
+additional issuer or counterparty (see instructions).
+a
+Name of issuer or counterparty
+Check if information is for 
+Issuer
+Counterparty
+b
+Type of issuer or counterparty
+(1)
+Individual
+(2)
+Partnership
+(3)
+Corporation
+(4)
+Trust
+(5)
+Estate
+c
+Check if issuer or counterparty is a
+U.S. person
+Foreign person
+d
+Mailing address of issuer or counterparty. Number, street, and room or suite no.
+e
+Form  
+8938 
+ (12-2013)
+State
+US Zip Code
+Foreign country name
+Foreign province
+Foreign postal code
+City or town
+State
+US Zip Code
+Foreign country name
+Foreign province
+Foreign postal code
+City or town
+State
+US Zip Code
+Foreign country name
+Foreign province
+Foreign postal code
+----------------Page (1) Break----------------

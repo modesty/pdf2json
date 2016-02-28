@@ -919,10 +919,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       this.ctx.font = rule;
 
         //MQZ.Oct.23.2012. enable font detection
-        if (!fontObj.spaceWidth) {
-            var spaceId = isArray(fontObj.toFontChar) ? fontObj.toFontChar.indexOf(32) : -1;
-            fontObj.spaceWidth = (spaceId >= 0 && isArray(fontObj.widths)) ? fontObj.widths[spaceId] : 250;
-        }
+        //if (!fontObj.spaceWidth) {
+        //    var spaceId = isArray(fontObj.toFontChar) ? fontObj.toFontChar.indexOf(32) : -1;
+        //    fontObj.spaceWidth = (spaceId >= 0 && isArray(fontObj.widths)) ? fontObj.widths[spaceId] : 250;
+        //}
         this.ctx.setFont(fontObj);
     },
     setTextRenderingMode: function CanvasGraphics_setTextRenderingMode(mode) {
@@ -1168,9 +1168,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
             }
 
             //MQZ Dec.03.2013 Disable font.remeasure
-              font.remeasure = false;
+            //  font.remeasure = false;
+            const p2j_remeasure = false;
 
-            if (font.remeasure && width > 0) {
+            if (font.remeasure && width > 0 && p2j_remeasure) {
               // some standard fonts may not have the exact width, trying to
               // rescale per character
               var measuredWidth = ctx.measureText(character).width * 1000 /
@@ -1274,7 +1275,12 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       }
 
 //MQZ Nov.28.2012 Adjust Text Positions, and also make it a string
-        var stGlyphs = [];
+      var stGlyphs = [];
+      var spaceWidth = font.spaceWidth;
+      if (!font.spaceWidth) {
+          var spaceId = isArray(font.toFontChar) ? font.toFontChar.indexOf(32) : -1;
+          spaceWidth = (spaceId >= 0 && isArray(font.widths)) ? font.widths[spaceId] : 250;
+      }
 
       for (var i = 0; i < arrLength; ++i) {
         var e = arr[i];
@@ -1289,7 +1295,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
               }
           }
           else {
-              if (-e >= font.spaceWidth) {
+              if (-e >= spaceWidth) {
                   if (vertical) {
                       current.y += spacingLength;
                   } else {

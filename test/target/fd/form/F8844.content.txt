@@ -1,0 +1,69 @@
+Form 
+8844
+Department of the Treasury 
+Internal Revenue Service
+Empowerment Zone Employment Credit
+a
+ Attach to your tax return.
+a
+ Information about Form 8844 and its instructions is at 
+www.irs.gov/form8844.
+OMB No. 1545-1444
+20
+13
+Attachment 
+Sequence No. 
+99
+Name(s) shown on return
+Identifying number
+1
+Enter the total qualified wages paid or incurred during 
+calendar year 
+2013
+ 
+only (see instructions)
+a 
+Qualified empowerment zone wages 
+......
+$ 
+× 20% (.20)
+1a
+b 
+Reserved 
+...............
+1b
+2 
+Enter the amount from line 1a. See instructions for the adjustment you must make to salaries and 
+wages 
+...............................
+2
+3 
+Empowerment zone employment credit from partnerships, S corporations, cooperatives, estates, 
+and trusts 
+..............................
+3
+4 
+ 
+Add lines 2 and 3. Cooperatives, estates, and trusts, go to line 5. Partnerships and S corporations, 
+stop here and report this amount on Schedule K. All others, stop here and report this amount on
+Form 3800, Part III, line 3 
+........................
+4
+5 
+Amount allocated to patrons of the cooperative or beneficiaries of the estate or trust (see 
+instructions) 
+.............................
+5
+6 
+Cooperatives, estates, and trusts, subtract line 5 from line 4. Report this amount on Form 3800,
+ 
+Part III, line 3 
+............................
+6
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 16145S
+Form 
+8844
+ 
+(2013)
+----------------Page (0) Break----------------

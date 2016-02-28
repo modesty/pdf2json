@@ -1,0 +1,157 @@
+SCHEDULE SE  
+(Form 1040) 
+Department of the Treasury  
+Internal Revenue Service  (99) 
+Self-Employment Tax
+a
+ 
+a
+ 
+Attach to Form 1040 or Form 1040NR.        
+ 
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No. 
+17
+Name of person with 
+self-employment
+ income (as shown on Form 1040)
+Social security number of person  
+with 
+self-employment
+ income 
+a
+ 
+Before you begin:
+ 
+To determine if you must file Schedule SE, see the instructions. 
+May I Use Short Schedule SE or Must I Use Long Schedule SE?
+Note. 
+Use this flowchart 
+only if 
+you must file Schedule SE. If unsure, see 
+Who Must File Schedule SE 
+in the instructions. 
+No
+Did you receive wages or tips in 2013? 
+Yes
+d
+d
+d
+Are you a minister, member of a religious order, or Christian 
+Science practitioner who received IRS approval 
+not 
+to be taxed 
+on earnings from these sources, 
+but 
+you owe self-employment 
+tax on other earnings? 
+Yes
+a
+No
+d
+Are you using one of the optional methods to figure your net 
+earnings (see instructions)? 
+Yes
+a
+No
+d
+Did you receive church employee income (see instructions) 
+reported on Form  W-2 of $108.28 or more? 
+Yes
+a
+No
+d
+You may use Short Schedule SE below 
+Was the total of your wages and tips subject to social security 
+or railroad retirement (tier 1) tax 
+plus
+ your net earnings from 
+self-employment more than $113,700?
+Yes
+a
+No
+d
+Did you receive tips subject to social security or Medicare tax 
+that you 
+did not 
+report to your employer? 
+Yes
+a
+No
+d
+No 
+`
+Did you report any wages on Form 8919, Uncollected Social 
+Security and Medicare Tax on Wages?
+Yes
+a
+a
+You must use Long Schedule SE on page 2 
+d
+Section A, Short Schedule SE.   Caution.  
+Read above to see if you can use Short Schedule SE. 
+1a
+Net farm profit or (loss) from Schedule F, line 34, and farm partnerships, Schedule K-1 (Form 
+1065), box 14, code A
+........................
+1a 
+b
+If you received social security retirement or disability benefits, enter the amount of Conservation Reserve 
+Program payments included on Schedule F, line 4b, or listed on Schedule K-1 (Form 1065), box 20, code Z 
+1b 
+(
+)
+2 
+Net profit or (loss) from Schedule C, line 31; Schedule C-EZ, line 3; Schedule K-1 (Form 1065), 
+box 14, code A (other than farming); and Schedule K-1 (Form 1065-B), box 9, code J1. 
+Ministers and members of religious orders, see instructions for types of income to report on
+this line. See instructions for other income to report 
+..............
+2 
+3 
+Combine lines 1a, 1b, and 2 
+.....................
+3 
+4 
+Multiply line 3 by 92.35% (.9235). If less than $400, you do not owe self-employment tax;
+ do 
+not 
+file this schedule unless you have an amount on line 1b
+...........
+a
+4 
+Note. 
+If line 4 is less than $400 due to Conservation Reserve Program payments on line 1b, 
+see instructions.
+If the amount on line 4 is: 
+• $113,700 or less, multiply line 4 by 15.3% (.153). Enter the result here and on 
+Form 1040, line 56, 
+or
+ Form 1040NR, line 54 
+• More than $113,700, multiply line 4 by 2.9% (.029). Then, add $14,098.80 to the result. 
+Enter the total here and on 
+Form 1040, line 56, 
+or
+ Form 1040NR, line 54
+.......
+5 
+6      Deduction for one-half of self-employment tax. 
+Multiply line 5 by 50% (.50). Enter the result here and on
+ Form 
+1040, line 27, 
+or
+ Form 1040NR, line 27 
+........
+6 
+For Paperwork Reduction Act Notice, see your tax return instructions.
+Cat. No. 11358Z
+Schedule SE (Form 1040) 2013 
+Schedule SE Page 2
+Information about Schedule SE and its separate instructions is at www.irs.gov/schedulese.
+5
+ 
+Self-employment tax. 
+----------------Page (0) Break----------------

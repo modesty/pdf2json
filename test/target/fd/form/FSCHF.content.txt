@@ -1,0 +1,376 @@
+SCHEDULE F 
+(Form 1040)
+Department of the Treasury 
+Internal Revenue Service  (99)
+Profit or Loss From Farming
+a
+ 
+Attach to Form 1040, Form 1040NR, Form 1041, Form 1065, or Form 1065-B.
+a
+ 
+.
+OMB No. 1545-0074
+20
+13
+Attachment  
+Sequence No.  
+14
+Name of proprietor
+Social security number (SSN)
+A 
+  Principal crop or activity
+B   Enter code from Part IV
+a
+C  
+Accounting method:
+Cash    
+Accrual
+D 
+Employer ID number (EIN), (see instr)
+E  
+Yes
+No
+F  
+Did you make any payments in 2013 that would require you to file Form(s) 1099 (see instructions)?    .     .     .     .     .     .     .     .     .
+Yes
+No
+G  
+If “Yes,” did you or will you file required Forms 1099?    .     .     .     .     .     .     .     .     .     .     .     .     .     .     .     .     .     .     .     .     .     .
+Yes
+No
+Part I
+Farm Income, Cash Method.  
+Complete Parts I and II (Accrual method. Complete Parts II and III, and Part I, line 9.)
+1a
+Sales of livestock and other resale items (see instructions)
+......
+1a
+b
+Cost or other basis of livestock or other items reported on line 1a 
+....
+1b
+c
+Subtract line 1b from line 1a 
+........................
+2
+Sales of livestock, produce, grains, and other products you raised 
+............
+2
+3a
+Cooperative distributions (Form(s) 1099-PATR)    .
+3a
+3b
+Taxable amount
+3b
+4a
+Agricultural program payments
+ (see instructions)
+.
+4a
+4b
+Taxable amount
+4b
+5a
+Commodity Credit Corporation (CCC) loans reported under election 
+............
+5a
+b
+CCC loans forfeited 
+.........
+5b
+5c
+Taxable amount
+5c
+6
+Crop insurance proceeds and federal crop disaster payments (see instructions)
+a
+6a
+6b
+Taxable amount
+6b
+c
+If election to defer to 2014 is attached, check here 
+a
+6d
+Amount deferred from 2012 
+6d
+7
+Custom hire (machine work) income 
+.....................
+7
+8
+8
+9 
+ 
+Gross income.  
+Add amounts in the right column (lines 1c, 2, 3b, 4b, 5a, 5c, 6b, 6d, 7, and 8). If you use the 
+accrual method, enter the amount from Part III, line 50 (see instructions)
+.......... 
+a
+9
+Part II
+Farm Expenses, Cash and Accrual Method. 
+Do not include personal or living expenses (see instructions).
+Amount received in 2013 
+.......
+Other income, including federal and state gasoline or fuel tax credit or refund
+ 
+(see instructions)
+....
+1c
+10 
+ 
+Car and truck expenses (see 
+instructions). Also attach  
+Form 4562
+  
+10
+11
+Chemicals 
+......
+11
+12
+Conservation expenses (see instructions) 
+12
+13
+Custom hire (machine work)  .
+13
+14 
+ 
+Depreciation and section 179 expense
+(see instructions)  See Form 4562
+14
+15 
+ 
+Employee benefit programs 
+other  than on line 23  .    .    .
+15
+16
+Feed 
+.......
+16
+17
+Fertilizers and lime      .    .    .
+17
+18
+Freight and trucking   .    .    .
+18
+19
+Gasoline, fuel, and oil .    .    .
+19
+20
+Insurance (other than health)
+20
+21
+Interest:
+a
+Mortgage (paid to banks, etc.)
+21a
+b
+Other 
+.......
+21b
+22
+Labor hired (less employment credits)
+22
+23
+Pension and profit-sharing plans  
+23
+24
+Rent or lease (see instructions):
+Vehicles, machinery, equipment  
+a
+24a
+b
+Other (land, animals, etc.)    .    .
+24b
+25
+Repairs and maintenance    .    .
+25
+26
+Seeds and plants 
+.....
+26
+27
+Storage and warehousing    .    .
+27
+28
+Supplies 
+.......
+28
+29
+Taxes 
+........
+29
+30
+Utilities 
+........
+30
+31
+Veterinary, breeding, and medicine 
+31
+32
+Other expenses (specify):
+a
+32a
+b
+32b
+c
+32c
+d
+32d
+e
+32e
+f
+32f
+33      Total expenses.  
+Add lines 10 through 32f. If line 32f is negative, see instructions 
+.......
+a
+33
+34
+Net farm profit or (loss).  
+Subtract line 33 from line 9
+................
+If a profit, stop here and see instructions for where to report. If a loss, complete lines 35 and 36.
+34
+35
+Did you receive an applicable subsidy in 2013? (see instructions)
+.................
+Yes
+No
+36
+Check the box that describes your investment in this activity and see instructions for where to report your loss.
+a
+All investment is at risk.
+b
+Some investment is not at risk.
+For Paperwork Reduction Act Notice, see the separate instructions.
+Cat. No. 11346H
+Schedule F (Form 1040) 2013
+If at risk, you must complete Form 6198
+Information about Schedule F and its separate instructions is at www.irs.gov/schedulef
+Did you “materially participate” in the operation of this business during 2013? If “No,” see instructions for limit on passive losses
+----------------Page (0) Break----------------
+47, subtract line 47 from line 48. Enter the result on line 49. Add lines 44 and 49. Enter the total on line 50 and on Part I, line 9.
+*If you use the unit-livestock-price method or the farm-price method of valuing inventory and the amount on line 48 is larger than the amount on line
+Schedule F (Form 1040) 2013
+Page 
+2
+Part III
+Farm Income„Accrual Method  
+(see instructions).
+37
+Sales of livestock, produce, grains, and other products (see instructions)      .     .     .     .     .     .     .     .     .     .     .
+37
+38a
+Cooperative distributions (Form(s) 1099-PATR)    .
+38a
+38b
+Taxable amount
+38b
+39a
+Agricultural program payments 
+......
+39a
+39b
+Taxable amount
+39b
+40
+Commodity Credit Corporation (CCC) loans:
+a
+CCC loans reported under election 
+......................
+40a
+b
+CCC loans forfeited 
+.........
+40b
+40c
+Taxable amount
+40c
+41
+Crop insurance proceeds 
+........................
+41
+42
+Custom hire (machine work) income 
+.....................
+42
+43
+Other income (see instructions)
+.......................
+43
+44 
+Add amounts in the right column for lines 37 through 43 (lines 37, 38b, 39b, 40a, 40c, 41, 42, and 43)   .    .
+44
+45 
+ 
+Inventory of livestock, produce, grains, and other products at beginning of 
+the year. Do not include sales reported on Form 4797 
+.......
+45
+46 
+ 
+Cost of livestock, produce, grains, and other products purchased during the 
+year 
+......................
+46
+47
+Add lines 45 and 46 
+.................
+47
+48
+Inventory of livestock, produce, grains, and other products at end of year     .
+48
+49
+Cost of livestock, produce, grains, and other products sold. Subtract line 48 from line 47*  
+.....
+49
+50      Gross income.  
+Subtract line 49 from line 44. Enter the result here and on Part I, line 9 
+.....
+a
+50
+Part IV
+Principal Agricultural Activity Codes
+F
+!
+CAUTION
+Do not file Schedule F (Form 1040) to report the 
+following.
+• Income from providing agricultural services such as 
+soil preparation, veterinary, farm labor, horticultural, or 
+management for a fee or on a contract basis. Instead file 
+Schedule C (Form 1040) or Schedule C-EZ (Form 1040).
+• Income from breeding, raising, or caring for dogs, cats, or 
+other pet animals. Instead file Schedule C (Form 1040) or 
+Schedule C-EZ (Form 1040).
+• Sales of livestock held for draft, breeding, sport, or dairy 
+purposes. Instead file Form 4797.
+These codes for the Principal Agricultural Activity classify 
+farms by their primary activity to facilitate the administration of 
+the Internal Revenue Code. These six-digit codes are based on 
+the North American Industry Classification System (NAICS).
+Select the code that best identifies your primary farming 
+activity and enter the six-digit number on line B.
+Crop Production
+111100      Oilseed and grain farming
+111210      Vegetable and melon farming
+111300      Fruit and tree nut farming
+111400      Greenhouse, nursery, and floriculture production
+111900      Other crop farming
+Animal Production
+112111      Beef cattle ranching and farming
+112112      Cattle feedlots
+112120      Dairy cattle and milk production
+112210      Hog and pig farming
+112300      Poultry and egg production
+112400      Sheep and goat farming
+112510      Aquaculture
+112900      Other animal production
+Forestry and Logging
+113000      Forestry and logging (including forest nurseries and 
+timber tracts)
+Schedule F (Form 1040) 2013
+----------------Page (1) Break----------------

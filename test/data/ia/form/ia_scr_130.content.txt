@@ -1,0 +1,210 @@
+2012 IA 130
+Iowa  Out-of-state Credit Computation
+41-130 (09/05/12)
+GENERAL INSTRUCTIONS:
+Also see instructions for line 62, IA 1040.
+•
+Nonresidents of Iowa may not claim this credit.
+•
+Part-year residents of Iowa may claim this credit
+ONLY if any income earned while an Iowa resident
+was also taxed by another state or foreign country.
+•
+The tax imposed on your income is the tax shown
+on the income tax return you filed with that state or
+foreign country.
+•
+You must complete a separate IA 130 for each
+state or foreign country. Separate IA 130s are not
+required for foreign taxes paid by mutual funds or
+other regulated investment companies.
+Name of State / Country that taxed income also taxed by
+Iowa:
+                        Spouse:                        You:
+Enclose the following with your Iowa return:
+•
+This schedule: IA 130
+•
+The income tax return you filed with the other state
+•
+If you are claiming the credit for taxes paid to a foreign
+country, include federal form 1116, Foreign Tax Credit, if
+it is required with your federal return.
+If you were assessed a minimum tax or a special tax on a
+lump-sum distribution by another state, see our Expanded
+Instructions on our Web site, www.iowa.gov/tax
+www.iowa.gov/tax
+Iowa Department of Revenue
+Name(s) as shown on page 1 of the IA 1040
+  Social Security Number
+Column B                Column A
+Spouse
+Status 3 Only
+You or Joint
+1.
+Amount of gross income you received 
+while you were an Iowa resident
+that was taxed by Iowa and taxed by the other state/foreign country
+.....................................
+1.
+__________________
+.00
+_________________
+.00
+2.
+Gross taxable income for part-year residents from line 15, IA 126
+..........................................
+2.
+__________________
+.00
+_________________
+.00
+3.
+Divide line 1 by line 2 and enter the percentage. Do not exceed 100.0%.
+.............................
+3.
+___________________
+%
+__________________
+%
+4.
+Tax from line 54, IA 1040, less lump-sum tax and minimum tax
+..............................................
+4.
+__________________
+.00
+_________________
+.00
+5.
+Multiply line 4 by the percentage on line 3.
+...................................................................................
+5.
+__________________
+.00
+_________________
+.00
+6.
+Enter the tax imposed by the other state or foreign country.
+....................................................
+6.
+__________________
+.00
+_________________
+.00
+7.
+Enter the total amount of gross income taxed by the other state/foreign country.
+...............
+7.
+__________________
+.00
+_________________
+.00
+8.
+Divide line 1 by line 7 and enter the percentage. Do not exceed 100.0%.
+.............................
+8.
+___________________
+%
+__________________
+%
+9.
+Multiply line 6 by the percentage on line 8.
+...................................................................................
+9.
+__________________
+.00
+_________________
+.00
+10.
+Enter the SMALLER of lines 5 or 9. This is your Out-of-state Tax Credit
+Enter this amount on line 62, IA 1040.
+........................................................................................
+10.
+__________________
+.00
+_________________
+.00
+s
+s
+s
+Column B                Column A
+Spouse
+Status 3 Only
+You or Joint
+SECTION I – 
+FULL
+-YEAR IOWA RESIDENTS ONLY
+1.
+Amount of gross income you received that was taxed by Iowa and
+taxed by the other state/foreign country
+.........................................................................................
+1.
+__________________
+.00
+_________________
+.00
+2.
+Gross taxable income for residents from line 15, IA 1040
+.........................................................
+2.
+__________________
+.00
+_________________
+.00
+3.
+Divide line 1 by line 2 and enter the percentage. Do not exceed 100.0%.
+.............................
+3.
+___________________
+%
+__________________
+%
+4.
+Tax from line 54, IA 1040, less lump sum tax and minimum tax
+...............................................
+4.
+__________________
+.00
+_________________
+.00
+5.
+Multiply line 4 by the percentage on line 3.
+...................................................................................
+5.
+__________________
+.00
+_________________
+.00
+6.
+Enter the tax imposed by the other state or foreign country.
+....................................................
+6.
+__________________
+.00
+_________________
+.00
+7.
+Enter the SMALLER of lines 5 or 6. This is your Out-of-state Tax Credit.
+Enter this amount on line 62, IA 1040.
+...........................................................................................
+7.
+__________________
+.00
+_________________
+.00
+s
+s
+Shareholders of S corporations
+ who have income from the
+corporation that was apportioned outside Iowa and not taxed by
+Iowa 
+cannot
+ claim an out-of-state credit on this income.
+SECTION II – 
+PART
+-YEAR IOWA RESIDENTS ONLY
+NOTE:
+ The credit or portion of the credit must not exceed the
+amount of the Iowa tax imposed on the same income that was
+taxed by the other state or foreign country.
+----------------Page (0) Break----------------

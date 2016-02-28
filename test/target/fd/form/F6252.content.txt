@@ -1,0 +1,216 @@
+Selling price including mortgages and other debts. Do not include interest, whether stated or unstated
+Form 
+6252
+Department of the Treasury 
+Internal Revenue Service
+Installment Sale Income
+a
+ 
+Attach to your tax return.
+a
+ 
+Use a separate form for each sale or other disposition of  property on the installment method.
+ 
+a
+ 
+OMB No. 1545-0228
+20
+13
+Attachment  
+Sequence No. 
+79
+Name(s) shown on return
+Identifying number
+1 
+Description of property 
+a
+  
+2 
+a
+Date acquired (mm/dd/yyyy)
+ 
+a
+a
+3 
+Was the property sold to a related party (see instructions) after May 14, 1980? If “No,” skip line 4
+....
+Yes
+No
+4 
+Was the property you sold to a related party a marketable security? If “Yes,” complete Part III. If “No,” 
+complete Part III for the year of sale and the 2 years after the year of sale
+............
+Yes
+No
+Part I
+Gross Profit and Contract Price. 
+Complete this part for the year of sale only.
+5 
+5 
+6 
+Mortgages, debts, and other liabilities the buyer assumed or took the
+property subject to (see instructions)
+...........
+6 
+7 
+Subtract line 6 from line 5 .
+..............
+7 
+8 
+Cost or other basis of property sold
+...........
+8 
+9 
+Depreciation allowed or allowable
+............
+9 
+10 
+Adjusted basis. Subtract line 9 from line 8
+.........
+10 
+11 
+Commissions and other expenses of sale
+.........
+11 
+12 
+Income recapture from Form 4797, Part III (see instructions)   .    .    .
+12 
+13 
+Add lines 10, 11, and 12
+.........................
+13 
+14 
+14 
+15 
+If the property described on line 1 above was your main home, enter the amount of your excluded 
+gain (see instructions). Otherwise, enter -0-
+...................
+15 
+Subtract line 15 from line 14
+...................
+16 
+17 
+Subtract line 13 from line 6. If zero or less, enter -0-
+................
+17 
+Add line 7 and line 17
+....................
+18 
+Part II
+Installment Sale Income. 
+Complete this part for the year of sale
+ and 
+ 
+certain debts you must treat as a payment on installment obligations.
+19 
+Gross profit percentage (expressed as a decimal amount). Divide line 16 by line 18. For years after 
+the year of sale, see instructions
+......................
+19 
+20 
+If this is the year of sale, enter the amount from line 17. Otherwise, enter -0-
+........
+20 
+21 
+Payments received during year (see instructions). 
+Do not
+ include interest, whether stated or unstated 
+21 
+22 
+Add lines 20 and 21
+..........................
+22 
+23 
+Payments received in prior years (see instructions). 
+Do not
+ include 
+interest, whether stated or unstated
+...........
+23 
+24      Installment sale income. 
+Multiply line 22 by line 19
+................
+24 
+25 
+Enter the part of line 24 that is ordinary income under the recapture rules (see instructions)  .    .    .
+25 
+26 
+Subtract line 25 from line 24. Enter here and on Schedule D or Form 4797 (see instructions) .    .    .
+26 
+Part III
+Related Party Installment Sale Income. Do not 
+complete if you received the final payment this tax year.
+27 
+Name, address, and taxpayer identifying number of related party
+28 
+Did the related party resell or dispose of the property (“second disposition”) during this tax year? 
+.....
+Yes
+No
+29 
+I
+a
+The second disposition was more than 2 years after the first disposition (other than dispositions of 
+marketable securities). If this box is checked, enter the date of disposition (mm/dd/yyyy)
+.....
+a
+b
+The first disposition was a sale or exchange of stock to the issuing corporation.
+c
+The second disposition was an involuntary conversion and the threat of conversion occurred after the first disposition.
+d
+The second disposition occurred after the death of the original seller or buyer.
+e
+It can be established to the satisfaction of the IRS that tax avoidance was not a principal purpose for either of the
+dispositions. If this box is checked, attach an explanation (see instructions).
+30 
+Selling price of property sold by related party (see instructions)
+............
+30 
+31
+Enter contract price from line 18 for year of first sale
+................
+31
+ 32
+Enter the 
+smaller
+ of line 30 or line 31
+.....................
+32
+ 33
+Total payments received by the end of your 2013 tax year (see instructions)
+........
+33
+ 34
+Subtract line 33 from line 32. If zero or less, enter -0-
+...............
+34
+ 35
+Multiply line 34 by the gross profit percentage on line 19 for year of first sale
+........
+35
+ 36
+Enter the part of line 35 that is ordinary income under the recapture rules (see instructions)  .    .    .
+36
+ 37
+Subtract line 36 from line 35. Enter here and on Schedule D or Form 4797 (see instructions) .    .    .
+37
+For Paperwork Reduction Act Notice, see page 4.
+Cat. No. 13601R
+Form 
+6252
+ (2013)
+f the answer to question 28 is 'Yes', complete lines 30 through 37 below unless one of the following conditions is met. Check the box that applies.
+Information about Form 6252 and its instructions is at www.irs.gov/form6252. 
+Subtract line 13 from line 5. If zero or less, do not complete the rest of this form (see instructions)
+any year you receive a payment or have 
+18
+ 
+Contract price. 
+16
+ 
+Gross profit. 
+b
+ 
+Date sold (mm/dd/yyyy) 
+----------------Page (0) Break----------------

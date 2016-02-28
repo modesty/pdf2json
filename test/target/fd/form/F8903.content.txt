@@ -1,0 +1,174 @@
+Form 
+8903
+(Rev. December 2010) 
+Department of the Treasury 
+Internal Revenue Service
+Domestic Production Activities Deduction
+a
+ 
+Attach to your tax return. 
+ 
+a
+ 
+See separate instructions.
+OMB No. 1545-1984
+Attachment  
+Sequence No. 
+143
+ 
+Name(s) as shown on return
+Identifying number
+Note. Do not
+ complete column (a), unless you have oil-related 
+production activities. Enter amounts for all activities in column (b), 
+including oil-related production activities.
+(a)  
+Oil-related production activities
+(b)
+ 
+ 
+All activities
+1 
+Domestic production gross receipts (DPGR) 
+........
+1 
+2 
+Allocable cost of goods sold. If you are using the small business 
+simplified overall method, skip lines 2 and 3 
+........
+2 
+3 
+Enter deductions and losses allocable to DPGR (see  instructions) .      
+3 
+4 
+ 
+If you are using the small business simplified overall method, enter the 
+amount of cost of goods sold and other deductions or losses you 
+ratably apportion to DPGR. All others, skip line 4 
+.......
+4 
+5 
+Add lines 2 through 4 
+...............
+5 
+6 
+Subtract line 5 from line 1 
+..............
+6 
+7 
+Qualified production activities income from estates, trusts, and 
+certain partnerships and  S corporations (see instructions)    .    .    .
+7 
+8 
+Add lines 6 and 7. Estates and trusts, go to line 9, all others, skip line
+9 and go to line 10
+................
+8 
+9 
+Amount allocated to beneficiaries of the estate or trust (see 
+instructions) 
+..................
+9 
+10 
+ 
+a 
+ 
+Oil-related qualified production activities income.  
+Estates and
+trusts, subtract line 9, column (a), from line 8, column (a), all
+ 
+others, 
+enter amount from line 8, column (a). If zero or less, enter -0- here .
+10a 
+b 
+ 
+ 
+Qualified production activities income. 
+Estates and trusts, subtract 
+line 9, column (b), from line 8, column (b), all
+ 
+others, enter amount 
+from line 8, column (b). If zero or less, enter -0- here, skip lines 11
+through 21,
+ 
+and enter -0- on line 22
+...........
+10b 
+11 
+Income limitation (see instructions):
+• Individuals, estates, and trusts. Enter your adjusted gross income figured without the 
+domestic production activities deduction 
+................
+}
+11 
+• All others. Enter your taxable income figured without the domestic production  activities 
+deduction (tax-exempt organizations, see instructions) 
+...........
+12 
+Enter the smaller of line 10b or line 11. If zero or less, enter -0- here, skip lines 13 through 21, 
+and enter -0- on line 22 
+........................
+12 
+13 
+Enter 9% of line 12 
+.........................
+13 
+14 
+a
+Enter the smaller of line 10a or line 12 
+..........
+14a
+b
+Reduction for oil-related qualified production activities income. Multiply line 14a by 3%     .    .
+14b
+15 
+Subtract line 14b from line 13
+......................
+15
+16 
+Form W-2 wages (see instructions) 
+....................
+16
+17 
+Form W-2 wages from estates, trusts, and certain partnerships and S corporations   
+(see instructions) 
+..........................
+17
+18
+Add lines 16 and 17. Estates and trusts, go to line 19, all others, skip line 19 and go to line 20 
+18
+19
+Amount allocated to beneficiaries of the estate or trust (see instructions) 
+.......
+19
+20
+Estates and trusts, subtract line 19 from line 18, all others, enter amount from line 18    .    .    .
+20
+21 
+Form W-2 wage limitation. Enter 50% of line 20 
+................
+21
+22 
+Enter the smaller of line 15 or line 21
+....................
+22
+23 
+Domestic production activities deduction from cooperatives. Enter deduction from  Form  
+1099-PATR, box 6 
+.........................
+23
+24
+Expanded affiliated group allocation (see instructions) 
+..............
+24
+25 
+Domestic production activities deduction.  
+Combine lines 22 through 24 and enter the result 
+here and on Form 1040, line 35; Form 1120, line 25; or the applicable line of your return     .    .
+25
+For Paperwork Reduction Act Notice, see separate instructions.
+Cat. No. 37712F
+Form 
+8903
+ (Rev. 12-2010)
+----------------Page (0) Break----------------
