@@ -1,0 +1,66 @@
+Form  
+8933
+Department of the Treasury 
+Internal Revenue Service
+Carbon Dioxide Sequestration Credit
+a
+  
+Attach to your tax return.
+a
+  
+To claim this credit, the qualified facility must capture at least 500,000 metric               
+tons of carbon dioxide during the tax year.
+OMB No. 1545-2132
+20
+13
+Attachment 
+Sequence No.  
+165
+a
+  
+Information about Form 8933 and its instructions is at 
+www.irs.gov/form8933
+.
+Name(s) shown on return
+Identifying number
+Qualified carbon dioxide captured at a qualified facility, disposed of in secure geological 
+storage, and not used as a tertiary injectant in a qualified enhanced oil or natural gas 
+recovery project. 
+1a
+Metric tons captured and disposed of (see instructions)
+...... 
+b
+Inflation–adjusted credit rate
+...............
+c
+Multiply line 1a by line 1b
+.........................
+1c
+Qualified carbon dioxide captured at a qualified facility, disposed of in secure geological 
+storage, and used as a tertiary injectant in a qualified enhanced oil or natural gas recovery 
+project. 
+2a
+Metric tons captured and used (see instructions)
+........
+b
+Inflation–adjusted credit rate
+...............
+c
+Multiply line 2a by line 2b
+.........................
+2c
+3
+Carbon dioxide sequestration credit from partnerships and S corporations
+........
+3
+4 
+Add lines 1c, 2c, and 3. Partnerships and S corporations, report this amount on Schedule K. All 
+others, report this amount on Form 3800, line 1x
+.................
+4
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 37748H
+Form 
+8933
+ (2013)
+----------------Page (0) Break----------------

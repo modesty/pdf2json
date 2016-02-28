@@ -1,0 +1,176 @@
+Form
+ 
+8959
+ 
+Department of the Treasury  
+Internal Revenue Service 
+Additional Medicare Tax
+a
+ 
+If any line does not apply to you, leave it blank. See separate instructions. 
+ 
+a
+ 
+Attach to Form 1040, 1040NR, 1040-PR, or 1040-SS.
+ 
+ 
+a
+ 
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No. 
+71
+Name(s) shown on Form 1040
+Your social security number
+Part I 
+Additional Medicare Tax on Medicare Wages
+1 
+Medicare wages and tips from Form W-2, box 5. If you have 
+more than one Form W-2, enter the total of the amounts 
+from box 5 
+................
+1
+2 
+Unreported tips from Form 4137, line 6 
+.......
+2
+3 
+Wages from Form 8919, line 6 
+..........
+3 
+4 
+Add lines 1 through 3
+............. 
+4 
+5 
+Enter the following amount for your filing status:
+Married filing jointly
+..........
+$250,000
+Married filing separately
+........
+$125,000
+Single, Head of household, or Qualifying widow(er)
+ $200,000
+5 
+6 
+Subtract line 5 from line 4. If the result is zero or less, enter -0- 
+.......... 
+6 
+7 
+Additional Medicare Tax on Medicare wages. Multiply line 6 by 0.9% (.009). Enter here and 
+go to Part II 
+...........................
+7 
+Part II 
+Additional Medicare Tax on Self-Employment Income
+8 
+Self-employment income from Schedule SE  (Form 1040), 
+Section A, line 4, or Section B, line 6. If you had a loss, enter 
+-0- (Form 1040-PR and Form 1040-SS filers, see instructions.) 
+8 
+9
+Enter the following amount for your filing status:
+Married filing jointly
+..........
+$250,000
+Married filing separately
+........
+$125,000
+Single, Head of household, or Qualifying widow(er)
+ $200,000
+9
+10 
+Enter the amount from line 4 
+..........
+10 
+11 
+Subtract line 10 from line 9. If zero or less, enter -0-  .    .    .
+11 
+12 
+Subtract line 11 from line 8. If the result is zero or less, enter -0- 
+..........
+12 
+13 
+Additional Medicare Tax on self-employment income. Multiply line 12 by 0.9% (.009). Enter 
+here and go to Part III 
+........................
+13 
+Part III 
+Additional Medicare Tax on Railroad Retirement Tax Act (RRTA) Compensation
+14
+Railroad retirement (RRTA) compensation and tips from 
+Form(s) W-2, box 14 (see instructions)
+....... 
+14 
+15
+Enter the following amount for your filing status:
+Married filing jointly
+..........
+$250,000
+Married filing separately
+........
+$125,000
+Single, Head of household, or Qualifying widow(er)
+ $200,000
+15
+16 
+Subtract line 15 from line 14. If zero or less, enter -0- 
+.............
+16 
+17 
+Additional Medicare Tax on railroad retirement (RRTA) compensation. Multiply line 16 by 
+0.9% (.009). Enter here and go to Part IV 
+.................
+17 
+Part IV 
+Total Additional Medicare Tax
+18 
+Add lines 7, 13, and 17. Also include this amount on Form 1040, line 60, (Form 1040NR, 
+1040-PR, and 1040-SS filers, see instructions) and go to Part V 
+........
+18 
+Part V 
+Withholding Reconciliation
+19 
+Medicare tax withheld from Form W-2, box 6. If you have 
+more than one Form W-2, enter the total of the amounts 
+from box 6 
+................
+19
+20
+Enter the amount from line 1 
+..........
+20
+21
+Multiply line 20 by 1.45% (.0145). This is your regular 
+Medicare tax withholding on Medicare wages 
+.....
+21
+22
+Subtract line 21 from line 19. This is your Additional Medicare Tax withholding on Medicare 
+wages
+.............................
+22
+23
+Additional Medicare Tax withholding on railroad retirement (RRTA) compensation from Form 
+W-2, box 14  (see instructions)
+.....................
+23
+24
+Total Additional Medicare Tax withholding. 
+Add lines 22 and 23. Also include this 
+ 
+amount with federal income tax withholding on Form 1040, line 62 (Form 1040NR, 1040-PR, 
+and 1040-SS filers, see instructions) 
+...................
+24
+For Paperwork Reduction Act Notice, see your tax return instructions. 
+Cat. No. 59475X
+Form 
+8959 
+(2013) 
+Information about Form 8959 and its instructions is at www.irs.gov/form8959.
+----------------Page (0) Break----------------

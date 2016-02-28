@@ -1,0 +1,390 @@
+Address 
+Postal Code
+Foreign Code
+Foreign Address 
+Foreign Address 
+Occupants
+City
+Form  
+2555 
+Department of the Treasury 
+Internal Revenue Service
+Foreign Earned Income 
+a
+ 
+Attach to Form 1040.
+ 
+a
+ 
+.
+ 
+OMB No. 1545-0074 
+20
+13
+Attachment 
+Sequence No. 
+34 
+For Use by U.S. Citizens and Resident Aliens Only 
+Name shown on Form 1040 
+Your social security number 
+Part I 
+General Information 
+1
+  Your foreign address (including country) 
+2
+  Your occupation 
+3 
+Employer’s name 
+a
+4 
+a
+Employer’s U.S. address 
+a
+b 
+Employer’s foreign address 
+a
+5 
+ 
+Employer is (check  
+any that apply): 
+F
+a 
+A foreign entity 
+b 
+A U.S. company 
+c 
+Self 
+d 
+A foreign affiliate of a U.S. company 
+e 
+Other (specify) 
+a
+6 
+a
+If you previously filed Form 2555 or Form 2555-EZ, enter the last year you filed the form. 
+a
+b 
+If you did not previously file Form 2555 or 2555-EZ to claim either of the exclusions, check here 
+a
+and go to line 7. 
+c 
+Have you ever revoked either of the exclusions? 
+....................
+Yes
+No
+d 
+If you answered “Yes,” enter the type of exclusion and the tax year for which the revocation was effective. 
+a
+7 
+Of what country are you a citizen/national? 
+a
+8 
+ 
+a 
+ 
+Did you maintain a separate foreign residence for your family because of adverse living conditions at your 
+...............
+Yes
+No
+b 
+ 
+If “Yes,” enter city and country of the separate foreign residence. Also, enter the number of days during your tax year that  y
+ou 
+maintained a second household at that address. 
+a
+9 
+List your tax home(s) during your tax year and date(s) established. 
+a
+Next, complete either Part II or Part III. If an item does not apply, enter 'NA' If you do not give 
+the information asked for, any exclusion or deduction you claim may be disallowed. 
+Part II 
+Taxpayers Qualifying Under Bona Fide Residence Test 
+(see instructions) 
+10 
+Date bona fide residence began
+ 
+a
+ 
+, and ended 
+a
+11 
+Kind of living quarters in foreign country 
+a
+a 
+Purchased house 
+b 
+Rented house or apartment 
+c 
+Rented room 
+d 
+Quarters furnished by employer 
+12a
+Did any of your family live with you abroad during any part of the tax year? 
+...........
+Yes
+No
+b 
+If “Yes,” who and for what period? 
+a
+ 
+13 
+ 
+a 
+ 
+Have you submitted a statement to the authorities of the foreign country where you claim bona fide 
+residence  that you are not a resident of that country? See instructions 
+............
+Yes
+No
+b 
+Are you required to pay income tax to the country where you claim bona fide residence? See instructions  .
+Yes
+No
+If you answered “Yes” to 13a and “No” to 13b, you do not qualify as a bona fide resident. Do not complete the rest of 
+this part. 
+14 
+ 
+(a) 
+Date
+ 
+arrived in U.S. 
+(b) 
+Date left 
+  
+U.S. 
+(c) 
+Number of 
+days in U.S.
+ 
+on business 
+(d) 
+Income earned in
+ 
+U.S. on business 
+(attach computation)
+                                                                                                                      
+(a) 
+Date
+  
+arrived in U.S. 
+(b) 
+Date left
+ 
+U.S. 
+(c)  
+Number of 
+ 
+days in U.S. on 
+business 
+(d) 
+Income earned in 
+ 
+U.S. on business 
+(attach computation)
+                                                                                                                   
+15a
+List any contractual terms or other conditions relating to the length of your employment abroad. 
+a
+b 
+Enter the type of visa under which you entered the foreign country. 
+a
+ 
+c 
+Did your visa limit the length of your stay or employment in a foreign country? If “Yes,” attach explanation  .
+Yes
+No
+d 
+Did you maintain a home in the United States while living abroad? 
+..............
+Yes
+No
+e 
+ 
+If “Yes,” enter address of your home, whether it was rented, the names of the occupants, and their relationship  
+to you. 
+a
+For Paperwork Reduction Act Notice, see the Form 1040 instructions. 
+Cat. No. 11900P 
+Form 
+2555 
+(2013) 
+** For Rented, only enter the word 'Rented'. If not rented, leave blank.
+Address
+Relationship
+State
+ZIP Code
+RENTED
+Foreign City
+Foreign Country
+Foreign City
+Foreign Country
+State/Province
+City
+State
+ZIP Code
+Information about Form 2555 and its separate instructions is at www.irs.gov/form2555
+tax home? See Second foreign household in the instructions 
+include the income from column (d) in Part IV, but report it on Form 1040. 
+If you were present in the United States or its possessions during the tax year, complete columns (a)...(d) below. Do not 
+----------------Page (0) Break----------------
+12-month period.” Do not include the income from column (f) below in Part IV, but report it on Form 1040. 
+ Address   /  City  /  Province or St   /   Country   /   Postal Code         Type of Income
+Partnership's Name    
+Form 2555 Page 3 Spouse Copy
+Form 2555 (2013) 
+Page  
+2 
+Part III 
+Taxpayers Qualifying Under Physical Presence Test  
+(see instructions) 
+16 
+The physical presence test is based on the 12-month period from 
+a
+through 
+a
+ 
+17 
+Enter your principal country of employment during your tax year. 
+a
+18 
+ 
+ 
+ 
+foreign countries that did not involve travel on or over international waters, or in or over the United States, for 24 hours or
+ 
+(a)  
+Name of country
+ 
+(including U.S.) 
+(b) 
+Date arrived 
+(c) 
+Date left 
+(d) 
+Full days 
+ 
+present in 
+ 
+country 
+(e) 
+Number of 
+ 
+days in U.S.
+ 
+on business 
+(f) 
+Income earned in U.S. 
+ 
+on business (attach 
+ 
+computation)
+                                                                                                                                                                                                                                            
+Part IV 
+All Taxpayers 
+Note: 
+Enter on lines 19 through 23 all income, including noncash income, you earned and actually or constructively received during 
+ 
+ 
+ 
+ 
+ 
+constructively received the income. 
+If you are a cash basis taxpayer, report on Form 1040 all income you received in 2013, no matter when you performed  
+the service. 
+2013 Foreign Earned Income 
+Amount 
+(in U.S. dollars) 
+19 
+Total wages, salaries, bonuses, commissions, etc. 
+...............
+19 
+20 
+Allowable share of income for personal services performed (see instructions): 
+a 
+In a business (including farming) or profession 
+.................
+20a 
+b 
+In a partnership. List partnership’s name and address and type of income. 
+a
+20b 
+21 
+ 
+Noncash income (market value of property or facilities furnished by employer—attach statement 
+showing how it was determined): 
+a 
+Home (lodging) 
+...........................
+21a 
+b 
+Meals 
+..............................
+21b 
+c
+Car 
+...............................
+21c 
+d 
+Other property or facilities. List type and amount. 
+a
+ 
+21d 
+22 
+Allowances, reimbursements, or expenses paid on your behalf for services you performed: 
+a 
+Cost of living and overseas differential 
+.........
+22a 
+b 
+Family 
+....................
+22b 
+c 
+Education 
+...................
+22c 
+d 
+Home leave 
+..................
+22d 
+e 
+Quarters 
+...................
+22e 
+f 
+For any other purpose. List type and amount. 
+a
+22f 
+g 
+Add lines 22a through 22f 
+.......................
+22g 
+23 
+Other foreign earned income. List type and amount. 
+a
+23 
+24 
+Add lines 19 through 21d, line 22g, and line 23 
+................
+24 
+25 
+Total amount of meals and lodging included on line 24 that is excludable (see instructions)  .     .  
+25 
+26 
+ 
+foreign earned income
+ ....................... 
+a
+26 
+Form 
+2555 
+(2013) 
+Form 2555 Page 3 Taxpayer Copy
+If you traveled abroad during the 12-month period entered on line 16, complete columns (a)...(f) below. Exclude travel between 
+your 2013 tax year for services you performed in a foreign country. If any of the foreign earned income received this tax year was 
+earned in a prior tax year, or will be earned in a later tax year (such as a bonus), see the instructions. include income from line 
+ 
+14, columnor line 18, column Report amounts in U.S. dollars, using the exchange rates in effect when you actually or (d),(f).
+Subtract line 25 from line 24. Enter the result here and on line 27 on page 3. This is your 2013 
+more. If you have no travel to report during the period, enter “Physically present in a foreign country or countries for the entire 
+----------------Page (1) Break----------------

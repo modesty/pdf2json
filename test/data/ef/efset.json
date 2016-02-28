@@ -1,0 +1,26 @@
+{
+    "formset" :{
+        "id": "S2013USFDD",
+        "version": "0.1",
+        "agency": "ef",
+        "main": "EFINFO",
+        "forms": [
+            {"id": "EFINFO","name":"Required Information for Electronic Filing", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_"},
+			{"id": "EFINDEZ","name":"Required Information for Electronic Filing", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_nd"},
+			{"id": "EFIDCEZ","name":"Required Information for Electronic Filing", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_dc"},
+			{"id": "EFIF","name":"Required Information for Electronic Filing", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_fd"},
+			{"id": "EFIFA","name":"Required Information for Electronic Filing", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_fd"},
+			{"id": "EFIFEZ","name":"Required Information for Electronic Filing", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_fd"},
+            {"id": "FW2",  "name":"W-2 - Wage and Tax Statement", "mc": true, "max": 50, "parent": null, "inst":"ef_ins_w2", "cid": "W2"},
+            {"id": "FW2G", "name":"W-2G - Certain Gambling Winnings", "mc": true, "max": 30, "parent": null, "inst":"ef_ins_w2g", "cid": "W2G"},
+			{"id": "F1099D", "name":"1099-DIV - Dividends and Distributions", "mc": true, "max": 50, "parent": null, "inst":"ef_ins_1099div", "cid": "1099DIV_Wks"},
+            {"id": "F1099G", "name":"1099-G - Certain Government Payments", "mc": true, "max": 10, "parent": null, "inst":"ef_ins_1099g", "cid": "1099G_Wks"},
+			{"id": "F1099I", "name":"1099-INT - Interest Income", "mc": true, "max": 50, "parent": null, "inst":"ef_ins_1099int", "cid": "1099INT_Wks"},
+            {"id": "F99MPER", "name":"1099-MISC - Miscellaneous Income", "mc": true, "max": 100, "parent": null, "inst":"ef_ins_1099misc", "cid": "1099MISC_Wks"},
+            {"id": "F1099R", "name":"1099-R - Pension/IRA Distributions", "mc": true, "max": 20, "parent": null, "inst":"ef_ins_1099r", "cid": "1099R_Wks"},
+            {"id": "A1040EZ", "name":"1040EZ - Individual Income Tax Return for Single and Joint Filers With No Dependents", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_1040ez", "attach": "1", "cid": "1040EZ"},
+            {"id": "A1040A", "name":"1040A - U.S. Individual Income Tax Return", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_1040a", "attach": "1", "cid": "1040A"},
+            {"id": "A1040", "name":"1040 - U.S. Individual Income Tax Return", "mc": false, "max": 1, "parent": null, "inst":"ef_ins_1040", "attach": "1", "cid": "1040"}
+        ]
+    }
+}

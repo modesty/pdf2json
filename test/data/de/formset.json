@@ -1,0 +1,18 @@
+{
+    "formset": {
+        "id": "S2013DED",
+        "version": "0.1.1",
+        "agency": "de",
+        "main": "DE200_01",
+        "forms": [
+            {"id": "DE200_01", "name":"Form 200-01: Delaware Individual Resident Income Tax Return", "mc": false, "max": 1, "parent": null, "inst":"de_ins_DE200-01", "cid":"200_01"},
+            {"id": "DE201P3", "name":"2013 Delaware Resident Schedule", "mc": false, "max": 1, "parent": null,
+                "inst":"de_ins_DE200-01", "cid":"200_01_SchIIR"},
+            {"id": "DE329T", "name":"Delaware Form 329: Special Tax Computation for Lump Sum Distribution from Qualified Retirement Plan - Taxpayer", "mc": false, "max": 1, "parent": null, 
+                "inst":"de_ins_DE200-01", "cid":"329T"},
+            {"id": "DE329S", "name":"Delaware Form 329: Special Tax Computation for Lump Sum Distribution from Qualified Retirement Plan - Spouse", "mc": false, "max": 1, "parent": null, 
+                "inst":"de_ins_DE200-01", "cid":"329"},
+            {"id": "VOUCHEF", "name":"Delaware Form DE 200-V: Electronic Filer Payment Voucher", "mc": false, "max": 1, "parent": null, "inst":"de_ins_DEVOUCHEF", "cid":"200V"}
+        ]
+    }
+}

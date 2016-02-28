@@ -1,0 +1,197 @@
+Form   
+8936
+Department of the Treasury  
+Internal Revenue Service 
+Qualified Plug-in Electric Drive Motor Vehicle Credit
+(Including Qualified Two- or Three-Wheeled Plug-in Electric Vehicles)
+a
+ Attach to your tax return.
+ 
+a
+ Information about Form 8936 and its instructions is at 
+www.irs.gov/form8936
+.
+OMB No. 1545-2137
+20
+13
+Attachment  
+Sequence No. 
+125
+Name(s) shown on return
+Identifying number
+Note.
+• Use this form to claim the credit for certain plug-in electric vehicles.
+• Claim the credit for certain alternative motor vehicles on Form 8910.
+Part I
+Tentative Credit
+Use a separate column for each vehicle. If you need more columns, 
+use additional Forms 8936 and include the totals on lines 12 and 19.  
+(a)  
+Vehicle 1
+(b)  
+Vehicle 2
+1
+Year, make, and model of vehicle 
+.......
+1
+2
+Vehicle identification number (see instructions) 
+.    .
+2
+3
+Enter date vehicle was placed in service (MM/DD/YYYY)
+3
+4
+If the vehicle is a two- or three-wheeled vehicle, enter 
+the cost of the vehicle. If the vehicle has at least four 
+wheels, enter the tentative credit (see instructions) 
+.
+4
+Next: 
+If you did NOT use your vehicle for business or investment purposes and did not have a credit from a partnership or 
+ 
+S corporation, skip Part II and go to Part III. All others, go to Part II.
+Part II
+Credit for Business/Investment Use Part of Vehicle
+     
+     
+5
+Business/investment use percentage (see instructions)
+5
+%
+%
+6
+Multiply line 4 by line 5. If the vehicle has at least four 
+wheels, leave lines 7 through 10 blank and enter this 
+amount on line 11
+............
+6
+7
+Section 179 expense deduction (see instructions) 
+.
+7
+8 
+Subtract line 7 from line 6 
+.........
+8
+9
+Multiply line 8 by 10% (.10)
+.........
+9
+10
+Maximum credit per vehicle 
+.........
+10
+2,500
+00
+2,500
+00
+11
+If the vehicle is a two- or three-wheeled vehicle, enter the 
+smaller
+ of line 9 or line 10
+.........
+11
+12
+Add columns (a) and (b) on line 11 
+.................
+12
+13
+Qualified plug-in electric drive motor vehicle credit from partnerships and S 
+corporations 
+.........................
+13
+14
+Business/investment use part of credit. 
+Add lines 12 and 13. Partnerships and S 
+corporations,
+ 
+stop here and
+ 
+report this amount on Schedule K. All others, report this
+amount on Form 3800, line 1y
+...................
+14
+Note. 
+Complete Part III to figure any credit for the personal use part of the vehicle.
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 37751E
+Form
+ 8936
+ (2013) 
+Year
+Make
+Model
+----------------Page (0) Break----------------
+Form 8936 (2013) 
+Page  
+2 
+Part III
+Credit for Personal Use Part of Vehicle 
+(a)  
+Vehicle 1  
+(b)  
+Vehicle 2  
+15
+If you skipped Part II, enter the amount from line 4. If 
+you completed Part II, subtract line 6 from line 4. If the 
+vehicle has at least four wheels, leave lines 16 and 17 
+ 
+blank and enter this amount on line 18
+.....
+15
+16
+Multiply line 15 by 10% (.10)
+.........
+16
+17
+Maximum credit per vehicle. If you skipped Part II, 
+enter $2,500. If you completed Part II, subtract line 11 
+from line 10 
+..............
+17
+18
+If the vehicle is a two- or three-wheeled vehicle, enter 
+the
+ smaller
+ of line 16 or line 17
+........ 
+18
+19
+Add columns (a) and (b) on line 18
+..................
+19
+20
+Enter the amount from Form 1040, line 46, or Form 1040NR, line 44 
+......
+20
+21
+Personal credits from Form 1040 or 1040NR (see instructions) 
+........
+21
+22
+Subtract line 21 from line 20 
+...................
+22
+23
+Personal use part of credit. 
+Enter the 
+smaller 
+of line 19 or line 22 here and on Form
+1040, line 53, or Form 1040NR, line 50. Check box 
+c 
+on that line and enter “8936” in
+the space next to that box.
+ 
+If line 22 is smaller than line 19, see instructions 
+....
+23
+ 
+ 
+ 
+ 
+ 
+Form
+ 8936
+ (2013) 
+----------------Page (1) Break----------------

@@ -1,0 +1,29 @@
+{
+    "formset" :{
+        "id": "S2013ORD",
+        "version": "0.1",
+        "agency": "or",
+        "main": "OR40",
+        "forms": [
+            {"id": "OR40",    "name":"Form 40 - Oregon Individual Income Tax Return (Full-Year Residents)", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_40", "efmid":"EFINFOOR",	"cid": "40"},
+			{"id": "OR40DEP",    "name":"Dependents Statement", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_40", "cid": "40"},
+            {"id": "ORWFC",   "name":"Schedule WFC - Oregon Working Family Child Care Credit for Full-Year Residents", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_WFC", "cid": "SchWFC","mpf":"ORWFC"},
+			{"id": "ORWFCDEP",   "name":"Additional Providers and Children Statement", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_WFC", "cid": "SchWFC","mpf":"ORWFC"},
+            {"id": "ORASC",   "name":"Schedule OR-ASC - Oregon Adjustments for Form 40 Filers", "mc": true, "max": 4, "parent": null,
+                "inst":"or_ins_40", "cid": "40"},
+            {"id": "OR529", "name":"Schedule OR-529 - Oregon 529 College Savings Plan Direct Deposit for Form 40 Filers", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_40", "cid": "SchORASC_pg2"},
+            {"id": "OR10", "name":"Form 10 - Underpayment of Oregon Estimated Tax", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_10", "cid": "10"},
+            {"id": "VOUCH", "name":"Form 40-V - Oregon Income Tax Payment Voucher", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_40", "cid": "40V"},
+			{"id": "ORSCHA", "name":"Oregon Only Schedule A", "mc": false, "max": 1, "parent": null,
+                "inst":"or_ins_ORSCHA", "cid": "OROnlySchA"}
+            
+        ]
+    }
+}

@@ -1,0 +1,150 @@
+Form   
+8863
+Department of the Treasury 
+Internal Revenue Service
+ (99) 
+Education Credits  
+(American Opportunity and Lifetime Learning Credits)
+a
+ 
+  
+a
+ Attach to Form 1040 or Form 1040A.
+OMB No. 1545-0074 
+20
+13
+Attachment 
+Sequence No. 
+50 
+Name(s) shown on return 
+Your social security number
+F
+!
+CAUTION
+Complete a separate Part III on page 2 for each student for whom you are claiming either credit 
+before you complete Parts I and II.
+Part I
+Refundable American Opportunity Credit 
+1
+After completing Part III for each student, enter the total of all amounts from all Parts III, line 30     .
+1
+2
+Enter: $180,000 if married filing jointly; $90,000 if single, head of 
+household,  or qualifying widow(er) 
+.............
+2
+3
+Enter the amount from Form 1040, line 38, or Form 1040A, line 22.  If you
+are filing Form 2555, 2555-EZ, or 4563, or you are excluding income from
+Puerto Rico, see Pub. 970 for the amount to enter 
+........
+3
+4
+Subtract line 3 from line 2. If zero or less, 
+stop
+; you cannot take any
+................... 
+4
+5
+Enter: $20,000 if married filing jointly; $10,000 if single, head of household, 
+or qualifying widow(er) 
+.................
+5
+6
+If line 4 is: 
+• Equal to or more than line 5, enter 1.000 on line 6 
+............
+• Less than line 5, divide line 4 by line 5. Enter the result as a decimal (rounded to 
+at least three places) 
+.....................
+}
+....
+6
+. 
+7
+Multiply line 1 by line 6. 
+Caution:
+ If you were under age 24 at the end of the year 
+and
+ meet 
+the conditions described in the instructions, you 
+cannot
+ take the refundable American opportunity  
+credit; skip line 8, enter the amount from line 7 on line 9, and check this box  
+.... 
+a
+    
+7
+8      Refundable American opportunity credit. 
+Multiply line 7 by 40% (.40). Enter the amount here and 
+on Form 1040, line 66, or Form 1040A, line 40. Then go to line 9 below
+..........
+8
+Part II
+Nonrefundable Education Credits
+9
+Subtract line 8 from line 7. Enter here and on line 2 of the Credit Limit Worksheet (see instructions)  
+9
+10
+After completing Part III for each student, enter the total of all amounts from all Parts III, line 31. If
+zero, skip lines 11 through 17, enter -0- on line 18, and go to line 19 
+..........
+10
+11
+Enter the smaller of line 10 or $10,000 
+....................
+11
+12
+Multiply line 11 by 20% (.20) 
+.......................
+12
+13
+Enter: $127,000 if married filing jointly; $63,000 if single, head of 
+household, or qualifying widow(er) 
+.............
+13
+14
+Enter the amount from Form 1040, line 38, or Form 1040A, line 22. If you
+are filing Form 2555, 2555-EZ, or 4563, or you are excluding income from
+Puerto Rico, see Pub. 970 for the amount to enter 
+........
+14
+15
+Subtract line 14 from line 13. If zero or less, skip lines 16 and 17, enter -0- 
+on line 18, and go to line 19 
+ 
+...............
+15
+16
+Enter: $20,000 if married filing jointly; $10,000 if single, head of household, 
+or qualifying widow(er) 
+.................
+16
+17
+If line 15 is:  
+• Equal to or more than line 16, enter 1.000 on line 17 and go to line 18 
+• Less than line 16, divide line 15 by line 16. Enter the result as a decimal (rounded to at least three 
+places) 
+.............................. 
+17
+.
+18
+Multiply line 12 by line 17. Enter here and on line 1 of the Credit Limit Worksheet (see instructions)  
+ 
+a
+18
+19
+Nonrefundable education credits. 
+Enter the amount from line 7 of the Credit Limit Worksheet (see 
+instructions) here and on Form 1040, line 49, or Form 1040A, line 31
+..........
+19
+For Paperwork Reduction Act Notice, see your tax return instructions. 
+Cat. No. 25379M
+Form 
+8863
+ (2013)
+Click to enter Student Information on page 2:
+ Information about Form 8863 and its separate instructions is at www.irs.gov/form8863. 
+education credit 
+----------------Page (0) Break----------------

@@ -1,0 +1,1755 @@
+ 
+ 
+ 
+1203110059
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+(FI)
+ 
+ 
+    
+ 
+20
+   
+         
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+     
+ 
+                         
+ 
+ 
+       
+ 
+ 
+ 
+Y
+es
+ 
+No
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+▼
+ 
+▼
+ 
+▼
+ 
+▼
+ 
+▼
+ 
+▼
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A.
+ 
+       
+ 
+   
+ 
+ 
+B.
+ 
+ 
+ 
+C.
+  
+              
+ 
+ 
+D
+ 
+                
+Cit
+y
+ 
+State
+       
+ 
+ 
+ 
+ 
+E.
+ 
+                
+         
+ 
+(1
+)
+ 
+Cost
+ 
+(2)
+ 
+         
+ 
+(3
+)
+ 
+             
+ 
+F.
+ 
+               
+ 
+ 
+(1
+)
+ 
+Cash 
+ 
+(2)
+ 
+Accrual
+ 
+(3)
+ 
+ 
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+G.
+ 
+               
+ 
+        
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+               
+ 
+ 
+      
+ 
+H.
+ 
+                                
+  
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+. 
+I.
+   
+       
+ 
+   
+         
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+S
+ales 
+T
+ax
+ 
+License
+ 
+Number
+ 
+(if
+ 
+applicable)
+ 
+ 
+ 
+ 
+F
+ed
+e
+r
+al
+ 
+NAICS
+ 
+Code
+ 
+ 
+ 
+ 
+ 
+1.
+ 
+a.
+ 
+         
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+b.
+ 
+    
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+1
+a.
+ 
+ 
+ 
+1b.
+ 
+ 
+c.
+ 
+                       
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+2.
+ 
+                 
+ 
+         
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+3.
+ 
+                
+ 
+     
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+4.
+ 
+            
+                      
+             
+                                 
+         
+ 
+ 
+5.
+ 
+               
+ 
+   
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+.
+ 
+1
+c.
+ 
+ 
+2.
+ 
+ 
+3.
+ 
+ 
+4.
+ 
+ 
+5.
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                         
+ 
+           
+ 
+                  
+ 
+ 
+ 
+ 
+                  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+           
+ 
+ 
+        
+ 
+ 
+ 
+                            
+ 
+                               
+ 
+ 
+ 
+ 
+ 
+                
+ 
+ 
+                 
+ 
+        
+       
+ 
+ 
+ 
+ 
+            
+ 
+          
+        
+ 
+ 
+       
+ 
+                    
+ 
+       
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+         
+ 
+ 
+       
+ 
+      
+ 
+ 
+             
+ 
+ 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                
+ 
+     
+                     
+ 
+ 
+                        
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+                                            
+ 
+ 
+                                                                                              
+ 
+ 
+ 
+)
+ . . . . . .
+credits claimed (for example, Employment
+Incentive Payments Credit) on your 
+PA-40.
+PART II Deductions
+Social Securit\ numEer
+Owner¶s
+Product or serYice
+PA Schedule C 
+Profit or Loss From
+Business or Profession 
+(SOLE PROPRIETORSHIP ) 
+PA- 40C
+(09–12)
+PA DEPARTMENT OF REVENUE 
+Include with Form
+PA-40, PA-20S/PA-65  PA-41
+or
+OFFICIAL USE ONLY
+Name of owner shown as on PA tax return:
+Main business activity
+Business name
+Business address (number and street) 
+and ZIP Code
+Federal Employer Identification Number
+Method(s) used to value closing inventory. Fill in the appropriate oval: 
+Lower of cost or market
+Other (if other, attach explanation)
+Accounting method. Fill in the appropriate oval:
+Other (specify)
+Was there any change in determining quantities, costs, or valuations 
+between opening and closing inventory? If “Yes,” submit explanation.
+Did you deduct expenses for an office in your home?.
+If the business is out of existence, fill in this oval.
+Gross receipts or sales
+Returns and allowances
+Balance (subtract Line 1b from Line 1a)
+Cost of goods sold and/or operations (Schedule C-1, Line 8)
+Gross profit (subtract Line 2 from Line 1c)
+Other Income (submit statement). Include interest from accounts receivable, business checking accounts 
+and other business accounts. Also include sales of operational assets. See Instructions Booklet.
+Total income (add Lines 3 and 4)
+PART I Income
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ . . . . . . . . . . . . . . . . . .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+6
+. 
+Advertising
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+7. 
+Amortization
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+8. 
+Bad debts from sales or services  
+. . . . . . . . . . . .
+9. 
+Bank charges 
+.
+. . . . . . . . . . . . . . . . . . . . . . . . .
+10. 
+Car and truck expenses
+. . . . . . . . . . . . . . . . . . .
+11. 
+Commissions 
+. . . . . . . . . . . . . . . . . . . . . . . . . .
+12. 
+. . . .
+13. 
+a.
+Regular depreciation
+. . . . . . . . . . . . . . . . .
+13. 
+b.
+Section 179 expense 
+. . . . . . . . . . . . . . . .
+14. 
+Dues and publications 
+. . . . . . . . . . . . . . . . . . . .
+15. 
+16. 
+. . . . . . . .
+17. 
+Insurance
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+18. 
+Interest on business indebtedness 
+. . . . . . . . . . .
+19. 
+Laundry and cleaning 
+. . . . . . . . . . . . . . . . . . . .
+20. 
+. . . . . . . . . . . . .
+21. 
+Management fees 
+. . . . . . . . . . . . . . . . . . . . . . .
+22. 
+Office supplies 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+23. 
+. .
+24. 
+Postage
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+25. 
+Rent on business property 
+. . . . . . . . . . . . . . . . .
+26. 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+28. 
+S
+chedule
+C-1
+2
+9. 
+Taxes
+30. 
+Telephone 
+31. 
+Travel and entertainment
+32. 
+Utilities 
+. . . . . . 
+33. 
+Wages
+34. 
+. . . . . . . . . . . . . . . . . . . . .
+35. 
+. . . . . .
+36. 
+t
+3
+7. 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+37.
+38. 
+.   . . . . . . . .
+Loss
+38.
+Reduce expenses by the total business 
+Total expenses. (add Lines 6 through 34) 
+Supplies (not included on
+Other expenses (specify):
+Cost depletion but not percentage depletion 
+Employee benefit programs other than on Line 23
+Freight (not includedon Schedule C-1) 
+Legal and professional services  
+Pensionand profit-sharing plans for employees 
+Repair
+f
+.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+g.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+h.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+i.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+j.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+k.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+a.
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+b
+.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+c.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+d.
+ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+e.  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+27.   Subcontractor fees
+SIDE 1
+1203110059
+1203110059
+34.  Total other expenses
+    
+                                                            
+Total adjusted expenses (subtract Line 36 from Line 35). 
+Net profit or loss (subtract Line 37 from Line 5). If a net loss, fill in the oval. Enter the result on your PA tax return.
+----------------Page (0) Break----------------
+1203210057
+ 
+ 
+ 
+ 
+ 
+ 
+1203210057
+ 
+1203210057
+ 
+ 
+ 
+1
+. 
+ 
+          
+                  
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+ 
+2
+. 
+ 
+          
+                   
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+ 
+3
+. 
+ 
+            
+ 
+                                 
+. . . . . . . . . . . . . . . . . .
+ 
+1.
+ 
+ 
+2.
+ 
+ 
+3.
+ 
+ 
+   
+ 
+ 
+(a)
+ 
+ 
+ 
+ 
+(b)
+ 
+       
+ 
+ 
+(c)
+ 
+       
+       
+ 
+(d)
+ 
+   
+depreciation
+ 
+(e)
+ 
+Life
+ 
+ 
+ 
+(f)
+ 
+       
+ 
+ 
+(g)
+ 
+ 
+4
+. 
+ 
+ 
+ 
+ . . . . . . . . . . . . . . 
+. 
+           
+. . . 
+. . . . 
+ 
+ 
+. . . . 
+ 
+ 
+         . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+5
+. 
+ 
+           
+ 
+ 
+. . . . . .
+ 
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+5.
+ 
+ 
+ 
+6.
+ 
+ 
+7.
+ 
+ 
+ 
+▼
+ 
+▼ 
+ 
+ 
+▼  
+ 
+▼
+ 
+▼
+ 
+   
+ 
+(FI)
+ 
+ 
+    
+ 
+ 
+ 
+                      
+ 
+ 
+       
+ 
+     
+ 
+ 
+ 
+    
+ 
+                  
+ 
+1
+.  
+ 
+   
+                                
+       
+ 
+. . . . . . . . . . . .
+ 
+1
+.
+ 
+ 
+2
+.
+ 
+a.
+ 
+ 
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+b
+. 
+           
+              
+. 
+. . . . . . . . . . . . . . . . .
+ 
+2
+a.
+ 
+ 
+ 
+ 
+2b.
+ 
+ 
+c
+. 
+                                . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+3
+.  
+                                         
+      . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+4
+.  
+                  
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. 
+. . . . . . . . . . . . . . . .
+ 
+5
+.  
+                
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. 
+. . . . . . . . . . . . . .
+ 
+6
+.  
+                      
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. 
+. . . . . . . . . . . . . . .
+ 
+7
+.  
+ 
+            
+. . . . . . . . . . .
+ 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ 
+. 
+. . . . . . . . . . . . . . . .
+ 
+8
+.  
+                     
+                                                  
+. . . . . . . . .
+ 
+2
+c.
+ 
+3
+.
+ 
+4
+.
+ 
+5
+.
+ 
+6
+.
+ 
+7
+.
+ 
+8
+.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    
+ 
+ 
+ 
+                          
+                             
+   
+        
+                       
+ 
+ 
+ 
+       
+ 
+                            
+   
+ 
+    
+ 
+ 
+ 
+     
+ 
+ 
+ 
+                      
+ 
+             
+ 
+ 
+              
+ 
+ 
+ 
+ 
+ 
+ 
+                      
+            
+ 
+                    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+6
+. 
+ 
+ 
+                   
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. 
+. .
+ 
+7
+. 
+ 
+            
+ 
+                                 
+ 
+. . . . . . . . . . . . . . . . . . .
+ 
+PA Schedule C 
+PA-40C
+(09–12)
+PA DEPARTMENT OF REVENUE
+Name of owner as shown on PA tax return:
+Social Security Number
+OFFICIAL USE ONLY
+SCHEDULE C-1 - Cost of Goods Sold and/or Operations
+Inventory at beginning of year (if different from last year’s closing inventory, include explanation)
+Cost of items with drawn for personal use 
+Cost of labor (do not include salary paid to yourself or subcontractor fees)  
+Balance (subtract Line 2b from Line 2a)
+Materials and supplies  
+Other costs (include schedule) 
+Add Lines 1, 2c, 3, 4 and 5
+Inventory at end of year
+Cost of goods sold and/or operations (subtract Line 7 from Line 6) Enter here and on Part I, Line 2 
+SCHEDULEC- 2 - Depreciation
+PA PIT law does  not permit the bonus depreciation elections added to the Internal Revenue Code (IRC) in 2002, 2003, 2008 and 2009. PA PIT 
+law limits IRC Section 179 current expensing to the expensing allowed at the time you placed the asset into service or in effect under 
+the IRC of 1986 as amended Jan.1, 1997. For each asset, you must also report straight-line depreciation, unless not using an optional 
+accelerated depreciation method. You need straight-line depreciation to take advantage of Pennsylvania’s Tax Benefit Rule when you sell 
+the asset. See the PA PIT Guide for the Tax Benefit Rule.
+Total Section 179 depreciation (donotin clude in items below)
+Less: Section 179 depreciation included in Schedule C-1
+Balance (subtract Line 2 from Line 1). Enter here and on Part II, Line 13b
+Description of property
+Date acquired
+Cost or other basis
+Depreciation allowed or 
+allowable in prior years
+Method of calculating 
+or rate
+Depreciation for this year
+Other depreciation:
+Furniture and fixtures
+Transportation equipment 
+Machinery and other equipment 
+Other (specify) 
+Totals (add all Line 4 amounts)
+Any depreciation included in Schedule C-1
+Balance (subtract Line 6 from Line 5). Enter here and on Part II, Line 13a.
+SIDE 2
+Purchases 
+Buildings  
+----------------Page (1) Break----------------

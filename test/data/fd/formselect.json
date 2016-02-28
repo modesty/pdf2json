@@ -1,0 +1,54 @@
+{
+    "mainList": [
+        {
+            "header": "Booklet 1040EZ",
+            "imgUrl": "/img/fd/mainform01.png",
+            "title": "Use Form 1040EZ if you have:",
+            "notes": [
+                "Income from wages, tips, interest only",
+                "No Adjustments",
+                "No Dependents",
+                "Income is less than $100,000"
+            ],
+            "links": [
+                {"id": "view1040EzInstructionsLink", "href": "/data/fd/inst/fd_ins_1040ez.pdf", "label": "View Instructions", "className": "fsViewLink", "target": "_blank"},
+                {"id": "view1040EzSupportedFormsLink", "href": "/#/fd/forms.availability", "label": "View Supported Forms", "className": "fsViewLink", "target": "_blank"},
+                {"id": "selectF1040EzButton", "href": "F1040EZ", "label": "Start 1040EZ", "className": "btn btn-small genericButton continueButton",  "target": "_blank"}
+            ]
+        },
+        {
+            "header": "Booklet 1040A",
+            "imgUrl": "/img/fd/mainform02.png",
+            "title": "Use Form 1040A if you have:",
+            "notes": [
+                "Income from wages, interest, dividends, pensions",
+                "No investment transactions",
+                "No business income",
+                "Income is less than $100,000",
+                "Standard deduction only"
+            ],
+            "links": [
+                {"id": "view1040AInstructionsLink", "href": "/data/fd/inst/fd_ins_1040a.pdf", "label": "View Instructions", "className": "fsViewLink", "target": "_blank"},
+                {"id": "view1040ASupportedFormsLink", "href": "/#/fd/forms.availability", "label": "View Supported Forms", "className": "fsViewLink", "target": "_blank"},
+                {"id": "selectF1040AButton", "href": "F1040A", "label": "Start 1040A", "className": "btn btn-small genericButton continueButton", "target": "_blank"}
+            ]
+        },
+        {
+            "header": "Booklet 1040",
+            "imgUrl": "/img/fd/mainform03.png",
+            "title": "Use Form 1040 if you have:",
+            "notes": [
+                "Income from wages, interest, dividends, pensions",
+                "Investment transactions",
+                "Business income",
+                "Itemized deductions",
+                "Any credits"
+            ],
+            "links": [
+                {"id": "view1040InstructionsLink", "href": "/data/fd/inst/fd_ins_1040.pdf", "label": "View Instructions", "className": "fsViewLink", "target": "_blank"},
+                {"id": "view1040SupportedFormsLink", "href": "/#/fd/forms.availability", "label": "View Supported Forms", "className": "fsViewLink", "target": "_blank"},
+                {"id": "selectF1040Button", "href": "F1040", "label": "Start 1040", "className": "btn btn-small genericButton continueButton",  "target": "_blank"}
+            ]
+        }
+    ]
+}

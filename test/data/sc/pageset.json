@@ -1,0 +1,63 @@
+{
+    "headerData": {
+        "valueLabel": [
+            {"href": "#/sc/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "http://www.sctax.org/Contact+Information/default.htm", "target": "_blank", "label": "Contact SC Tax",
+                "styleClass": "formImage"},
+            {"href": "#/sc/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "eFileLinkUrl":"http://www.sctax.org/Electronic+Services/FastFile/freefile_free.htm",
+        "faqFooter":"View more of your state-specific <a href='https://www.sctax.org/NR/rdonlyres/E48D8964-C0C6-4916-A4A9-57111A6EABB6/0/SCfillableforms_FAQS.pdf' target='_blank'>FAQs</a>",
+        "stateTaxUrl":"http://www.sctax.org/default.htm",
+        "howItWorksList": {},
+        "noteList": {
+            "item1": "This program does not support prior-year returns, part-year, non-resident or amended returns."
+        }
+    },
+
+    "landingData": {
+        "formNumber":"SC1040",
+        "makeSureList": {},
+        "tipsList": {
+            "item1": "Complete your federal return first. You will need the Federal Taxable Income from your federal return to begin your state return."
+        },
+        "beforeList": {
+            "item1":"Make sure the Federal Taxable Income agrees with your federal return.",
+            "item2":"Enter your exemption."
+        }
+    },
+
+    "loginData": {
+        "signInHelpLink":"https://www.sctax.org/NR/rdonlyres/E48D8964-C0C6-4916-A4A9-57111A6EABB6/0/SCfillableforms_FAQS.pdf"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"https://www.sctax.org/NR/rdonlyres/E48D8964-C0C6-4916-A4A9-57111A6EABB6/0/SCfillableforms_FAQS.pdf"
+    },
+
+    "homeHeaderData": {
+        "href": "https://www.sctax.org/NR/rdonlyres/E48D8964-C0C6-4916-A4A9-57111A6EABB6/0/SCfillableforms_FAQS.pdf"
+    },
+
+    "efileData": {
+        "efRefundLink":"https://www.sctax.org/refundstatus/refund.aspx",
+        "efRequiredInfo":"Social Security number and amount of your expected refund",
+        "efPaymentDueDate":"May 1, 2014",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"South Carolina",
+        "stateAbbr":"SC",
+        "departmentName":"South Carolina Department of Revenue",
+        "siteName": "South Carolina State Fillable Forms",
+        "url": "https://www.statefillableforms.com/sc",
+        "currentTaxYear": "2013"
+
+    }
+
+}

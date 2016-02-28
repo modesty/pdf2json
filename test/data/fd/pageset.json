@@ -1,0 +1,71 @@
+{
+    "headerData" :{
+        "valueLabel": [
+            {"href": "#/fd/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "http://apps.irs.gov/app/picklist/list/publicationsNoticesPdf.html", "label": "IRS Publications", "target": "_blank",
+                "styleClass": "formImage"},
+            {"href": "#/fd/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "stateTaxUrl":"http://www.irs.gov/",
+        "eFileLinkUrl":"http://www.irs.gov/efile/article/0,,id=226829,00.html",
+        "faqFooter":"View more of your IRS-specific <a href='http://www.irs.gov/pub/irs-utl/General_FAQs.pdf' target='_blank'>FAQs</a>",
+        "howItWorksList": {
+            "item1":"It's free.",
+            "item2":"Create a password-protected login so you can sign in and out of your return.",
+            "item3":"Choose your form: 1040EZ, 1040A, or 1040.",
+            "item4":"Do the math using the provided calculation mechanism.",
+            "item5":"E-file your return (you'll need last year's AGI or your self-select PIN), or you may also print your return."
+        },
+        "noteList": {
+            "item1":"",
+            "item2": ""
+        }
+    },
+
+    "landingData": {
+        "formNumber":"1040EZ, 1040A or 1040",
+        "makeSureList": {},
+        "tipsList": {
+            "item1":""
+        },
+        "beforeList": {
+            "item1":"Enter the correct amount of your Adjusted Gross Income from your federal 2012 tax return to identify yourself for e-filing.  Don't guess at this number.",
+            "item2":"Enter your exemption.",
+            "item3":"Enter your standard or itemized deductions."
+        }
+    },
+
+    "loginData": {
+        "signInHelpLink":"http://www.irs.gov/pub/irs-utl/2012_fillable_forms_tutorial.pdf"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"http://www.irs.gov/pub/irs-utl/General_FAQs.pdf"
+    },
+
+    "homeHeaderData": {
+        "href": "http://www.irs.gov/pub/irs-utl/General_FAQs.pdf"
+    },
+
+    "efileData": {
+        "efRefundLink":"http://www.irs.gov/individuals/article/0,,id=96596,00.html?portlet=105",
+        "efRequiredInfo":"",
+        "efPaymentDueDate":"April 15, 2014",
+        "customerServiceEmail":"customer_service@freefilefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"Federal",
+        "stateAbbr":"FD",
+        "departmentName":"IRS",
+        "siteName": "Free File Fillable Forms",
+        "url": "https://www.freefilefillableforms.com",
+        "currentTaxYear": "2013",
+        "filingYear": "2014"
+    }
+
+}

@@ -1,0 +1,449 @@
+Form 
+1040A
+2013
+U.S. Individual Income Tax Return
+Department of the Treasury—Internal Revenue Service 
+IRS Use Only—Do not write or staple in this space.
+ (99)
+OMB No. 1545-0074
+Your first name and initial 
+Last name 
+Your social security number 
+If a joint return, spouse’s first name and initial 
+Last name 
+Spouse's social security number 
+c
+Make sure the SSN(s) above 
+and on line 6c are correct.
+Home address (number and street). If you have a P.O. box, see instructions. 
+Apt. no. 
+City, town or post office. If you have a foreign address, also complete spaces below (see instructions). 
+Foreign country name
+Foreign province/state/county
+Foreign postal code   
+Presidential Election Campaign
+Check here if you, or your spouse if filing 
+jointly, want $3 to go to this fund. Checking 
+a box below will not change your tax or 
+refund. 
+You 
+Spouse
+Filing 
+status 
+Check only 
+one box.
+1
+Single
+2
+Married filing jointly (even if only one had income)
+3
+Married filing separately. Enter spouse’s SSN above and 
+full name here. 
+a
+4
+Head of household (with qualifying person). 
+(See instructions.)
+ 
+If the qualifying person is a child but not your dependent, 
+enter this child’s name here.  
+a
+5
+Qualifying widow(er) with dependent child 
+(see instructions)
+Exemptions
+6a
+Yourself.
+If someone can claim you as a dependent, 
+do not 
+check 
+box 6a.
+b
+Spouse
+}
+c
+Dependents: 
+(1) 
+First name
+  
+Last name
+(2) 
+Dependent’s social
+ 
+security number
+(3) 
+Dependent’s
+ 
+relationship to
+ 
+you
+(4) 
+
+ 
+if
+ child under
+age 17 qualifying for 
+child tax credit (see 
+instructions)
+If more than six 
+dependents, see 
+instructions.
+d
+Total number of exemptions claimed.
+Boxes 
+checked on  
+6a and 6b
+No. of children 
+on 6c who:  
+• 
+lived with 
+you
+• 
+did not live
+ 
+with you due
+ 
+to 
+divorce or
+ 
+separation
+ 
+(see 
+instructions)
+Dependents 
+on 6c not 
+entered above
+Add numbers 
+on lines  
+above 
+a
+Income 
+Attach  
+Form(s) W-2 
+here. Also 
+attach 
+Form(s) 
+1099-R if tax 
+was 
+withheld. 
+If you did not 
+get a W-2, see  
+instructions.
+ 
+ 
+7
+Wages, salaries, tips, etc. Attach Form(s) W-2.
+7
+8a
+Taxable 
+interest. Attach Schedule B if required.
+8a
+b   Tax-exempt 
+interest.
+ Do not 
+9a
+Ordinary dividends. Attach Schedule B if required.
+9a
+b
+Qualified dividends (see instructions).
+9b
+10
+Capital gain distributions (see instructions).
+10
+11 a 
+IRA   
+distributions.          11a
+11b 
+Taxable amount 
+(see instructions).      11b
+12 a 
+Pensions and 
+annuities.                12a
+12b 
+Taxable amount 
+(see instructions).      12b
+13
+Unemployment compensation and Alaska Permanent Fund dividends.         13
+14 a 
+Social security 
+benefits.                 14a
+14b 
+Taxable amount 
+(see instructions).
+14b
+15
+Add lines 7 through 14b (far right column). This is your 
+total income.
+a
+15
+Adjusted 
+gross  
+income
+16
+Educator expenses (see instructions).
+16
+17
+IRA deduction (see instructions).
+17
+18
+Student loan interest deduction (see instructions).
+18
+19
+Tuition and fees. Attach Form 8917.
+19
+20
+Add lines 16 through 19. These are your 
+total adjustments.
+20
+21
+Subtract line 20 from line 15. This is your 
+adjusted gross income. 
+      
+a
+21
+For Disclosure, Privacy Act, and Paperwork Reduction Act Notice, see separate instructions.
+Cat. No. 11327A
+Form 
+1040A 
+(2013)
+include on line 8a.        8b
+State
+ZIP code
+----------------Page (0) Break----------------
+Form 1040A (2013)
+Page 
+2
+Tax, credits, 
+and 
+payments
+22
+Enter the amount from line 21 (adjusted gross income).                                       22
+23 
+a 
+Check 
+if:
+{
+You
+ were born before January 2, 1949,
+Blind
+Spouse
+ was born before January 2, 1949,
+Blind
+}
+Total boxes 
+checked  
+a
+23a
+b 
+If you are married filing separately and your spouse itemizes 
+deductions, check here
+                                                                       
+a
+23b
+Standard  
+Deduction  
+for-
+• People who  
+check any  
+box on line  
+23a or 23b 
+or 
+who  can be 
+claimed as a  
+dependent,  
+see 
+instructions. 
+• All others: 
+Single or  
+Married filing  
+separately,  
+$6,100 
+Married filing  
+jointly or  
+Qualifying  
+widow(er),  
+$12,200  
+Head of  
+household,  
+$8,950 
+24
+Enter your 
+standard deduction.
+25
+Subtract line 24 from line 22. If line 24 is more than line 22, enter -0-.                 25
+26     Exemptions. 
+Multiply $3,900 by the number on line 6d. 
+26
+27 
+Subtract line 26 from line 25. If line 26 is more than line 25, enter -0-.  
+This is your 
+taxable income.
+                                                                           
+a
+27
+28     Tax, 
+including any alternative minimum tax (see instructions).                             28
+29 
+Credit for child and dependent care expenses. Attach 
+Form 2441.                                                                        29
+30 
+Credit for the elderly or the disabled. Attach  
+Schedule R.
+30
+31
+Education credits from Form 8863, line 19.                      31
+32 
+Retirement savings contributions credit. Attach  
+Form 8880.                                                                        32
+33
+Child tax credit. Attach Schedule 8812, if required.          33
+34
+Add lines 29 through 33. These are your 
+total credits.
+34
+35 
+Subtract line 34 from line 28. If line 34 is more than line 28, enter -0-. This is 
+your 
+total tax.
+35
+36 
+Federal income tax withheld from Forms W-2 and 
+1099.                                                                                  36
+37 
+2013 estimated tax payments and amount applied 
+from 2012 return.                                                               37
+If you have  
+a qualifying 
+child, attach 
+Schedule  
+EIC.
+38a   Earned income credit (EIC).
+38a
+b 
+Nontaxable combat pay 
+election.                                         38b
+39
+Additional child tax credit. Attach Schedule 8812.
+39
+40
+American opportunity credit from Form 8863, line 8.        40
+41
+Add lines 36, 37, 38a, 39, and 40. These are your 
+total payments.
+               
+a
+41
+Refund 
+  
+Direct 
+deposit? 
+See  
+instructions 
+and fill in 
+43b, 43c, 
+and 43d or 
+Form 8888.
+42 
+If line 41 is more than line 35, subtract line 35 from line 41.  
+This is the amount you 
+overpaid.
+42
+43a
+Amount of line 42 you want 
+refunded to you. 
+If Form 8888 is attached, check here 
+a
+43a
+a
+b
+Routing 
+number
+a
+ 
+c 
+ Type:
+Checking
+Savings
+a
+d
+Account 
+number
+44 
+Amount of line 42 you want 
+applied to your
+  
+2014 estimated tax.
+44
+Amount 
+you owe
+45     Amount you owe. 
+Subtract line 41 from line 35. For details on how to pay, 
+see instructions.                                                                                               
+a
+45
+46
+Estimated tax penalty (see instructions).                           46 
+Third party 
+designee
+Do you want to allow another person to discuss this return with the IRS (see instructions)?
+Yes.
+ Complete the following.
+No
+Designee’s 
+name          
+a
+Phone  
+no.       
+a
+Personal identification 
+number (PIN)               
+a
+Sign 
+here
+ 
+ 
+Joint return?  
+See instructions. 
+Keep a copy 
+for your records.
+Under penalties of perjury, I declare that I have examined this return and accompanying schedules and statements, and to the be
+st of my knowledge 
+and belief, they are true, correct, and accurately list all amounts and sources of income I received during the tax year. Decla
+ration of preparer (other 
+than the taxpayer) is based on all information of which the preparer has any knowledge.
+F
+Your signature
+Date
+Your occupation
+Daytime phone number
+Spouse’s signature. If a joint return, 
+both
+ must sign.
+Date
+Spouse’s occupation
+If the IRS sent you an Identity Protection 
+PIN, enter it  
+here (see inst.)
+Paid 
+preparer  
+use only
+Print/type preparer's name
+Preparer’s signature
+Date
+Check 
+a
+          
+if 
+self-employed
+PTIN
+Firm's name 
+a
+Firm's address 
+a
+Firm's EIN 
+a
+Phone no.
+Form 
+1040A 
+ (2013)
+24
+----------------Page (1) Break----------------

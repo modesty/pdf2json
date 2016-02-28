@@ -1,0 +1,106 @@
+(For example, enter decimal as .123)
+Form  
+8815
+Department of the Treasury  
+Internal Revenue Service (99)
+Exclusion of Interest From Series EE and I 
+U.S. Savings Bonds Issued After 1989 
+(For Filers With Qualified Higher Education Expenses)
+a
+ 
+ 
+a
+ 
+Attach to Form 1040 or Form 1040A.
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No. 
+167
+Name(s) shown on return
+Your social security number
+1 
+(a) 
+ 
+Name of person (you, your spouse, or your dependent) who 
+ 
+was enrolled at or attended an eligible educational institution
+(b)  
+Name and address of eligible educational institution
+If you need more space, attach a statement.
+2 
+Enter the total qualified higher education expenses you paid in 2013 for the person(s) listed in
+column (a) of line 1. See the instructions to find out which expenses qualify 
+........
+2 
+3 
+Enter the total of any nontaxable educational benefits (such as nontaxable scholarship or 
+fellowship grants) received for 2013 for the person(s) listed in column (a) of line 1 (see instructions)
+3 
+4 
+...... 
+4 
+5 
+...................
+5 
+6 
+Enter the interest included on line 5 (see instructions)
+...............
+6 
+7 
+If line 4 is equal to or more than line 5, enter “1.000.” If line 4 is less than line 5, divide line 4 by line
+5. Enter the result as a decimal (rounded to at least three places) 
+...........
+7 
+8 
+Multiply line 6 by line 7
+.........................
+8 
+9 
+Enter your modified adjusted gross income (see instructions)
+....
+9 
+Note: 
+If line 9 is $89,700 or more if single or head of household, or
+ 
+$142,050 or more if married filing jointly or qualifying widow(er) with
+ 
+ 
+10 
+Enter: $74,700 if single or head of household; $112,050 if married filing 
+jointly or qualifying widow(er) with dependent child
+.......
+10 
+11 
+Subtract line 10 from line 9. If zero or less, skip line 12, enter -0- on line
+13, and go to line 14
+.................
+11 
+12 
+Divide line 11 by: $15,000 if single or head of household; $30,000 if married filing jointly or 
+qualifying widow(er) with dependent child. Enter the result as a decimal (rounded to at least three 
+places) 
+12 
+13 
+Multiply line 8 by line 12
+.........................
+13 
+14 
+ 
+Schedule B (Form 1040A or 1040), line 3 
+.................. 
+a
+14 
+For Paperwork Reduction Act Notice, see your tax return instructions.
+Cat. No. 10822S
+Form 
+8815
+ (2013)
+Information about Form 8815 and its instructions is at www.irs.gov/form8815.
+Enter the total proceeds (principal and interest) from all series EE and I U.S. savings bonds issued
+after 1989 that you cashed during 2013
+dependent child, stop. You cannot take the exclusion.
+Excludable savings bond interest. Subtract line 13 from line 8. Enter the result here and on
+Subtract line 3 from line 2. If zero or less, stop You cannot take the exclusion 
+----------------Page (0) Break----------------

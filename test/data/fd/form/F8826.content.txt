@@ -1,0 +1,61 @@
+Form  
+8826 
+(Rev. December 2013) 
+Department of the Treasury  
+Internal Revenue Service 
+Disabled Access Credit 
+a
+ Attach to your tax return.
+a
+ Information about Form 8826 and its instructions is at 
+www.irs.gov/form8826
+.
+OMB No. 1545-1205 
+Attachment 
+Sequence No.  
+86 
+Name(s) shown on return 
+Identifying number 
+1 
+Total eligible access expenditures (see instructions) 
+................
+1 
+2 
+Minimum amount 
+...........................
+2 
+3 
+Subtract line 2 from line 1. If zero or less, enter -0- 
+................
+3 
+4 
+Maximum amount 
+...........................
+4 
+5 
+Enter the 
+smaller
+ of line 3 or line 4 
+.....................
+5 
+6 
+Multiply line 5 by 50% (.50) 
+........................
+6 
+7 
+Disabled access credit from partnerships and S corporations 
+.............
+7 
+8 
+Add lines 6 and 7, but do not enter more than $5,000. Partnerships and S corporations, report this 
+amount on Schedule K. All others, report this amount on Form 3800, line  1e 
+.........
+8 
+For Paperwork Reduction Act Notice, see instructions. 
+Cat. No. 12774N 
+Form  
+8826 
+ (Rev. 12-2013) 
+$    250   00
+$10,000   00 
+----------------Page (0) Break----------------

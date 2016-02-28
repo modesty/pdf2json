@@ -1,0 +1,78 @@
+{
+    "headerData": {
+        "valueLabel": [
+            {
+                "href": "#/de/faqs",
+                "label": "Help",
+                "target": "_blank",
+                "styleClass": "formImage",
+                "icon": "../img/questionFrame.png"
+            },
+            {
+                "href": "http://revenue.delaware.gov/locations.shtml",
+                "label": "Contact DE Tax",
+                "target": "_blank",
+                "styleClass": "formImage"
+            },
+            {
+                "href": "#/de/login",
+                "label": "Sign In / Create An Account",
+                "styleClass": "login",
+                "icon": "../img/logout.png"
+            }
+        ]
+    },
+    "gatewayData": {
+        "stateTaxUrl":"http://revenue.delaware.gov/",
+        "eFileLinkUrl":"http://www.revenue.delaware.gov/pitfiling/residents.shtml",
+        "faqFooter":"View more of your state-specific <a href='http://revenue.delaware.gov/information/faqs_fillable.shtml' target='_blank'>FAQs</a>",
+        "howItWorksList": {},
+        "noteList": {
+            "item1": "This program does not support prior-year returns, part-year, non-resident or amended returns."
+        }
+    },
+
+    "landingData": {
+        "formNumber":"200-01",
+        "makeSureList": {},
+        "tipsList": {
+            "item1":"Complete your federal return first. You will need the Federal Adjusted Gross Income (AGI) from your federal return to begin your state return."
+        },
+        "beforeList": {
+            "item1":"Make sure the Federal Adjusted Gross Income (AGI) agrees with your federal return.",
+            "item2":"Enter your exemption.",
+            "item3":"Enter your standard or itemized deductions."
+        }
+    },
+
+    "loginData": {
+        "signInHelpLink":"http://revenue.delaware.gov/information/faqs_fillable.shtml"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"http://revenue.delaware.gov/information/faqs_fillable.shtml"
+    },
+
+    "homeHeaderData": {
+        "href": "http://revenue.delaware.gov/information/faqs_fillable.shtml"
+    },
+
+    "efileData": {
+        "efRefundLink":"https://dorweb.revenue.delaware.gov/refinq/",
+        "efRequiredInfo":"Social Security number and amount of your expected refund",
+        "efPaymentDueDate":"April 30, 2014",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"Delaware",
+        "stateAbbr":"DE",
+        "departmentName":"Delaware Division of Revenue",
+        "siteName": "Delaware State Fillable Forms",
+        "url": "https://www.statefillableforms.com/de",
+        "currentTaxYear": "2013"
+
+    }
+
+}

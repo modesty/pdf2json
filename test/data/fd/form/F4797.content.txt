@@ -1,0 +1,186 @@
+Form   
+4797
+Department of the Treasury  
+Internal Revenue Service
+Sales of Business Property 
+(Also Involuntary Conversions and Recapture Amounts
+ 
+ 
+Under Sections 179 and 280F(b)(2))
+a
+ 
+Attach to your tax return.
+ 
+a
+ 
+Information about Form 4797 and its separate instructions is at 
+www.irs.gov/form4797.
+OMB No. 1545-0184
+20
+13
+Attachment 
+Sequence No.  
+27
+Name(s) shown on return
+Identifying number
+1
+Enter the gross proceeds from sales or exchanges reported to you for 2013 on Form(s) 1099-B or 1099-S (or 
+substitute  statement) that you are including on line 2, 10, or 20 (see instructions)
+........
+1
+Part I  
+Sales or Exchanges of Property Used in a Trade or Business and Involuntary Conversions From Other  
+Than Casualty or Theft—Most Property Held More Than 1 Year  
+(see instructions)
+2
+(a)  
+Description
+ 
+ 
+of property
+(b)  
+Date acquired
+ 
+(mo., day, yr.)
+(c)  
+Date sold
+ 
+ 
+(mo., day, yr.)
+(d)  
+Gross
+ 
+ 
+sales price
+(e)  
+Depreciation
+ 
+allowed or
+ 
+allowable since
+  
+acquisition
+(f)  
+Cost or other
+ 
+ 
+basis, plus
+ 
+improvements and
+ 
+expense of sale
+(g) Gain or (loss) 
+Subtract (f) from the
+ 
+sum of (d) and (e)
+3
+Gain, if any, from Form 4684, line 39
+........................
+ 3
+4
+Section 1231 gain from installment sales from Form 6252, line 26 or 37
+..............
+ 4
+5
+Section 1231 gain or (loss) from like-kind exchanges from Form 8824
+..............
+ 5
+6
+Gain, if any, from line 32, from other than casualty or theft
+..................
+ 6
+7
+Combine lines 2 through 6. Enter the gain or (loss) here and on the appropriate line as follows:
+.......
+ 7
+Partnerships (except electing large partnerships) and S corporations.  
+Report the gain or (loss) following
+ 
+the
+ 
+instructions for Form 1065, Schedule K, line 10, or Form 1120S, Schedule K, line 9. Skip lines 8, 9, 11, and 12 be
+low.
+ 
+I
+ndividuals, partners, S corporation shareholders, and all others. 
+ If line 7 is zero or a loss, enter the amount
+ 
+from 
+line 7 on line 11 below and skip lines 8 and 9. If line 7 is a gain and you did not have any prior year section
+ 
+1231 
+losses, or they were recaptured in an earlier year, enter the gain from line 7 as a long-term capital gain
+ 
+on the 
+Schedule D filed with your return and skip lines 8, 9, 11, and 12 below.
+8
+Nonrecaptured net section 1231 losses from prior years (see instructions)
+.............
+8
+9
+Subtract line 8 from line 7. If zero or less, enter -0-. If line 9 is zero, enter the gain from line 7 on line 12 below.  If li
+ne 
+9 is more than zero, enter the amount from line 8 on line 12 below and enter the gain from line 9 as a long-term 
+capital gain on the Schedule D filed with your return (see instructions)
+..............
+9
+Part II
+Ordinary Gains and Losses  
+(see instructions)
+10
+Ordinary gains and losses not included on lines 11 through 16 (include property held 1 year or less):
+     
+     
+     
+     
+     
+     
+      
+11
+Loss, if any, from line 7
+............................
+ 11
+(                           )
+12
+Gain, if any, from line 7 or amount from line 8, if applicable
+.................
+ 12
+13
+Gain, if any, from line 31
+...........................
+ 13
+14
+Net gain or (loss) from Form 4684, lines 31 and 38a
+...................
+ 14
+15
+Ordinary gain from installment sales from Form 6252, line 25 or 36
+...............
+ 15
+16
+Ordinary gain or (loss) from like-kind exchanges from Form 8824
+................
+ 16
+17
+Combine lines 10 through 16
+..........................
+ 17
+18
+For all except individual returns, enter the amount from line 17 on the appropriate line of your return and skip lines a 
+and b below. For individual returns, complete lines a and b below:
+a
+If the loss on line 11 includes a loss from Form 4684, line 35, column (b)(ii), enter that part of the loss here. Enter  the pa
+rt 
+of the loss from income-producing property on Schedule A (Form 1040), line 28, and the part of the loss from property 
+used as an employee on Schedule A (Form 1040), line 23. Identify as from “Form 4797, line  18a.” See instructions     .     .
+18a
+b
+Redetermine the gain or (loss) on line 17 excluding the loss, if any, on line 18a. Enter here and on Form 1040, line 14
+18b
+For Paperwork Reduction Act Notice, see separate instructions.
+Cat. No. 13086I
+Form 
+4797
+ (2013)
+Form 4797 page 2
+----------------Page (0) Break----------------

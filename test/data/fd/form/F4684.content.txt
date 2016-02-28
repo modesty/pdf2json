@@ -1,0 +1,160 @@
+Form  
+4684
+Department of the Treasury 
+Internal Revenue Service
+Casualties and Thefts
+a
+ 
+a
+ 
+Attach to your tax return.
+a
+ 
+Use a separate Form 4684 for each casualty or theft.
+OMB No. 1545-0177
+20
+13
+Attachment  
+Sequence No. 
+26
+Name(s) shown on tax return
+Identifying number
+SECTION A, Personal Use Property  
+(Use this section to report casualties and thefts of property 
+ not  
+used in a trade
+ 
+or business or for income-producing purposes.)
+1 
+Description of properties (show type, location, and date acquired for each property). Use a separate line for each property los
+t or damaged from 
+the same casualty or theft.
+Property
+ A
+Property
+ B
+Property
+ C
+Property
+ D
+Properties
+A
+B
+C
+D
+2 
+Cost or other basis of each property
+......
+2 
+3 
+Insurance or other reimbursement (whether or not you 
+filed a claim) (see instructions)
+........
+3 
+Note: 
+If line 2 is
+ 
+more
+ 
+than line 3, skip line 4.
+4 
+Gain from casualty or theft. If line 3 is 
+more
+ than line 2, 
+enter the difference here and skip lines 5 through 9 for 
+that column. See instructions if line 3 includes insurance 
+or other reimbursement you did not claim, or you 
+received payment for your loss in a later tax year    .    .
+4 
+5 
+Fair market value 
+before
+ casualty or theft
+....
+5 
+6 
+Fair market value 
+after
+ casualty or theft
+.....
+6 
+7 
+Subtract line 6 from line 5
+.........
+7 
+8 
+Enter the 
+smaller
+ of line 2 or line 7
+......
+8 
+9 
+Subtract line 3 from line 8. If zero or less, enter -0- .    .
+9 
+10 
+Casualty or theft loss. Add the amounts on line 9 in columns A through D
+.............
+10 
+11 
+Enter the 
+smaller
+ of line 10 or $100 
+........................
+11 
+12 
+Subtract line 11 from line 10
+..........................
+12 
+Caution: 
+Use only one Form 4684 for lines 13 through 18.
+13 
+Add the amounts on line 12 of all Forms 4684
+.....................
+13 
+14 
+Add the amounts on line 4 of all Forms 4684
+...................... 
+14 
+15 
+• If line 14 is 
+more
+ than line 13, enter the difference here and on Schedule D. 
+Do not
+ 
+   
+complete the rest of this section (see instructions).
+• If line 14 is 
+less
+ than line 13, enter -0- here and go to line 16.
+• If line 14 is 
+equal
+ to line 13, enter -0- here. 
+Do not
+ complete the rest of this section.
+}
+.......
+15 
+16 
+If line 14 is  
+less 
+ than line 13, enter the difference
+....................
+16 
+17
+Enter 10% of your adjusted gross income from Form 1040, line 38, or Form 1040NR, line 37. Estates and trusts, see 
+instructions 
+...............................
+17
+18
+Subtract line 17 from line 16. If zero or less, enter -0-. Also enter the result on Schedule A (Form 1040), line 20, or 
+Form 1040NR, Schedule A, line 6. Estates and trusts, enter the result on the “Other deductions” line of your tax 
+return 
+.................................
+18
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 12997O
+Form 
+4684
+ (2013)
+Information about Form 4684 and its separate instructions is at www.irs.gov/form4684. 
+----------------Page (0) Break----------------

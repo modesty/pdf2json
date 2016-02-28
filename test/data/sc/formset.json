@@ -1,0 +1,18 @@
+{
+    "formset" :{
+        "id": "S2013SCD",
+        "version": "0.1",
+        "agency": "sc",
+        "main": "F1040",
+        "forms": [
+            {"id": "F1040", "name":"SC1040 - INDIVIDUAL INCOME TAX RETURN", "mc": false, "max": 1, "parent": null,
+                "inst":"sc_ins_1040", "efmid":"EFINFOSC", "cid": "1040"},
+			{"id": "F1040DEP", "name":"Additional Dependents Statement", "mc": false, "max": 1, "parent": null,
+                "inst":"sc_ins_1040", "cid": "1040"},
+			{"id": "F319","name":"I-319 - TUITION TAX CREDIT", "mc": true, "max": 5, "parent": null, "inst":"sc_ins_319", "cid": "i319"},
+            {"id": "F330","name":"I-330 - CONTRIBUTIONS FOR CHECK-OFFS", "mc": false, "max": 1, "parent": null, "inst":"sc_ins_330", "cid": "i330"},
+            {"id": "VOUCHEF", "name":"SC1040-V - INDIVIDUAL INCOME TAX PAYMENT VOUCHER", "mc": false, "max": 1, "parent": null, "inst":"sc_ins_1040V", "cid": "1040v"}, 
+            {"id": "F8453", "name":"SC8453 - INDIVIDUAL INCOME TAX DECLARATION FOR ELECTRONIC FILING", "mc": false, "max": 1, "parent": null, "inst":"sc_ins_8453", "cid": "8453"}
+		]
+	}
+}

@@ -1,0 +1,46 @@
+{
+    "formset":[
+    {
+        "id": "S2013DCD",
+        "version": "0.1.1",
+        "agency": "dc",
+        "main": "DC40EZ",
+        "forms": [
+            {"id": "DC40EZ",   "name":"D-40EZ - Income Tax Return for Single and Joint Filers with No Dependents", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40ez", "efmid":"EFIDCEZ", "cid": "40"},
+			{"id": "VOUCH", "name":"D-40P - Payment Voucher", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40ez", "cid": "40P"}
+    
+        ]
+    },
+    {
+        "id": "S2013DCD",
+        "version": "0.1.1",
+        "agency": "dc",
+        "main": "DC40",
+        "forms": [
+            {"id": "DC40",    "name":"D-40 - Individual Income Tax Forms", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40", "efmid":"EFINFODC", "cid": "40"},    
+            {"id": "VOUCH", "name":"D-40P - Payment Voucher", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40", "cid": "40P"},
+			{"id": "DCSCHH", "name":"SCHEDULE H - Homeowner and Renter Property Tax Credit", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40", "cid": "SchH", "mpf":"DCSCHH"},
+			{"id": "DCSCHH34", "name":"SCHEDULE H, Page 3 - Homeowner and Renter Property Tax Credit", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40", "cid": "SchH", "mpf":"DCSCHH"},
+			{"id": "DCSCHI", "name":"SCHEDULE I - Additions to and Subtractions from Federal Adjusted Gross Income", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40", "cid": "SchI"},
+			{"id": "DCSCHN", "name":"SCHEDULE N - DC Non-Custodial Parent EITC Claim - Taxpayer Copy", "mc": false, "max": 1, "parent": null,
+				 "inst":"dc_ins_40", "cid": "SchNTaxpayer"},
+			{"id": "DCSCHNS", "name":"SCHEDULE N - DC Non-Custodial Parent EITC Claim - Spouse Copy", "mc": false, "max": 1, "parent": null,
+				 "inst":"dc_ins_40", "cid": "SchNSpouse"},
+			{"id": "DCSCHS", "name":"SCHEDULE S - Supplemental Information and Dependents", "mc": false, "max": 1, "parent": null,
+				 "inst":"dc_ins_40", "cid": "SchS"},
+			{"id": "DCSCHU", "name":"SCHEDULE U - Additional Miscellaneous Credits and Contributions", "mc": false, "max": 1, "parent": null,
+				 "inst":"dc_ins_40", "cid": "SchU"},
+			{"id": "DC2210", "name":"D-2210 - Underpayment of Estimated Income Tax By Individuals", "mc": false, "max": 1, "parent": null,
+                "inst":"dc_ins_40", "cid": "2210"} 
+
+        ]
+    }
+    ]
+}

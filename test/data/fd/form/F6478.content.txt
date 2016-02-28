@@ -1,0 +1,72 @@
+Form  
+6478
+Department of the Treasury 
+Internal Revenue Service
+Biofuel Producer Credit  
+a
+ 
+Attach to your tax return.
+ 
+a
+ 
+Information about Form 6478 and its instructions is at 
+www.irs.gov/form6478
+.
+OMB No. 1545-0231
+20
+13
+Attachment 
+Sequence No. 
+83
+Name(s) shown on return
+Identifying number
+Type of Fuel
+(a) 
+Number of Gallons 
+Sold or Used
+(b) 
+Rate
+(c) 
+Column (a) x Column (b)
+1a
+Qualified cellulosic biofuel production for fuel sold or used 
+before January 3, 2013 (see instructions for election)     .    .    .
+1a
+b
+Qualified second generation biofuel production for fuel sold or 
+used after January 2, 2013 (see instructions for election)    .    .
+1b
+2
+Add the amounts in column (c) on lines 1a and 1b. Include this amount in your income for 2013, 
+and enter your IRS registration number (see instructions)                                                        .    .    .  
+2
+3
+Biofuel producer credit from partnerships, S corporations, cooperatives, estates,  and trusts (see 
+instructions) 
+.............................
+3
+4
+Add lines 2 and 3. Cooperatives, estates, and trusts, go to line 5. Partnerships and S corporations, 
+stop here and report this amount on Schedule K. All others, stop here and report this amount on
+Form 3800,  line 4c 
+..........................
+4
+5
+Amount allocated to patrons of the cooperative or beneficiaries of the estate or trust (see 
+instructions) 
+.............................
+5
+6
+Cooperatives, estates, and trusts, subtract line 5 from line 4. Report this amount on Form 3800, 
+line 4c 
+...............................
+6
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 13605J
+Form 
+6478
+ (2013)
+ 
+$1.01
+$1.01
+----------------Page (0) Break----------------

@@ -1,0 +1,69 @@
+Form   
+8845
+Department of the Treasury  
+Internal Revenue Service  
+Indian Employment Credit
+a
+ 
+Attach to your tax return.
+a
+ 
+Information about Form 8845 and its instructions is at 
+www.irs.gov/form8845.
+OMB No. 1545-1417
+20
+13
+Attachment   
+Sequence No. 
+113
+Name(s) shown on return
+Identifying number
+1
+Total of qualified wages and qualified employee health insurance costs paid or incurred during the
+tax year 
+..............................
+1
+2
+Calendar year 1993 qualified wages and qualified employee health insurance costs (see 
+instructions). If none, enter -0-
+.......................
+2
+3
+Incremental increase. Subtract line 2 from line 1. If zero or less, enter -0-
+.........
+3
+ 4
+Multiply line 3 by 20% (.20). See instructions for the adjustment you must make to salaries and 
+wages
+...............................
+4
+5 
+Indian employment credit from partnerships, S corporations, cooperatives, estates, 
+and trusts 
+..............................
+5
+6 
+ 
+Add lines 4 and 5. Cooperatives, estates, and trusts, go to line 7. Partnerships and S corporations, 
+stop here and report this amount on Schedule K. All others, stop here and report this amount on
+Form 3800, line 1g 
+...........................
+6
+7 
+Amount allocated to patrons of the cooperative or beneficiaries of the estate or trust  (see 
+instructions) 
+.............................
+7
+8 
+Cooperatives, estates, and trusts,
+ 
+subtract line 7 from line 6. Report this amount on
+Form 3800, line 1g 
+...........................
+8
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 16146D
+Form 
+8845
+ (2013)
+----------------Page (0) Break----------------

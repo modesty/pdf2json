@@ -1,0 +1,67 @@
+{
+    "headerData": {
+        "valueLabel": [
+            {"href": "#/nd/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "http://www.nd.gov/tax/indincome/elecfiling/formsupport.html", "label": "ND Support", "target": "_blank",
+                "styleClass": "formImage"},
+            {"href": "#/nd/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "stateTaxUrl":"http://www.nd.gov/tax/indincome/elecfiling/",
+        "eFileLinkUrl":"http://www.nd.gov/tax/indincome/elecfiling/individual6-income-tax.html",
+        "faqFooter":"View more of your state-specific <a href='http://www.nd.gov/tax/indincome/elecfiling/formsupport.html' target='_blank'>FAQs</a>",
+        "howItWorksList": {
+            "item1":"Either e-file your return, or print your return and mail it in."
+        },
+        "noteList": {
+            "item1":"Using this program will only file your North Dakota return and not your federal return.",
+            "item2":"This program does not support first-time filers in North Dakota and cannot be used to file prior-year returns or amended returns. Both you and your spouse (if married filing jointly) must be full year North Dakota residents, as this program does not support Schedule ND-1NR. In addition, other schedules are not supported, including ND-1FA, ND-1UT, and various schedules for certain tax credits (Renaissance Zone, Planned Gift, Qualified Endowment, Family Care, and Mobilized Employee)."
+        }
+    },
+
+    "landingData": {
+        "formNumber":"ND-1 or ND-EZ",
+        "makeSureList": {
+            "item1": ""
+        },
+        "tipsList": {
+            "item1":"You will need last year's tax return. In order to e-file you will need to enter the exact amount of last year's North Dakota taxable income."
+        },
+        "beforeList": {
+            "item1":"Add information for the 2013 1040 Form you filed (1040, 1040A, or 1040EZ).  Make sure the information matches your filed federal return exactly.",
+            "item2":"Enter the exact amount of taxable income from your 2012 North Dakota tax return to identify yourself for e-filing (Form ND-1, line 18 or ND-EZ, line 1)."
+        }
+    },
+
+    "loginData": {
+        "signInHelpLink":"http://www.nd.gov/tax/indincome/elecfiling/formsupport.html"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"http://www.nd.gov/tax/indincome/elecfiling/formsupport.html"
+    },
+
+    "homeHeaderData": {
+        "href": "http://www.nd.gov/tax/indincome/elecfiling/formsupport.html"
+    },
+
+    "efileData": {
+        "efRefundLink":"http://www.nd.gov/tax/indincome/refundinfo/",
+        "efRequiredInfo":"Social Security number, filing status, and anticipated refund amount",
+        "efPaymentDueDate":"April 15, 2014",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"North Dakota",
+        "stateAbbr":"ND",
+        "departmentName":"North Dakota Office of State Tax Commissioner",
+        "siteName": "North Dakota State Fillable Forms",
+        "url": "https://www.statefillableforms.com/nd",
+        "currentTaxYear": "2013"
+
+    }
+}

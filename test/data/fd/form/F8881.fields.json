@@ -1,0 +1,1 @@
+[{"id":"NAME","type":"alpha","calc":true,"value":""},{"id":"SSN","type":"ssn","calc":true,"value":""},{"id":"COSTS","type":"number","calc":false,"value":""},{"id":"HALFCSTS","type":"number","calc":true,"value":""},{"id":"PASSTHRU","type":"number","calc":false,"value":""},{"id":"SUBTTL","type":"number","calc":true,"value":""},{"id":"MAX500","type":"number","calc":true,"value":""}]

@@ -1,0 +1,30 @@
+{
+    "formset" :{
+        "id": "S2013IAD",
+        "version": "0.1",
+        "agency": "ia",
+        "main": "ia_scr_1040",
+        "forms": [
+            {"id": "ia_scr_1040", "name":"Iowa Individual Income Tax Form", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_1040"},
+            {"id": "ia_scr_1040scha", "name":"Iowa Itemized Deductions", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_1040"},
+            {"id": "ia_scr_1040schb", "name":"Interest and Dividend Income", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_1040"},
+            {"id": "ia_scr_1040v", "name":"Iowa Individual Income Tax Payment Voucher", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_1040v"},
+            {"id": "ia_scr_130",  "name":"Iowa Out-of-state Credit Computation", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_130"},
+            {"id": "ia_scr_148",  "name":"Tax Credits Schedule", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_148"},
+            {"id": "ia_scr_4136", "name":"Computation of Iowa Motor Fuel Tax Credit", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_4136"},
+            {"id": "ia_scr_4562a", "name":"Iowa Depreciation Adjustment Schedule", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_4562a"},
+            {"id": "ia_scr_4562b", "name":"Iowa Depreciation Accumulated Adjustment Schedule", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_4562b"},
+            {"id": "ia_scr_6251", "name":"Iowa Minimum Tax Computation", "mc": false, "max": 1, "parent": null,
+                "inst":"ia_ins_6251"}
+        ]
+    }
+}

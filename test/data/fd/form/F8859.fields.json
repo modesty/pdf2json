@@ -1,0 +1,1 @@
+[{"id":"TPNAME","type":"alpha","calc":true,"value":""},{"id":"TPSSN","type":"ssn","calc":true,"value":""},{"id":"LN12AMT","type":"number","calc":false,"value":""},{"id":"TOTLNAMT","type":"number","calc":false,"value":""},{"id":"CRDALLOW","type":"number","calc":true,"value":""},{"id":"CRDFORWR","type":"number","calc":true,"value":""}]

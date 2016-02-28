@@ -1,0 +1,183 @@
+Form 4797 (2013)
+Page 
+2
+Part III
+Gain From Disposition of Property Under Sections 1245, 1250, 1252, 1254, and 1255 
+(see instructions)
+19
+(a) 
+ Description of section 1245, 1250, 1252, 1254, or 1255 property:
+(b) 
+ Date acquired
+ 
+(mo., day, yr.)
+(c) 
+ Date sold
+ 
+(mo., 
+day, yr.)
+A
+B
+C
+D
+These columns relate to the properties on lines 19A through 19D
+.
+a
+Property A
+Property B
+Property C
+Property D
+20
+Gross sales price (
+Note: 
+ 
+See line 1 before completing.
+)
+.
+20
+21
+Cost or other basis plus expense of sale
+.....
+21
+22
+Depreciation (or depletion) allowed or allowable .    .    .
+22
+23
+Adjusted basis. Subtract line 22 from line 21
+....
+23
+24
+Total gain. Subtract line 23 from line 20
+.....
+24
+25     If section 1245 property:
+a
+Depreciation allowed or allowable from line 22   .    .    .
+25a
+b
+Enter the  
+smaller 
+ of line 24 or 25a
+......
+25b
+26
+If section 1250 property:  
+If straight line depreciation was used, 
+enter
+ 
+-0- on line 26g, except for a corporation subject to section 291.
+a
+Additional depreciation after 1975 (see instructions)     .    
+26a
+b
+Applicable percentage multiplied by the  
+smaller 
+ of line 
+24 or  line 26a (see instructions)
+....... 
+26b
+c
+Subtract line 26a from line 24. If residential rental property  
+or 
+ line 24 is not more than line 26a, skip lines 26d and 26e
+26c
+d
+Additional depreciation after 1969 and before 1976.    .
+26d
+e
+Enter the  
+smaller 
+ of line 26c or 26d
+......
+26e
+f
+Section 291 amount (corporations only)
+.....
+26f
+g
+Add lines 26b, 26e, and 26f
+.........
+26g
+27
+If section 1252 property:  
+Skip this section if you did not
+ 
+dispose of farmland or if this form is being completed for a
+ 
+partnership (other than an electing large partnership).
+a
+Soil, water, and land clearing expenses
+.....
+27a
+b
+Line 27a multiplied by applicable percentage (see instructions)
+ 
+27b
+c
+Enter the  
+smaller 
+ of line 24 or 27b
+......
+27c
+28     If section 1254 property:
+a
+Intangible drilling and development costs, expenditures 
+for development of mines and other natural deposits,  
+mining exploration costs, and depletion (see 
+instructions) 
+.............
+28a
+b
+Enter the  
+smaller 
+ of line 24 or 28a
+......
+28b
+29     If section 1255 property:
+a
+Applicable percentage of payments excluded from 
+income under section 126 (see instructions)
+....
+29a
+b
+Enter the  
+smaller 
+ of line 24 or 29a (see instructions)  .
+29b
+Summary of Part III Gains.  
+Complete property columns A through D through line 29b before going to line 30.
+30
+Total gains for all properties. Add property columns A through D, line 24
+.............
+30
+31
+Add property columns A through D, lines 25b, 26g, 27c, 28b, and 29b. Enter here and on line 13
+......
+31
+32
+Subtract line 31 from line 30. Enter the portion from casualty or theft on Form 4684, line 33. Enter the portion from 
+other than casualty or theft on Form 4797, line 6
+....................
+32
+Part IV
+Recapture Amounts Under Sections 179 and 280F(b)(2) When Business Use Drops to 50% or Less  
+(see instructions)
+(a) Section 
+179
+(b) Section 
+280F(b)(2)
+33
+Section 179 expense deduction or depreciation allowable in prior years
+........ 
+33
+34
+Recomputed depreciation (see instructions)
+................
+34
+35 
+Recapture amount. Subtract line 34 from line 33. See the instructions for where to report     .    .
+35
+Form 
+4797
+ (2013)
+----------------Page (0) Break----------------

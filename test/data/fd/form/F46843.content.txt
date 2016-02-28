@@ -1,0 +1,80 @@
+     .
+46
+Enter .95 (95%) if you have no potential third-party recovery. Enter .75 (75%) if you 
+have potential third-party recovery
+...............
+46
+Form 4684 (2013)
+Page 
+3
+Name(s) shown on tax return
+Identifying number
+SECTION C„Theft Loss Deduction for Ponzi-Type Investment Scheme Using the Procedures in Revenue 
+Procedure 2009-20 
+(Complete this section in lieu of Appendix A in Revenue Procedure 2009-20. See instructions.)
+Part I
+Computation of Deduction
+40
+Initial investment
+.....................
+40
+41
+Subsequent investments (see instructions)
+.............
+41
+42
+Income reported on your tax returns for tax years prior to the discovery year  
+(see instructions)
+.....................
+42
+43
+Add lines 40, 41, and 42
+..................
+43
+44
+Withdrawals for all years (see instructions)  
+.............
+44
+45
+Subtract line 44 from line 43. This is your total qualified investment
+......
+45
+47
+Multiply line 46 by line 45
+..................
+47
+48
+Actual recovery
+.....................
+48
+49
+Potential insurance/Securities Investor Protection Corporation (SIPC) recovery     .    .
+49
+50
+Add lines 48 and 49. This is your total recovery
+............
+50
+51
+Subtract line 50 from line 47. This is your deductible theft loss. Include this amount on 
+line 28. Do not complete lines 19-27 for this loss. Then complete Section B, Part II    .
+51
+Part II
+Required Statements and Declarations
+ (See instructions.)
+individual or entity.
+Name of individual or entity
+Taxpayer identification number (if known)  
+Address
+• I have written documentation to support the amounts reported in Part I of this Section C.
+• I am a qualified investor as defined in section 4.03 of Revenue Procedure 2009-20.
+any potential third-party recovery, as that term is defined in section 4.10 of Revenue Procedure 2009-20.
+date(s) on which they were filed are as follows:
+Form 
+4684
+ (2013)
+• I agree to comply with the conditions and agreements set forth in Revenue Procedure 2009-20 and this Section C.
+• I am claiming a theft loss deduction pursuant to Revenue Procedure 2009-20 from a specified fraudulent arrangement conducted by the following 
+• If I have determined the amount of my theft loss deduction using .95 on line 46 above, I declare that I have not pursued and do not intend to pursue 
+• If I have already filed a return or amended return that does not satisfy the conditions in section 6.02 of Revenue Procedure 2009-20, I agree to all 
+adjustments or actions that are necessary to comply with those conditions. The tax year(s) for which I filed the return(s) or amended return(s) and the 
+----------------Page (0) Break----------------

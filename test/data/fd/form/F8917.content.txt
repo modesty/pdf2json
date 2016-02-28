@@ -1,0 +1,97 @@
+Form   
+8917
+Department of the Treasury 
+Internal Revenue Service
+Tuition and Fees Deduction
+a
+ 
+Attach to Form 1040 or Form 1040A. 
+a
+ 
+OMB No. 1545-0074
+20
+13
+Attachment 
+Sequence No.  
+60
+Name(s) shown on return
+Your social security number
+F
+!
+CAUTION
+You 
+cannot
+ take both an education credit from Form 8863 and the tuition and fees deduction from this form for the 
+same student 
+for the same tax year.
+Before you begin:
+
+Who Can Take the Deduction 
+
+If you file Form 1040, figure any write-in adjustments to be entered on the dotted line next to Form 
+1040, line 36. See the 2013 Form 1040 instructions for line 36.
+1
+(a)  
+Student’s name (as shown on page 1 of your tax return)
+ 
+First name                                                  Last name
+(b) 
+Student’s social security
+ 
+number (as shown on page
+ 
+1 of your tax return)
+(c) 
+Adjusted qualified
+ 
+expenses (see
+ 
+instructions)
+2
+Add the amounts on line 1, column (c), and enter the total
+.............
+2
+3
+Enter the amount from Form 1040, line 22, or Form 1040A, line 15
+3
+4
+Enter the total from either:
+• Form 1040, lines 23 through 33, plus any write-in adjustments 
+entered on the dotted line next to Form 1040, line 36, 
+or
+• Form 1040A, lines 16 through 18
+...........
+4
+5
+Subtract line 4 from line 3.* If the result is more than $80,000 ($160,000 if married filing jointly), 
+stop
+; you cannot take the deduction for tuition and fees
+.............
+5
+*If you are filing Form 2555, 2555-EZ, or 4563, or you are excluding income from Puerto Rico, 
+see 
+Effect of the Amount of Your Income on the Amount of Your Deduction
+ in Pub. 970, chapter 
+6, to figure the amount to enter on line 5.
+6      Tuition and fees deduction. 
+Is the amount on line 5 more than $65,000 ($130,000 if married 
+filing jointly)?
+Yes.
+Enter the smaller of line 2, or $2,000.
+No.
+Enter the smaller of line 2, or $4,000.
+Also enter 
+this amount on Form 1040, line 34, or Form 1040A, line 19.
+}
+..............
+6
+For Paperwork Reduction Act Notice, see your tax return instructions.
+Cat. No. 37728P
+Form 
+8917
+ (2013)
+Information about Form 8917 and its instructions is at www.irs.gov/form8917.
+To see if you qualify for this deduction, see
+ 
+in the instructions below.
+----------------Page (0) Break----------------

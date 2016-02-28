@@ -1,0 +1,63 @@
+{
+    "headerData": {
+        "valueLabel": [
+            {"href": "#/or/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "http://www.oregon.gov/dor/PERTAX/Pages/formspit.aspx", "label": "OR Tax Forms", "target": "_blank",
+                "styleClass": "formImage"},
+            {"href": "#/or/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "stateTaxUrl":"http://www.oregon.gov/DOR/Pages/index.aspx",
+        "eFileLinkUrl":"http://www.oregon.gov/dor/ESERV/Pages/online.aspx",
+        "faqFooter":"View more of your state-specific <a href='http://www.oregon.gov/dor/ESERV/Pages/free-fillable-forms-faq.aspx' target='_blank'>FAQs</a>",
+        "howItWorksList": {
+            "item1":"Either e-file your return, or print your return and mail it in."
+        },
+        "noteList": {
+            "item1": "This program does not support prior-year returns, part-year, non-resident or amended returns."
+        }
+    },
+
+    "landingData": {
+       "formNumber":"40",
+        "makeSureList": {},
+        "tipsList": {},
+        "beforeList": {
+            "item1":"Add information for all Forms W-2 and Forms 1099 you received.",
+            "item2":"Add information for the 2013 1040 Form you filed (1040, 1040A, or 1040EZ).  Make sure the information matches your filed federal return exactly."
+        }
+    },
+
+    "loginData": {
+        "stateAbbr":"OR",
+        "signInHelpLink":"http://www.oregon.gov/dor/ESERV/Pages/free-fillable-forms-faq.aspx"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"http://www.oregon.gov/dor/ESERV/Pages/free-fillable-forms-faq.aspx"
+    },
+
+    "homeHeaderData": {
+        "href": "http://www.oregon.gov/dor/ESERV/Pages/free-fillable-forms-faq.aspx"
+    },
+
+    "efileData": {
+        "efRefundLink":"https://secure.dor.state.or.us/refund/index.cfm",
+        "efRequiredInfo":"Social Security number, filing status, and the exact amount of refund on your return",
+        "efPaymentDueDate":"April 15, 2014",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"Oregon",
+        "stateAbbr":"OR",
+        "departmentName":"Oregon Department of Revenue",
+        "siteName": "Oregon State Fillable Forms",
+        "url": "https://www.statefillableforms.com/or",
+        "currentTaxYear": "2013"
+
+    }
+}

@@ -1,0 +1,65 @@
+Form  
+8846
+Department of the Treasury 
+Internal Revenue Service
+Credit for Employer Social Security and Medicare Taxes 
+Paid on Certain Employee Tips
+a
+ 
+Attach to your tax return.
+ 
+a
+ 
+.
+OMB No. 1545-1414
+20
+13
+Attachment 
+Sequence No. 
+98
+Name(s) shown on return
+Identifying number
+Note. 
+Claim this credit
+ only 
+for employer social security and Medicare taxes paid by a food or beverage establishment 
+ 
+1 
+Tips received by employees for services on which you paid or incurred employer social 
+security and Medicare taxes during the tax year (see instructions) 
+........
+1 
+2 
+Tips not subject to the credit provisions (see instructions) 
+...........
+2 
+3 
+Creditable tips. Subtract line 2 from line 1
+.................
+3 
+4 
+Multiply line 3 by 7.65% (.0765). If you had any tipped employees whose wages 
+(including tips) exceeded $113,700, see instructions and check here 
+.....
+ 
+a
+ 
+4 
+5 
+Credit for employer social security and Medicare taxes paid on certain employee tips 
+from partnerships and S corporations 
+..................
+5 
+6 
+Add lines 4 and 5. Partnerships and S corporations, report this amount on Schedule K. 
+All others, report this amount on Form 3800, line 4f 
+.............
+6 
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 16148Z
+Form 
+8846
+ (2013)
+Information about Form 8846 and its instructions is at www.irs.gov/form8846
+where tipping iscustomary for providing food or beverages. See the instructions for line 1.
+----------------Page (0) Break----------------

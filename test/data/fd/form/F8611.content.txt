@@ -1,0 +1,157 @@
+Form
+ 
+8611
+(Rev. December 2013) 
+Department of the Treasury  
+Internal Revenue Service 
+Recapture of Low-Income Housing Credit
+a
+ 
+Attach to your return. 
+Note:  
+Complete a separate Form 8611 for each building to which recapture applies.
+OMB No. 1545-1035 
+Attachment   
+Sequence No. 
+90
+a
+ 
+Information about Form 8611 and its instructions is at 
+www.irs.gov/form8611
+. 
+A    
+Name(s) shown on return
+B   Identifying number
+C    
+Address of building (as shown on Form 8609)
+D   
+Building identification 
+number (BIN)
+E   
+Date placed in service (from
+ 
+Form 8609)
+F    
+If building is financed in whole or part with tax-exempt bonds, see instructions and furnish:
+(1)  
+Issuer’s name
+(2)   
+Date of issue
+(3)  
+Name of issue
+(4)   
+CUSIP number
+Note:  
+Skip lines 1–7 and go to line 8 if recapture is passed through from a flow-through entity (partnership, S corporation, estate, 
+or 
+trust). However, section 42(j)(5) partnerships must complete lines 1 through 7.
+1 
+Enter total credits reported on Form 8586 in prior years for this building 
+........
+1 
+2 
+Credits included on line 1 attributable to additions to qualified basis (see instructions)     .    .    .
+2 
+3 
+Credits subject to recapture. Subtract line 2 from line 1 
+..............
+3 
+4 
+Credit recapture percentage (see instructions) 
+.................
+4 
+. 
+5 
+Accelerated portion of credit. Multiply line 3 by line 4 
+..............
+5 
+6 
+Percentage decrease in qualified basis. Express as a decimal amount carried out to at least 3
+places  (see instructions) 
+........................
+6 
+. 
+7 
+ 
+ 
+ 
+ 
+Amount of accelerated portion recaptured (see instructions if prior recapture on building). 
+Multiply line 5 by line 6. Section 42(j)(5) partnerships, go to line 16. All other flow-through 
+entities (except electing large partnerships), enter the result here and enter each recipient’s 
+share in the appropriate box of Schedule K-1. Generally, flow-through entities other than 
+electing large partnerships will stop here.  (
+Note:  
+An estate or trust enters on line 8
+ 
+only its share 
+of recapture amount attributable to the credit amount reported on its
+ 
+Form 8586.) 
+.....
+7 
+8 
+Enter recapture amount from flow-through entity (see 
+Note 
+above) 
+..........
+8 
+9 
+Enter the unused portion of the accelerated amount from line 7 (see instructions) 
+.....
+9 
+10 
+Net recapture. Subtract line 9 from line 7 or line 8. If less than zero, enter -0- 
+......
+10 
+11 
+Enter interest on the line 10 recapture amount (see instructions) 
+...........
+11 
+12 
+Total amount subject to recapture. Add lines 10 and 11 
+.............
+12 
+13 
+Unused credits attributable to this building reduced by the accelerated portion included on line 9
+(see instructions) 
+..........................
+13 
+14 
+ 
+ 
+Recapture tax. 
+Subtract line 13 from line 12. If zero or less, enter -0-. Enter the result here
+ 
+and 
+on the appropriate line of your tax return (see instructions). If more than one
+ 
+Form 8611 is filed, 
+add the line 14 amounts from all forms and enter the total on the appropriate
+ 
+line of your return. 
+Electing large partnerships, see instructions 
+.................
+14 
+15      Carryforward of the low-income housing credit attributable to this building. 
+Subtract
+ 
+line 12 
+from line 13. If zero or less, enter -0- (see instructions) 
+..............
+15 
+Only Section 42(j)(5) partnerships need to complete lines 16 and 17.
+16 
+Enter interest on the line 7 recapture amount (see instructions) 
+...........
+16 
+17 
+Total recapture. Add lines 7 and 16 (see instructions) 
+..............
+17 
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 63983Q
+Form 
+8611
+ (Rev. 12-2013)
+----------------Page (0) Break----------------

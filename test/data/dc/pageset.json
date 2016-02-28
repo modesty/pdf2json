@@ -1,0 +1,65 @@
+{
+    "headerData" :{
+        "valueLabel": [
+            {"href": "#/dc/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "http://otr.cfo.dc.gov/service/customer-service-center", "label": "Contact DC Tax", "target": "_blank", "styleClass": "formImage"},
+            {"href": "#/dc/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "stateTaxUrl":"http://otr.cfo.dc.gov/",
+        "eFileLinkUrl":"http://otr.cfo.dc.gov/page/federal-and-state-e-file-program",
+        "faqFooter":"View more of your state-specific <a href='https://www.taxpayerservicecenter.com/individual/Ind_Filing_Options.jsp' target='_blank'>FAQs</a>",
+        "howItWorksList": {
+            "item1":"Either e-file your return, or print your return and mail it in."
+        },
+        "noteList": {
+            "item2": "This program does not support prior-year returns, part-year, non-resident or amended returns."
+        }
+    },
+
+    "landingData": {
+        "formNumber":"D40 or D40EZ",
+        "makeSureList": {},
+        "tipsList": {
+            "item1":"Complete your federal return first. You will need the Federal Adjusted Gross Income (AGI) from your federal return to begin your state return."
+        },
+        "beforeList": {
+            "item1":"Make sure the Federal Adjusted Gross Income (AGI) agrees with your federal return.",
+            "item2":"Enter your exemption.",
+            "item3":"Enter your standard or itemized deductions."
+        }
+    },
+
+    "loginData": {
+        "signInHelpLink":"http://otr.cfo.dc.gov/page/individual-income-special-circumstances-faqs"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"http://otr.cfo.dc.gov/page/individual-income-special-circumstances-faqs"
+    },
+
+    "homeHeaderData": {
+        "href": "http://otr.cfo.dc.gov/page/individual-income-special-circumstances-faqs"
+    },
+
+    "efileData": {
+        "efRefundLink":" https://www.taxpayerservicecenter.com/individual/Ind_RefundStatus_Logon.jsp",
+        "efRequiredInfo":"Social Security number and amount of your expected refund",
+        "efPaymentDueDate":"April 15, 2014",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"District of Columbia",
+        "stateAbbr":"DC",
+        "departmentName":"District of Columbia Office of Tax and Revenue",
+        "siteName": "District of Columbia Fillable Forms",
+        "url": "https://www.statefillableforms.com/dc",
+        "currentTaxYear": "2013"
+
+    }
+
+}

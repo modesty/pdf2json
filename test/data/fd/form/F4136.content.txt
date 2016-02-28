@@ -1,0 +1,587 @@
+Nontaxable Use of Gasoline          Note. 
+Form  
+4136
+Department of the Treasury 
+Internal Revenue Service   
+(99)
+Credit for Federal Tax Paid on Fuels
+a
+.
+OMB No. 1545-0162
+20
+13
+Attachment  
+Sequence No. 
+23
+Name (as shown on your income tax return)
+Taxpayer identification number
+Caution.  
+ 
+ 
+ 
+credit card issuer.
+The alternative fuel mixture credit cannot be claimed on this form or on Schedule 3 (Form 8849). It  must be taken as 
+a credit against your taxable fuel liability (gasoline, diesel fuel, and kerosene) reported on Form 720.
+1
+CRN is credit reference number.
+(a) Type of use
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+   
+                         
+   
+a
+Off-highway business use
+b
+Use on a farm for farming purposes
+c
+$
+d
+Exported
+}
+2      Nontaxable Use of Aviation Gasoline
+(a) Type of use
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+                                                             
+   
+a
+Use in commercial aviation (other than foreign trade)
+$
+b
+c
+Exported
+d
+LUST tax on aviation fuels used in foreign trade
+3      Nontaxable Use of Undyed Diesel Fuel
+Claimant certifies that the diesel fuel did not contain visible evidence of dye.  
+a
+(a) Type of use
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+   
+                          
+   
+a
+Nontaxable use
+ 
+b
+Use on a farm for farming purposes
+$
+c
+Use in trains
+d
+Use in certain intercity and local buses (see 
+Caution
+  
+above line 1)
+e
+Exported
+}
+4      Nontaxable Use of Undyed Kerosene (Other Than Kerosene Used in Aviation)
+Claimant certifies that the kerosene did not contain visible evidence of dye.  
+a
+(a) Type of use
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+   
+                                  
+a
+Nontaxable use taxed at $.244
+b
+Use on a farm for farming purposes
+$
+c
+Use in certain intercity and local buses (see 
+Caution
+  
+above line 1)
+d
+Exported
+e
+Nontaxable use taxed at $.044
+f
+Nontaxable use taxed at $.219
+}
+For Paperwork Reduction Act Notice, see the separate instructions.
+Cat. No. 12625R
+Form 
+4136
+ (2013)
+$ .183
+.183
+362
+.183
+.184
+411
+$ .15
+354
+.193
+324
+.194
+412
+.001
+433
+$ .243
+.243
+360
+.243
+353
+.17
+350
+.244
+413
+$ .243
+.243
+346
+.17
+347
+.244
+414
+.043
+377
+.218
+369
+Exception.  If any of the kerosene included in this claim did contain visible evidence of dye, attach an explanation and check here 
+Exception.  If any of the diesel fuel included in this claim did contain visible evidence of dye, attach an explanation and check here 
+Other nontaxable use (see Caution above line 1)
+Other nontaxable use (see Caution above line 1)
+For claims on lines 1c and 2b (type of use 13 and 14), claimant certifies that acertificate has not been provided to the 
+claims on lines 1c and 2b (type of use 13 and 14), 3d, 4c, and 5, claimant has not waived theright to make the claim. 
+Claimant has the name and address of the person who sold the fuel to the claimant and the dates ofpurchase. For 
+ Information about Form 4136 and its separate instructions is at www.irs.gov/form4136
+----------------Page (0) Break----------------
+Form 4136 (2013)
+Page 
+2 
+5
+Kerosene Used in Aviation  
+(a) Type of use
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+                                                             
+   
+a
+Kerosene used in commercial aviation (other than foreign 
+trade) taxed at $.244
+$
+b
+Kerosene used in commercial aviation (other than foreign 
+trade) taxed at $.219
+c
+Nontaxable use (other than use by state or local 
+government) taxed at $.244
+d
+Nontaxable use (other than use by state or local 
+government) taxed at $.219
+e
+LUST tax on aviation fuels used in foreign trade
+6      Sales by Registered Ultimate Vendors of Undyed Diesel Fuel                     Registration No. 
+a
+of the buyer to make the claim. Claimant certifies that the diesel fuel did not contain visible evidence of dye.
+Exception.  
+a
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+                                                             
+   
+a
+Use by a state or local government
+$
+b
+Use in certain intercity and local buses
+7
+Sales by Registered Ultimate Vendors of Undyed Kerosene (Other 
+Than Kerosene For Use in Aviation)
+Registration No.
+ 
+a
+of the buyer to make the claim. Claimant certifies that the kerosene did not contain visible evidence of dye.
+Exception.  
+a
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+                                  
+a
+Use by a state or local government
+b
+Sales from a blocked pump
+$
+c
+Use in certain intercity and local buses
+}
+8
+Sales by Registered Ultimate Vendors of Kerosene For Use in Aviation
+Registration No.
+ 
+a
+to be submitted.
+(a) Type of use
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+                                                             
+   
+a
+Use in commercial aviation (other than foreign trade) taxed 
+at $.219
+$
+b
+Use in commercial aviation (other than foreign trade) taxed 
+at $.244
+c
+Nonexempt use in noncommercial aviation
+d
+Other nontaxable uses taxed at $.244
+e
+Other nontaxable uses taxed at $.219
+f
+LUST tax on aviation fuels used in foreign trade
+Form 
+4136
+ (2013)
+$ .200
+417
+.175
+355
+.243
+346
+.218
+369
+.001
+433
+$ .243
+360
+.17
+350
+$ .243
+.243
+346
+.17
+347
+$ .175
+355
+.200
+417
+.025
+418
+.243
+346
+.218
+369
+.001
+433
+Claimant sold the kerosene for use in aviation at a tax-excluded price and has not collected the amount of tax from the buyer, repaid the 
+amount of tax to the buyer, or has obtained the written consent of the buyer to make the claim. See the instructions for additional information 
+Claimant certifies that it sold the kerosene at a tax-excluded price, repaid the amount of tax to the buyer, or has obtained the written consent 
+If any of the kerosene included in this claim did contain visible evidence of dye, attach an explanation and check here 
+If any of the diesel fuel included in this claim did contain visible evidence of dye, attach an explanation and check here 
+Claimant certifies that it sold the diesel fuel at a tax-excluded price, repaid the amount of tax to the buyer, or has obtained the written consent 
+(see Caution above line 1)
+----------------Page (1) Break----------------
+Form 4136 (2013)
+Page 
+3 
+9      Reserved
+Registration No.
+ 
+a
+(b) Rate
+(c) Gallons of  
+alcohol 
+(d) Amount of credit 
+ 
+(e) CRN
+                                                                                          
+a
+Reserved
+b
+Reserved
+10
+Biodiesel or Renewable Diesel Mixture Credit
+Registration No.
+ 
+a
+ 
+ 
+ 
+ 
+ 
+ 
+instructions for line 10 for information about renewable diesel used in aviation.
+(b) Rate
+(c) Gallons of  
+biodiesel or  
+renewable  
+diesel
+(d) Amount of credit 
+ 
+(e) CRN
+  
+                                                             
+   
+a
+Biodiesel (other than agri-biodiesel) mixtures
+$
+b
+Agri-biodiesel mixtures
+c
+Renewable diesel mixtures
+11      Nontaxable Use of Alternative Fuel
+Caution.  
+There is a reduced credit rate for use in certain intercity and local buses (type of use 5) (see instructions).
+(a) Type of use
+(b) Rate
+(c) Gallons 
+ or gasoline  
+ gallon  
+equivalents (GGE)
+(d) Amount of credit 
+ 
+(e) CRN
+  
+  
+                                                             
+   
+a
+Liquefied petroleum gas (LPG)
+$
+b
+“P Series” fuels
+c
+Compressed natural gas (CNG) (GGE = 126.67 cu. ft.)
+d
+Liquefied hydrogen
+e
+Fischer-Tropsch process liquid fuel from coal (including 
+peat) 
+f
+Liquid fuel derived from biomass
+g
+Liquefied natural gas (LNG)
+h
+Liquefied gas derived from biomass
+12
+Alternative Fuel Credit 
+Registration No.
+ 
+a
+(b) Rate
+(c) Gallons 
+ or gasoline  
+ gallon  
+equivalents (GGE)
+(d) Amount of credit 
+ 
+ 
+(e) CRN
+   
+                                                             
+   
+a
+Liquefied petroleum gas (LPG)
+$
+b
+“P Series” fuels
+c
+Compressed natural gas (CNG) (GGE = 121 cu. ft.)
+d
+Liquefied hydrogen
+e
+Fischer-Tropsch process liquid fuel from coal (including peat)
+f
+Liquid fuel derived from biomass
+g
+Liquefied natural gas (LNG)
+h
+Liquefied gas derived from biomass
+i
+Compressed gas derived from biomass (GGE = 121 cu. ft.)
+Form 
+4136
+ (2013)
+$1.00
+388
+$1.00
+390
+$1.00
+307
+$ .183
+419
+.183
+420
+.183
+421
+.183
+422
+.243
+423
+.243
+424
+.243
+425
+.183
+435
+$ .50
+426
+.50
+427
+.50
+428
+.50
+429
+.50
+430
+.50
+431
+.50
+432
+.50
+436
+.50
+437
+D6751 and met EPA•s registration requirements for fuels and fuel additives. The mixture was sold by the claimant to any person foruse as a 
+fuel or was used as a fuel by the claimant. Claimant has attached the Certificate for Biodiesel and, if applicable, the Statement ofBiodiesel 
+The renewable diesel used to produce the renewable diesel mixture was derived from biomass process, met EPA•s registration requirements 
+for fuels and fuel additives, and met ASTM D975, D396, or other equivalent standard approved by the IRS. The mixture was sold by the 
+claimant to any person for use as a fuel or was used as a fuel by the claimant. Claimant hasattached the Certificate for Biodiesel and, if 
+applicable, the Statement of Biodiesel Reseller, both of which have been edited as discussedin the Instructions for Form 4136. See the 
+Reseller.  Renewable diesel mixtures.  Claimant produced a mixture by mixing renewable diesel with liquid fuel (other thanrenewable diesel). 
+Biodiesel mixtures.  Claimant produced a mixture by mixing biodiesel with diesel fuel. The biodiesel used to produce the mixture metASTM 
+----------------Page (2) Break----------------
+Form 4136 (2013)
+Page 
+4 
+13
+Registered Credit Card Issuers
+Registration No.
+ 
+a
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+                                                             
+   
+a
+Diesel fuel sold for the exclusive use of a state or local government
+$
+b
+Kerosene sold for the exclusive use of a state or local government
+c
+Kerosene for use in aviation sold for the exclusive use of a state or local 
+government taxed at $.219
+14      Nontaxable Use of a Diesel-Water Fuel Emulsion
+Caution.  
+There is a reduced credit rate for use in certain intercity and local buses (type of use 5) (see instructions). 
+(a) Type of use
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+   
+                                                             
+    
+a
+Nontaxable use
+$
+b
+Exported
+15      Diesel-Water Fuel Emulsion Blending                                                            Registration No.
+ 
+a
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+                                                             
+   
+Blender credit
+$
+16      Exported Dyed Fuels and Exported Gasoline Blendstocks
+(b) Rate
+(c) Gallons
+(d) Amount of credit 
+ 
+(e) CRN
+   
+                                                             
+   
+a
+Exported dyed diesel fuel and exported gasoline blendstocks taxed at $.001
+$
+b
+Exported dyed kerosene
+17
+ 
+ 
+the proper line of other returns. 
+a
+17
+$
+Form 
+4136
+ (2013)
+$ .243
+360
+.243
+346
+.218
+369
+$ .197
+309
+.198
+306
+$ .046
+310
+$ .001
+415
+.001
+416
+1040, line 70; Form 1120, Schedule J, line 19b; Form 1120S, line 23c; Form 1041, line 24g; or 
+Total income tax credit claimed.  Add lines 1 through 16, column (d). Enter here and onForm 
+----------------Page (3) Break----------------

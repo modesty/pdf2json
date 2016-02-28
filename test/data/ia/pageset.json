@@ -1,0 +1,66 @@
+{
+    "headerData": {
+        "valueLabel": [
+            {"href": "#/ia/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "http://www.iowa.gov/tax/contact/contact.html", "target": "_blank", "label": "Contact IA Tax",
+                "styleClass": "formImage"},
+            {"href": "#/ia/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "state":"Iowa",
+        "stateAbbr":"IA",
+        "departmentName":"Iowa Department of Revenue",
+        "stateTaxUrl":"http://www.iowa.gov/tax/",
+        "eFileLinkUrl":"http://www.iowa.gov/tax/elf/elfchoic.html#filefree",
+        "faqFooter":"View more of your state-specific <a href='need to add iowa faq link' target='_blank'>FAQs</a>",
+        "howItWorksList": {},
+        "noteList": {
+            "item1": "This program does not support prior-year returns, part-year, non-resident or amended returns."
+        }
+    },
+
+    "landingData": {
+        "formNumber":"IA1040",
+        "makeSureList": {},
+        "tipsList": {
+            "item1":"Complete your federal return first."
+        },
+        "beforeList": {
+            "item1":"Enter your exemption credits."
+        }
+    },
+
+    "loginData": {
+        "stateAbbr":"IA",
+        "signInHelpLink":""
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":""
+    },
+
+    "homeHeaderData": {
+        "href": "http://www.iowa.gov/tax/educate/faqhome.html"
+    },
+
+    "efileData": {
+        "efRefundLink":"",
+        "efRequiredInfo":"",
+        "efPaymentDueDate":"",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"Iowa",
+        "stateAbbr":"IA",
+        "departmentName":"Iowa Department of Revenue",
+        "siteName": "Iowa State Fillable Forms",
+        "url": "https://www.statefillableforms.com/ia",
+        "currentTaxYear": "2013"
+
+    }
+
+}
