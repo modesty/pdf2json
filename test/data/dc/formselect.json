@@ -1,0 +1,37 @@
+{
+    "mainList": [
+        {
+            "header": "Booklet DC 40EZ",
+            "imgUrl": "/img/dc/mainform01.png",
+            "title": "Use Form DC 40EZ if you have:",
+            "notes": [
+                "Income from wages, tips, interest only",
+                "No Adjustments",
+                "No Dependents",
+                "Income is less than $100,000"
+            ],
+            "links": [
+                {"id": "viewDc40EzInstructionsLink", "href": "/data/dc/inst/dc_ins_40.pdf", "label": "View Instructions", "className": "fsViewLink", "target": "_blank"},
+                {"id": "viewDc40EzSupportedFormsLink", "href": "/#/dc/forms.availability", "label": "View Supported Forms", "className": "fsViewLink", "target": "_blank"},
+                {"id": "selectDc40EzButton", "href": "DC40EZ", "label": "Start DC 40EZ", "className": "btn btn-small genericButton continueButton", "target": "_blank"}
+            ]
+        },
+        {
+            "header": "Booklet DC 40",
+            "imgUrl": "/img/dc/mainform02.png",
+            "title": "Use Form DC 40 if you have:",
+            "notes": [
+                "Income from wages, interest, dividends, pensions",
+                "Investment transactions",
+                "Business income",
+                "Itemized deductions",
+                "Any credits"
+            ],
+            "links": [
+                {"id": "viewDc40InstructionsLink", "href": "/data/dc/inst/dc_ins_40.pdf", "label": "View Instructions", "className": "fsViewLink", "target": "_blank"},
+                {"id": "viewDc40SupportedFormsLink", "href": "/#/dc/forms.availability", "label": "View Supported Forms", "className": "fsViewLink", "target": "_blank"},
+                {"id": "selectDc40Button", "href": "DC40", "label": "Start DC 40", "className": "btn btn-small genericButton continueButton", "target": "_blank"}
+            ]
+        }
+    ]
+}

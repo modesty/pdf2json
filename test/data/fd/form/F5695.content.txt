@@ -1,0 +1,267 @@
+Form  
+5695
+Department of the Treasury  
+Internal Revenue Service  
+Residential Energy Credits
+a
+  
+.
+ 
+a
+  
+Attach to Form 1040 or Form 1040NR.
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No. 
+158
+Name(s) shown on return
+Your social security number
+Part I
+Residential Energy Efficient Property Credit 
+(See instructions before completing this part.)
+Note. 
+Skip lines 1 through 11 if you only have a 
+credit carryforward from 2012.
+1 
+Qualified solar electric property costs 
+....................
+1
+2 
+Qualified solar water heating property costs 
+..................
+2
+3 
+Qualified small wind energy property costs 
+...................
+3
+4 
+Qualified geothermal heat pump property costs 
+.................
+4
+5 
+Add lines 1 through 4 
+..........................
+5
+6
+Multiply line 5 by 30% (.30) 
+........................
+6
+7 
+a 
+Qualified fuel cell property. Was qualified fuel cell property installed on or in connection with your 
+main home located in the United States? (See instructions) 
+............ 
+a
+7a
+Yes
+No
+Caution: 
+If you checked the “No” box, you cannot take a credit for qualified fuel cell property. Skip 
+lines 7b through 11.
+b
+Print the complete address of the main home where you installed the fuel cell property.
+Number and street 
+Unit  No.
+City, State, and ZIP code
+8
+Qualified fuel cell property costs 
+.............
+8
+9
+Multiply line 8 by 30% (.30) 
+...............
+9
+10
+Kilowatt capacity of property on line 8 above 
+a
+.           x  $1,000
+10
+11 
+Enter the smaller of line 9 or line 10
+.....................
+11
+12 
+Credit carryforward from 2012. Enter the amount, if any, from your 2012 Form 5695, line 18     .    .
+12
+13 
+Add lines 6, 11, and 12
+.........................
+13
+14
+Limitation based on tax liability. Enter the amount from the Residential Energy Efficient Property 
+Credit Limit Worksheet (see instructions) 
+...................
+14
+15
+Residential energy efficient property credit. 
+Enter the smaller of line 13 or line 14. Also include
+this amount on Form 1040, line 52, or Form 1040NR, line 49 
+.............
+15
+16 
+Credit carryforward to 2014. If line 15 is less than line 13, subtract 
+line 15 from line 13     .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .    .
+16
+For Paperwork Reduction Act Notice, see your tax return instructions.
+Cat. No. 13540P
+Form 
+5695
+ (2013)
+Information about Form 5695 and its instructions is at www.irs.gov/form5695
+----------------Page (0) Break----------------
+Form 5695 (2013)
+Page  
+2 
+Part II
+Nonbusiness Energy Property Credit
+17
+a 
+Were the qualified energy efficiency improvements or residential energy property costs for your 
+main home located in the United States? (see instructions) 
+............
+a
+17a 
+Yes
+No
+Caution: 
+ 
+Do not complete Part II.
+b 
+Print the complete address of the main home where you made the qualifying improvements.
+Caution: 
+You can only have one main home at a time.
+Number and street   
+Unit No.
+City, State, and ZIP code
+c 
+Were any of these improvements related to the construction of this main home? 
+..... 
+a
+17c
+Yes
+No
+Caution:  
+If you checked the “Yes” box, you can only claim the nonbusiness energy property credit 
+for qualifying improvements that were not related to the construction of the home. Do not include
+expenses related to the construction of your main home, even if the improvements were made
+after you moved into the home.
+18
+Lifetime limitation. Enter the amount from the Lifetime Limitation Worksheet (see instructions)  .    .
+18
+19
+Qualified energy efficiency improvements (original use must begin with you and the component must 
+reasonably be expected to last for at least 5 years; do not include labor costs) (see instructions).
+a 
+Insulation material or system specifically and primarily designed to reduce heat loss or gain of 
+your home that meets the prescriptive criteria established by the 2009 IECC 
+........
+19a
+b 
+Exterior doors that meet or exceed the Energy Star program requirements
+........
+19b
+c 
+ 
+Metal or asphalt roof that meets or exceeds the Energy Star program requirements and has
+appropriate pigmented coatings or cooling granules which are specifically and primarily designed 
+to reduce the  heat gain of your home 
+....................
+19c
+d 
+Exterior windows and skylights that meet or exceed the Energy Star 
+program requirements
+.................
+19d
+e
+Maximum amount of cost on which the credit can be figured
+....
+19e
+f 
+ 
+If you claimed window expenses on your Form 5695 for 2006, 2007, 
+2009, 2010, 2011, or 2012, enter the amount from the Window Expense 
+Worksheet (see instructions); otherwise enter -0-
+........
+19f
+g
+Subtract line 19f from line 19e. If zero or less, enter -0-
+......
+19g
+h
+Enter the smaller of line 19d or line 19g
+....................
+19h
+20
+Add lines 19a, 19b, 19c, and 19h 
+......................
+20
+21
+Multiply line 20 by 10% (.10) 
+.......................
+21
+22
+Residential energy property costs (must be placed in service by you; include labor costs for onsite 
+preparation, assembly, and original installation) (see instructions).
+a 
+Energy-efficient building property. Do not enter more than 
+$300
+............
+22a
+b 
+Qualified natural gas, propane, or oil furnace or hot water boiler. Do not enter more than 
+$150
+..
+22b
+c 
+Advanced main air circulating fan used in a natural gas, propane, or oil furnace. Do not enter more 
+than 
+$50 
+..............................
+22c
+23
+Add lines 22a through 22c 
+........................
+23
+24
+Add lines 21 and 23
+..........................
+24
+25
+Maximum credit amount. (If you jointly occupied the home, see instructions)
+........
+25
+26
+Enter the amount, if any, from line 18 
+.....................
+26
+27
+Subtract line 26 from line 25. If zero or less, 
+stop;
+ you cannot take the nonbusiness energy 
+property credit
+............................
+27
+28
+Enter the smaller of line 24 or line 27
+.....................
+28
+29
+Limitation based on tax liability. Enter the amount from the Nonbusiness Energy Property Credit 
+Limit Worksheet (see instructions)
+......................
+29
+30
+Nonbusiness energy property credit.
+ Enter the smaller of line 28 or line 29. Also include this
+amount on Form 1040, line 52, or Form 1040NR, line 49
+..............
+30
+Form 
+5695
+ (2013)
+$2,000
+$500
+If you checked the “No” box, you cannot claim the nonbusiness energy property credit. 
+----------------Page (1) Break----------------

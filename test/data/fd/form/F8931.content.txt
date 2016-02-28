@@ -1,0 +1,107 @@
+Form    
+8931 
+(Rev. December 2010)
+Department of the Treasury  
+Internal Revenue Service 
+Agricultural Chemicals Security Credit
+a
+ 
+See instructions.
+a
+ 
+Attach to your tax return.
+OMB No. 1545-2122
+Attachment   
+Sequence No. 
+162
+ 
+Name shown on return 
+Identifying number 
+Facility 
+1 
+Enter on the applicable line below the qualified agricultural  
+chemicals security costs described (see instructions) 
+....
+(a) 
+(b) 
+(c)
+a 
+Employee security training and background checks 
+.....
+1a 
+b 
+Limitation and prevention of access to controls of agricultural  
+chemicals stored 
+................
+1b
+c 
+Tagging, locking tank valves, and chemical additives to prevent  
+theft or to render chemicals unfit for illegal use 
+...... 
+1c
+d 
+Perimeter protection of agricultural chemicals 
+.......
+1d 
+e 
+Installation of security lighting, cameras, recording equipment,  
+and intrusion detection sensors 
+........... 
+1e 
+f 
+Implementation of measures to increase computer or computer  
+network security 
+................
+1f 
+g 
+Conducting a security vulnerability assessment 
+......
+1g 
+h 
+Implementing a site security plan 
+........... 
+1h 
+2 
+Total qualified agricultural chemicals security costs. Add the  
+amounts in columns (a), (b), and (c) on lines 1a through 1h .    .    .  
+2
+3 
+Multiply the amounts in columns (a), (b), and (c) on line 2 by 30%
+3 
+4 
+Maximum credit per facility. Subtract the total of the credits  
+claimed for the facility in the 5 prior tax years from $100,000  .    .  
+4 
+5 
+Agricultural chemicals security credit. Enter the smaller of line 3 or 
+line 4 for each facility. For additional facilities, see instructions    .  
+5 
+6 
+Add the amounts for all facilities on line 5 
+....................
+6 
+7 
+Credit from partnerships, S corporations, estates, and trusts 
+..............
+7 
+8 
+Add lines 6 and 7. Enter the result, but not more than $2,000,000. Estates and trusts, go to line 9; 
+partnerships and S corporations, report this amount on Schedule K; all others, report this amount on
+the appropriate line of Form 3800 (e.g., line 1v of the 2010 Form 3800) 
+..........
+8 
+9 
+Amount allocated to beneficiaries of the estate or trust (see instructions) 
+..........
+9 
+10 
+Estates and trusts, subtract line 9 from line 8. Report the credit on the appropriate line of Form 3800 
+(e.g., line 1v of the 2010 Form 3800) 
+......................
+10 
+For Paperwork Reduction Act Notice, see page 2.
+Cat. No. 37745A
+Form 
+8931
+ (Rev. 12-2010) 
+----------------Page (0) Break----------------

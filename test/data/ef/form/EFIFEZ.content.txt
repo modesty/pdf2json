@@ -1,0 +1,115 @@
+Required Information For Electronic Filing- Complete All 5 Sections Below
+Section 1: W-2s
+item  separately.
+Complete one electronic W-2 for every W-2 you received.
+Click the Add button for each W-2 you received. . . .
+ 
+ 
+Section 4: Signing This Year's Return 
+birth, and today's date.
+Taxpayer
+Spouse
+Select any 5-digit PIN to sign this return.
+(Your PIN(s) cannot be 12345 or 00000)
+. . . . . . . . . . . . . . . . . . . . .
+Date of Birth (mm/dd/yyyy)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Today's Date (mm/dd/yyyy)
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+You (and your spouse if filing Married Filing Joint) will need to sign this return electronically. To do so enter a 5-digit PIN, your date of 
+D
+A
+C
+B
+Look at last year's (2012) federal tax return and enter the Adjusted Gross Income (AGI) in the space provided. Look at the AGI on
+Electronic Filing PIN:
+http://www.irs.gov/Individuals/Electronic-Filing-PIN-Request,
+of the three pieces of information also.
+(b) If you don't have or can't remember last year's AGI, go to
+Last year's AGI:
+not file a return last year, enter a zero in the AGI space provided.
+the same spouse that you filed in 2012, the prior year AGI will be the same for both you the "Taxpayer" and your "Spouse". If you did 
+of the Form 1040EZ. If you are filing Married Filing Jointly with
+line 37
+line 4
+of the Form 1040A and
+line 21
+of the Form 1040,
+(a) 
+one
+must complete 
+of the following two pieces of information. If you are filing a joint return with your spouse, your spouse
+one
+As the taxpayer, enter 
+Taxpayer
+Spouse
+. . . . . . . . . . . . . . . . . . . . . . . 
+OR
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+Taxpayer
+Spouse
+Total Federal Withholding (Box A plus Box B) . 
+To prevent issues with your e-filed return, perform the following reconciliation:
+that is not reported on a form in Section 1 above. These amounts come from documents such as 
+SSA- 1099, 1099- DIV, 1099- MISC, 1099- B, other 1099s or Schedule K-1's.
+C
+A
+Total the federal withholding amounts entered on the  W-2's, 1099- R's and W-2Gs in Section 1
+B
+Enter in Box B the total amount of other withholding that you are reporting on Form 1040EZ, line 7
+D         Total Federal Withholding from From 1040EZ, Line 7.
+above and enter it in Box A.
+Box C and Box D MUST match to activate the 'Efile Now' button.
+(If not, check the amounts you have entered in Box A and Box B.)
+Section 2:  Boxes C and D Must Match
+or call the IRS at 1-866-704-7388 to get an Electronic Filing PIN from the IRS and enter it in the space provided (all 5 digits are required).
+Section 3: Verifying Your Identity 
+If you received a form W-2 select the "Add" button below to add the applicable form. You will need to enter each 
+----------------Page (0) Break----------------
+Disclosure Statement
+I agree
+Return by entering my Self-Select PIN above.
+E-mail address (for confirmation e-mail)
+. . . . . . . . . . . . . . . . . . . . .
+Re-enter e-mail address (must match)
+. . . . . . . . . . . . . . . . . . . . . . .
+Section 5: Payment Options
+Review the option below that applies to you and complete any required entry fields.
+A. Paying Tax Due by Check
+ - If you are paying with a check print Form 1040V and mail it with your check to the IRS (print your return 
+to get Form 1040V). You have no futher action in this step.
+B. Electronic Withdrawal of Tax Due (Does not apply to estimated tax payments)
+ - If you would like to pay your balance due using 
+direct debit enter the required information below and agree to the disclosure statement.
+Routing number
+. . . . . . . . . . .
+Account number
+. . . . . . . . . . . . .
+Type:
+. . . . . . . . . . . . . . . . . . . . .
+Checking             Savings             Not applicable (if not using direct debit)
+Date to make withdrawal
+.
+Note
+: do 
+not
+ enter direct deposit information here, enter it on the return
+Day time phone number
+. .
+Electronic withdrawal disclosure statement
+I agree
+I authorize the U.S. Treasury and its designated Financial Agent to intitiate an ACH Electronic Funds Withdrawal (Direct Debit)
+entry to the financial institution account indicated for payment of my federal taxes owed on this return and the financial 
+payments that I direct to be debited through the Electronic Federal Payment System (EFTPS).  In order for me to initiate 
+subsequent payments, I request that the IRS send me a personal identification number (PIN) to access EFTPS. This 
+To revoke a payment, I must contact the U.S. Treasury Financial Agent at 1-888-353-4537 no later than 2 business days prior to 
+taxes to receive confidential information necessary to answer inquiries and resolve issues related to the payment.
+Under penalties of perjury, I declare that I have examined this return (or request for refund) including any accompanying statements 
+Service Provider, transmitter, or Electronic Originator (EROS)  to send my return (or request for refund) to the IRS and to receive the 
+institution to debit the entry to this account.  I further understand that this authorization may apply to subsequent federal tax 
+authorization is to remain in full force and effect until I notify the U.S. Treasure Financial Agent to terminate the authorization. 
+the payment (settlement) date.  I also authorize the financial institutions involved in the processing of the electronic payment of 
+and schedules and, to the best of my knowledge and belief, it is true, correct, and complete. I consent to allow my Intermediate 
+following information from the IRS: a) an acknowledgement of receipt or reason for rejection of transmission; b) an indication of any 
+refund offset; c) the reason for any delay in processing the return or refund; and d) the date of any refund. I am signing this Tax 
+----------------Page (1) Break----------------

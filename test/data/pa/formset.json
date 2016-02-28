@@ -1,0 +1,38 @@
+{
+    "formset" :{
+        "id": "S2013PAD",
+        "version": "0.2",
+        "agency": "pa",
+        "main": "PA40",
+        "forms": [
+            {"id": "PA40", "name":"PA-40 - Pennsylvania Income Tax Return", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40"},
+            {"id": "SCHABT", "name":"PA Schedule A/B - Interest Income/Dividend Income", "mc": true, "max": 3, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchAB_TP"},
+			{"id": "PAC", "name":"PA Schedule C - Profit or Loss from Business or Profession (Sole Proprietorship)", "mc": true, "max": 10, "parent": null,
+                "inst":"pa_ins_schc", "cid": "40SchC"},
+            {"id": "SCHDT", "name":"PA Schedule D - Sale, Exchange or Disposition of Property", "mc": true, "max": 3, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchDT"},
+            {"id": "SE", "name":"PA Schedule E - Rents and Royalty Income (Loss)", "mc": true, "max": 15, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchESFF"},
+            {"id": "SCHJT", "name":"PA Schedule J/T - Schedule J - Income from Estates or Trusts and Schedule T - Gambling and Lottery Winnings", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchJT"},
+            {"id": "SCHO", "name":"PA Schedule O - Other Deductions", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchO"},
+            {"id": "PASCHOC", "name":"PA Schedule OC - Other Credits", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_schoc", "cid": "40SchOC"},
+            {"id": "SSP", "name":"PA Schedule SP - Special Tax Forgiveness", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchSP"},
+			{"id": "DEP", "name":"PA Schedule SP Dependents Statement", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchSP"},
+            {"id": "SUE", "name":"PA Schedule UE - Allowable Employee Business Expenses", "mc": true, "max": 30, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40SchUE"},
+			{"id": "F8453", "name":"PA 8453 - Pennsylvania Individual Income Tax Declaration for Electronic Filing", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_8453", "cid": "8453"},
+            {"id": "VOUCH", "name":"PA-V - Pennsylvania Payment Voucher", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_pa-v", "cid": "PAV"},
+            {"id": "W2S", "name":"PA Schedule W-2s - Wage Statement Summary", "mc": false, "max": 1, "parent": null,
+                "inst":"pa_ins_pa40", "cid": "40W2S"}
+        ]
+    }
+}

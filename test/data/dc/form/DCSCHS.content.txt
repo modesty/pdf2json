@@ -1,0 +1,203 @@
+Government of the
+District of Columbia
+2013
+   
+SCHEDULE S  Supplemental
+           Information and Dependents
+2013 SCHEDULE S   P1
+Supplemental Information and Dependents                                                               File order 3
+Revised 09/13
+Unless instructed otherwise – 
+Print in CAPITAL letters using black ink.
+Enter your last name.                                                                                     Enter your social security number.
+Do not enter your information
+First name of qualifying non-dependent person                                           M.I.       Last Name
+SSN of qualifying non-dependent person            Date of Birth of qualifying non-dependent person (MMDDYYYY)
+Dependents 
+If you have more than 8 dependents, list them on an attachment.
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+First name                                                                                                M.I.     Last Name
+Social security number                                           Relationship                                                                                  Date of Birth (MMDDYYYY)
+If you fill in any part of this schedule, attach it to your D-40. 
+Head of household filers
+----------------Page (0) Break----------------
+EINs associated with Income 
+reported and taxed
+ on Franchise and Fidiciary Returns for the amount listed 
+on D-40, Line 10.
+a
+d
+g
+b
+e
+h
+c
+f
+i
+2013 SCHEDULE S   P2
+Supplemental Information and Dependents                                                               File order 4
+Revised 09/13
+Last name and SSN
+SCHEDULE S  PAGE 2
+Calculation G  Number of exemptions.
+ 
+$
+Enter separate amounts in each column. Combine amounts on line k.
+a  Federal adjusted gross income.                                                    a
+  
+portion of federal adjusted gross income. Registered domestic partners 
+should enter the federal AGI reported on their separate federal returns.
+b  Total additions to federal adjusted gross income.                            b
+ 
+Enter each person’s portion of additions entered on D-40, Lines 4 and 5.
+c 
+Add Lines a and b.
+d  Total subtractions from federal adjusted gross income.
+     Enter each person’s portion of subtractions entered on D-40, Line 14.
+e   DC adjusted gross income.  
+Subtract Line d from Line c.
+ 
+e
+ 
+     Enter each person’s portion of the amount entered on D-40, Line 17.
+     (You may allocate this amount as you wish.)
+     Enter each person’s portion of exemption amount entered on D-40, Line 19.
+h
+   Add Lines f and g.
+ 
+h
+  Subtract Line h from Line e. 
+i
+ If Line i is $100,000 or less, use tax tables. 
+j
+      If more than $100,000, use Calculation I, instructions.
+k
+   Add the amounts on Line j, enter here and on D-40, Line 22. 
+k
+                                                               Total tax
+a  Enter 1 for yourself and 
+a
+c   Enter 1 if you are age 65 or over and 
+c
+d  Enter 1 if you are blind 
+d
+e
+i   Total number of exemptions  
+Add Lines a–h, enter here and on D-40, Line 18. 
+i
+d
+f
+Fill in if loss
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+.
+00
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+$
+Do not attach Schedule S to your D-40 if you only filled in Lines a, f and i and have not filled in any other section of Schedule S.
+b  Enter 1 if you are filing as a head of household and
+ 
+b
+ 
+f
+g   Enter 1 if you are married filing jointly or married filing separately on same return and your spouse/partner is 65 or over
+ 
+g
+e   Enter number of dependents 
+f
+ 
+Enter 1 for your spouse or registered domestic partner if filing jointly or filing separately on same return
+h  Enter 1 if you are married filing jointly or married filing separately on same return and your spouse/partner is blind
+ 
+h
+Calculation J  Tax computation for married or registered domestic partners filing separately on the same DC return.
+You
+                           
+Your spouse/domestic partner
+If you and your spouse filed a joint federal return, enter each person’s 
+f
+ 
+Deduction amount.
+g
+ 
+Exemption amount.
+ 
+g
+i
+ 
+Taxable income.
+j
+ 
+Tax. 
+ 
+c
+----------------Page (1) Break----------------

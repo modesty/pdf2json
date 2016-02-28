@@ -1,0 +1,195 @@
+Form 
+8582 
+Department of the Treasury  
+Internal Revenue Service (99)
+Passive Activity Loss Limitations
+a
+ 
+See separate instructions.
+a
+ 
+Attach to Form 1040 or Form 1041.
+a
+ 
+.
+OMB No. 1545-1008
+20
+13
+Attachment   
+Sequence No. 
+88
+Name(s) shown on return
+Identifying number
+Part I
+2013 Passive Activity Loss
+Caution: 
+Complete Worksheets 1, 2, and 3 before completing Part I.
+Rental Real Estate Activities With Active Participation 
+(For the definition of active participation, see 
+1 
+ 
+a 
+ 
+Activities with net income (enter the amount from Worksheet 1, 
+column (a))
+..................
+1a 
+b 
+ 
+Activities with net loss (enter the amount from Worksheet 1, column
+(b))
+.....................
+1b
+(
+)
+c 
+ 
+Prior years unallowed losses (enter the amount from Worksheet 1, 
+column (c))
+..................
+1c 
+(
+)
+d 
+Combine lines 1a, 1b, and 1c
+......................
+1d
+Commercial Revitalization Deductions From Rental Real Estate Activities
+2 
+a
+Commercial revitalization deductions from Worksheet 2, column (a) .
+2a 
+(
+)
+b 
+ 
+Prior year unallowed commercial revitalization deductions from 
+Worksheet 2, column (b)
+..............
+2b
+(
+)
+c 
+Add lines 2a and 2b
+.........................
+2c 
+(
+)
+All Other Passive Activities
+3 
+ 
+a 
+ 
+Activities with net income (enter the amount from Worksheet 3, 
+column (a))
+..................
+3a 
+b 
+ 
+Activities with net loss (enter the amount from Worksheet 3, column
+(b))
+.....................
+3b
+(
+)
+c 
+ 
+Prior years unallowed losses (enter the amount from Worksheet 3, 
+column (c))
+..................
+3c 
+(
+)
+d 
+Combine lines 3a, 3b, and 3c
+......................
+3d
+4 
+ 
+ 
+Combine lines 1d, 2c, and 3d. If this line is zero or more, stop here and include this form with
+your return; all losses are allowed, including any prior year unallowed losses entered on line 1c, 
+2b, or 3c. Report the losses on the forms and schedules normally used
+........
+4 
+If line 4 is a loss and:       • Line 1d is a loss, go to Part II. 
+• Line 2c is a loss (and line 1d is zero or more), skip Part II and go to Part III. 
+• Line 3d is a loss (and lines 1d and 2c are zero or more), skip Parts II and III and go to line 15.
+Caution: 
+Part II or Part III. Instead, go to line 15.
+Part II
+Special Allowance for Rental Real Estate Activities With Active Participation
+Note: 
+Enter all numbers in Part II as positive amounts. See instructions for an example.
+5 
+............
+5 
+6 
+Enter $150,000. If married filing separately, see instructions    .    .
+6 
+7 
+Enter modified adjusted gross income, but not less than zero (see instructions)
+7 
+Note: 
+If line 7 is greater than or equal to line 6, skip lines 8 and
+ 
+9, 
+enter -0- on line 10. Otherwise, go to line 8.
+8 
+Subtract line 7 from line 6 
+.............
+8 
+9 
+9 
+10 
+....................
+10 
+If line 2c is a loss, go to Part III. Otherwise, go to line 15.
+Part III
+Special Allowance for Commercial Revitalization Deductions From Rental Real Estate Activities
+Note: 
+Enter all numbers in Part III as positive amounts. See the example for Part II in the instructions.
+11 
+Enter $25,000 reduced by the amount, if any, on line 10. If married filing separately, see instructions
+11 
+12 
+Enter the loss from line 4
+........................
+12 
+13 
+Reduce line 12 by the amount on line 10 
+..................
+13 
+14 
+Enter the 
+smallest
+ of line 2c (treated as a positive amount), line 11, or line 13
+......
+14 
+Part IV
+Total Losses Allowed
+15 
+Add the income, if any, on lines 1a and 3a and enter the total
+............
+15 
+16 
+ 
+ 
+instructions to find out how to report the losses on your tax return    .    .    .    .
+.......
+16 
+For Paperwork Reduction Act Notice, see instructions. 
+Cat. No. 63704F 
+Form 
+8582
+ (2013) 
+Form 8582 pg 2
+Form 8582 pg 3
+Information about Form 8582 and its instructions is available at www.irs.gov/form8582
+Special Allowance for Rental Real Estate Activities in the instructions.)
+If your filing status is married filing separately and you lived with your spouse at any time during the year, do not complete 
+Enter the smaller of line 5 or line 9 
+Multiply line 8 by 50% (.5). Do not enter more than $25,000. If married filing separately, see instructions
+Enter the smaller of the loss on line 1d or the loss on line 4
+Total losses allowed from all passive activities for 2013. Add lines 10, 14, and 15. See
+----------------Page (0) Break----------------

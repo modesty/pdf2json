@@ -1,0 +1,381 @@
+Form   
+3468
+Department of the Treasury  
+Internal Revenue Service (99)
+Investment Credit
+a
+ 
+Attach to your tax return.                                                            
+a
+ 
+Information about Form 3468 and its separate instructions is at 
+www.irs.gov/form3468
+.
+OMB No. 1545-0155
+20
+13
+Attachment   
+Sequence No. 
+174
+Name(s) shown on return
+Identifying number
+Part I
+Information Regarding the Election To Treat the Lessee as the Purchaser of Investment Credit Property
+If you are claiming the investment credit as a lessee based on a section 48(d) (as in effect on November 4, 1990) election, pro
+vide the 
+following information. If you acquired more than one property as a lessee, attach a statement showing the information below.
+1
+Name of lessor
+2
+Address of lessor
+3
+Description of property
+4
+Amount for which you were treated as having acquired the property 
+..........
+a
+$
+Part II
+Qualifying Advanced Coal Project Credit, Qualifying Gasification Project Credit, and Qualifying 
+Advanced Energy Project Credit
+5
+Qualifying advanced coal project credit (see instructions):
+a 
+ 
+Qualified investment in integrated gasification combined cycle property 
+placed in service during the tax year for projects described in section 
+48A(d)(3)(B)(i) 
+.......
+$
+× 20% (.20)
+5a
+b 
+ 
+Qualified investment in advanced coal-based generation technology 
+property placed in service during the tax year for projects described in
+section 48A(d)(3)(B)(ii) 
+.....
+$
+× 15% (.15)
+5b
+c 
+ 
+Qualified investment in advanced coal-based generation technology 
+property placed in service during the tax year for projects described in
+section 48A(d)(3)(B)(iii) 
+.....
+$
+× 30% (.30)
+5c
+d
+Total. Add lines 5a, 5b, and 5c 
+.......................
+5d
+6
+Qualifying gasification project credit (see instructions):
+a 
+ 
+ 
+ 
+Qualified investment in qualified gasification property placed in service 
+during the tax year for which credits were allocated or reallocated after 
+October 3, 2008, and that includes equipment that separates and
+sequesters at least 75% of the project’s carbon dioxide 
+emissions 
+.........
+$
+× 30% (.30)
+6a
+b 
+Qualified investment in property other than in 
+a
+ above placed in service 
+during the tax year 
+......
+$
+× 20% (.20)
+6b
+c
+Total. Add lines 6a and 6b 
+........................
+6c
+7
+Qualifying advanced energy project credit (see instructions):
+Qualified investment in advanced energy project property placed in 
+service during the tax year 
+............
+$
+× 30% (.30) 
+7
+8
+Reserved 
+..............................
+8
+9
+Enter the applicable unused investment credit from cooperatives (see instructions) 
+.....
+9
+10
+Add lines 5d, 6c, 7, and 9. Report this amount on Form 3800, line 1a 
+..........
+10
+For Paperwork Reduction Act Notice, see separate instructions.
+Cat. No. 12276E
+Form 
+3468
+ (2013) 
+Addr
+City
+State
+ZIP Code
+----------------Page (0) Break----------------
+Form 3468 (2013)
+Page 
+2 
+i
+Certified historic structures affected by a Midwestern disaster 
+(only enter amounts paid or incurred before 2012)    .    .    .    .
+$
+× 26% (.26)
+11i
+j
+Other certified historic structures 
+.........
+$
+× 20% (.20)
+11j
+For properties identified on lines 11h, 11i, or 11j, complete lines 11k and 11l.
+k 
+Enter the assigned NPS project number or the pass-through entity’s employer identification
+number (see instructions) 
+...............
+l 
+Enter the date that the NPS approved the Request for Certification of Completed Work (see 
+instructions) 
+....................
+m
+Rehabilitation credit from an electing large partnership (Schedule K-1 (Form 1065-B), box 9)     .    .
+11m
+12
+Energy credit:
+a 
+ 
+Basis of property using geothermal energy or solar energy (acquired before January 1, 2006, and 
+the basis attributable to construction, reconstruction, or erection by the taxpayer before January 
+1, 2006) placed in service during the tax year (see instructions)   
+$
+× 10% (.10)
+12a
+b 
+ 
+Basis of property using solar illumination or solar energy placed in service during the tax year that was 
+acquired after December 31, 2005, and the basis attributable to construction, reconstruction, or 
+erection by the taxpayer after December 31, 2005 (see instructions)
+ 
+$
+× 30% (.30)
+12b
+Qualified fuel cell property (see instructions):
+c 
+ 
+Basis of property placed in service during the tax year that was acquired after December 31, 2005, and 
+before October 4, 2008, and the basis attributable to construction, reconstruction, or erection by the 
+taxpayer after December 31, 2005, and before October 4, 2008 
+$
+× 30% (.30)
+12c
+d
+Applicable kilowatt capacity of property on line 12c (see instructions)  
+a
+× $1,000
+12d
+e
+Enter the lesser of line 12c or line 12d 
+....................
+12e
+Form 
+3468
+ (2013) 
+Enter the amount of qualified rehabilitation expenditures and multiply by the percentage shown:
+e
+Pre-1936 buildings located in the Gulf Opportunity Zone 
+(only enter amounts paid or incurred before 2012)     .    .    .
+$
+× 13% (.13)
+11e
+f
+Pre-1936 buildings affected by a Midwestern disaster (only 
+enter amounts paid or incurred before 2012)
+.....
+$
+× 13% (.13)
+11f
+g
+Other pre-1936 buildings 
+............
+$
+× 10% (.10)
+11g
+h
+Certified historic structures located in the Gulf Opportunity Zone 
+(only enter amounts paid or incurred before 2012)  .    .    .    .    .
+$
+× 26% (.26)
+11h
+Part III
+Rehabilitation Credit and Energy Credit
+11
+Rehabilitation credit (see instructions for requirements that must be met):
+a 
+ 
+ 
+Check this box if you are electing under section 47(d)(5) to take your qualified rehabilitation 
+expenditures into account for the tax year in which paid (or, for self-rehabilitated property, when 
+capitalized). See instructions. 
+Note. 
+This election applies to the current tax year and to all later tax 
+years. You may not revoke this election without IRS consent 
+...........
+a
+b
+Enter the dates on which the 24- or 60-month measuring period begins
+and ends
+c 
+Enter the adjusted basis of the building as of the beginning date above 
+(or the first day of your holding period, if later) 
+.........
+$
+d 
+Enter the amount of the qualified rehabilitation expenditures incurred, or 
+treated as incurred, during the period on line 11b above 
+.....
+$
+f 
+ 
+Basis of property placed in service during the tax year that was acquired after October 3, 2008, 
+and the basis attributable to construction, reconstruction, or erection by the taxpayer after  
+October 3, 2008 
+...............
+$
+× 30% (.30)
+12f
+g
+Applicable kilowatt capacity of property on line 12f (see instructions)  
+ 
+a
+× $3,000
+12g
+h
+Enter the lesser of line 12f or line 12g 
+....................
+12h
+Qualified microturbine property (see instructions):
+i 
+ 
+Basis of property placed in service during the tax year that was acquired after December 31, 2005, 
+and the basis attributable to construction, reconstruction, or erection by the taxpayer after 
+December 31, 2005 
+..............
+$
+× 10% (.10)
+12i
+j
+Kilowatt capacity of property on line 12i  
+.......... 
+a
+× $200
+12j
+k
+Enter the lesser of line 12i or line 12j 
+.....................
+12k
+----------------Page (1) Break----------------
+Form 3468 (2013)
+Page 
+3 
+Part III
+Rehabilitation Credit and Energy Credit 
+(continued)
+Combined heat and power system property (see instructions):
+Caution. 
+You cannot claim this credit if the electrical capacity of the property is more than 50
+ 
+megawatts or 67,000 horsepower.
+l 
+ 
+Basis of property placed in service during the tax year that was acquired after October 3, 2008, 
+and the basis attributable to construction,  reconstruction,  or  erection  by  the  taxpayer  after 
+October 3, 2008
+................ 
+$
+× 10% (.10)
+12l
+m
+If the electrical capacity of the property is measured in:
+• Megawatts, divide 15 by the megawatt capacity. Enter 1.0 if the capacity is 15 megawatts or 
+less.
+• Horsepower, divide 20,000 by the horsepower. Enter 1.0 if the capacity is  20,000 horsepower or 
+less 
+................................
+12m
+.
+n
+Multiply line 12l by line 12m
+........................
+12n
+Qualified small wind energy property (see instructions):
+o 
+ 
+ 
+Basis of property placed in service during the tax year that was acquired after October 3, 2008, 
+and before January 1, 2009, and the basis attributable to the construction, reconstruction, or 
+erection by the taxpayer after October 3, 2008, and before January 1, 2009 
+........
+.....................
+$
+× 30% (.30)
+12o
+p
+Enter the smaller of line 12o or $4,000
+....................
+12p
+q 
+ 
+Basis of property placed in service during the tax year that was acquired after December 31, 2008, 
+and the basis attributable to construction, reconstruction, or erection by the taxpayer after 
+December 31, 2008 
+..............
+$
+× 30% (.30)
+12q
+Geothermal heat pump systems (see instructions):
+r 
+ 
+Basis of property placed in service during the tax year that was acquired after October 3, 2008, 
+and the basis attributable to 
+construction,  reconstruction,  or  erection  by  the  taxpayer 
+after 
+October 3, 2008 
+..............
+$
+× 10% (.10)
+12r
+Qualified investment credit facility property (see instructions):
+s
+Basis of property placed in service during the tax year   .    .    .
+$
+× 30% (.30)
+12s
+13
+Enter the applicable unused investment credit from cooperatives (see instructions) 
+.....
+13
+14 
+Add lines 11e through 11j, 11m, 12a, 12b, 12e, 12h, 12k, 12n, 12p, 12q, 12r, 12s, and 13. Report 
+this amount on Form 3800, line 4a 
+.....................
+14
+Form 
+3468
+ (2013) 
+----------------Page (2) Break----------------

@@ -1,0 +1,34 @@
+{
+    "formset": [
+    {
+        "id": "S2013NDD",
+        "version": "0.1",
+        "agency": "nd",
+        "main": "ND1",
+        "forms": [
+	        {"id": "ND1", "name":"ND-1 Individual income tax return", "mc": false, "max": 1, "parent": null,
+                "inst":"nd_ins_nd1", "efmid":"EFINFOND", "cid": "ND_1"}, 	
+            {"id": "ND1CR", "name":"ND-1CR Credit for income tax paid to another state", "mc": true, "max": 50, "parent": null,
+                "inst":"nd_ins_cr", "efmid":"", "cid": "ND1CR"},
+            {"id": "ND1SA", "name":"ND-1SA Statutory Adjustments", "mc": false, "max": 1, "parent": null,
+                "inst":"nd_ins_sa", "cid": "ND1SA"},
+            {"id": "ND1TC", "name":"ND-1TC Tax Credits", "mc": false, "max": 1, "parent": null,
+                "inst":"nd_ins_tc", "cid": "ND1TC"},
+            {"id": "VOUCHEF", "name":"Form ND-1V Electronic Return Payment Voucher", "mc": false, "max": 1, "parent": null,
+                "inst":"nd_ins_1v", "cid": "ND1V"}
+        ]
+    },
+    {
+        "id": "S2013NDD",
+        "version": "0.1",
+        "agency": "nd",
+        "main": "NDEZ",
+        "forms": [
+            {"id": "NDEZ", "name":"ND-EZ Individual income tax return", "mc": false, "max": 1, "parent": null,
+                "inst":"nd_ins_nd1", "efmid":"EFINDEZ", "cid": "NDEZ"}, 	
+            {"id": "VOUCHEF", "name":"Form ND-1V Electronic Return Payment Voucher", "mc": false, "max": 1, "parent": null,
+                "inst":"nd_ins_1v", "cid": "ND1V"}
+        ]
+    }
+    ]
+}

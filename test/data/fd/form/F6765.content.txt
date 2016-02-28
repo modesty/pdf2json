@@ -1,0 +1,173 @@
+Form   
+6765
+Department of the Treasury  
+Internal Revenue Service
+Credit for Increasing Research Activities
+a
+ Attach to your tax return.
+ 
+a
+ Information about Form 6765 and its instructions is at 
+www.irs.gov/form6765
+.
+OMB No. 1545-0619
+20
+13
+Attachment   
+Sequence No. 
+81
+Name(s) shown on return
+Identifying number
+Section A—Regular Credit. 
+Skip this section and go to Section B if you are electing or previously elected (and are not revoking) the
+ 
+alternative simplified credit.
+1 
+Certain amounts paid or incurred to energy consortia (see instructions) 
+.........
+1 
+2 
+Basic research payments to qualified organizations (see instructions)   .
+2 
+3 
+Qualified organization base period amount 
+..........
+3 
+4 
+Subtract line 3 from line 2. If zero or less, enter -0- 
+................
+4 
+5 
+Wages for qualified services (do not include wages used in figuring the
+work opportunity credit) 
+................
+5 
+6 
+Cost of supplies 
+..................
+6 
+7 
+Rental or lease costs of computers (see instructions) 
+......
+7 
+8 
+Enter the applicable percentage of contract research expenses (see 
+instructions) 
+....................
+8 
+9 
+Total qualified research expenses. Add lines 5 through 8 
+.....
+9 
+10 
+Enter fixed-base percentage, but not more than 16% (see instructions)      .
+10 
+% 
+11 
+Enter average annual gross receipts (see instructions) 
+......
+11 
+12 
+Multiply line 11 by the percentage on line 10 
+.........
+12 
+13 
+Subtract line 12 from line 9. If zero or less, enter -0- 
+.......
+13 
+14 
+Multiply line 9 by 50% (.50) 
+...............
+14 
+15 
+Enter the 
+smaller
+ of line 13 or line 14 
+....................
+15 
+16 
+Add lines 1, 4, and 15 
+..........................
+16 
+17 
+Are you electing the reduced credit under section 280C? 
+a
+Yes
+No
+If “Yes,” multiply line 16 by 13% (.13). If “No,” multiply line 16 by 20% (.20) and see the
+instructions for the statement that must be attached. Members of controlled groups or businesses
+under common control: see instructions for the statement that must be attached 
+......
+17 
+Section B—Alternative Simplified Credit. 
+Skip this section if you are completing Section A.
+18 
+Certain amounts paid or incurred to energy consortia (see the line 1 instructions) 
+......
+18 
+19 
+Basic research payments to qualified organizations (see the line 2 
+instructions) 
+....................
+19 
+20 
+Qualified organization base period amount (see the line 3 instructions) .
+20
+21 
+Subtract line 20 from line 19. If zero or less, enter -0- 
+...............
+21
+22 
+Add lines 18 and 21 
+..........................
+22 
+23 
+Multiply line 22 by 20% (.20) 
+.......................
+23
+24 
+Wages for qualified services (do not include wages used in figuring the 
+work opportunity credit) 
+................
+24 
+25 
+Cost of supplies 
+..................
+25
+26 
+Rental or lease costs of computers (see the line 7 instructions)    .    .    .
+26 
+27 
+Enter the applicable percentage of contract research expenses (see the
+line 8 instructions) 
+..................
+27 
+28 
+Total qualified research expenses. Add lines 24 through 27 
+....
+28
+29 
+ 
+Enter your total qualified research expenses for the prior 3 tax years. If 
+you had no qualified research expenses in any one of those years, skip 
+lines 30 and 31 
+...................
+29 
+30 
+Divide line 29 by 6.0 
+.................
+30
+31 
+Subtract line 30 from line 28. If zero or less, enter -0- 
+......
+31
+32 
+Multiply line 31 by 14% (.14). If you skipped lines 30 and 31, multiply line 28 by 6% (.06)
+....
+32 
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 13700H
+Form 
+6765
+ (2013)
+----------------Page (0) Break----------------

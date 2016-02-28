@@ -1,0 +1,62 @@
+{
+    "headerData": {
+        "siteName": "Pennsylvania State Fillable Forms",
+        "valueLabel": [
+            {"href": "#/pa/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "https://revenue-pa.custhelp.com/app/home", "target": "_blank", "label": "Contact PA Tax",
+                "styleClass": "formImage"},
+            {"href": "#/pa/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "stateTaxUrl":"http://www.pafreefile.com",
+        "eFileLinkUrl":"http://www.pafreefile.com",
+        "faqFooter":"View more of your state-specific <a href='https://revenue-pa.custhelp.com/app/answers/list/c/183,186' target='_blank'>FAQs</a>",
+        "howItWorksList": {},
+        "noteList": {
+            "item1": "This program does not support prior-year returns, part-year, non-resident or amended returns."
+        }
+    },
+
+    "landingData": {
+        "formNumber":"PA-40",
+        "makeSureList": {},
+        "tipsList": {
+            "item1": ""
+        },
+        "beforeList": {
+            "item1":"Enter your exemption."
+        }
+    },
+
+    "loginData": {
+        "stateAbbr":"PA",
+        "signInHelpLink":"https://revenue-pa.custhelp.com/app/answers/list/c/183,186"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"https://revenue-pa.custhelp.com/app/answers/list/c/183,186"
+    },
+
+    "homeHeaderData": {
+        "href": "https://revenue-pa.custhelp.com/app/answers/list/c/183,186"
+    },
+
+    "efileData": {
+        "efRefundLink":" http://www.doreservices.state.pa.us/individual/refunddefault.htm",
+        "efRequiredInfo":"Social Security number and amount of your expected refund",
+        "efPaymentDueDate":"April 15, 2014",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+
+    "commonData":  {
+        "state":"Pennsylvania",
+        "stateAbbr":"PA",
+        "departmentName":"Pennsylvania Department of Revenue",
+        "siteName": "Pennsylvania State Fillable Forms",
+        "url": "https://www.statefillableforms.com/pa",
+        "currentTaxYear": "2013"
+    }
+}

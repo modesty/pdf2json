@@ -1,0 +1,34 @@
+{
+    "mainList": [
+        {
+            "header": "Form ND-EZ",
+            "imgUrl": "/img/nd/mainform01.png",
+            "title": "Use Form ND-EZ if you have:",
+            "notes": [
+                "No North Dakota income adjustments",
+                "No North Dakota tax credits to claim",
+                "Not paid 2013 North Dakota estimated tax payments"
+            ],
+            "links": [
+                {"id":"viewNdEzInstructionsLink", "href": "/data/nd/inst/nd_ins_nd1.pdf", "label": "View Instructions", "className": "fsViewLink", "target": "_blank"},
+                {"id":"viewNdEzSupportedFormsLink", "href": "/#/nd/forms.availability", "label": "View Supported Forms", "className": "fsViewLink", "target": "_blank"},
+                {"id":"selectNdEzButton", "href": "NDEZ", "label": "Start ND-EZ", "className": "btn btn-small genericButton continueButton"}
+            ]
+        },
+        {
+            "header": "Form ND-1",
+            "imgUrl": "/img/nd/mainform02.png",
+            "title": "Use Form ND-1 if you have:",
+            "notes": [
+                "North Dakota income adjustments",
+                "North Dakota tax credits to claim",
+                "Paid 2013 North Dakota estimated tax payments"
+            ],
+            "links": [
+                {"id":"viewNd1InstructionsLink", "href": "/data/nd/inst/nd_ins_nd1.pdf", "label": "View Instructions", "className": "fsViewLink", "target": "_blank"},
+                {"id":"viewNdEzSupportedFormsLink", "href": "/#/nd/forms.availability", "label": "View Supported Forms", "className": "fsViewLink", "target": "_blank"},
+                {"id":"selectNd1Button", "href": "ND1", "label": "Start ND-1", "className": "btn btn-small genericButton continueButton", "target": "_blank"}
+            ]
+        }
+    ]
+}

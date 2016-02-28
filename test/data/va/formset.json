@@ -1,0 +1,32 @@
+{
+    "formset" :{
+        "id": "S2013VAD",
+        "version": "0.2",
+        "agency": "va",
+        "main": "VA760",
+        "forms": [
+            {"id": "VA760", "name":"Form 760 - Virginia Resident Form 760 Individual Income Tax Return", "mc": false, "max": 1, "parent": null,
+                "inst":"va_ins_760cg", "efmid":"EFINFOVA", "cid": "760CG"},       
+            {"id": "VAADJ", "name":"From 760-ADJ - Virginia Schedule ADJ", "mc": false, "max": 1, "parent": null,
+                "inst":"va_ins_760cg", "cid": "SchADJ"},
+            {"id": "VASCR", "name":"Virginia Schedule CR Pg 1-2 - Credit Computation Schedule", "mc": false,  "max": 1, "parent": null,
+                "inst":"va_ins_schcr", "cid": "SchCR", "mpf":"VASCR"},
+            {"id": "VASCR2", "name":"Virginia Schedule CR Pg 3-4 - Credit Computation Schedule", "mc": false,  "max": 1, "parent": null,
+                "inst":"va_ins_schcr", "cid": "SchCR", "mpf":"VASCR"},
+            {"id": "VASCR3", "name":"Virginia Schedule CR Pg 5-8 - Credit Computation Schedule", "mc": false,  "max": 1, "parent": null,
+                "inst":"va_ins_schcr", "cid": "SchCR", "mpf":"VASCR"},
+			{"id": "VAFED", "name":"Sch FED - Virginia Federal Schedule Information", "mc": false, "max": 1, "parent": null,
+                "inst":"va_ins_schfed", "cid": "SchFED"},
+            {"id": "VAOSC", "name":"Sch OSC - Credit for Tax Paid to Another State", "mc": true, "max": 50, "parent": null,
+                "inst":"va_ins_760cg", "cid": "SchOSC"},            
+			{"id": "VA760PFF", "name":"Form 760-PFF - Payment Coupon for Farmers, Fishermen and Merchant Seamen", "mc": false, "max": 1, "parent": null,
+                "inst":"va_ins_760pff", "cid": "760PFF"},
+            {"id": "VOUCHEF", "name":"Form 760-PMT - Payment Coupon", "mc": false, "max": 1, "parent": null,
+                "inst":"va_ins_760pmt", "cid": "760PMT"},
+			{"id": "VA760C", "name":"Form 760-C - Underpayment of Virginia Estimated Tax by Individuals, Estates and Trusts", "mc": false, "max": 1, "parent": null,
+                "inst":"VA760c", "cid": "760C"},
+            {"id": "VA760F", "name":"Form 760-F - Underpayment of Virginia Estimated Tax by Farmers, Fishermen and Merchant Seamen", "mc": false, "max": 1, "parent": null,
+                "inst":"va_ins_760f", "cid": "760F"}
+        ]
+    }
+}

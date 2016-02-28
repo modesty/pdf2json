@@ -1,0 +1,244 @@
+Schedule SE (Form 1040) 2013
+Attachment Sequence No. 
+17
+Page 
+2 
+Name of person with
+ self-employment
+ income (as shown on Form 1040)
+Social security number of person  
+with 
+self-employment
+ income 
+a
+Section B, Long Schedule SE 
+Part I 
+Self-Employment Tax 
+Note. 
+If your only income subject to self-employment tax is 
+church employee income, 
+see instructions. Also see instructions for the 
+definition of church employee income.
+A
+If you are a minister, member of a religious order, or Christian Science practitioner 
+and 
+you filed Form 4361, but you 
+had $400 or more of 
+other 
+net earnings from self-employment, check here and continue with Part I
+......
+a
+1a
+Net farm profit or (loss) from Schedule F, line 34, and farm partnerships, Schedule K-1 (Form 1065), 
+box 14, code A. 
+Note. 
+Skip lines 1a and 1b if you use the farm optional method (see instructions)      
+1a 
+b
+If you received social security retirement or disability benefits, enter the amount of Conservation Reserve 
+Program payments included on Schedule F, line 4b, or listed on Schedule K-1 (Form 1065), box 20, code Z 
+1b 
+(
+)
+2 
+Net profit or (loss) from Schedule C, line 31; Schedule C-EZ, line 3; Schedule K-1 (Form 1065), 
+box 14, code A (other than farming); and Schedule K-1 (Form 1065-B), box 9, code J1. 
+Ministers and members of religious orders, see instructions for types of income to report on
+this line. See instructions for other income to report. 
+Note. 
+Skip this line if you use the nonfarm
+optional method (see instructions)
+....................
+2 
+3 
+Combine lines 1a, 1b, and 2
+......................  
+3 
+4 
+a
+If line 3 is more than zero, multiply line 3 by 92.35% (.9235). Otherwise, enter amount from line 3
+4a 
+Note.
+ If line 4a is less than $400 due to Conservation Reserve Program payments on line 1b, see instructions.
+b
+If you elect one or both of the optional methods, enter the total of lines 15 and 17 here    .    .
+4b 
+c
+Combine lines 4a and 4b. If less than $400, 
+stop
+; you do not owe self-employment tax. 
+Exception. 
+If less than $400 and you had 
+church employee income, 
+enter -0- and continue  
+a
+4c 
+5 
+a
+Enter your 
+church employee income
+ from Form W-2. See  
+instructions for definition of church employee income    .    .    .
+5a 
+b
+Multiply line 5a by 92.35% (.9235). If less than $100, enter -0-
+..........
+5b 
+6 
+Add lines 4c and 5b
+........................
+6 
+7 
+Maximum amount of combined wages and self-employment earnings subject to social security 
+tax or the 6.2% portion of the 7.65% railroad retirement (tier 1) tax for 2013
+......
+7 
+8 
+a
+Total social security wages and tips (total of boxes 3 and 7 on 
+Form(s) W-2) and railroad retirement (tier 1) compensation. 
+If $113,700 or more, skip lines 8b through 10, and go to line 11 
+8a 
+b
+Unreported tips subject to social security tax (from Form 4137, line 10) 
+8b 
+c
+Wages subject to social security tax (from Form 8919, line 10) 
+8c 
+d
+Add lines 8a, 8b, and 8c
+.......................
+8d 
+9 
+Subtract line 8d from line 7. If zero or less, enter -0- here and on line 10 and go to line 11    .
+a
+9 
+10 
+Multiply the 
+smaller
+ of line 6 or line 9 by 12.4% (.124)
+.............
+10 
+11 
+Multiply line 6 by 2.9% (.029)
+.....................
+11 
+12 
+Self-employment tax. 
+Add lines 10 and 11. Enter here and on
+ Form 1040, line 56, 
+or
+ Form 1040NR, line 54
+12 
+13 
+Deduction for one-half of self-employment tax. 
+13 
+Part II
+Optional Methods To Figure Net Earnings  
+(see instructions) 
+Farm Optional Method. 
+You may use this method 
+only 
+if 
+(a) 
+your gross farm income
+1
+ 
+was not more 
+than $6,960, 
+or (b) 
+your net farm profits
+2
+ 
+ were less than $5,024. 
+14 
+Maximum income for optional methods
+..................
+14 
+15 
+Enter the 
+smaller 
+of: two-thirds (
+) of gross farm income
+1
+ (not less than zero) 
+or
+ $4,640. Also 
+include this amount on line 4b above
+...................
+15 
+Nonfarm Optional Method. 
+You may use this method
+ only 
+if 
+(a) 
+your net nonfarm profits
+3
+ 
+were less
+ 
+than $5,024 
+and also less than 72.189% of your gross nonfarm income,
+4
+  
+and (b) 
+you had net earnings
+ 
+from self-employment 
+of at least $400 in 2 of the prior 3 years.  
+Caution.
+ You may use this method no more than five times.
+16 
+Subtract line 15 from line 14
+......................
+16 
+17 
+ 
+Enter the 
+smaller 
+of: two-thirds (
+2
+/
+3
+) of gross nonfarm income
+4
+  
+(not less than zero)
+ 
+or
+  
+the 
+amount on line 16. Also include this amount on line 4b above
+...........
+17 
+1
+ 
+From Sch. F, line 9, and Sch. K-1 (Form 1065), box 14, code B. 
+2
+ 
+From Sch. F, line 34, and Sch. K-1 (Form 1065), box 14, code
+ 
+A—minus the 
+amount you would have entered on line 1b had you not 
+ 
+used the optional 
+method. 
+3
+ 
+From Sch. C, line 31; Sch. C-EZ, line 3; Sch. K-1 (Form 1065), box 14,
+ code 
+A; and Sch. K-1 (Form 1065-B), box 9, code J1.
+4 
+From Sch. C, line 7; Sch. C-EZ, line 1; Sch. K-1 (Form 1065), box 14, code 
+C; and Sch. K-1 (Form 1065-B), box 9, code J2. 
+Schedule SE (Form 1040) 2013
+Multiply line 12 by 50% (.50). Enter the result here and on  
+Form 1040, line 27, 
+or
+ Form 1040NR, line 27 
+.....
+4,640  00
+2
+/
+3
+----------------Page (0) Break----------------

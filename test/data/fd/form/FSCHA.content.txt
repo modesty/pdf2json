@@ -1,0 +1,230 @@
+..... 
+www.irs.gov/schedulea
+Information about Schedule A and its separate instructions is at 
+SCHEDULE A  
+(Form 1040) 
+Department of the Treasury  
+Internal Revenue Service (99) 
+Itemized Deductions
+a
+Information about Schedule A and its separate instructions is at 
+.
+       
+a
+ 
+Attach to Form 1040.
+        
+ 
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No. 
+07
+ 
+Name(s) shown on Form 1040 
+Your social security number
+Medical 
+and 
+Dental  
+Expenses 
+Caution.  
+Do not include expenses reimbursed or paid by others. 
+1 
+Medical and dental expenses (see instructions)
+1 
+2 
+Enter amount from Form 1040, line 38 
+2 
+3 
+Multiply line 2 by 
+10% (.10). But if either you or your spouse was 
+born before January 2, 1949, multiply line 2 by 7.5% (.075) instead
+ 
+ 
+3 
+4 
+Subtract line 3 from line 1. If line 3 is more than line 1, enter -0-
+........
+4 
+Taxes You 
+Paid
+ 
+5 
+State and local 
+(check only one box):
+a 
+Income taxes, 
+or
+b 
+General sales taxes
+}
+...........
+5 
+6 
+Real estate taxes (see instructions)
+.........
+6 
+7
+Personal property taxes 
+.............
+7 
+8 
+Other taxes. List type and amount  
+a
+8 
+9 
+Add lines 5 through 8
+......................
+9 
+Interest 
+You Paid
+Note.
+ 
+Your mortgage 
+interest 
+deduction may 
+be limited (see 
+instructions). 
+10 
+Home mortgage interest and points reported to you on Form 1098 
+10 
+11 
+ 
+ 
+Home mortgage interest not reported to you on Form 1098. If paid 
+to the person from whom you bought the home, see instructions 
+and show that person’s name, identifying no., and address 
+a
+11 
+12 
+ 
+Points not reported to you on Form 1098. See instructions for 
+special rules
+................. 
+12 
+13 
+Mortgage insurance premiums (see instructions)
+.....
+13 
+14 
+Investment interest. Attach Form 4952 if required. (See instructions.)  
+14 
+15 
+Add lines 10 through 14
+.....................
+15 
+Gifts to 
+Charity
+If you made a 
+gift and got a 
+benefit for it, 
+see instructions. 
+16 
+ 
+Gifts by cash or check. If you made any gift of $250 or more, 
+see instructions
+................ 
+16 
+17 
+ 
+Other than by cash or check. If any gift of $250 or more, see 
+instructions. You 
+must 
+attach Form 8283 if over $500  .    .    .
+17 
+18 
+Carryover from prior year
+............
+18
+19 
+Add lines 16 through 18
+.....................
+19 
+Casualty and 
+Theft Losses 
+20 
+Casualty or theft loss(es). Attach Form 4684. (See instructions.)
+........ 
+20 
+Job Expenses 
+and Certain  
+Miscellaneous  
+Deductions 
+ 
+21 
+ 
+ 
+Unreimbursed employee expenses—job travel, union dues, 
+job education, etc. Attach Form 2106 or 2106-EZ if required. 
+(See instructions.)
+ 
+ 
+a
+21
+22 
+Tax preparation fees
+............. 
+22 
+23 
+ 
+Other expenses—investment, safe deposit box, etc. List type 
+and amount 
+ 
+a
+23 
+24 
+Add lines 21 through 23
+............ 
+24 
+25 
+Enter amount from Form 1040, line 38 
+25 
+26 
+Multiply line 25 by 2% (.02)
+........... 
+26 
+27 
+Subtract line 26 from line 24. If line 26 is more than line 24, enter -0-
+......
+27 
+Other  
+Miscellaneous  
+Deductions 
+28 
+Other—from list in instructions. List type and amount  
+a
+28 
+Total 
+Itemized  
+Deductions 
+29 
+ 
+Is Form 1040, line 38, over $150,000? 
+29 
+No.
+ Your deduction is not limited. Add the amounts in the far right column 
+ 
+for lines 4 through 28. Also, enter this amount on Form 1040, line 40.
+}
+..
+Yes.
+ Your deduction may be limited. See the Itemized Deductions 
+ 
+Worksheet in the instructions to figure the amount to enter.
+30 
+ 
+If you elect to itemize deductions even though they are less than your standard 
+deduction, check here
+...................
+a
+For Paperwork Reduction Act Notice, see Form 1040 instructions. 
+Cat. No. 17145C 
+Schedule A (Form 1040) 2013 
+NAME
+SSN/EIN
+ADDRESS
+CITY
+STATE
+ZIP
+----------------Page (0) Break----------------

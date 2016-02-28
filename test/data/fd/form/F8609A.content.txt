@@ -1,0 +1,205 @@
+Form
+ 
+OMB No. 1545-0988
+ 
+Annual Statement for Low-Income Housing Credit
+ 
+
+File with owner’s federal income tax return.
+ 
+(Rev. December 2008)
+ 
+Attachment
+ 
+Department of the Treasury
+Internal Revenue Service
+ 
+For Paperwork Reduction Act Notice, see separate instructions.
+ 
+Name(s) shown on return
+ 
+Identifying number
+ 
+1
+ 
+1
+ 
+Eligible basis of building 
+ 
+.
+ 
+2
+ 
+2
+ 
+Low-income portion (smaller of unit fraction or floor space fraction) (if first year of the credit
+period, see instructions) 
+ 
+3
+ 
+3
+ 
+Qualified basis of low-income building. Multiply line 1 by line 2 (see instructions for exceptions)
+ 
+4
+ 
+Part-year adjustment for disposition or acquisition during the tax year 
+ 
+4
+ 
+.
+ 
+5
+ 
+5
+ 
+Credit percentage 
+ 
+6
+ 
+Multiply line 3 or line 4 by the percentage on line 5 
+ 
+6
+ 
+7
+ 
+7
+ 
+Additions to qualified basis, if any 
+ 
+8
+ 
+8
+ 
+9
+ 
+.
+ 
+9
+ 
+10
+ 
+10
+ 
+Multiply line 7 or line 8 by the percentage on line 9 
+ 
+11
+ 
+11
+ 
+Section 42(f)(3)(B) modification 
+ 
+12
+ 
+12
+ 
+Add lines 10 and 11 
+ 
+13
+ 
+13
+ 
+Credit for building before line 14 reduction. Subtract line 12 from line 6 
+ 
+14
+ 
+14
+ 
+Disallowed credit due to federal grants (see instructions) 
+ 
+15
+ 
+15
+ 
+Credit allowed for building for tax year. Subtract line 14 from line 13, but do not enter more than
+the amount shown on Form 8609, Part I, line 1b 
+ 
+16
+ 
+Taxpayer’s proportionate share of credit for the year (see instructions) 
+ 
+16
+ 
+17
+ 
+18
+ 
+Adjustments for deferred first-year credit (see instructions) 
+ 
+17
+ 
+Taxpayer’s credit. Combine lines 16 and 17. Enter here and on Form 8586 (see instructions) 
+ 
+Sequence No. 
+36
+ 
+Credit percentage. Enter one-third of the percentage on line 5 
+ 
+Cat No. 38841T
+ 
+18
+ 
+Form 8609-A (Rev. 12-2008)
+ 
+Part-year adjustment for disposition or acquisition during the tax year 
+ 
+B
+ 
+A
+ 
+C
+ 
+Building identification number (BIN)
+
+ 
+This Form 8609-A is for (check the box)
+
+a newly constructed or existing building 
+section 42(e) rehabilitation expenditures
+ 
+Do you have in your records the original Form 8609 (or a copy thereof) signed and issued by the housing credit
+agency for the building in 
+A
+? 
+ 
+If “No,” see the instructions and stop here—do not go to Part II.
+ 
+Did the building in 
+A 
+qualify as a part of a qualified low-income housing project and meet the requirements of
+section 42 as of the end of the tax year for which this form is being filed? 
+ 
+If “No,” see the instructions and stop here—do not go to Part II.
+ 
+Was there a decrease in the qualified basis of the building in 
+A 
+for the tax year for which this form is being
+filed? 
+ 
+If “Yes,” see the instructions. If “No,” and the entire credit has been claimed in prior tax years, stop here—do 
+not go to Part II.
+ 
+D
+ 
+E
+ 
+Yes
+ 
+No
+ 
+Part I
+ 
+Part II
+ 
+Compliance Information
+ 
+Computation of Credit
+ 
+8609-A
+ 
+
+See separate instructions.
+ 
+(Enter as a decimal, for example .1234)
+(Enter as a decimal, for example .1234)
+----------------Page (0) Break----------------

@@ -1,0 +1,58 @@
+Required Information For Electronic Filing - Complete Sections 1-3 Below
+Per Oregon Department of Revenue
+Section 1: Information Needed for Oregon Return
+If you received a Form W-2, 1099-R, W-2G, 1099-G, or 1099-MISC that has Oregon Witholding on it, you are required to enter all
+forms, use the "Add" button to enter information from each form separately.
+Example: 
+If you received two Forms W-2, click the Add button next to the Form W-2 and enter the information for your first Form W-2. 
+each of the types of forms listed below that you received.
+Form W-2
+ Wage & Tax Statement
+Form 1099-R
+ Distributions from Pensions, Annuities, Retirement or Profit-Sharing Plans, IRAs, Insurance Contracts, etc.
+Form W-2G
+ Certain Gambling Winnings
+Form 1099-G
+ Certain Government Payments
+Form 1099-MISC
+ Miscellaneous Income
+Check the box if you do not have any of the above
+Section 2: Signing Your Return
+Disclosure Statement
+I (we, if filing jointly) certify that the above statement is true.
+Under penalties for false swearing, I declare that I have examined a copy of my electronic individual income tax return and 
+accompanying schedules and statements and to the best of my knowledge and belief, it is true, correct, and complete.
+Oregon Department of Revenue an acknowledgement of receipt or reason for rejection of the transmission.  I further acknowledge 
+acknowledges that the submission of this electronic return constitues both of our signatures.
+Section 3: Additional Information Needed to E-file Your Oregon Return
+A. Enter Email Address
+E-mail address (for confirmation e-mail)
+. . . . . . . . . . . . . . . . . . . . . . . 
+Re-enter e-mail address (must match)
+. . . . . . . . . . . . . . . . . . . . . . . . . 
+Section 4: Refund/Payment Options
+A. Refund
+ - You will receive a check unless you entered direct deposit information directly on Form 40.
+B. Paying Tax Due by Check
+C.  Electronic Funds Withdrawal of Tax Due 
+- If you would like to pay your tax liability online go to
+https://secure.dor.state.or.us/directdebit/index.faces.
+ - If you are paying with a check, print Form 40-V, Payment Voucher, 
+and mail it with your check to the Oregon Department of Revenue.
+G
+G
+G
+G
+G
+G
+information for each of the forms received. You must enter the information exactly as it appears on the form. If you have multiple 
+After completing the first Form W-2, select the Add button again and enter the information for the second Form W-2. Repeat this for 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+that the submission of this electronic Oregon Individual Tax Return constitutes my signature.  If jointly filed return, each of us 
+I consent to allow the electronic return originator to send my return to the Oregon Department of Revenue and to receive from the 
+. . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+----------------Page (0) Break----------------

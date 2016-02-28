@@ -1,0 +1,677 @@
+2013
+ V
+irginia Resident Form 760
+Individual Income T
+ax Return
+ 
+Locality Code
+See instructions
+Y
+our first name 
+M.I.
+ 
+    
+Last name
+Number and Street - If this is a change you must check this box
+City
+, town or post office
+ZIP Code
+Y
+our Social Security Number
+ 
+First 4 letters of 
+your last name
+-
+-
+Spouse’
+s Social Security Number 
+First 4 letters of 
+spouse’s last name
+(Reported as taxable on federal return)
+     Forms W
+-2, W-2G, 1099 and VK-1 reporting VA 
+ 
+withholding  here.
+1.
+Federal 
+Adjusted Gross Income
+ 
+.................................................................................................
+1
+2.
+T
+otal Additions from 
+attached 
+Schedule 
+ADJ, Line 3  
+ 
+...................................................................
+2
+3.
+Add Lines 1 and 2
+ 
+ 
+...............................................................
+.........................................................
+3
+4.
+Deduction for age on January 1, 2014. See Instructions. Be sure to provide date of birth above.
+ 
+4
+5.
+Social Security 
+Act and equivalent Tier 1 Railroad Retirement Act benefits   
+ 
+................................
+5
+6.
+State Income 
+Tax refund or overpayment credit (reported as income on federal return)
+ 
+...............
+6
+7.
+Subtractions from 
+attached 
+Schedule 
+ADJ, Line 7 
+ 
+.......................................................................
+7
+8.
+Add Lines 4, 5, 6 and 7
+ 
+ 
+...............................................................
+.................................................
+8
+9.
+V
+irginia Adjusted Gross Income (VAGI) - Subtract Line 8 from Line 3
+ 
+....................................
+9
+10.
+Deductions-
+Enter Standard:
+ 
+= $3,000; 
+2 
+= $6,000; 
+3 
+= $3,000 
+ 
+OR
+ 
+ Itemized
+:
+ 
+ 
+  
+              
+ 
+ 
+10
+  
+1
+1.
+Exemptions. Sum of total from Exe
+mption Section A multiplied by $930 plus sum of total from
+Exemption Section B multiplied by 
+$800
+ 
+......................................................................................
+1
+1
+ 
+12.
+ 
+ 
+ 
+....................................
+12
+13.
+Add Lines 10, 1
+1 and 12
+ 
+ 
+..............................................................
+..............................................
+13
+14.
+V
+irginia Taxable Income - Subtract Line 13 from Line 9 
+ 
+........................................................
+14
+.
+,
+,
+0
+0
+.
+,
+,
+0
+0
+.
+,
+,
+0
+0
+.
+,
+0
+0
+ 
+Y
+ou
+00
+,
++
+=
+.
+.
+Spouse
+00
+,
+.
+,
+,
+0
+0
+.
+,
+,
+0
+0
+.
+,,
+,
+,
+0
+0
+.
+,
+,
+0
+0
+.
+,
+,
+0
+0
+.
+,
+,
+0
+0
+MINUS
+10a. T
+otal Itemized Deductions           10b. State and Local Income Taxes claimed on Sch. A
+,
+,
+,
+,
+.
+=
+.
+00
+00
+.
+,
+0
+0
+.
+,,
+,
+,
+0
+0
+.
+,
+,
+0
+0
+.
+,
+,
+0
+0
+Of
+fice Use
+(You must attach Schedule ADJ)
+(You must attach Schedule ADJ)
+Staple payment here
+ST
+APLE
+ST
+APLE
+Last name
+ST
+APLE
+ 
+  
+Suf
+fix
+Suffix
+2601031  01/13
+-
+-
+(2) Married filing joint return (Enter spouse’
+s SSN above)
+Y
+es
+Select a button to indicate status
+Exemptions
+Filing Status
++
++
+Y
+ou
+ 
+Spouse
+ 
+ 
+Dependents
+Y
+ou 
+65 
+or over
+=
+Spouse 
+65
+ 
+ or over
+Y
+ou 
+Blind
+Spouse
+ 
+Blind
++
++
++
+T
+otal
+=
+T
+otal
+A
+B
+x $930
+x $800
+=
+=
+Add the 
+Dollar 
+Amounts  
+and Enter 
+T
+otal on 
+Line 11
+}
+File by May 1, 2014 - PLEASE USE BLA
+CK INK
+(
+From federal return - 
+NOT FEDERAL
+ TAXABLE INCOME
+)
+Date of Birth
+Y
+our Birth Date 
+Spouse’
+s Birth Date
+(mm-dd-yyyy) 
+(mm-dd-yyyy)
+-         -
+-         -
+Check all boxes that apply:
+Name
+ or 
+filing status
+ has changed since last filing 
+V
+irginia return was not filed last year
+Dependent on another’s return 
+Amended Return - Fill in oval if result of NOL
+I (We) authorize the Dept. of Taxation to discuss my 
+(our) return with my (our) preparer
+(Not Supported)
+(Not Supported)
+(3) Married filing separate return (Enter spouse’
+s SSN above)
+Spouse’s first name
+  M.I.
+Last name
+Suffix
+(1) Single. Did you claim federal head of household? 
+Filing Status  1 
+Deductions from Virginia Adjusted Gross Income Schedule ADJ, Line 9 
+State
+Spouse’s first name (joint returns only)  M.I.
+powered by pdf2json
+----------------Page (0) Break----------------
+whole
+15.
+ 
+Amount of Tax from Tax Table or Tax Rate Schedule (round to whole dollars) 
+ 
+...........................
+15
+16.
+ 
+Spouse Tax Adjustment. For Filing Status 2 only. Enter
+VAGI
+ in
+ 
+ 
+dollars
+ below. See instructions.
+        
+ 
+        
+ 
+16
+17.
+ 
+Net Amount of Tax - Subtract Line 16 from Line 15
+ 
+ 
+...............................................................
+17
+18.
+ 
+Virginia tax withheld for 2013.
+ 
+ 
+18a.  Your Virginia withholding
+ 
+...................................................................................................
+18a
+ 
+ 
+18b.  Spouse’s Virginia withholding (filing status 2 only) 
+ 
+...........................................................
+18b
+19.
+ 
+ 
+ 
+....................................................
+19
+            
+(Include overpayment credited from taxable year 2012)
+ 
+20. Extension Payments (from Form 760IP) 
+ 
+......................................................................................
+20
+ 
+21.
+ 
+Tax Credit for Low-Income Individuals or Earned Income Credit from 
+attached 
+Sch. ADJ, Line 17
+ 
+....
+21
+ 
+22.
+ 
+Credit for Tax Paid to Another State from 
+attached 
+Sch. OSC, Line 21
+ 
+......................................
+22
+ 
+23.
+ 
+Other Credits from 
+attached Schedule CR
+ 
+ 
+................................................................................
+23
+ 
+24.
+ 
+Add Lines 18a, 18b and 19 through 23
+ 
+ 
+....................................................................................
+24
+ 
+25.
+ 
+If Line 24 is less than Line 17, subtract Line 24 from Line 17.  This is the Tax You Owe 
+ 
+............
+25
+            
+(Skip to Line 28)
+ 
+26.
+ 
+If Line 17 is less than Line 24, subtract Line 17 from Line 24.  This is Your Tax Overpayment 
+ 
+...
+26
+ 
+27.
+ 
+Amount of overpayment you want credited to next year’s estimated tax 
+ 
+....................................
+27
+ 
+28.
+ 
+Adjustments and Voluntary Contributions from 
+attached 
+Schedule ADJ, Line 24
+ 
+.......................
+28
+ 
+29.
+ 
+Add Lines 27 and 28
+.....................................................................................................................
+29
+ 
+30.
+ 
+If you owe tax on Line 25, add Lines 25 and 29.  
+OR 
+ 
+If Line 26 is less than Line 29, subtract Line 26 from Line 29.  
+AMOUNT YOU OWE
+ 
+ 
+................
+30
+ 
+                                          
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+31.
+ 
+If Line 26 is greater than Line 29, subtract Line 29 from Line 26. 
+YOUR REFUND
+ 
+ 
+....................
+31
+.
+,
+,
+00
+16a - Enter Your VAGI below
+16b - Enter Spouse’s VAGI below
+.00
+.00
+,
+,
+,
+,
+.
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+,
+,
+00
+.
+,
+,
+00
+.
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+.
+,
+,
+00
+,
+.
+,
+00
+.
+,
+,
+00
+Your SSN
+Page 2
+Form 760
+Year 
+2013
+-
+-
+(You must attach Schedule ADJ)
+(You must attach Sch. OSC and a copy of all other state returns)
+-
+-
+-
+-
+-
+-
+Your business phone number
+Home phone number
+Spouse’s business phone number
+Preparer’s PTIN
+ Firm Name
+ Preparer’s Name
+Filing
+ 
+Election
+Phone Number
+Your Signature
+   
+Date
+Spouse’s Signature
+Date
+I (We), the undersigned, declare under penalty of law that I (we) have examined this return and to the best of my (our) knowledge, it is a true, correct and complete return.
+  
+ 
+Qualifying farmer, fisherman 
+or merchant seaman
+  
+ 
+Overseas on due date
+  
+ 
+I agree to obtain my Form 1099-G income tax refund statement electronically at 
+www.tax.virginia.gov
+ instead of receiving a paper copy.
+  
+ 
+Primary Taxpayer Deceased
+  
+ 
+Federal Schedule C filed 
+with federal return
+  
+ 
+Spouse Deceased
+  
+ 
+Earned Income Credit from federal 
+return.  Amount claimed:
+,
+Check all
+boxes
+that 
+apply:
+DIRECT BANK DEPOSIT
+Domestic Accounts Only
+No International Deposits  
+Bank Routing Transit Number
+Checking
+Savings
+Bank Account Number
+Choose Direct Deposit or Debit Card
+ 
+Direct Bank Deposit
+ 
+Debit Card
+ (Fees may apply)
+You authorize the Department to issue a Debit Card if the Direct Deposit section below is not completed.
+Estimated Tax Paid for taxable year 2013 (from Form 760ES)
+(If claiming Political Contribution Credit only - check this box - see instructions)
+CHECK THIS BOX IF PAYING BY CREDIT OR DEBIT CARD - SEE INSTRUCTIONS
+----------------Page (1) Break----------------

@@ -1,0 +1,65 @@
+{
+    "headerData" :{
+        "valueLabel": [
+            {"href": "#/va/faqs", "label": "Help", "target": "_blank", "styleClass": "formImage", "icon": "../img/questionFrame.png"},
+            {"href": "http://www.tax.virginia.gov/site.cfm?alias=ContactUs", "label": "Contact VA Tax", "target": "_blank",
+                "styleClass": "formImage"},
+            {"href": "#/va/login", "label": "Sign In / Create An Account", "styleClass": "login", "icon": "../img/logout.png"}
+        ]
+    },
+
+    "gatewayData": {
+        "stateTaxUrl":"http://www.tax.virginia.gov/",
+        "eFileLinkUrl":"http://www.tax.virginia.gov/site.cfm?alias=freefile",
+        "faqFooter":"View more of your state-specific <a href='http://www.tax.virginia.gov/site.cfm?alias=fillableformsfaq' target='_blank'>FAQs</a>",
+        "howItWorksList": {
+            "item1":"Either e-file your return using a 5-digit numeric signature pin, or print your return and mail it in."
+        },
+        "noteList": {
+            "item1":"This program supports all credits on Schedule CR and Schedule OSC. However, certain credits are not eligible for e-file, and the return will have to be printed and mailed to the Virginia Department of Taxation for processing.",
+            "item2": "This program does not support prior-year returns, part-year, non-resident or amended returns."
+        }
+    },
+
+    "landingData": {
+        "formNumber":"760",
+        "makeSureList": {},
+        "tipsList": {
+            "item1":"Complete your federal return first. You will need the Federal Adjusted Gross Income (AGI) from your federal return to begin your state return."
+        },
+        "beforeList": {
+            "item1":"Make sure the Federal Adjusted Gross Income (AGI) agrees with your federal return.",
+            "item2":"Enter your exemption.",
+            "item3":"Enter your standard or itemized deductions."
+        }
+    },
+
+    "loginData": {
+        "signInHelpLink":"http://www.tax.virginia.gov/site.cfm?alias=fillableformsfaq"
+    },
+
+    "recoveryData": {
+        "forgotAnswerLink":"http://www.tax.virginia.gov/site.cfm?alias=fillableformsfaq"
+    },
+
+    "homeHeaderData": {
+        "href": "http://www.tax.virginia.gov/site.cfm?alias=fillableformsfaq"
+    },
+
+    "efileData": {
+        "efRefundLink":"http://www.tax.virginia.gov/site.cfm?alias=WhereIsMyRefund",
+        "efRequiredInfo":"Social Security number and amount of your expected refund",
+        "efPaymentDueDate":"May 1, 2014",
+        "customerServiceEmail":"customer_service@statefillableforms.com"
+
+    },
+    "commonData":  {
+        "siteName": "Virginia State Fillable Forms",
+        "state":"Virginia",
+        "stateAbbr":"VA",
+        "departmentName":"Virginia Department of Taxation",
+        "url": "https://www.statefillableforms.com/va",
+        "currentTaxYear": "2013"
+
+    }
+}

@@ -1,0 +1,278 @@
+Schedule R  
+(Form 1040A 
+or 1040) 
+Department of the Treasury  
+Internal Revenue Service (99) 
+Credit for the Elderly or the Disabled
+a
+ 
+Complete and attach to Form 1040A or 1040.
+ 
+a
+ Information about Schedule R and its separate instructions is at
+ 
+www.irs.gov/scheduler.
+1040A 
+. . . . . . . . . . 
+1040 
+R
+`
+OMB No. 1545-0074
+20
+13
+Attachment   
+Sequence No. 
+16
+ 
+Name(s) shown on Form 1040A or 1040
+Your social security number
+You may be able to take this credit and reduce your tax if by the end of 2013:
+• You were age 65 or older       
+or
+ 
+ 
+• You were under age 65, you retired on 
+permanent and total 
+disability, and       
+you received taxable disability income.
+But you must also meet other tests. See instructions.
+TIP
+In most cases, the IRS can figure the credit for you. See instructions.
+Part I
+Check the Box for Your Filing Status and Age
+If your filing status is:
+And by the end of 2013:
+Check only one box:
+Single, 
+Head of household, or 
+Qualifying widow(er)
+1
+You were 65 or older  
+....................
+1
+2
+You were under 65 and you retired on permanent and total disability     .   .
+2
+Married filing 
+jointly
+3
+Both spouses were 65 or older
+................. 
+3
+Both spouses were under 65, but only one spouse retired on permanent and 
+total disability 
+....................... 
+5
+Both spouses were under 65, and both retired on permanent and total 
+disability
+.........................
+5
+6
+One spouse was 65 or older, and the other spouse was under 65 and retired 
+on permanent and total disability 
+................ 
+6
+7
+One spouse was 65 or older, and the other spouse was under 65 and 
+not 
+retired on permanent and total disability
+............. 
+7
+Married filing 
+separately
+8
+You were 65 or older and you lived apart from your spouse for all of 2013  .
+8
+9
+You were under 65, you retired on permanent and total disability, and you 
+lived apart from your spouse for all of 2013 
+............
+9
+Did you check 
+box 1, 3, 7, or 
+8?
+Yes
+a
+Skip Part II and complete Part III on the back.
+No
+a
+Complete Parts II and III.
+Part II
+Statement of Permanent and Total Disability
+ 
+(Complete 
+only 
+if you checked box 2, 4, 5, 6, or 9 above.)
+If:
+1
+You filed a physician’s statement for this disability for 1983 or an earlier year, or you filed or got a 
+statement for tax years after 1983 and your physician signed line B on the statement,  
+and
+2
+Due to your continued disabled condition, you were unable to engage in any substantial gainful activity 
+in 2013, check this box 
+............................. 
+a
+•  If you checked this box, you do not have to get another statement for 2013.
+• If you 
+did not 
+check this box, have your physician complete the statement in the instructions. You 
+must
+ 
+keep the statement for your records.
+For Paperwork Reduction Act Notice, see your tax return instructions. 
+Cat. No. 11359K 
+Schedule R (Form 1040A or 1040) 2013
+3
+4
+4
+----------------Page (0) Break----------------
+Schedule R (Form 1040A or 1040) 2013 
+Page 
+2 
+Part III
+Figure Your Credit
+10     If you checked (in Part I):                                   Enter:
+Box 1, 2, 4, or 7 
+............
+$5,000
+Box 3, 5, or 6 
+.............
+$7,500
+Box 8 or 9 
+..............
+$3,750
+}
+..........
+10
+Did you check 
+box 2, 4, 5, 6, 
+or 9 in Part I?
+Yes
+a
+You  
+must 
+ complete line 11.
+No
+a
+Enter the amount from line 10 
+on line 12 and go to line 13.
+11     If you checked (in Part I):
+• Box 6, add $5,000 to the taxable disability income of the 
+    spouse who was under age 65.  Enter the total.
+•  Box 2, 4, or 9, enter your taxable disability income.
+• Box 5, add your taxable disability income to your spouse’s 
+    taxable disability income. Enter the total.
+}
+.......
+11
+TIP
+For more details on what to include on line 11, see 
+Figure Your Credit
+ in the instructions.
+12 
+ 
+If you completed line 11, enter the 
+smaller 
+of line 10 or line 11. 
+All others, 
+enter the 
+amount from line 10 
+.........................
+12
+13 
+ 
+Enter the following pensions, annuities, or disability income that 
+you (and your spouse if filing jointly) received in 2013.
+a 
+  
+ 
+Nontaxable part of social security benefits and nontaxable part 
+of railroad retirement benefits treated as social security (see 
+instructions)
+....................
+13a
+b 
+  
+ 
+Nontaxable veterans’ pensions and any other pension, annuity, 
+or disability benefit that is excluded from income under any 
+other provision of law (see instructions)
+..........
+13b
+c 
+  
+  
+ 
+Add lines 13a and 13b. (Even though these income items are 
+not taxable, they  
+must 
+ be included here to figure your credit.) If 
+you did not receive any of the types of nontaxable income listed 
+on line 13a or 13b, enter -0- on line 13c 
+.........
+13c
+14 
+ 
+Enter the amount from Form 1040A, line 
+22, or Form 1040, line 38
+.....
+14
+15     If you checked (in Part I):         Enter:
+Box 1 or 2 
+......
+$7,500
+Box 3, 4, 5, 6, or 7   .   .   .       $10,000
+Box 8 or 9 
+......
+$5,000
+}
+15
+16 
+ 
+Subtract line 15 from line 14. If zero or 
+less, enter -0- 
+.........
+16
+17
+Enter one-half of line 16 
+...............
+17
+18
+Add lines 13c and 17
+.........................
+18
+19 
+ 
+Subtract line 18 from line 12. If zero or less, 
+stop; 
+you 
+cannot 
+take the credit. Otherwise, 
+go to line 20 
+............................ 
+19
+20
+Multiply line 19 by 15% (.15)
+.......................
+20
+21
+Tax liability limit. Enter the amount from the Credit Limit Worksheet in the instructions    .
+21
+22 
+ 
+ 
+Credit for the elderly or the disabled. 
+Enter the 
+smaller 
+of line 20 or line 21. Also enter 
+this amount on Form 1040A, line 30, or include on Form 1040, line 53 (check box 
+ and 
+enter “Sch R” on the line next to that box) 
+.................
+22
+Schedule R (Form 1040A or 1040) 2013
+ c 
+this amount on Form 1040A, line 30, or include on Form 1040, line 53 (check box 
+this amount on Form 1040A, line 30, or include on Form 1040, line 53 (check box 
+----------------Page (1) Break----------------

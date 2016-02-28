@@ -1,0 +1,215 @@
+Form  
+8909
+Department of the Treasury 
+Internal Revenue Service
+Energy Efficient Appliance Credit
+a
+ 
+Attach to your tax return.
+ 
+a
+ 
+Information about Form 8909 and its instructions is at 
+www.irs.gov/form8909
+.
+OMB No. 1545-2055
+20
+13
+Attachment 
+Sequence No.
+ 
+159
+Name(s) shown on return
+Identifying number
+Part I
+Dishwashers  
+(see instructions)
+(a)  
+Type A
+(b)  
+Type B
+1
+Enter the number of eligible dishwashers produced in calendar year 2013
+1
+2
+Enter the average number of eligible dishwashers produced in 
+the 2 prior calendar years 
+............
+2
+3
+Subtract line 2 from line 1 
+............
+3
+ 4
+Applicable amount  
+..............
+4
+ 5
+Multiply line 3 by line 4 
+.............
+5
+6
+Add the amounts of line 5 in columns (a) and (b) 
+.................
+6
+Part II
+Clothes Washers  
+(see instructions)
+7
+Enter the number of eligible clothes washers produced in calendar year 2013  
+7
+8 
+ 
+Enter the average number of eligible clothes washers produced in the 2 prior 
+calendar years 
+.....................
+8
+9
+Subtract line 8 from line 7 
+.................
+9
+10
+Applicable amount 
+....................
+10
+11
+Multiply line 9 by line 10
+..................
+11
+12
+Enter the amount from line 11  
+.......................
+12
+Part III
+Refrigerators  
+(see instructions)
+(a)  
+Type A
+(b)  
+Type B
+13
+Enter the number of eligible refrigerators produced in calendar year 2013 
+13
+14 
+ 
+Enter the average number of eligible refrigerators produced in 
+the 2 prior calendar years 
+............
+14
+15
+Subtract line 14 from line 13 
+...........
+15
+16
+Applicable amount 
+...............
+16
+17
+Multiply line 15 by line 16 
+............
+17
+18
+Add the amounts on line 17 in columns (a) and (b) 
+................
+18
+Part IV
+Current Year Energy Appliance Credit
+19      Total.  
+Add lines 6, 12, and 18
+.......................
+19
+20
+Enter 4% of average annual gross receipts (see instructions) 
+.............
+20
+21a
+Maximum credit base amount (see instructions)
+.........
+21a
+b
+Enter the amount from line 19 of your *2012 Form 8909
+.......
+21b
+c
+Enter the amount from line 22a of your *2012 Form 8909 
+......
+21c
+d
+Enter the amount from line 22b of your *2012 Form 8909
+......
+21d
+e
+Add lines 21c and 21d 
+.................
+21e
+f
+Subtract line 21e from line 21b
+...............
+21f
+g
+Enter the amount from line 20 of your *2012 Form 8909 
+......
+21g
+h
+Enter the 
+smallest 
+of the amount on line 21a, 21f, or 21g
+......
+21h
+i
+Enter the amount from line 21h of your 2012 Form 8909
+......
+21i
+j
+Add lines 21h and 21i
+..................
+21j
+k
+Subtract line 21j from line 21a  
+.......................
+21k
+22a
+Enter the amount from line 12 
+...............
+22a
+b
+Enter the amount from line 17, column (b)
+...........
+22b
+c
+Add lines 22a and 22b 
+.........................
+22c
+23
+Maximum credit amount. Add lines 21k and 22c 
+.................
+23
+24
+Enter the 
+smallest
+ of the amount on line 19, 20, or 23 
+...............
+24
+25
+Energy efficient appliance credit from partnerships, S corporations, cooperatives, estates, and trusts (see instructions) 
+25
+26 
+ 
+Add lines 24 and 25. Cooperatives, estates, and trusts, go to line 27. Partnerships and S 
+corporations, stop here and report this amount on Schedule K. All others, stop here and report this
+amount on Form 3800, line 1q
+.......................
+26
+27
+Amount allocated to beneficiaries of the estate or trust, or to patrons of the cooperative (see instructions)  
+27
+28
+Cooperatives, estates, and trusts, subtract line 27 from line 26. Report this amount on Form 3800,  line 1q 
+28
+*Include amounts from predecessors. 
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 37719E
+Form 
+8909
+ (2013)
+----------------Page (0) Break----------------

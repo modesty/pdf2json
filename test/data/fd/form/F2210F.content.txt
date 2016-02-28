@@ -1,0 +1,192 @@
+Form  
+2210-F
+Department of the Treasury 
+Internal Revenue Service
+Underpayment of Estimated Tax by 
+Farmers and Fishermen
+a
+ Attach to Form 1040, Form 1040NR, or Form 1041. 
+ 
+a
+ 
+Information about Form 2210-F and its separate instructions is at 
+www.irs.gov/form2210
+.
+OMB No. 1545-0140
+20
+13
+Attachment 
+Sequence No. 
+06A
+Name(s) shown on tax return
+Identifying number
+Generally, you do not need to file Form 2210-F.
+ The IRS will figure any penalty you owe and send you a bill. File Form
+2210-F 
+only
+ if one or both of the boxes in Part I apply to you. If you do not need to file Form 2210-F, you still can use it 
+to figure your penalty. Enter the amount from line 16 on the penalty line of your return, but do not attach Form 2210-F.
+Part I
+Reasons for Filing. 
+Check applicable boxes. If neither applies, 
+do not
+ 
+file Form 2210-F.
+A 
+ 
+You request a 
+waiver
+. In certain circumstances, the IRS will waive all or part of the penalty. See 
+Waiver of Penalty 
+in the 
+instructions.
+B 
+ 
+You filed or are filing a joint return for either 2012 or 2013, but not for both years, and line 10 below is smaller than line 
+7 
+below.
+Part II
+Figure Your Underpayment
+1 
+ 
+Enter your 2013 tax after credits from Form 1040, line 55; Form 1040NR, line 52; or Form 1041, 
+Schedule G, line 3 
+..........................
+1
+2
+Other taxes, including self-employment tax and, if applicable, Additional Medicare Tax and/or 
+Net Investment Income Tax (see instructions)
+.................
+2
+3
+Add lines 1 and 2. If less than $1,000, you do not owe a penalty; 
+do not file Form 2210-F 
+..
+3
+4
+Refundable credits you claimed on your tax return. 
+a
+Earned income credit (EIC)
+.............
+4a
+b
+Additional child tax credit 
+.............
+4b
+c
+American opportunity credit (Form 8863, line 8)
+......
+4c
+d
+Credit for federal tax paid on fuels
+...........
+4d
+e
+Health coverage tax credit 
+.............
+4e
+f
+Credit determined under section 1341(a)(5)(B) (see instructions)  .
+4f
+5
+Add lines 4a through 4f 
+........................
+5 
+6 
+ 
+Current year tax. Subtract line 5 from line 3. If less than $1,000, you do not owe a penalty; 
+do
+ 
+not file Form 2210-F 
+.........................
+6
+7
+Multiply line 6 by 66
+ 
+2
+/
+3
+% (.667) 
+............
+7
+8
+Withholding taxes. 
+Do not 
+include any estimated tax payments on this line (see instructions)    .
+8
+9
+Subtract line 8 from line 6. If less than $1,000, you do not owe a penalty; 
+do not file Form 2210-F
+9
+10 
+ 
+Enter the tax shown on your 2012 tax return (see instructions if your 2013 filing status changed to 
+or from married filing jointly)  
+.......................
+10 
+11      Required annual payment. 
+Enter the
+ smaller 
+of line 7 or line 10 
+..........
+11
+Note: 
+If line 8 is equal to or more than line 11, stop here; you do not owe the penalty. 
+Do not file 
+Form 2210-F 
+unless you checked box 
+B
+ above.
+12 
+ 
+Enter the estimated tax payments you made by January 15, 2014, and any federal income tax 
+and excess social security or tier 1 railroad retirement tax withheld during 2013 .
+.....
+12
+13 
+ 
+Underpayment. 
+Subtract line 12 from line 11. If the result is zero or less, stop here; you do not
+ 
+owe the penalty. 
+Do not file Form 2210-F 
+unless you checked box
+ B 
+above
+ 
+......
+13
+Part III
+Figure the Penalty
+14
+Enter the date the amount on line 13 was paid or April 15, 2014, whichever is earlier 
+....
+14
+/
+/ 14
+15
+Number of days 
+from 
+January 15, 2014, 
+to
+ the date on line 14 
+...........
+15
+16      Penalty.
+Underpayment 
+on line 13
+×
+Number of days on line 15 
+365
+×  .03.......... 
+a
+16
+• Form 1040 filers, enter the amount from line 16 on Form 1040, line 77.  
+• Form 1040NR filers, enter the amount from line 16 on Form 1040NR, line 74.  
+• Form 1041 filers, enter the amount from line 16 on Form 1041, line 26.
+For Paperwork Reduction Act Notice, see instructions.
+Cat. No. 11745A
+Form 
+2210-F
+ (2013)
+----------------Page (0) Break----------------
