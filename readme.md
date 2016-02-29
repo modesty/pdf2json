@@ -14,8 +14,8 @@ Or, install it globally:
 To update with latest version:
 >sudo npm update pdf2json -g
 
-To Run in RESTful Web Servie or as Commandline Utility
-* More details can be found at the bottom of this document.
+To Run in RESTful Web Service or as Commandline Utility
+* More details can be found at the bottom of this document: [Restful Web Service for pdf2json.](https://github.com/modesty/p2jsvc).
 
 ### Install on Ubuntu
 
@@ -78,42 +78,113 @@ $ pdf2json --version
 
 ## Code Example
 
+* Parse a PDF then write to a JSON file:
+
 ```javascript
 
-        var nodeUtil = require("util"),
-            fs = require('fs'),
-            _ = require('underscore'),
-            PDFParser = require("./pdf2json/PDFParser");
+    let fs = require('fs'),
+        PDFParser = require("./pdf2json/PDFParser");
 
-        var pdfParser = new PDFParser();
+    let pdfParser = new PDFParser();
 
-        pdfParser.on("pdfParser_dataReady", _.bind(_onPFBinDataReady, self));
+    pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
+    pdfParser.on("pdfParser_dataReady", pdfData => {
+        let pJSON = JSON.stringify({"formImage": pdfData.data});
 
-        pdfParser.on("pdfParser_dataError", _.bind(_onPFBinDataError, self));
+        fs.writeFile("./pdf2json/test/F1040EZ.json", pJSON, (err) => {
+            if(err) {
+                console.error("parsing error: ", err);
+            }
+            else {
+                console.log("parsing succeeded");
+            }
+        });
+    });
 
-        var pdfFilePath = _pdfPathBase + folderName + "/" + pdfId + ".pdf";
+    pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
 
-        pdfParser.loadPDF(pdfFilePath);
-
-        // or call directly with buffer
-        fs.readFile(pdfFilePath, function (err, pdfBuffer) {
-          if (!err) {
-            pdfParser.parseBuffer(pdfBuffer);
-          }
-        })
+    // or, call directly with buffer
+    fs.readFile(pdfFilePath, function (err, pdfBuffer) {
+      if (!err) {
+        pdfParser.parseBuffer(pdfBuffer);
+      }
+    })
 
 ```
 
+* Parse a PDF then write a .txt file (which only contains textual content of the PDF)
+
+````javascript
+    let fs = require('fs'),
+        PDFParser = require("./pdf2json/PDFParser");
+
+    let pdfParser = new PDFParser();
+
+    pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
+    pdfParser.on("pdfParser_dataReady", pdfDta => {
+        fs.writeFile("./pdf2json/test/F1040EZ.content.txt", pdfParser.getRawTextContent(), (err) => {
+            if(err) {
+                console.error("parsing error: ", err);
+            }
+            else {
+                console.log("parsing succeeded");
+            }
+        });
+    });
+
+    pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
+
+````
+
+* Parse a PDF then write a fields.json file that only contains interactive forms' fields information:
+
+````javascript
+    let fs = require('fs'),
+        PDFParser = require("./pdf2json/PDFParser");
+
+    let pdfParser = new PDFParser();
+
+    pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
+    pdfParser.on("pdfParser_dataReady", pdfDta => {
+        let pJSON = require("./pdf2json/lib/pdffield").getAllFieldsTypes(pdfDta.data);
+        fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pJSON), (err) => {
+            if(err) {
+                console.error("parsing error: ", err);
+            }
+            else {
+                console.log("parsing succeeded");
+            }
+        });
+    });
+
+    pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
+
+````
+ 
 ## API Reference
 
-* loadPDF:
+* events:
+** pdfParser_dataError: will be raised when parsing failed
+** pdfParser_dataReady: when parsing successfully completed with data
+
+* start to parse PDF file from specified file path asynchronously:
 
         function loadPDF(pdfFilePath);
 
-load PDF file from specified file path asynchronously.
-
 If failed, event "pdfParser_dataError" will be raised with error object;
 If success, event "pdfParser_dataReady" will be raised with output data object, which can be saved as json file (in command line) or serialized to json when running in web service.
+
+* Get all textual content from "pdfParser_dataReady" event handler:
+
+        function getRawTextContent();
+
+returns text in string.
+
+* Get all input fields information from "pdfParser_dataReady" event handler: 
+
+        require("./pdf2json/lib/pdffield").getAllFieldsTypes(event.data);
+        
+returns an array of object.         
 
 ## Output Text File
 
