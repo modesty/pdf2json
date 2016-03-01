@@ -5,7 +5,6 @@ let nodeUtil = require("util"),
     _ = require("underscore"),
     fs = require('fs'),
     async = require("async"),
-	PDFField = require("./lib/pdffield"),
 	PDFJS = require("./lib/pdf.js");
 
 let PDFParser = (function () {
@@ -120,7 +119,7 @@ let PDFParser = (function () {
 		};
 
 		this.getRawTextContent = () => this.PDFJS.getRawTextContent();
-	    this.getAllFieldsTypes = () => PDFField.getAllFieldsTypes(this.data);
+	    this.getAllFieldsTypes = () => this.PDFJS.getAllFieldsTypes(this.data);
 
 		this.destroy = () => {
 			this.removeAllListeners();
