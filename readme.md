@@ -15,66 +15,9 @@ To update with latest version:
 >sudo npm update pdf2json -g
 
 To Run in RESTful Web Service or as Commandline Utility
-* More details can be found at the bottom of this document: [Restful Web Service for pdf2json.](https://github.com/modesty/p2jsvc).
+* More details can be found at the bottom of this document.
 
-### Install on Ubuntu
-
-For newcomers, make sure to have the binary "node" installed.
-
-```shell
-$  which node
-/usr/sbin/node
-
-$ node --version
-v0.10.22
-```
-
-If you don't have it correctly configured, you will not even get the version output from pdf2json binary:
-
-```
-$ pdf2json -v
-
-```
-
-If the version does not get printed, then you need to properly install nodejs configure your system to properly point to it. Make sure to follow following steps:
-
-* Install nodejs as described in http://stackoverflow.com/a/16303380/433814. You should have the following:
-
-```
-$ nodejs --version
-v0.10.22
-```
-
-* Create a symbolic link from node to nodejs
-
-```
-$ sudo rm -f /usr/sbin/node
-$ sudo ln -s /usr/bin/nodejs /usr/sbin/node
-```
-* Verify the version of node and install 
-
-```
-$ which node
-/usr/sbin/node
-
-$ node --version
-v0.10.22
-```
-* Proceed with the install of pdf2json as described.
-
-```
-$ sudo npm install -g pdf2json
-npm http GET https://registry.npmjs.org/pdf2json
-npm http 304 https://registry.npmjs.org/pdf2json
-/usr/bin/pdf2json -> /usr/lib/node_modules/pdf2json/bin/pdf2json
-pdf2json@0.6.1 /usr/lib/node_modules/pdf2json
-
-$ which pdf2json 
-/usr/bin/pdf2json
-
-$ pdf2json --version
-0.6.2
-```
+If install on Ubunto
 
 ## Code Example
 
@@ -146,7 +89,7 @@ $ pdf2json --version
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
     pdfParser.on("pdfParser_dataReady", pdfDta => {
-        let pJSON = require("./pdf2json/lib/pdffield").getAllFieldsTypes(pdfDta.data);
+        let pJSON = pdfParser.getAllFieldsTypes();
         fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pJSON), (err) => {
             if(err) {
                 console.error("parsing error: ", err);
@@ -182,13 +125,9 @@ returns text in string.
 
 * Get all input fields information from "pdfParser_dataReady" event handler: 
 
-        require("./pdf2json/lib/pdffield").getAllFieldsTypes(event.data);
+        function getAllFieldsTypes();
         
-returns an array of object.         
-
-## Output Text File
-
-Please refer to the "-c" command line argument (v0.6.8) at the bottom of this document.
+returns an array of field objects.         
 
 ## Output format Reference
 
@@ -708,7 +647,7 @@ This pdf2json module's output does not 100% maps from PDF definitions, some of t
     * As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, including radio button selection, checkbox status, text input box value, etc., these values should be handled in client renderer as part of user data, so that we can treat parsed PDF data as form template.
 
 
-## Run As a Command Line Utility
+## Run As a Commandline Utility
 
 v0.1.15 added the capability to run pdf2json as command line tool. It enables the use case that when running the parser as a web service is not absolutely necessary while transcoding local pdf files to json format is desired. Because in some use cases, the PDF files are relatively stable with less updates, even though parsing it in a web service, the parsing result will remain the same json payload. In this case, it's better to run pdf2json as a command line tool to pre-process those pdf files, and deploy the parsing result json files onto web server, client side form renderer can work in the same way as before while eliminating server side process to achieve higher scalability.
 
@@ -822,6 +761,48 @@ If you have an early version of pdf2json, please remove your local `node_modules
 v1.0.x upgraded dependency packages, removed some unnecessary dependencies, started to assumes ES6 / ES2015 with node ~v4.x. More PDFs are added for unit testing.
 
 No change on output data format in ~v1.0.x. 
+
+### Install on Ubuntu
+
+* Make sure nodejs is installed. Detailed installation steps can be found at http://stackoverflow.com/a/16303380/433814.
+
+```
+$ nodejs --version
+v0.10.22
+```
+
+* Create a symbolic link from node to nodejs
+
+```
+$ sudo rm -f /usr/sbin/node
+$ sudo ln -s /usr/bin/nodejs /usr/sbin/node
+```
+
+* Verify the version of node and installation 
+
+```
+$ which node
+/usr/sbin/node
+
+$ node --version
+v0.10.22
+```
+
+* Proceed with the install of pdf2json as described above
+
+```
+$ sudo npm install -g pdf2json
+npm http GET https://registry.npmjs.org/pdf2json
+npm http 304 https://registry.npmjs.org/pdf2json
+/usr/bin/pdf2json -> /usr/lib/node_modules/pdf2json/bin/pdf2json
+pdf2json@0.6.1 /usr/lib/node_modules/pdf2json
+
+$ which pdf2json 
+/usr/bin/pdf2json
+
+$ pdf2json --version
+0.6.2
+```
 
 ## Run in a RESTful Web Service
 

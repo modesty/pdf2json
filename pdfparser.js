@@ -1,11 +1,12 @@
 'use strict';
 
-let PDFJS = require("./lib/pdf.js"),
-    nodeUtil = require("util"),
+let nodeUtil = require("util"),
 	nodeEvents = require("events"),
     _ = require("underscore"),
     fs = require('fs'),
-    async = require("async");
+    async = require("async"),
+	PDFField = require("./lib/pdffield"),
+	PDFJS = require("./lib/pdf.js");
 
 let PDFParser = (function () {
     // private static
@@ -119,6 +120,7 @@ let PDFParser = (function () {
 		};
 
 		this.getRawTextContent = () => this.PDFJS.getRawTextContent();
+	    this.getAllFieldsTypes = () => PDFField.getAllFieldsTypes(this.data);
 
 		this.destroy = () => {
 			this.removeAllListeners();
