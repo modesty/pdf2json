@@ -1,7 +1,6 @@
 {
   "name": "pdf2json",
-  "_id": "pdf2json@1.0.3",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
   "keywords": [
     "pdf",
@@ -59,15 +58,13 @@
   ],
   "contributors": [],
   "bugs": {
-    "email": "modestyz@hotmail.com",
     "url": "http://github.com/modesty/pdf2json/issues"
   },
   "licenses": [
     {
-      "type": "LGPL",
-      "url": "http://www.gnu.org/licenses/lgpl.html"
+      "type": "Apache v2",
+      "url": "https://github.com/modesty/pdf2json/blob/master/license.txt"
     }
   ],
-  "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
-  "_from": "pdf2json"
+  "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
 }
