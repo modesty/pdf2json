@@ -120,6 +120,7 @@ let PDFParser = (function () {
 
 		this.getRawTextContent = () => this.PDFJS.getRawTextContent();
 	    this.getAllFieldsTypes = () => this.PDFJS.getAllFieldsTypes(this.data);
+	    this.getMergedTextBlocksIfNeeded = () => this.PDFJS.getMergedTextBlocksIfNeeded();
 
 		this.destroy = () => {
 			this.removeAllListeners();
