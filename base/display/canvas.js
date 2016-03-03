@@ -918,12 +918,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var rule = italic + ' ' + bold + ' ' + browserFontSize + 'px ' + typeface;
       this.ctx.font = rule;
 
-        //MQZ.Oct.23.2012. enable font detection
-        //if (!fontObj.spaceWidth) {
-        //    var spaceId = isArray(fontObj.toFontChar) ? fontObj.toFontChar.indexOf(32) : -1;
-        //    fontObj.spaceWidth = (spaceId >= 0 && isArray(fontObj.widths)) ? fontObj.widths[spaceId] : 250;
-        //}
-        this.ctx.setFont(fontObj);
+      this.ctx.setFont(fontObj);
     },
     setTextRenderingMode: function CanvasGraphics_setTextRenderingMode(mode) {
       this.current.textRenderingMode = mode;
@@ -1167,11 +1162,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
               scaledY = 0;
             }
 
-            //MQZ Dec.03.2013 Disable font.remeasure
-            //  font.remeasure = false;
-            const p2j_remeasure = false;
-
-            if (font.remeasure && width > 0 && p2j_remeasure) {
+            if (font.remeasure && width > 0) {
               // some standard fonts may not have the exact width, trying to
               // rescale per character
               var measuredWidth = ctx.measureText(character).width * 1000 /

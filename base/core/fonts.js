@@ -2220,8 +2220,9 @@ var Font = (function FontClosure() {
       // name ArialBlack for example will be replaced by Helvetica.
       this.black = (name.search(/Black/g) != -1);
 
+      //MQZ Dec.03.2013 Disable font.remeasure
       // if at least one width is present, remeasure all chars when exists
-      this.remeasure = Object.keys(this.widths).length > 0;
+      //this.remeasure = Object.keys(this.widths).length > 0;
 
       this.encoding = properties.baseEncoding;
       this.noUnicodeAdaptation = true;
