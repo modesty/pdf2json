@@ -17,8 +17,6 @@ To update with latest version:
 To Run in RESTful Web Service or as Commandline Utility
 * More details can be found at the bottom of this document.
 
-If install on Ubunto
-
 ## Code Example
 
 * Parse a PDF then write to a JSON file:
@@ -760,7 +758,16 @@ If you have an early version of pdf2json, please remove your local `node_modules
 
 v1.0.x upgraded dependency packages, removed some unnecessary dependencies, started to assumes ES6 / ES2015 with node ~v4.x. More PDFs are added for unit testing.
 
-No change on output data format in ~v1.0.x. 
+**Note:**
+pdf2json has been in production for over 3 years, it's pretty reliable and solid when parsing hundreds (sometimes tens of thousands) of PDF forms every day, thanks to everybody's help.
+
+Starting v1.0.3, I'm trying to address a long over due annoying problem on [broken text blocks](https://github.com/modesty/pdf2json/issues/18). It's the biggest problem that hinders the efficiency of PDF content creation in our projects. Although the root cause lies in the original PDF streams, since the client doesn't render JSON character by character, it's a problem often appears in final rendered web content. We had to work around it by manually merge those text blocks. With the solution in v1.0.x, the need for manual text block merging is greately reduced.  
+
+The solution is to put to a post-parsing process stage to identify and auto-merge those adjacent blocks. It's not ideal, but works in most of my tests with those 261 PDFs underneath test directory.
+
+The auto merge solution still needs some fine tuning, I keep it as an experimental feature for now, it's off by default, can be turned on by "-m" switch in commandline.
+
+In order to support this auto merging capability, text block objects have an additional "sw" (space width of the font) property together with x, y, clr and R. If you have a more effective usage of this new property for merging text blocks, please drop me a line.
 
 ### Install on Ubuntu
 
@@ -808,11 +815,17 @@ $ pdf2json --version
 
 More info can be found at [Restful Web Service for pdf2json.](https://github.com/modesty/p2jsvc)
 
+## Contribution
+
+Participating in this project, you are expected to honor [open code of conduct](http://todogroup.org/opencodeofconduct/#Open+Code+of+Conduct/abuse@todogroup.org).
+
 ## License and Contribution
 
 Licensed under the [Apache License Version 2.0](https://github.com/modesty/pdf2json/blob/scratch/quadf-forms/license.txt).
 
-I'm currently running this project in my spare time. Participating in this project, you are expected to honor [open code of conduct](http://todogroup.org/opencodeofconduct/#Open+Code+of+Conduct/abuse@todogroup.org). Thanks all for your generous [support](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=modestyZ%40gmail%2ecom&lc=GB&item_name=modesty%20zhang&item_number=git%40github%2ecom%3amodesty%2fpdf2json%2egit&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted).
+## Support
+
+I'm currently running this project in my spare time. Thanks all for your [stars](https://github.com/modesty/pdf2json/stargazers) and [supports](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=modestyZ%40gmail%2ecom&lc=GB&item_name=modesty%20zhang&item_number=git%40github%2ecom%3amodesty%2fpdf2json%2egit&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted).
 
 
 
