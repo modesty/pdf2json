@@ -769,6 +769,10 @@ The auto merge solution still needs some fine tuning, I keep it as an experiment
 
 In order to support this auto merging capability, text block objects have an additional "sw" (space width of the font) property together with x, y, clr and R. If you have a more effective usage of this new property for merging text blocks, please drop me a line.
 
+**Breaking Changes:**
+
+v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate. 
+
 ### Install on Ubuntu
 
 * Make sure nodejs is installed. Detailed installation steps can be found at http://stackoverflow.com/a/16303380/433814.
@@ -819,7 +823,7 @@ More info can be found at [Restful Web Service for pdf2json.](https://github.com
 
 Participating in this project, you are expected to honor [open code of conduct](http://todogroup.org/opencodeofconduct/#Open+Code+of+Conduct/abuse@todogroup.org).
 
-## License and Contribution
+## License
 
 Licensed under the [Apache License Version 2.0](https://github.com/modesty/pdf2json/blob/scratch/quadf-forms/license.txt).
 
