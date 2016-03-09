@@ -198,7 +198,8 @@ var RefSetCache = (function RefSetCacheClosure() {
     },
 
     has: function RefSetCache_has(ref) {
-      return ('R' + ref.num + '.' + ref.gen) in this.dict;
+      //MQZ. 03/08/2016 fix https://github.com/modesty/pdf2json/issues/26
+      return !!ref ? ('R' + ref.num + '.' + ref.gen) in this.dict : false;
     },
 
     put: function RefSetCache_put(ref, obj) {

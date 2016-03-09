@@ -709,8 +709,8 @@ Example of fields.json content:
 
 The fields.json output can be used to validate fields IDs with other data source, and/or to extract data value from user submitted PDFs.
 
-v0.6.8 added "-c" or "--content" command line argument to generate raw text content from PDF. It'll be a separated output file named as (pdf_file_name).content.txt.
-This feature is added to answer some inquiries on retrieving raw text content from PDF, it's in experimental phase at this point, needs more testing.
+v0.6.8 added "-c" or "--content" command line argument to extract raw text content from PDF. It'll be a separated output file named as (pdf_file_name).content.txt.
+If all you need is the textual content of the PDF, "-c" essentially converts PDF to text, of cause, all formatting and styling will be lost.  
 
 ## Run Unit Test (commandline)
 
