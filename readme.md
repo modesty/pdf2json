@@ -752,6 +752,13 @@ Or, from `npm scripts`:
 	npm test
 ````
 
+Some testing PDFs are provided by bug reporters, like the "unsupported encryption" ([#43](https://github.com/modesty/pdf2json/issues/43)), "read property num from undefined" ([#26](https://github.com/modesty/pdf2json/issues/26)), and "excessive line breaks in text content" ([#28](https://github.com/modesty/pdf2json/issues/28)), their PDFs are all stored in `test/pdf/misc` directory. To run tests against these community contributed PDFs, run commandline:
+
+````
+	npm run-script test-misc
+````
+  
+
 ## Upgrading to ~v1.0.x
 
 If you have an early version of pdf2json, please remove your local `node_modules` directory and re-run `npm install` to upgrade to pdf2json@1.0.x. 
