@@ -1,6 +1,6 @@
 {
   "name": "pdf2json",
-  "version": "1.0.9",
+  "version": "1.1.1",
   "description": "A PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
   "keywords": [
     "pdf",
@@ -27,7 +27,8 @@
   },
   "main": "./pdfparser.js",
   "scripts": {
-    "test": "cd ./test && sh p2j.forms.sh"
+    "test": "cd ./test && sh p2j.forms.sh",
+    "test-misc": "node pdf2json.js -f ./test/pdf/misc/ -o ./test/target/misc/ -c -m"
   },
   "engines": {
     "node": ">=4.0"
