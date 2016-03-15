@@ -17,12 +17,12 @@ let PDFParser = (function () {
 
 	//private methods, needs to invoked by [funcName].call(this, ...)
 	let _onPDFJSParseDataReady = function(data) {
-		Object.assign(this.data, data);
-
-		this.parsePropCount++;
-		if (this.parsePropCount >= 2) {
+		if (!data) { //v1.1.2: data===null means end of parsed data
 			this.emit("pdfParser_dataReady", this);
 			nodeUtil.p2jinfo("PDF parsing completed.");
+		}
+		else {
+			Object.assign(this.data, data);
 		}
 	};
 
@@ -33,7 +33,6 @@ let PDFParser = (function () {
 
 	let _startParsingPDF = function(buffer) {
 		this.data = {};
-		this.parsePropCount = 0;
 
 		this.PDFJS.on("pdfjs_parseDataReady", _onPDFJSParseDataReady.bind(this));
 		this.PDFJS.on("pdfjs_parseDataError", _onPDFJSParserDataError.bind(this));
@@ -90,7 +89,6 @@ let PDFParser = (function () {
         this.pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
         this.data = null; //if file read success, data is PDF content; if failed, data is "err" object
         this.PDFJS = new PDFJS(needRawText);
-        this.parsePropCount = 0;
         this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
 
 	    this.fq = async.queue( (task, callback) => {
@@ -136,8 +134,6 @@ let PDFParser = (function () {
 
 			this.PDFJS.destroy();
 			this.PDFJS = null;
-
-			this.parsePropCount = 0;
 		};
 	}
 	// inherit from event emitter
