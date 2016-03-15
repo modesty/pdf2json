@@ -45,7 +45,7 @@ To Run in RESTful Web Service or as Commandline Utility
     pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
 
     // or, call directly with buffer
-    fs.readFile(pdfFilePath, function (err, pdfBuffer) {
+    fs.readFile(pdfFilePath, (err, pdfBuffer) => {
       if (!err) {
         pdfParser.parseBuffer(pdfBuffer);
       }
@@ -88,7 +88,7 @@ To Run in RESTful Web Service or as Commandline Utility
     pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
     pdfParser.on("pdfParser_dataReady", pdfDta => {
         let pJSON = pdfParser.getAllFieldsTypes();
-        fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pJSON), (err) => {
+        fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pJSON), err => {
             if(err) {
                 console.error("parsing error: ", err);
             }
@@ -154,7 +154,7 @@ Each page object within 'Pages' array describes page elements and attributes wit
     * v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
     * v0.4.4 added dashed line support. Default is 'solid', if line style is dashed line, {dsh:1} is added to line object;
 * 'Fills': an array of rectangular area with solid color fills, same as lines, each 'fill' object has 'x', 'y' in relative coordinates for positioning, 'w' and 'h' for width and height in page unit, plus 'clr' to reference a color with index in color dictionary. More info about 'color dictionary' can be found at 'Dictionary Reference' section.
-* 'Texts': an array of text blocks with position, actual text and styling informations:
+* 'Texts': an array of text blocks with position, actual text and styling information:
     * 'x' and 'y': relative coordinates for positioning
     * 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object. If a color can be found in color dictionary, 'oc' field will be added to the field as 'original color" value.
     * 'A': text alignment, including:
@@ -165,7 +165,7 @@ Each page object within 'Pages' array describes page elements and attributes wit
         * 'T': actual text
         * 'S': style index from style dictionary. More info about 'Style Dictionary' can be found at 'Dictionary Reference' section
 
-v0.4.5 added support when fields attributes information is defined in external xml file. pdf2json will always try load field attributes xml file based on file name convention (pdffilename.pdf's field XML file must be named pdffilename_fieldInfo.xml in the same directory). If found, fields info will be injected.
+v0.4.5 added support when fields attributes information is defined in external xml file. pdf2json will always try load field attributes xml file based on file name convention (pdfFileName.pdf's field XML file must be named pdfFileName_fieldInfo.xml in the same directory). If found, fields info will be injected.
 
 ### Dictionary Reference
 
@@ -716,9 +716,9 @@ If all you need is the textual content of the PDF, "-c" essentially converts PDF
 
 It takes less than 1 minutes for pdf2json to parse 261 PDFs under `test/pdf` directory. Usually, it takes about 40 seconds or so to parses all of them. Besides the parimary JSON for each PDF, it also generates text content JSON and form fields JSON file (by `-c` and `-t` parameters) for further testing. 
 
-The 265 PDFs are all fillable tax forms from government agencies for tax year 2013, including 165 federal forms, 23 efile instructions and 9 other state tax forms.
+The 265 PDFs are all fill-able tax forms from government agencies for tax year 2013, including 165 federal forms, 23 efile instructions and 9 other state tax forms.
 
-Shell script is current driver for unit test. To parse one agency's pdfs, run the command line:
+Shell script is current driver for unit test. To parse one agency's PDFs, run the command line:
 
 ````
 	cd test
