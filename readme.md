@@ -19,7 +19,7 @@ To Run in RESTful Web Service or as Commandline Utility
 
 ## Code Example
 
-* Parse a PDF then write to a JSON file:
+* Parse a PDF file then write to a JSON file:
 
 ```javascript
 
@@ -105,26 +105,26 @@ To Run in RESTful Web Service or as Commandline Utility
 ## API Reference
 
 * events:
-** pdfParser_dataError: will be raised when parsing failed
-** pdfParser_dataReady: when parsing successfully completed with data
+    * pdfParser_dataError: will be raised when parsing failed
+    * pdfParser_dataReady: when parsing succeeded
 
 * start to parse PDF file from specified file path asynchronously:
-
+````javascript
         function loadPDF(pdfFilePath);
-
+````
 If failed, event "pdfParser_dataError" will be raised with error object;
 If success, event "pdfParser_dataReady" will be raised with output data object, which can be saved as json file (in command line) or serialized to json when running in web service.
 
 * Get all textual content from "pdfParser_dataReady" event handler:
-
+````javascript
         function getRawTextContent();
-
+````
 returns text in string.
 
 * Get all input fields information from "pdfParser_dataReady" event handler: 
-
+````javascript
         function getAllFieldsTypes();
-        
+````        
 returns an array of field objects.         
 
 ## Output format Reference
