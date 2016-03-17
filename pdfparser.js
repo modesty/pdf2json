@@ -1,9 +1,9 @@
 'use strict';
 
-let nodeUtil = require("util"),
-	nodeEvents = require("events"),
+let fs = require('fs'),
+	stream = require('stream'),
+	nodeUtil = require("util"),
     _ = require("underscore"),
-    fs = require('fs'),
     async = require("async"),
 	PDFJS = require("./lib/pdf.js");
 
@@ -18,8 +18,13 @@ let PDFParser = (function () {
 	//private methods, needs to invoked by [funcName].call(this, ...)
 	let _onPDFJSParseDataReady = function(data) {
 		if (!data) { //v1.1.2: data===null means end of parsed data
-			this.emit("pdfParser_dataReady", this);
 			nodeUtil.p2jinfo("PDF parsing completed.");
+			this.emit("pdfParser_dataReady", this);
+			if (typeof this.flushCallback === 'function') {
+				this.push(this);
+				this.flushCallback();
+				this.flushCallback = null;
+			}
 		}
 		else {
 			Object.assign(this.data, data);
@@ -74,7 +79,7 @@ let PDFParser = (function () {
 	// constructor
     function PdfParser(context, needRawText) {
 		//call constructor for super class
-		nodeEvents.EventEmitter.call(this);
+	    stream.Transform.call(this, {objectMode: true});
 	
         // private
         let _id = _nextId++;
@@ -91,53 +96,68 @@ let PDFParser = (function () {
         this.PDFJS = new PDFJS(needRawText);
         this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
 
-	    this.fq = async.queue( (task, callback) => {
-		    fs.readFile(task.path, callback);
-	    }, 100);
-
-		//public APIs
-	    this.loadPDF = (pdfFilePath, verbosity) => {
-			nodeUtil.verbosity(verbosity);
-			nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
-
-			this.pdfFilePath = pdfFilePath;
-			if (this.processFieldInfoXML) {
-				this.PDFJS.tryLoadFieldInfoXML(pdfFilePath);
-			}
-
-			if (_processBinaryCache.call(this))
-				return;
-
-			this.fq.push({path: pdfFilePath}, _processPDFContent.bind(this));
-		};
-
-		// Introduce a way to directly process buffers without the need to write it to a temporary file
-		this.parseBuffer = (pdfBuffer) => {
-			_startParsingPDF.call(this, pdfBuffer);
-		};
-
-		this.getRawTextContent = () => this.PDFJS.getRawTextContent();
-	    this.getAllFieldsTypes = () => this.PDFJS.getAllFieldsTypes(this.data);
-	    this.getMergedTextBlocksIfNeeded = () => this.PDFJS.getMergedTextBlocksIfNeeded();
-
-		this.destroy = () => {
-			this.removeAllListeners();
-
-			//context object will be set in Web Service project, but not in command line utility
-			if (this.context) {
-				this.context.destroy();
-				this.context = null;
-			}
-
-			this.pdfFilePath = null;
-			this.data = null;
-
-			this.PDFJS.destroy();
-			this.PDFJS = null;
-		};
+	    this.chunks = [];
+	    this.flushCallback = null;
 	}
 	// inherit from event emitter
-	nodeUtil.inherits(PdfParser, nodeEvents.EventEmitter);
+	nodeUtil.inherits(PdfParser, stream.Transform);
+
+	//implements transform stream
+	PdfParser.prototype._transform = function (chunk, enc, callback) {
+		this.chunks.push(Buffer.isBuffer(chunk) ? chunk : new Buffer(chunk, enc));
+		callback();
+	};
+
+	PdfParser.prototype._flush = function(callback) {
+		this.flushCallback = callback;
+		this.parseBuffer(Buffer.concat(this.chunks));
+	};
+
+	PdfParser.prototype.fq = async.queue( (task, callback) => {
+		fs.readFile(task.path, callback);
+	}, 100);
+
+	//public APIs
+	PdfParser.prototype.loadPDF = function(pdfFilePath, verbosity) {
+		nodeUtil.verbosity(verbosity);
+		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
+
+		this.pdfFilePath = pdfFilePath;
+		if (this.processFieldInfoXML) {
+			this.PDFJS.tryLoadFieldInfoXML(pdfFilePath);
+		}
+
+		if (_processBinaryCache.call(this))
+			return;
+
+		this.fq.push({path: pdfFilePath}, _processPDFContent.bind(this));
+	};
+
+	// Introduce a way to directly process buffers without the need to write it to a temporary file
+	PdfParser.prototype.parseBuffer = function(pdfBuffer) {
+		_startParsingPDF.call(this, pdfBuffer);
+	};
+
+	PdfParser.prototype.getRawTextContent = function() { return this.PDFJS.getRawTextContent(); };
+	PdfParser.prototype.getAllFieldsTypes = function() { this.PDFJS.getAllFieldsTypes(this.data); };
+	PdfParser.prototype.getMergedTextBlocksIfNeeded = function() { this.PDFJS.getMergedTextBlocksIfNeeded(); };
+
+	PdfParser.prototype.destroy = function() {
+		this.removeAllListeners();
+
+		//context object will be set in Web Service project, but not in command line utility
+		if (this.context) {
+			this.context.destroy();
+			this.context = null;
+		}
+
+		this.pdfFilePath = null;
+		this.data = null;
+		this.chunks = null;
+
+		this.PDFJS.destroy();
+		this.PDFJS = null;
+	};
 
 	return PdfParser;
 })();
