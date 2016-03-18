@@ -30,7 +30,7 @@ To Run in RESTful Web Service or as Commandline Utility
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
-        let pJSON = JSON.stringify({"formImage": pdfData.data});
+        let pJSON = JSON.stringify(pdfData);
 
         fs.writeFile("./pdf2json/test/F1040EZ.json", pJSON, (err) => {
             if(err) {
@@ -63,7 +63,7 @@ To Run in RESTful Web Service or as Commandline Utility
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
     pdfParser.on("pdfParser_dataReady", pdfDta => {
-        fs.writeFile("./pdf2json/test/F1040EZ.content.txt", pdfParser.getRawTextContent(), (err) => {
+        fs.writeFile("./pdf2json/test/F1040EZ.content.txt", pdfParser.getRawTextContent(), err => {
             if(err) {
                 console.error("parsing error: ", err);
             }
@@ -101,6 +101,22 @@ To Run in RESTful Web Service or as Commandline Utility
     pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
 
 ````
+
+Alternatively, you can pipe input and output streams: (requires v1.1.4)
+
+````javascript
+    let fs = require('fs'),
+        PDFParser = require("./pdf2json/PDFParser");
+
+    let pdfParser = new PDFParser();
+    
+    let inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
+    let outputStram = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
+    
+    inputStream.pipe(this.pdfParser).pipe(new StringifyStream()).pipe(outputStream);
+````
+See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) for more details.
+
  
 ## API Reference
 
@@ -112,8 +128,8 @@ To Run in RESTful Web Service or as Commandline Utility
 ````javascript
         function loadPDF(pdfFilePath);
 ````
-If failed, event "pdfParser_dataError" will be raised with error object;
-If success, event "pdfParser_dataReady" will be raised with output data object, which can be saved as json file (in command line) or serialized to json when running in web service.
+If failed, event "pdfParser_dataError" will be raised with error object: {"parserError": errObj};
+If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service.
 
 * Get all textual content from "pdfParser_dataReady" event handler:
 ````javascript
@@ -759,11 +775,11 @@ Some testing PDFs are provided by bug reporters, like the "unsupported encryptio
 ````
   
 
-## Upgrading to ~v1.0.x
+## Upgrade to ~v1.x.x
 
 If you have an early version of pdf2json, please remove your local `node_modules` directory and re-run `npm install` to upgrade to pdf2json@1.0.x. 
 
-v1.0.x upgraded dependency packages, removed some unnecessary dependencies, started to assumes ES6 / ES2015 with node ~v4.x. More PDFs are added for unit testing.
+v1.x.x upgraded dependency packages, removed some unnecessary dependencies, started to assumes ES6 / ES2015 with node ~v4.x. More PDFs are added for unit testing.
 
 **Note:**
 pdf2json has been in production for over 3 years, it's pretty reliable and solid when parsing hundreds (sometimes tens of thousands) of PDF forms every day, thanks to everybody's help.
@@ -778,16 +794,20 @@ In order to support this auto merging capability, text block objects have an add
 
 **Breaking Changes:**
 
-v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate. 
+* v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
+* v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
+    * event "pdfParser_dataError": {"parserError": errObj}
+    * event "pdfParser_dataReady": {"formImage": parseOutput}
+
 
 ### Install on Ubuntu
 
 * Make sure nodejs is installed. Detailed installation steps can be found at http://stackoverflow.com/a/16303380/433814.
 
-```
+````
 $ nodejs --version
 v0.10.22
-```
+````
 
 * Create a symbolic link from node to nodejs
 

@@ -19,9 +19,10 @@ let PDFParser = (function () {
 	let _onPDFJSParseDataReady = function(data) {
 		if (!data) { //v1.1.2: data===null means end of parsed data
 			nodeUtil.p2jinfo("PDF parsing completed.");
-			this.emit("pdfParser_dataReady", this);
+			let output = {"formImage": this.data};
+			this.emit("pdfParser_dataReady", output);
 			if (typeof this.flushCallback === 'function') {
-				this.push(this);
+				this.push(output);
 				this.flushCallback();
 				this.flushCallback = null;
 			}
@@ -32,8 +33,8 @@ let PDFParser = (function () {
 	};
 
 	let _onPDFJSParserDataError = function(data) {
-		this.data = data;
-		this.emit("pdfParser_dataError", this);
+		this.data = null;
+		this.emit("pdfParser_dataError", {"parserError": data});
 	};
 
 	let _startParsingPDF = function(buffer) {
@@ -76,10 +77,17 @@ let PDFParser = (function () {
 		}
 	};
 
+	let _createContentStream = function(jsonObj) {
+		let rStream = new stream.Readable({objectMode: true});
+		rStream.push(jsonObj);
+		rStream.push(null);
+		return rStream;
+	};
+
 	// constructor
     function PdfParser(context, needRawText) {
 		//call constructor for super class
-	    stream.Transform.call(this, {objectMode: true});
+	    stream.Transform.call(this, {objectMode: true, bufferSize: 64 * 1024});
 	
         // private
         let _id = _nextId++;
@@ -118,8 +126,12 @@ let PDFParser = (function () {
 	}, 100);
 
 	//public APIs
+	PdfParser.prototype.setVerbosity = function(verbosity) {
+		nodeUtil.verbosity(verbosity || 0);
+	};
+
 	PdfParser.prototype.loadPDF = function(pdfFilePath, verbosity) {
-		nodeUtil.verbosity(verbosity);
+		this.setVerbosity(verbosity);
 		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
 		this.pdfFilePath = pdfFilePath;
@@ -139,8 +151,13 @@ let PDFParser = (function () {
 	};
 
 	PdfParser.prototype.getRawTextContent = function() { return this.PDFJS.getRawTextContent(); };
-	PdfParser.prototype.getAllFieldsTypes = function() { this.PDFJS.getAllFieldsTypes(this.data); };
-	PdfParser.prototype.getMergedTextBlocksIfNeeded = function() { this.PDFJS.getMergedTextBlocksIfNeeded(); };
+	PdfParser.prototype.getRawTextContentStream = function() { return _createContentStream(this.getRawTextContent()); };
+
+	PdfParser.prototype.getAllFieldsTypes = function() { return this.PDFJS.getAllFieldsTypes(); };
+	PdfParser.prototype.getAllFieldsTypesStream = function() { return _createContentStream(this.getAllFieldsTypes()); };
+
+	PdfParser.prototype.getMergedTextBlocksIfNeeded = function() { return {"formImage": this.PDFJS.getMergedTextBlocksIfNeeded()}; };
+	PdfParser.prototype.getMergedTextBlocksStream = function() { return _createContentStream(this.getMergedTextBlocksIfNeeded()); };
 
 	PdfParser.prototype.destroy = function() {
 		this.removeAllListeners();
