@@ -375,8 +375,9 @@ var WorkerMessageHandler = PDFJS.WorkerMessageHandler = {
         var start = Date.now();
         page.extractTextContent().then(function(textContent) {
           promise.resolve(textContent);
-          log('text indexing: page=%d - time=%dms', pageNum,
-              Date.now() - start);
+          //MQZ 03/17/2016 comment out log
+          //log('text indexing: page=%d - time=%dms', pageNum,
+          //    Date.now() - start);
         }, function (e) {
           // Skip errored pages
           promise.reject(e);
