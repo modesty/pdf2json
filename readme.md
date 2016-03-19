@@ -21,37 +21,29 @@ To Run in RESTful Web Service or as Commandline Utility
 
 * Parse a PDF file then write to a JSON file:
 
-```javascript
-
+````javascript
     let fs = require('fs'),
         PDFParser = require("./pdf2json/PDFParser");
 
     let pdfParser = new PDFParser();
 
-    pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
+    pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
-        let pJSON = JSON.stringify(pdfData);
-
-        fs.writeFile("./pdf2json/test/F1040EZ.json", pJSON, (err) => {
-            if(err) {
-                console.error("parsing error: ", err);
-            }
-            else {
-                console.log("parsing succeeded");
-            }
-        });
+        fs.writeFile("./pdf2json/test/F1040EZ.json", JSON.stringify(pdfData));
     });
 
     pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
+````
 
-    // or, call directly with buffer
+Or, call directly with buffer:
+
+````javascript
     fs.readFile(pdfFilePath, (err, pdfBuffer) => {
       if (!err) {
         pdfParser.parseBuffer(pdfBuffer);
       }
     })
-
-```
+````
 
 * Parse a PDF then write a .txt file (which only contains textual content of the PDF)
 
@@ -61,20 +53,12 @@ To Run in RESTful Web Service or as Commandline Utility
 
     let pdfParser = new PDFParser();
 
-    pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
-    pdfParser.on("pdfParser_dataReady", pdfDta => {
-        fs.writeFile("./pdf2json/test/F1040EZ.content.txt", pdfParser.getRawTextContent(), err => {
-            if(err) {
-                console.error("parsing error: ", err);
-            }
-            else {
-                console.log("parsing succeeded");
-            }
-        });
+    pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
+    pdfParser.on("pdfParser_dataReady", pdfData => {
+        fs.writeFile("./pdf2json/test/F1040EZ.content.txt", pdfParser.getRawTextContent());
     });
 
     pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
-
 ````
 
 * Parse a PDF then write a fields.json file that only contains interactive forms' fields information:
@@ -85,21 +69,12 @@ To Run in RESTful Web Service or as Commandline Utility
 
     let pdfParser = new PDFParser();
 
-    pdfParser.on("pdfParser_dataError", errData => console.error(errData) );
-    pdfParser.on("pdfParser_dataReady", pdfDta => {
-        let pJSON = pdfParser.getAllFieldsTypes();
-        fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pJSON), err => {
-            if(err) {
-                console.error("parsing error: ", err);
-            }
-            else {
-                console.log("parsing succeeded");
-            }
-        });
+    pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
+    pdfParser.on("pdfParser_dataReady", pdfData => {
+        fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pdfParser.getAllFieldsTypes()));
     });
 
     pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
-
 ````
 
 Alternatively, you can pipe input and output streams: (requires v1.1.4)
@@ -113,7 +88,7 @@ Alternatively, you can pipe input and output streams: (requires v1.1.4)
     let inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
     let outputStram = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
     
-    inputStream.pipe(this.pdfParser).pipe(new StringifyStream()).pipe(outputStream);
+    inputStream.pipe(pdfParser).pipe(new StringifyStream()).pipe(outputStream);
 ````
 See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) for more details.
 
@@ -794,11 +769,11 @@ In order to support this auto merging capability, text block objects have an add
 
 **Breaking Changes:**
 
-* v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
 * v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
     * event "pdfParser_dataError": {"parserError": errObj}
     * event "pdfParser_dataReady": {"formImage": parseOutput}
 
+* v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
 
 ### Install on Ubuntu
 
