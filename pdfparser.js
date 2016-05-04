@@ -43,7 +43,7 @@ let PDFParser = (function () {
 		this.PDFJS.on("pdfjs_parseDataReady", _onPDFJSParseDataReady.bind(this));
 		this.PDFJS.on("pdfjs_parseDataError", _onPDFJSParserDataError.bind(this));
 
-		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath]);
+		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath], this.pdfFilePassword);
 	};
 
 	let _processBinaryCache = function() {
@@ -100,6 +100,7 @@ let PDFParser = (function () {
         this.context = context;
 
         this.pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
+        this.pdfFilePassword = null; //current PDF file's password (if protected), null means no password specified
         this.data = null; //if file read success, data is PDF content; if failed, data is "err" object
         this.PDFJS = new PDFJS(needRawText);
         this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
@@ -130,11 +131,12 @@ let PDFParser = (function () {
 		nodeUtil.verbosity(verbosity || 0);
 	};
 
-	PdfParser.prototype.loadPDF = function(pdfFilePath, verbosity) {
+	PdfParser.prototype.loadPDF = function(pdfFilePath, verbosity, password = '') {
 		this.setVerbosity(verbosity);
 		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
 		this.pdfFilePath = pdfFilePath;
+		this.pdfFilePassword = password;
 		if (this.processFieldInfoXML) {
 			this.PDFJS.tryLoadFieldInfoXML(pdfFilePath);
 		}
@@ -146,7 +148,8 @@ let PDFParser = (function () {
 	};
 
 	// Introduce a way to directly process buffers without the need to write it to a temporary file
-	PdfParser.prototype.parseBuffer = function(pdfBuffer) {
+	PdfParser.prototype.parseBuffer = function(pdfBuffer, password = '') {
+		this.pdfFilePassword = password;
 		_startParsingPDF.call(this, pdfBuffer);
 	};
 
@@ -169,6 +172,7 @@ let PDFParser = (function () {
 		}
 
 		this.pdfFilePath = null;
+		this.pdfFilePassword = null;
 		this.data = null;
 		this.chunks = null;
 
