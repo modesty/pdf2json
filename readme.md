@@ -86,7 +86,7 @@ Alternatively, you can pipe input and output streams: (requires v1.1.4)
     let pdfParser = new PDFParser();
     
     let inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
-    let outputStram = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
+    let outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
     
     inputStream.pipe(pdfParser).pipe(new StringifyStream()).pipe(outputStream);
 ````
