@@ -23,7 +23,7 @@ To Run in RESTful Web Service or as Commandline Utility
 
 ````javascript
     let fs = require('fs'),
-        PDFParser = require("./pdf2json/PDFParser");
+        PDFParser = require("pdf2json");
 
     let pdfParser = new PDFParser();
 
@@ -49,7 +49,7 @@ Or, call directly with buffer:
 
 ````javascript
     let fs = require('fs'),
-        PDFParser = require("./pdf2json/PDFParser");
+        PDFParser = require("pdf2json");
 
     let pdfParser = new PDFParser();
 
@@ -65,7 +65,7 @@ Or, call directly with buffer:
 
 ````javascript
     let fs = require('fs'),
-        PDFParser = require("./pdf2json/PDFParser");
+        PDFParser = require("pdf2json");
 
     let pdfParser = new PDFParser();
 
@@ -81,7 +81,7 @@ Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ````javascript
     let fs = require('fs'),
-        PDFParser = require("./pdf2json/PDFParser");
+        PDFParser = require("pdf2json");
     
     let inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
     let outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
