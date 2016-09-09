@@ -1,0 +1,11 @@
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+node_modules/
+target/
+
+.gitignore
+test
