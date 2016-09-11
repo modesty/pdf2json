@@ -3,7 +3,7 @@
 let fs = require('fs'),
 	stream = require('stream'),
 	nodeUtil = require("util"),
-    _ = require("underscore"),
+    _ = require("lodash"),
     async = require("async"),
 	PDFJS = require("./lib/pdf.js");
 
