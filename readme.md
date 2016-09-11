@@ -796,7 +796,7 @@ $ which node
 /usr/sbin/node
 
 $ node --version
-v0.10.22
+v4.5.0
 ```
 
 * Proceed with the install of pdf2json as described above
