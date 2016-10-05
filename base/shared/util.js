@@ -1232,9 +1232,9 @@ function loadJpegStream(id, imageUrl, objs) {
   img.onload = (function loadJpegStream_onloadClosure() {
     objs.resolve(id, img);
   });
-//  img.src = imageUrl;
+  img.src = imageUrl;
     //MQZ. Apr.09.2013 calls windows.btoa safely
-    img.src = 'data:image/jpeg;base64,' + img.btoa(imageUrl);
+//    img.src = 'data:image/jpeg;base64,' + img.btoa(imageUrl);
 }
 
 //MQZ Oct.18.2013 expose util methods
