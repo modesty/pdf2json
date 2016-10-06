@@ -1847,6 +1847,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var tmpCanvas = CachedCanvases.getCanvas('inlineImage', w, h);
       var tmpCtx = tmpCanvas.context;
       putBinaryImageData(tmpCtx, imgData);
+
       for (var i = 0, ii = map.length; i < ii; i++) {
         var entry = map[i];
         ctx.save();
