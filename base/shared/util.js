@@ -145,7 +145,7 @@ var OPS = PDFJS.OPS = {
 
 //MQZ.Mar.22 Disabled Operators (to prevent image painting & annotation default appearance)
 //paintJpegXObject, paintImageMaskXObject, paintImageMaskXObjectGroup, paintImageXObject, paintInlineImageXObject, paintInlineImageXObjectGroup
-var NO_OPS = PDFJS.NO_OPS = []; // [82, 83, 84, 85, 86, 87];
+var NO_OPS = PDFJS.NO_OPS = [83, 84, 86, 87];
 var NO_OPS_RANGE = PDFJS.NO_OPS_RANGE = [78, 79, 80, 81]; //range pairs, all ops with each pair will be skipped. !important!
 var HTMLElement = typeof HTMLElement === "undefined" ?
   function() { } : HTMLElement;
