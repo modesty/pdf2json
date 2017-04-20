@@ -1289,7 +1289,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
               }
           }
           else {
-              if (-e >= spaceWidth) {
+            //MQZ-GYJ. Apr.20.2017 split word when spacing is a positive number but very big
+              if (Math.abs(e) >= spaceWidth) {
                   if (vertical) {
                       current.y += spacingLength;
                   } else {
