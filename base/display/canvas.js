@@ -1095,19 +1095,22 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         this.processingType3 = null;
       } else {
         ctx.save();
-          var tx = 0;
 
 //MQZ Dec.04.2013 handles leading word spacing
+          var tx = 0;
           if (wordSpacing !== 0) {
               var firstGlyph = _.find(glyphs, function(g) { return _.isObject(g);});
               if (firstGlyph && (firstGlyph.fontChar === ' ' || firstGlyph.unicode === ' ')) {
                   if (_.find(glyphs, function(g) { return _.isObject(g) && g.unicode !== ' ';})) {
-                    current.x += wordSpacing * fontSize * textHScale;
+                    tx = wordSpacing * fontSize * textHScale;
                   }
               }
           }
 
+        current.x += tx
         this.applyTextTransforms();
+        current.x -= tx
+        // MQZ-GYJ Apr.20.2017 handles leading word spacing over
 
         var lineWidth = current.lineWidth;
         var a1 = current.textMatrix[0], b1 = current.textMatrix[1];
