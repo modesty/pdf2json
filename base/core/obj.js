@@ -1000,7 +1000,6 @@ var XRef = (function XRefClosure() {
         if (e instanceof MissingDataException) {
           throw e;
         }
-        log('(while reading XRef): ' + e);
       }
 
       if (recoveryMode)
