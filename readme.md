@@ -131,13 +131,14 @@ Current parsed data has four main sub objects to describe the PDF document.
         * Max: default -1;
         * Parent: parent name, default "unknown";
 * 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
-* 'Width': the PDF page width in page unit
+* 'Width': width of first PDF page in page unit
 
 ### Page object Reference
 
 Each page object within 'Pages' array describes page elements and attributes with 5 main fields:
 
 * 'Height': height of the page in page unit
+* 'Width': width of the page in page unit
 * 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
 * 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit;
     * v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
