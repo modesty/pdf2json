@@ -43,7 +43,7 @@ let PDFParser = (function () {
 		this.PDFJS.on("pdfjs_parseDataReady", _onPDFJSParseDataReady.bind(this));
 		this.PDFJS.on("pdfjs_parseDataError", _onPDFJSParserDataError.bind(this));
 
-		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath]);
+		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath], this.range);
 	};
 
 	let _processBinaryCache = function() {
@@ -88,7 +88,7 @@ let PDFParser = (function () {
     function PdfParser(context, needRawText) {
 		//call constructor for super class
 	    stream.Transform.call(this, {objectMode: true, bufferSize: 64 * 1024});
-	
+
         // private
         let _id = _nextId++;
 
@@ -130,8 +130,9 @@ let PDFParser = (function () {
 		nodeUtil.verbosity(verbosity || 0);
 	};
 
-	PdfParser.prototype.loadPDF = function(pdfFilePath, verbosity) {
+	PdfParser.prototype.loadPDF = function(pdfFilePath, verbosity, begin, end) {
 		this.setVerbosity(verbosity);
+		this.range = [ begin, end ];
 		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
 		this.pdfFilePath = pdfFilePath;
