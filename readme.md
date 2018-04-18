@@ -153,6 +153,7 @@ Each page object within 'Pages' array describes page elements and attributes wit
     * 'R': an array of text run, each text run object has two main fields:
         * 'T': actual text
         * 'S': style index from style dictionary. More info about 'Style Dictionary' can be found at 'Dictionary Reference' section
+        * 'TS': [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic]
 
 v0.4.5 added support when fields attributes information is defined in external xml file. pdf2json will always try load field attributes xml file based on file name convention (pdfFileName.pdf's field XML file must be named pdfFileName_fieldInfo.xml in the same directory). If found, fields info will be injected.
 
