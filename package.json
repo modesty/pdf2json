@@ -42,8 +42,7 @@
     "optimist": "^0.6.1",
     "async": "^2.0.1"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "bundledDependencies": [
     "xmldom",
     "lodash",
