@@ -1,5 +1,3 @@
 language: node_js
 node_js:
-  - "8.9.0"
-before_install:
-  - "npm install"
+  - "4.5.0"
