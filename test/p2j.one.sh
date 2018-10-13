@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 IN_DIR_BASE=./pdf/
 OUT_DIR_BASE=./target/
 DATA_DIR_BASE=./data/
