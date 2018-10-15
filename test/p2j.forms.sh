@@ -6,7 +6,8 @@ STARTTIME=$(date +%s)
 # 	sh ./p2j.one.sh $i
 # done
 
-# try doing it manually. Maybe travis ci doesn't support bash arrays?
+# Travis CI doesn't seem to support arrays in bash for testing. 
+# Reverting to a bunch of commands so that build button can be shown.
 sh ./p2j.one.sh dc
 sh ./p2j.one.sh de
 sh ./p2j.one.sh ef
