@@ -43,11 +43,11 @@ let PDFParser = (function () {
 		this.PDFJS.on("pdfjs_parseDataReady", _onPDFJSParseDataReady.bind(this));
 		this.PDFJS.on("pdfjs_parseDataError", _onPDFJSParserDataError.bind(this));
 
-		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath]);
+		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath + this.pdfFileMTime]);
 	};
 
 	let _processBinaryCache = function() {
-		if (_.has(_binBuffer, this.pdfFilePath)) {
+		if (_.has(_binBuffer, this.pdfFilePath + this.pdfFileMTime)) {
 			_startParsingPDF.call(this);
 			return true;
 		}
@@ -72,7 +72,7 @@ let PDFParser = (function () {
 			this.emit("pdfParser_dataError", this);
 		}
 		else {
-			_binBuffer[this.pdfFilePath] = data;
+			_binBuffer[this.pdfFilePath +  + this.pdfFileMTime] = data;
 			_startParsingPDF.call(this);
 		}
 	};
@@ -99,7 +99,8 @@ let PDFParser = (function () {
         // service context object, only used in Web Service project; null in command line
         this.context = context;
 
-        this.pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
+		this.pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
+		this.pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
         this.data = null; //if file read success, data is PDF content; if failed, data is "err" object
         this.PDFJS = new PDFJS(needRawText);
         this.processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
@@ -135,6 +136,7 @@ let PDFParser = (function () {
 		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
 		this.pdfFilePath = pdfFilePath;
+		this.pdfFileMTime = fs.statSync(pdfFilePath).mtimeMs
 		if (this.processFieldInfoXML) {
 			this.PDFJS.tryLoadFieldInfoXML(pdfFilePath);
 		}
@@ -169,6 +171,7 @@ let PDFParser = (function () {
 		}
 
 		this.pdfFilePath = null;
+		this.pdfFileMTime = null;
 		this.data = null;
 		this.chunks = null;
 
