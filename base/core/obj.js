@@ -1010,7 +1010,7 @@ var XRef = (function XRefClosure() {
 
     getEntry: function XRef_getEntry(i) {
       var e = this.entries[i];
-      if (e === null)
+      if (e === null || e === undefined)
         return null;
       return e.free || !e.offset ? null : e; // returns null if entry is free
     },
@@ -1345,5 +1345,3 @@ var ObjectLoader = (function() {
 
   return ObjectLoader;
 })();
-
-

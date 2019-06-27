@@ -1,5 +1,5 @@
 {
-  "name": "pdf2json",
+  "name": "pdf2json-yuque",
   "version": "1.1.8",
   "description": "A PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
   "keywords": [
