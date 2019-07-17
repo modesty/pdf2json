@@ -531,7 +531,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
                info("NO_OP Begin: " + this[fnId].name + " - " + i);
              }
              else if (NO_OPS.indexOf(fnId) < 0) {
-               this[fnId].apply(this, argsArray[i]);
+               this[fnId] && this[fnId].apply(this, argsArray[i]);
              }
           }
           else {
@@ -1947,4 +1947,3 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
   return CanvasGraphics;
 })();
-
