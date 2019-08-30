@@ -38,12 +38,11 @@
   },
   "dependencies": {
     "xmldom": "^0.1.22",
-    "lodash": "^4.15.0",
+    "lodash": "^4.17.15",
     "optimist": "^0.6.1",
     "async": "^2.0.1"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "bundledDependencies": [
     "xmldom",
     "lodash",
