@@ -1,4 +1,13 @@
 
+1.1.10 / 2019-09-18
+==================
+
+**fixes**
+  * [[`1f52cc5`](http://github.com/yuque/pdf2json/commit/1f52cc532e19ede03d27f0c95d28af536d1215c0)] - fix: make sure annotation MK exists (#1) (fengmk2 <<fengmk2@gmail.com>>)
+
+**others**
+  * [[`c833ecb`](http://github.com/yuque/pdf2json/commit/c833ecb20ab58e12579be7975ca394fa83884469)] - Update lodash to 4.17.15 (drabinowitz <<dmitrirabinowitz+code@gmail.com>>)
+
 1.1.9 / 2019-07-17
 ==================
 
