@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "xmldom": "^0.1.22",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.13",
     "optimist": "^0.6.1",
     "async": "^2.6.1"
   },
