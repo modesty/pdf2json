@@ -3,9 +3,10 @@
 const path = require('path');
 const PDFParser = require('..');
 
-const filepath = path.join(__dirname, 'target/demo.pdf');
+const filepath = path.join(__dirname, 'target/demo2.pdf');
 
 const pdfParser = new PDFParser(this, 1);
+// require('util').verbosity(0);
 
 pdfParser.on('pdfParser_dataReady', () => {
   let text = pdfParser.getRawTextContent() || '';

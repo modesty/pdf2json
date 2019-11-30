@@ -23,7 +23,7 @@
   "homepage": "https://github.com/yuque/pdf2json",
   "repository": {
     "type": "git",
-    "url": "git://github.com/modesty/pdf2json.git"
+    "url": "git://github.com/yuque/pdf2json.git"
   },
   "main": "./pdfparser.js",
   "scripts": {
@@ -58,13 +58,13 @@
   ],
   "contributors": [],
   "bugs": {
-    "url": "http://github.com/modesty/pdf2json/issues"
+    "url": "http://github.com/yuque/pdf2json/issues"
   },
   "licenses": [
     {
       "type": "Apache v2",
-      "url": "https://github.com/modesty/pdf2json/blob/master/license.txt"
+      "url": "https://github.com/yuque/pdf2json/blob/master/license.txt"
     }
   ],
-  "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
+  "readme": "https://github.com/yuque/pdf2json/blob/master/readme.md"
 }

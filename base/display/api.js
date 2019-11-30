@@ -108,7 +108,7 @@ PDFJS.postMessageTransfers = PDFJS.postMessageTransfers === undefined ?
  *  - password - For decrypting password-protected PDFs.
  *  - initialData - A typed array with the first portion or all of the pdf data.
  *                  Used by the extension since some data is already loaded
- *                  before the switch to range requests. 
+ *                  before the switch to range requests.
  *
  * @param {object} pdfDataRangeTransport is optional. It is used if you want
  * to manually serve range requests for data in the PDF. See viewer.js for
@@ -407,6 +407,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
       var self = this;
       this.displayReadyPromise.then(
         function pageDisplayReadyPromise(transparency) {
+          // console.log('displayReadyPromise pageDisplayReadyPromise transparency', transparency, self.pendingDestroy)
           if (self.pendingDestroy) {
             complete();
             return;
@@ -421,6 +422,7 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
       );
 
       function complete(error) {
+        // console.log('complete error', error)
         var i = self.renderTasks.indexOf(internalRenderTask);
         if (i >= 0) {
           self.renderTasks.splice(i, 1);

@@ -17,6 +17,7 @@ let PDFParser = (function () {
 
 	//private methods, needs to invoked by [funcName].call(this, ...)
 	let _onPDFJSParseDataReady = function(data) {
+		console.log('_onPDFJSParseDataReady: %j', data, this.PDFJS.eventNames())
 		if (!data) { //v1.1.2: data===null means end of parsed data
 			nodeUtil.p2jinfo("PDF parsing completed.");
 			let output = {"formImage": this.data};
@@ -88,7 +89,7 @@ let PDFParser = (function () {
     function PdfParser(context, needRawText) {
 		//call constructor for super class
 	    stream.Transform.call(this, {objectMode: true, bufferSize: 64 * 1024});
-	
+
         // private
         let _id = _nextId++;
 
@@ -180,4 +181,3 @@ let PDFParser = (function () {
 })();
 
 module.exports = PDFParser;
-

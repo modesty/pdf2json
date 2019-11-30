@@ -77,6 +77,9 @@ var Annotation = (function AnnotationClosure() {
 
     data.subtype = dict.get('Subtype').name;
     var rect = dict.get('Rect');
+    if (!rect) {
+      throw new Error('Can\'t not find Rect on dict (Annotation)');
+    }
     data.rect = Util.normalizeRect(rect);
     data.annotationFlags = dict.get('F');
 
@@ -316,7 +319,7 @@ var WidgetAnnotation = (function WidgetAnnotationClosure() {
     data.fieldValue = stringToPDFString(
       Util.getInheritableProperty(dict, 'V') || '');
     data.alternativeText = stringToPDFString(dict.get('TU') || '');
-    
+
     data.alternativeID = stringToPDFString(dict.get('TM') || '');
 
     data.defaultAppearance = Util.getInheritableProperty(dict, 'DA') || '';
