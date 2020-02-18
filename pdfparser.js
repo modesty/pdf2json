@@ -15,6 +15,8 @@ let PDFParser = (function () {
     let _binBuffer = {};
     let _maxBinBufferCount = 10;
 
+    let _password = '';
+
 	//private methods, needs to invoked by [funcName].call(this, ...)
 	let _onPDFJSParseDataReady = function(data) {
 		if (!data) { //v1.1.2: data===null means end of parsed data
@@ -43,7 +45,7 @@ let PDFParser = (function () {
 		this.PDFJS.on("pdfjs_parseDataReady", _onPDFJSParseDataReady.bind(this));
 		this.PDFJS.on("pdfjs_parseDataError", _onPDFJSParserDataError.bind(this));
 
-		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath]);
+		this.PDFJS.parsePDFData(buffer || _binBuffer[this.pdfFilePath], _password);
 	};
 
 	let _processBinaryCache = function() {
@@ -128,6 +130,10 @@ let PDFParser = (function () {
 	//public APIs
 	PdfParser.prototype.setVerbosity = function(verbosity) {
 		nodeUtil.verbosity(verbosity || 0);
+	};
+
+	PdfParser.prototype.setPassword = function(password) {
+		_password = password;
 	};
 
 	PdfParser.prototype.loadPDF = function(pdfFilePath, verbosity) {
