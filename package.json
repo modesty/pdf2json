@@ -37,10 +37,10 @@
     "pdf2json": "./bin/pdf2json"
   },
   "dependencies": {
-    "xmldom": "^0.1.22",
+    "xmldom": "^0.3.0",
     "lodash": "^4.17.13",
     "optimist": "^0.6.1",
-    "async": "^2.6.1"
+    "async": "^3.2.0"
   },
   "devDependencies": {},
   "bundledDependencies": [
