@@ -17,6 +17,13 @@ To update with latest version:
 To Run in RESTful Web Service or as Commandline Utility
 * More details can be found at the bottom of this document.
 
+## Test
+
+>npm i
+>npm run test
+
+Check _./test/target/_ for output JSON and test files.
+
 ## Code Example
 
 * Parse a PDF file then write to a JSON file:
