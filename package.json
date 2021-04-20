@@ -39,8 +39,8 @@
   "dependencies": {
     "async": "^3.2.0",
     "lodash": "^4.17.20",
-    "optimist": "^0.6.1",
-    "xmldom": "^0.5.0"
+    "xmldom": "^0.5.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {},
   "bundledDependencies": [
