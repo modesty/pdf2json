@@ -62,7 +62,7 @@
   },
   "licenses": [
     {
-      "type": "Apache v2",
+      "type": "	Apache-2.0",
       "url": "https://github.com/modesty/pdf2json/blob/master/license.txt"
     }
   ],
