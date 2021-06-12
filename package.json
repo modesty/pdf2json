@@ -31,23 +31,23 @@
     "test-misc": "node pdf2json.js -f ./test/pdf/misc/ -o ./test/target/misc/ -c -m"
   },
   "engines": {
-    "node": ">=10.15.1"
+    "node": ">=12.20.0"
   },
   "bin": {
     "pdf2json": "./bin/pdf2json"
   },
   "dependencies": {
     "async": "^3.2.0",
-    "lodash": "^4.17.20",
-    "xmldom": "^0.5.0",
-    "yargs": "^16.2.0"
+    "lodash": "^4.17.21",
+    "xmldom": "^0.6.0",
+    "yargs": "^17.0.1"
   },
   "devDependencies": {},
   "bundledDependencies": [
-    "xmldom",
+    "async",
     "lodash",
-    "optimist",
-    "async"
+    "xmldom",
+    "yargs"
   ],
   "maintainers": [
     {
@@ -60,11 +60,7 @@
   "bugs": {
     "url": "http://github.com/modesty/pdf2json/issues"
   },
-  "licenses": [
-    {
-      "type": "Apache-2.0",
-      "url": "https://github.com/modesty/pdf2json/blob/master/license.txt"
-    }
-  ],
+  "private": false,
+  "license": "Apache-2.0",
   "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
 }
