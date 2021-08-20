@@ -39,14 +39,14 @@
   "dependencies": {
     "async": "^3.2.0",
     "lodash": "^4.17.21",
-    "xmldom": "^0.6.0",
+    "@xmldom/xmldom": "^0.7.0",
     "yargs": "^17.0.1"
   },
   "devDependencies": {},
   "bundledDependencies": [
     "async",
     "lodash",
-    "xmldom",
+    "@xmldom/xmldom",
     "yargs"
   ],
   "maintainers": [
