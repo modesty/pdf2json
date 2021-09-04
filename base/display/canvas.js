@@ -1537,6 +1537,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var depth = this.current.paintFormXObjectDepth;
       do {
         this.restore();
+        this.current.paintFormXObjectDepth--;
         // some pdf don't close all restores inside object
         // closing those for them
       } while (this.current.paintFormXObjectDepth >= depth);
