@@ -28,7 +28,7 @@
   "main": "./pdfparser.js",
   "scripts": {
     "test": "cd ./test && sh p2j.forms.sh",
-    "test-misc": "node pdf2json.js -f ./test/pdf/misc/ -o ./test/target/misc/ -c -m && echo \"\nExpected: 3 success, 2 failure \" "
+    "test-misc": "node pdf2json.js -f ./test/pdf/misc/ -o ./test/target/misc/ -c -m && echo \"\nExpected: 4 success, 2 failure \" "
   },
   "engines": {
     "node": ">=12.20.0"
