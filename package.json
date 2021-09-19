@@ -1,6 +1,6 @@
 {
   "name": "pdf2json",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
   "keywords": [
     "pdf",
@@ -28,7 +28,7 @@
   "main": "./pdfparser.js",
   "scripts": {
     "test": "cd ./test && sh p2j.forms.sh",
-    "test-misc": "node pdf2json.js -f ./test/pdf/misc/ -o ./test/target/misc/ -c -m"
+    "test-misc": "node pdf2json.js -f ./test/pdf/misc/ -o ./test/target/misc/ -c -m && echo \"\nExpected: 3 success, 2 failure \" "
   },
   "engines": {
     "node": ">=12.20.0"
@@ -37,10 +37,10 @@
     "pdf2json": "./bin/pdf2json"
   },
   "dependencies": {
-    "async": "^3.2.0",
+    "async": "^3.2.1",
     "lodash": "^4.17.21",
-    "@xmldom/xmldom": "^0.7.0",
-    "yargs": "^17.0.1"
+    "@xmldom/xmldom": "^0.7.5",
+    "yargs": "^17.1.1"
   },
   "devDependencies": {},
   "bundledDependencies": [
