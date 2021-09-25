@@ -19,10 +19,19 @@ To Run in RESTful Web Service or as Commandline Utility
 
 ## Test
 
->npm i
->npm run test
+After install, run command line:
 
-Check _./test/target/_ for output JSON and test files.
+> npm run test
+
+It'll scan and parse *260* PDF AcroForm files under *_./test/pdf_*, runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check *_./test/target/_* for outputs.
+
+### Test Exceptions
+
+After install, run command line:
+
+> npm run test-misc
+
+It'll scan and parse 6 PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 4 PDF fields, catches exceptions with stack trace, one for _unsupported encryption algorithm_, another one for _Invalid XRef stream header_.
 
 ## Code Example
 
