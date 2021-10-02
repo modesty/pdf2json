@@ -40,7 +40,7 @@
     "async": "^3.2.1",
     "lodash": "^4.17.21",
     "@xmldom/xmldom": "^0.7.5",
-    "yargs": "^17.1.1"
+    "yargs": "^17.2.1"
   },
   "devDependencies": {},
   "bundledDependencies": [
