@@ -3,7 +3,7 @@ STARTTIME=$(date +%s)
 AGENCIES=("dc" "de" "ef" "fd" "nd" "or" "pa" "sc" "va")
 for i in "${AGENCIES[@]}"
 do
-	sh ./p2j.one.sh $i form "NO Exception, All Parsed OK"
+	sh ./p2j.one.sh $i form "Expected: NO Exception, All Parsed OK"
 done
 
 # Travis CI doesn't seem to support arrays in bash for testing. 

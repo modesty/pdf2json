@@ -1,50 +1,11 @@
 const fs = require("fs"),
     {EventEmitter} = require("events"),
-    {Transform, Readable} = require("stream"),
 	nodeUtil = require("util"),
     _ = require("lodash"),
     async = require("async"),
-	PDFJS = require("./lib/pdf.js");
+	PDFJS = require("./lib/pdf.js"),
+    {ParserStream} = require("./lib/parserstream");
 
-class ParserStream extends Transform {
-    static createContentStream(jsonObj) {
-		const rStream = new Readable({objectMode: true});
-		rStream.push(jsonObj);
-		rStream.push(null);
-		return rStream;
-	}
-
-    #pdfParser = null;
-    #chunks = [];
-
-    constructor(pdfParser, options) {
-        super(options);
-        this.#pdfParser = pdfParser;
-
-        this.#chunks = [];
-    }
-
-    //implements transform stream
-	_transform(chunk, enc, callback) {
-		this.#chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk, enc));
-		callback();
-	}
-
-	_flush(callback) {
-        this.#pdfParser.on("pdfParser_dataReady", evtData => {
-            this.push(evtData);
-            callback();
-            this.emit('end', null);
-        });
-		this.#pdfParser.parseBuffer(Buffer.concat(this.#chunks));
-	}
-
-    _destroy() {
-        super.removeAllListeners();
-        this.#pdfParser = null;
-        this.#chunks = [];         
-    }
-}    
 
 class PDFParser extends EventEmitter { // inherit from event emitter
     //private static
@@ -57,6 +18,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
     #password = "";
 
     #context = null; // service context object, only used in Web Service project; null in command line
+    #fq = null; //async queue for reading files
     
     #pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
     #pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
@@ -67,13 +29,16 @@ class PDFParser extends EventEmitter { // inherit from event emitter
     // constructor
     constructor(context, needRawText, password) {
         //call constructor for super class
-        super({objectMode: true, bufferSize: 64 * 1024});
+        super();
     
         // private
         this.#_id = PDFParser.#_nextId++;
 
         // service context object, only used in Web Service project; null in command line
         this.#context = context;
+        this.#fq = async.queue( (task, callback) => {
+            fs.readFile(task.path, callback);
+        }, 1);
 
         this.#pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
         this.#pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
@@ -146,10 +111,6 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		}
 	};
 
-	fq = async.queue( (task, callback) => {
-		fs.readFile(task.path, callback);
-	}, 100);
-
 	//public APIs
     createParserStream() {
         return new ParserStream(this, {objectMode: true, bufferSize: 64 * 1024});
@@ -168,7 +129,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		if (this.#processBinaryCache())
 			return;
 
-		this.fq.push({path: pdfFilePath}, this.#processPDFContent.bind(this));
+		this.#fq.push({path: pdfFilePath}, this.#processPDFContent.bind(this));
 	};
 
 	// Introduce a way to directly process buffers without the need to write it to a temporary file

@@ -20,5 +20,5 @@ node --trace-deprecation $PDF2JSON -f $IN_DIR_BASE/$AGENCY_NAME/$FORM_BASE -o $O
 # diff -rq $OUT_DIR_BASE$AGENCY_NAME/$FORM_BASE/ $DATA_DIR_BASE$AGENCY_NAME/$FORM_BASE/
 
 echo "-----------------------------------------------------"
-echo "Expected for $AGENCY_NAME : $EXPECTED_RESULT"
+echo "$IN_DIR_BASE/$AGENCY_NAME/$FORM_BASE : $EXPECTED_RESULT"
 echo "-----------------------------------------------------"

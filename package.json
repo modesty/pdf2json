@@ -34,7 +34,7 @@
     "parse-t": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
     "parse-c": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
     "parse-m": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
-    "parse-r": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m -r"
+    "parse-r": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form -o ./test/target/fd/form -s -t -c -m -r"
   },
   "engines": {
     "node": ">=14.18.0",
