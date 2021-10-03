@@ -9,12 +9,12 @@ const fs = require("fs"),
 
 class PDFParser extends EventEmitter { // inherit from event emitter
     //private static
-    static #_nextId = 0;
-    static #_maxBinBufferCount = 10;
-    static #_binBuffer = {};
+    static #nextId = 0;
+    static #maxBinBufferCount = 10;
+    static #binBuffer = {};
 
     //private
-    #_id = 0;    
+    #id = 0;    
     #password = "";
 
     #context = null; // service context object, only used in Web Service project; null in command line
@@ -32,7 +32,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         super();
     
         // private
-        this.#_id = PDFParser.#_nextId++;
+        this.#id = PDFParser.#nextId++;
 
         // service context object, only used in Web Service project; null in command line
         this.#context = context;
@@ -49,8 +49,8 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         this.#password = password;
     } 
     
-    get id() { return this.#_id; }
-    get name() { return `${PDFParser.name}_${this.#_id}`; }
+    get id() { return this.#id; }
+    get name() { return `${PDFParser.name}_${this.#id}`; }
     get data() { return this.#data; }
     get binBufferKey() { return this.#pdfFilePath + this.#pdfFileMTime; }
 
@@ -77,21 +77,21 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		this.#PDFJS.on("pdfjs_parseDataReady", this.#onPDFJSParseDataReady.bind(this));
 		this.#PDFJS.on("pdfjs_parseDataError", this.#onPDFJSParserDataError.bind(this));
 
-		this.#PDFJS.parsePDFData(buffer || PDFParser.#_binBuffer[this.binBufferKey], this.#password);
+		this.#PDFJS.parsePDFData(buffer || PDFParser.#binBuffer[this.binBufferKey], this.#password);
 	}
 
 	#processBinaryCache() {
-		if (_.has(PDFParser.#_binBuffer, this.binBufferKey)) {
+		if (_.has(PDFParser.#binBuffer, this.binBufferKey)) {
 			this.#startParsingPDF();
 			return true;
 		}
 
-		const allKeys = _.keys(PDFParser.#_binBuffer);
-		if (allKeys.length > PDFParser.#_maxBinBufferCount) {
-			const idx = this.id % PDFParser.#_maxBinBufferCount;
+		const allKeys = _.keys(PDFParser.#binBuffer);
+		if (allKeys.length > PDFParser.#maxBinBufferCount) {
+			const idx = this.id % PDFParser.#maxBinBufferCount;
 			const key = allKeys[idx];
-			PDFParser.#_binBuffer[key] = null;
-			delete PDFParser.#_binBuffer[key];
+			PDFParser.#binBuffer[key] = null;
+			delete PDFParser.#binBuffer[key];
 
 			nodeUtil.p2jinfo("re-cycled cache for " + key);
 		}
@@ -106,7 +106,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 			this.emit("pdfParser_dataError", err);
 		}
 		else {
-			PDFParser.#_binBuffer[this.binBufferKey] = data;
+			PDFParser.#binBuffer[this.binBufferKey] = data;
 			this.#startParsingPDF();
 		}
 	};
