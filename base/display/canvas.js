@@ -1036,7 +1036,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     showText: function CanvasGraphics_showText(glyphs, skipTextSelection) {
       var ctx = this.ctx;
       var current = this.current;
-      var font = current.font;
+      var font = current.font || {};
       var fontSize = current.fontSize;
       var fontSizeScale = current.fontSizeScale;
       var charSpacing = current.charSpacing;
