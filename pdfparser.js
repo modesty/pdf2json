@@ -24,7 +24,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
     #pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
     #data = null; //if file read success, data is PDF content; if failed, data is "err" object
     #PDFJS = null; //will be initialized in constructor
-    #processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
+    #processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging (do NOT set to true)
 
     // constructor
     constructor(context, needRawText, password) {
@@ -43,7 +43,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         this.#pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
         this.#pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
         this.#data = null; //if file read success, data is PDF content; if failed, data is "err" object
-        this.#processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
+        this.#processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging (do NOT set to true)
 
         this.#PDFJS = new PDFJS(needRawText);
         this.#password = password;
@@ -62,7 +62,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 			this.emit("pdfParser_dataReady", output);
 		}
 		else {
-			this.#data = {...this.#data, data};            
+			this.#data = {...this.#data, ...data};            
 		}
 	}
 
@@ -158,7 +158,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		this.#pdfFilePath = null;
 		this.#pdfFileMTime = null;
 		this.#data = null;
-        this.#processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging
+        this.#processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging (do NOT set to true)
 
         this.#PDFJS.destroy();
         this.#PDFJS = null;
