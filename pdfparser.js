@@ -77,6 +77,10 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		this.#PDFJS.on("pdfjs_parseDataReady", this.#onPDFJSParseDataReady.bind(this));
 		this.#PDFJS.on("pdfjs_parseDataError", this.#onPDFJSParserDataError.bind(this));
 
+        // this.#PDFJS.on("readable", meta => console.log("readable", meta));
+        // this.#PDFJS.on("data", data => console.log("data", data));
+        // this.#PDFJS.on("error", err => console.log("error", err));    
+
 		this.#PDFJS.parsePDFData(buffer || PDFParser.#binBuffer[this.binBufferKey], this.#password);
 	}
 
@@ -130,12 +134,12 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 			return;
 
 		this.#fq.push({path: pdfFilePath}, this.#processPDFContent.bind(this));
-	};
+	}
 
 	// Introduce a way to directly process buffers without the need to write it to a temporary file
 	parseBuffer(pdfBuffer) {
 		this.#startParsingPDF(pdfBuffer);
-	};
+	}
 
 	getRawTextContent() { return this.#PDFJS.getRawTextContent(); }
 	getRawTextContentStream() { return ParserStream.createContentStream(this.getRawTextContent()); }
