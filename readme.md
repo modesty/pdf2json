@@ -136,9 +136,9 @@ returns an array of field objects.
 
 Current parsed data has four main sub objects to describe the PDF document.
 
-* 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title;
 * 'Transcoder': pdf2json version number
-* 'Id': the XML meta data that embedded in PDF document
+* 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title; (_deprecated since v1.3.0, see notes below_)
+* 'Id': the XML meta data that embedded in PDF document (_deprecated since v1.3.0, see notes below_)
     * all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
     * v0.1.22 added support for the following custom properties:
         * AgencyId: default "unknown";
@@ -146,8 +146,37 @@ Current parsed data has four main sub objects to describe the PDF document.
         * MC: default false;
         * Max: default -1;
         * Parent: parent name, default "unknown";
+    * *_v1.3.0_*: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
+  ````json
+        Meta: {
+            PDFFormatVersion: '1.7',
+            IsAcroFormPresent: true,
+            IsXFAPresent: false,
+            Author: 'SE:W:CAR:MP',
+            Subject: 'U.S. Individual Income Tax Return',
+            Creator: 'Adobe Acrobat Pro 10.1.8',
+            Producer: 'Adobe Acrobat Pro 10.1.8',
+            CreationDate: "D:20131203133943-08'00'",
+            ModDate: "D:20140131180702-08'00'",
+            Metadata: {
+                'xmp:modifydate': '2014-01-31T18:07:02-08:00',
+                'xmp:createdate': '2013-12-03T13:39:43-08:00',
+                'xmp:metadatadate': '2014-01-31T18:07:02-08:00',
+                'xmp:creatortool': 'Adobe Acrobat Pro 10.1.8',
+                'dc:format': 'application/pdf',
+                'dc:description': 'U.S. Individual Income Tax Return',
+                'dc:creator': 'SE:W:CAR:MP',
+                'xmpmm:documentid': 'uuid:4d81e082-7ef2-4df7-b07b-8190e5d3eadf',
+                'xmpmm:instanceid': 'uuid:7ea96d1c-3d2f-284a-a469-f0f284a093de',
+                'pdf:producer': 'Adobe Acrobat Pro 10.1.8',
+                'adhocwf:state': '1',
+                'adhocwf:version': '1.1'
+            }
+        }
+  ````   
 * 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
 * 'Width': the PDF page width in page unit
+
 
 ### Page object Reference
 
@@ -789,6 +818,17 @@ In order to support this auto merging capability, text block objects have an add
     * event "pdfParser_dataReady": {"formImage": parseOutput}
 
 * v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
+* v1.3.0: output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details)
+
+**Major Refactoring**
+* v1.3.0 has the major refactoring since 2015. Primary updates including:
+  * Full PDF metadata support (see page format and breaking changes for details)
+  * Better Stream support with test _`npm run parse-r`_, plus Readable Stream like events are added to PDF.js, including _`readable`_, _`data`_, _`end`_, `error` that can be optional replacement for customed events (_`pdfjs_parseDataReady`_, and _`pdfjs_parseDataError`_) for granular data chunk flow control, like _`readable`_ with Meta, _`data`_ sequence for each PDF page result, rather than _`pdfjs_parseDataReady`_ combines all pages in one shot
+  * Better performace, near ~20% improvements with PDFs under _test_ directory
+  * Better exception handling, fixes a few uncaught exception errors
+  * More test coverage, 4 more test scripts added, see _package.json_ for details
+  * Refactor to ES6 class for major entry modules
+  * Upgrade to Node v14.18.0 LTSs
 
 ### Install on Ubuntu
 
