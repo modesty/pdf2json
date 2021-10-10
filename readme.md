@@ -118,7 +118,7 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
         function loadPDF(pdfFilePath);
 ````
 If failed, event "pdfParser_dataError" will be raised with error object: {"parserError": errObj};
-If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service.
+If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service. __note__: "formImage" is removed from v1.3.0, see breaking changes for details.
 
 * Get all textual content from "pdfParser_dataReady" event handler:
 ````javascript
@@ -815,16 +815,17 @@ In order to support this auto merging capability, text block objects have an add
 
 * v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
     * event "pdfParser_dataError": {"parserError": errObj}
-    * event "pdfParser_dataReady": {"formImage": parseOutput}
+    * event "pdfParser_dataReady": {"formImage": parseOutput} __note__: "formImage" is removed from v1.3.0, see breaking changes for details.
 
 * v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
-* v1.3.0: output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details)
+* v1.3.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
 
 **Major Refactoring**
 * v1.3.0 has the major refactoring since 2015. Primary updates including:
   * Full PDF metadata support (see page format and breaking changes for details)
-  * Better Stream support with test _`npm run parse-r`_, plus Readable Stream like events are added to PDF.js, including _`readable`_, _`data`_, _`end`_, `error` that can be optional replacement for customed events (_`pdfjs_parseDataReady`_, and _`pdfjs_parseDataError`_) for granular data chunk flow control, like _`readable`_ with Meta, _`data`_ sequence for each PDF page result, rather than _`pdfjs_parseDataReady`_ combines all pages in one shot
-  * Better performace, near ~20% improvements with PDFs under _test_ directory
+  * Simplify root properties, besides the addition of `Meta` as root property, unnecessary "formImage" is removed from v1.3.0, also `Width` is move from root to each page object under `Pages`.
+  * Improved Stream support with test _`npm run parse-r`_, plus new events are added to PDF.js, including _`readable`_, _`data`_, _`end`_, _`error`_. These new Readable Stream like events can be optional replacement for customed events (_`pdfjs_parseDataReady`_, and _`pdfjs_parseDataError`_). It offers more granular data chunk flow control, like _`readable`_ with Meta, _`data`_ sequence for each PDF page result, instead of _`pdfjs_parseDataReady`_ combines all pages in one shot. See `./lib/parserstream.js` for more details
+  * Greater performance, near ~20% improvements with PDFs under _test_ directory
   * Better exception handling, fixes a few uncaught exception errors
   * More test coverage, 4 more test scripts added, see _package.json_ for details
   * Refactor to ES6 class for major entry modules

@@ -58,17 +58,17 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 	#onPDFJSParseDataReady(data) {
 		if (!data) { //v1.1.2: data===null means end of parsed data
 			nodeUtil.p2jinfo("PDF parsing completed.");
-			const output = {"formImage": this.#data};
-			this.emit("pdfParser_dataReady", output);
+			this.emit("pdfParser_dataReady", this.#data);
 		}
 		else {
 			this.#data = {...this.#data, ...data};            
 		}
 	}
 
-	#onPDFJSParserDataError(data) {
+	#onPDFJSParserDataError(err) {
 		this.#data = null;
-		this.emit("pdfParser_dataError", {"parserError": data});
+		this.emit("pdfParser_dataError", {"parserError": err});
+        this.emit("error", err);
 	}
 
 	#startParsingPDF(buffer) {
@@ -77,9 +77,10 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		this.#PDFJS.on("pdfjs_parseDataReady", this.#onPDFJSParseDataReady.bind(this));
 		this.#PDFJS.on("pdfjs_parseDataError", this.#onPDFJSParserDataError.bind(this));
 
-        // this.#PDFJS.on("readable", meta => console.log("readable", meta));
-        // this.#PDFJS.on("data", data => console.log("data", data));
-        // this.#PDFJS.on("error", err => console.log("error", err));    
+        //v1.3.0 the following Readable Stream-like events are replacement for the top two custom events
+        this.#PDFJS.on("readable", meta => this.emit("readable", meta));
+        this.#PDFJS.on("data", data => this.emit("data", data));
+        this.#PDFJS.on("error", this.#onPDFJSParserDataError.bind(this));    
 
 		this.#PDFJS.parsePDFData(buffer || PDFParser.#binBuffer[this.binBufferKey], this.#password);
 	}
@@ -147,7 +148,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 	getAllFieldsTypes() { return this.#PDFJS.getAllFieldsTypes(); };
 	getAllFieldsTypesStream() { return ParserStream.createContentStream(this.getAllFieldsTypes()); }
 
-	getMergedTextBlocksIfNeeded() { return {"formImage": this.#PDFJS.getMergedTextBlocksIfNeeded()}; }
+	getMergedTextBlocksIfNeeded() { return this.#PDFJS.getMergedTextBlocksIfNeeded(); }
 	getMergedTextBlocksStream() { return ParserStream.createContentStream(this.getMergedTextBlocksIfNeeded()) }
 
 	destroy() { // invoked with stream transform process		
