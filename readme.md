@@ -25,23 +25,32 @@ After install, run command line:
 
 It'll scan and parse *260* PDF AcroForm files under *_./test/pdf_*, runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check *_./test/target/_* for outputs.
 
-### Test Exceptions
+### Test Exception Handlings
 
 After install, run command line:
 
 > npm run test-misc
 
-It'll scan and parse 6 PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 4 PDF fields, catches exceptions with stack trace, one for _unsupported encryption algorithm_, another one for _Invalid XRef stream header_.
+It'll scan and parse 6 PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 4 PDF fields, while catches exceptions with stack trace, one for _unsupported encryption algorithm_, another one for _Invalid XRef stream header_.
+
+### Test Streams
+After install, run command line:
+
+> npm run parse-r
+
+It scans 165 PDF files under *../test/pdf/fd/form_*, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to *_./test/target/fd/form_*.
+
+More test scripts with different commandline options can be found at *_package.json_*.
 
 ## Code Example
 
 * Parse a PDF file then write to a JSON file:
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
 
-    let pdfParser = new PDFParser();
+    const pdfParser = new PDFParser();
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
@@ -61,13 +70,21 @@ Or, call directly with buffer:
     })
 ````
 
+Or, use more granular page level parsing events (v1.3.0)
+
+````javascript
+    pdfParser.on("readable", meta => console.log("PDF Metadata", meta) );
+    pdfParser.on("data", page => console.log(page ? "One page paged" : "All pages parsed", page));
+    pdfParser.on("error", err => console.erro("Parser Error", err);
+````
+
 * Parse a PDF then write a .txt file (which only contains textual content of the PDF)
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
 
-    let pdfParser = new PDFParser(this,1);
+    const pdfParser = new PDFParser(this,1);
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
@@ -80,10 +97,10 @@ Or, call directly with buffer:
 * Parse a PDF then write a fields.json file that only contains interactive forms' fields information:
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
 
-    let pdfParser = new PDFParser();
+    const pdfParser = new PDFParser();
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
@@ -96,13 +113,36 @@ Or, call directly with buffer:
 Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
     
-    let inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
-    let outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
+    const inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
+    const outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
     
     inputStream.pipe(new PDFParser()).pipe(new StringifyStream()).pipe(outputStream);
+````
+
+With v1.3.0, last line above changes to
+````javascript
+    inputStream.pipe(this.pdfParser.createParserStream()).pipe(new StringifyStream()).pipe(outputStream);
+````
+
+For additional output streams support:
+````javascript
+    #generateMergedTextBlocksStream(callback) {
+		const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".merged.json"), callback);
+		this.pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);
+	}
+
+    #generateRawTextContentStream(callback) {
+	    const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".content.txt"), callback);
+	    this.pdfParser.getRawTextContentStream().pipe(outputStream);
+    }
+
+    #generateFieldsTypesStream(callback) {
+		const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".fields.json"), callback);
+		this.pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
+	}
 ````
 See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) for more details.
 
@@ -112,6 +152,11 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
 * events:
     * pdfParser_dataError: will be raised when parsing failed
     * pdfParser_dataReady: when parsing succeeded
+
+* alternative events: (v1.3.0)
+    * readable: first event dispatched after PDF file metadata is parsed and before processing any page
+    * data: one parsed page succeeded, null means last page has been processed, signle end of data stream
+    * error: exception or error occured
 
 * start to parse PDF file from specified file path asynchronously:
 ````javascript
@@ -183,6 +228,7 @@ Current parsed data has four main sub objects to describe the PDF document.
 Each page object within 'Pages' array describes page elements and attributes with 5 main fields:
 
 * 'Height': height of the page in page unit
+* 'Width': width of the page in page unit, moved from root to page object in v1.3.0
 * 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
 * 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit;
     * v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
@@ -818,6 +864,7 @@ In order to support this auto merging capability, text block objects have an add
     * event "pdfParser_dataReady": {"formImage": parseOutput} __note__: "formImage" is removed from v1.3.0, see breaking changes for details.
 
 * v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
+
 * v1.3.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
 
 **Major Refactoring**
@@ -888,12 +935,3 @@ Licensed under the [Apache License Version 2.0](https://github.com/modesty/pdf2j
 ## Support
 
 I'm currently running this project in my spare time. Thanks all for your [stars](https://github.com/modesty/pdf2json/stargazers) and [supports](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=modestyZ%40gmail%2ecom&lc=GB&item_name=modesty%20zhang&item_number=git%40github%2ecom%3amodesty%2fpdf2json%2egit&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted).
-
-
-
-
-
-
-
-
-
