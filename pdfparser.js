@@ -3,8 +3,9 @@ const fs = require("fs"),
 	nodeUtil = require("util"),
     _ = require("lodash"),
     async = require("async"),
-	PDFJS = require("./lib/pdf.js"),
-    {ParserStream} = require("./lib/parserstream");
+	PDFJS = require("./lib/pdf"),
+    {ParserStream} = require("./lib/parserstream"),
+    {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
 
 
 class PDFParser extends EventEmitter { // inherit from event emitter
@@ -53,6 +54,11 @@ class PDFParser extends EventEmitter { // inherit from event emitter
     get name() { return `${PDFParser.name}_${this.#id}`; }
     get data() { return this.#data; }
     get binBufferKey() { return this.#pdfFilePath + this.#pdfFileMTime; }
+
+    
+    get colorDict() {return kColors};
+    get fontFaceDict() { return kFontFaces; }
+    get fontStyleDict() { return kFontStyles; }
 
 	//private methods, needs to invoked by [funcName].call(this, ...)
 	#onPDFJSParseDataReady(data) {
