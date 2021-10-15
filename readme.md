@@ -255,8 +255,8 @@ This dictionary data contract design will allow the output just reference a dict
 It does require the client of the payload to have the same dictionary definition to make sense out of it when render the parser output on to screen.
 
 * Color Dictionary
-
-        var kColors = [
+````javascript
+        const kColors = [
                 '#000000',		// 0
                 '#ffffff',		// 1
                 '#4c4c4c',		// 2
@@ -296,11 +296,11 @@ It does require the client of the payload to have the same dictionary definition
                 '#008000',		// Last + 6
                 '#000000'		// Last + 7
             ];
-
+````
 
 * Style Dictionary:
-
-            var _kFontFaces = [
+````javascript
+            const kFontFaces = [
                "QuickType,Arial,Helvetica,sans-serif",							// 00 - QuickType - sans-serif variable font
                "QuickType Condensed,Arial Narrow,Arial,Helvetica,sans-serif",	// 01 - QuickType Condensed - thin sans-serif variable font
                "QuickTypePi",													// 02 - QuickType Pi
@@ -309,7 +309,7 @@ It does require the client of the payload to have the same dictionary definition
                "OCR B MT,Courier New,Courier,monospace"							// 05 - OCR-B MT - OCR readable san-serif fixed font
             ];
 
-            var _kFontStyles = [
+            const kFontStyles = [
                 // Face		Size	Bold	Italic		StyleID(Comment)
                 // -----	----	----	-----		-----------------
                     [0,		6,		0,		0],			//00
@@ -374,7 +374,17 @@ It does require the client of the payload to have the same dictionary definition
                     [5,		10,		0,		0],			//59
                     [5,		12,		0,		0]			//60
             ];
-
+````
+v1.3.0: to access these dictionary programactically, do either
+````javascript 
+    const {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
+````
+or via getters of your instanace of PDFParser:
+````javascript
+    console.dir(this.pdfParser.colorDict);
+    console.dir(this.pdfParser.fontFaceDict);
+    console.dir(this.pdfParser.fontStyleDict);
+````
 
 ## Interactive Forms Elements
 
@@ -875,6 +885,7 @@ In order to support this auto merging capability, text block objects have an add
   * Greater performance, near ~20% improvements with PDFs under _test_ directory
   * Better exception handling, fixes a few uncaught exception errors
   * More test coverage, 4 more test scripts added, see _package.json_ for details
+  * Easier access to dictionaries, including color, font face and font style, see Dictionary reference section for details
   * Refactor to ES6 class for major entry modules
   * Upgrade to Node v14.18.0 LTSs
 
