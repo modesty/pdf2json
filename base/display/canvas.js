@@ -1621,6 +1621,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     },
 
     endGroup: function CanvasGraphics_endGroup(group) {
+        //MQZ. make sure endGroup is always invoked after beginGroup
+        if (this.groupLevel == 0)
+            this.beginGroup(group);
+            
       this.groupLevel--;
       var groupCtx = this.ctx;
       this.ctx = this.groupStack.pop();
