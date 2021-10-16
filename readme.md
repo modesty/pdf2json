@@ -31,7 +31,7 @@ After install, run command line:
 
 > npm run test-misc
 
-It'll scan and parse 6 PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 4 PDF fields, while catches exceptions with stack trace, one for _unsupported encryption algorithm_, another one for _Invalid XRef stream header_.
+It'll scan and parse 7 PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 5 PDF fields, while catches exceptions with stack trace, one for _unsupported encryption algorithm_, another one for _Invalid XRef stream header_.
 
 ### Test Streams
 After install, run command line:
