@@ -74,7 +74,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 	#onPDFJSParserDataError(err) {
 		this.#data = null;
 		this.emit("pdfParser_dataError", {"parserError": err});
-        this.emit("error", err);
+        // this.emit("error", err);
 	}
 
 	#startParsingPDF(buffer) {
