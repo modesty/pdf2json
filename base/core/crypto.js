@@ -553,17 +553,17 @@ var CipherTransformFactory = (function CipherTransformFactoryClosure() {
   function CipherTransformFactory(dict, fileId, password) {
     var filter = dict.get('Filter');
     if (!isName(filter) || filter.name != 'Standard')
-      error('unknown encryption method');
+      error('Error: unknown encryption method');
     this.dict = dict;
     var algorithm = dict.get('V');
     if (!isInt(algorithm) ||
       (algorithm != 1 && algorithm != 2 && algorithm != 4))
-      error('unsupported encryption algorithm');
+      error('Error: unsupported encryption algorithm');
     this.algorithm = algorithm;
     var keyLength = dict.get('Length') || 40;
     if (!isInt(keyLength) ||
       keyLength < 40 || (keyLength % 8) !== 0)
-      error('invalid key length');
+      error('Error: invalid key length');
     // prepare keys
     var ownerPassword = stringToBytes(dict.get('O')).subarray(0, 32);
     var userPassword = stringToBytes(dict.get('U')).subarray(0, 32);
