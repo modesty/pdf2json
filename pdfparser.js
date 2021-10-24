@@ -9,13 +9,11 @@ const fs = require("fs"),
 
 
 class PDFParser extends EventEmitter { // inherit from event emitter
-    //private static
-    static #nextId = 0;
+    //private static    
     static #maxBinBufferCount = 10;
     static #binBuffer = {};
 
-    //private
-    #id = 0;    
+    //private 
     #password = "";
 
     #context = null; // service context object, only used in Web Service project; null in command line
@@ -33,8 +31,6 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         super();
     
         // private
-        this.#id = PDFParser.#nextId++;
-
         // service context object, only used in Web Service project; null in command line
         this.#context = context;
         this.#fq = async.queue( (task, callback) => {
@@ -50,12 +46,10 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         this.#password = password;
     } 
     
-    get id() { return this.#id; }
-    get name() { return `${PDFParser.name}_${this.#id}`; }
+    //public getter
     get data() { return this.#data; }
     get binBufferKey() { return this.#pdfFilePath + this.#pdfFileMTime; }
 
-    
     get colorDict() {return kColors};
     get fontFaceDict() { return kFontFaces; }
     get fontStyleDict() { return kFontStyles; }
