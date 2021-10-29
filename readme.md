@@ -70,7 +70,7 @@ Or, call directly with buffer:
     })
 ````
 
-Or, use more granular page level parsing events (v1.3.0)
+Or, use more granular page level parsing events (v2.0.0)
 
 ````javascript
     pdfParser.on("readable", meta => console.log("PDF Metadata", meta) );
@@ -122,7 +122,7 @@ Alternatively, you can pipe input and output streams: (requires v1.1.4)
     inputStream.pipe(new PDFParser()).pipe(new StringifyStream()).pipe(outputStream);
 ````
 
-With v1.3.0, last line above changes to
+With v2.0.0, last line above changes to
 ````javascript
     inputStream.pipe(this.pdfParser.createParserStream()).pipe(new StringifyStream()).pipe(outputStream);
 ````
@@ -153,7 +153,7 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
     * pdfParser_dataError: will be raised when parsing failed
     * pdfParser_dataReady: when parsing succeeded
 
-* alternative events: (v1.3.0)
+* alternative events: (v2.0.0)
     * readable: first event dispatched after PDF file metadata is parsed and before processing any page
     * data: one parsed page succeeded, null means last page has been processed, signle end of data stream
     * error: exception or error occured
@@ -163,7 +163,7 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
         function loadPDF(pdfFilePath);
 ````
 If failed, event "pdfParser_dataError" will be raised with error object: {"parserError": errObj};
-If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service. __note__: "formImage" is removed from v1.3.0, see breaking changes for details.
+If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service. __note__: "formImage" is removed from v2.0.0, see breaking changes for details.
 
 * Get all textual content from "pdfParser_dataReady" event handler:
 ````javascript
@@ -182,8 +182,8 @@ returns an array of field objects.
 Current parsed data has four main sub objects to describe the PDF document.
 
 * 'Transcoder': pdf2json version number
-* 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title; (_deprecated since v1.3.0, see notes below_)
-* 'Id': the XML meta data that embedded in PDF document (_deprecated since v1.3.0, see notes below_)
+* 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title; (_deprecated since v2.0.0, see notes below_)
+* 'Id': the XML meta data that embedded in PDF document (_deprecated since v2.0.0, see notes below_)
     * all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
     * v0.1.22 added support for the following custom properties:
         * AgencyId: default "unknown";
@@ -191,7 +191,7 @@ Current parsed data has four main sub objects to describe the PDF document.
         * MC: default false;
         * Max: default -1;
         * Parent: parent name, default "unknown";
-    * *_v1.3.0_*: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
+    * *_v2.0.0_*: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
   ````json
         Meta: {
             PDFFormatVersion: '1.7',
@@ -228,7 +228,7 @@ Current parsed data has four main sub objects to describe the PDF document.
 Each page object within 'Pages' array describes page elements and attributes with 5 main fields:
 
 * 'Height': height of the page in page unit
-* 'Width': width of the page in page unit, moved from root to page object in v1.3.0
+* 'Width': width of the page in page unit, moved from root to page object in v2.0.0
 * 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
 * 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit;
     * v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
@@ -375,15 +375,15 @@ It does require the client of the payload to have the same dictionary definition
                     [5,		12,		0,		0]			//60
             ];
 ````
-v1.3.0: to access these dictionary programactically, do either
+v2.0.0: to access these dictionary programactically, do either
 ````javascript 
     const {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
 ````
-or via getters of your instanace of PDFParser:
+or via public static getters of PDFParser:
 ````javascript
-    console.dir(this.pdfParser.colorDict);
-    console.dir(this.pdfParser.fontFaceDict);
-    console.dir(this.pdfParser.fontStyleDict);
+    console.dir(PDFParser.colorDict);
+    console.dir(PDFParser.fontFaceDict);
+    console.dir(PDFParser.fontStyleDict);
 ````
 
 ## Interactive Forms Elements
@@ -871,22 +871,24 @@ In order to support this auto merging capability, text block objects have an add
 
 * v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
     * event "pdfParser_dataError": {"parserError": errObj}
-    * event "pdfParser_dataReady": {"formImage": parseOutput} __note__: "formImage" is removed from v1.3.0, see breaking changes for details.
+    * event "pdfParser_dataReady": {"formImage": parseOutput} __note__: "formImage" is removed from v2.0.0, see breaking changes for details.
 
 * v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
 
-* v1.3.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
+* v2.0.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
 
 **Major Refactoring**
-* v1.3.0 has the major refactoring since 2015. Primary updates including:
+* v2.0.0 has the major refactoring since 2015. Primary updates including:
   * Full PDF metadata support (see page format and breaking changes for details)
-  * Simplify root properties, besides the addition of `Meta` as root property, unnecessary "formImage" is removed from v1.3.0, also `Width` is move from root to each page object under `Pages`.
+  * Simplify root properties, besides the addition of `Meta` as root property, unnecessary "formImage" is removed from v2.0.0, also `Width` is move from root to each page object under `Pages`.
   * Improved Stream support with test _`npm run parse-r`_, plus new events are added to PDF.js, including _`readable`_, _`data`_, _`end`_, _`error`_. These new Readable Stream like events can be optional replacement for customed events (_`pdfjs_parseDataReady`_, and _`pdfjs_parseDataError`_). It offers more granular data chunk flow control, like _`readable`_ with Meta, _`data`_ sequence for each PDF page result, instead of _`pdfjs_parseDataReady`_ combines all pages in one shot. See `./lib/parserstream.js` for more details
+  * Object with {clr:-1} (like HLines, VLines, Fills, etc.) is replaced with {oc: "#xxxxxx"}. If `clr` index value is valid, then `oc` (original color) field is removed.
   * Greater performance, near ~20% improvements with PDFs under _test_ directory
   * Better exception handling, fixes a few uncaught exception errors
   * More test coverage, 4 more test scripts added, see _package.json_ for details
   * Easier access to dictionaries, including color, font face and font style, see Dictionary reference section for details
   * Refactor to ES6 class for major entry modules
+  * Dependency is removed: lodash.
   * Upgrade to Node v14.18.0 LTSs
 
 ### Install on Ubuntu

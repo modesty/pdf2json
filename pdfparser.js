@@ -1,7 +1,6 @@
 const fs = require("fs"),
     {EventEmitter} = require("events"),
-	nodeUtil = require("util"),
-    _ = require("lodash"),
+	nodeUtil = require("util"),    
     async = require("async"),
 	PDFJS = require("./lib/pdf"),
     {ParserStream} = require("./lib/parserstream"),
@@ -9,6 +8,11 @@ const fs = require("fs"),
 
 
 class PDFParser extends EventEmitter { // inherit from event emitter
+    //public static
+    static get colorDict() {return kColors; }
+    static get fontFaceDict() { return kFontFaces; }
+    static get fontStyleDict() { return kFontStyles; }
+
     //private static    
     static #maxBinBufferCount = 10;
     static #binBuffer = {};
@@ -50,10 +54,6 @@ class PDFParser extends EventEmitter { // inherit from event emitter
     get data() { return this.#data; }
     get binBufferKey() { return this.#pdfFilePath + this.#pdfFileMTime; }
 
-    get colorDict() {return kColors};
-    get fontFaceDict() { return kFontFaces; }
-    get fontStyleDict() { return kFontStyles; }
-
 	//private methods, needs to invoked by [funcName].call(this, ...)
 	#onPDFJSParseDataReady(data) {
 		if (!data) { //v1.1.2: data===null means end of parsed data
@@ -86,12 +86,12 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 	}
 
 	#processBinaryCache() {
-		if (_.has(PDFParser.#binBuffer, this.binBufferKey)) {
+		if (this.binBufferKey in PDFParser.#binBuffer) {
 			this.#startParsingPDF();
 			return true;
 		}
 
-		const allKeys = _.keys(PDFParser.#binBuffer);
+		const allKeys = Object.keys(PDFParser.#binBuffer);
 		if (allKeys.length > PDFParser.#maxBinBufferCount) {
 			const idx = this.id % PDFParser.#maxBinBufferCount;
 			const key = allKeys[idx];

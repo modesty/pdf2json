@@ -1099,11 +1099,9 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //MQZ Dec.04.2013 handles leading word spacing
           var tx = 0;
           if (wordSpacing !== 0) {
-              var firstGlyph = _.find(glyphs, function(g) { return _.isObject(g);});
+              var firstGlyph = glyphs.filter(g => g && ('fontChar' in g || 'unicode' in g))[0];
               if (firstGlyph && (firstGlyph.fontChar === ' ' || firstGlyph.unicode === ' ')) {
-                  if (_.find(glyphs, function(g) { return _.isObject(g) && g.unicode !== ' ';})) {
-                    tx = wordSpacing * fontSize * textHScale;
-                  }
+                tx = wordSpacing * fontSize * textHScale;
               }
           }
 
