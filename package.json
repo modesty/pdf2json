@@ -47,13 +47,11 @@
     "pdf2json": "./bin/pdf2json"
   },
   "dependencies": {
-    "async": "^3.2.1",
     "@xmldom/xmldom": "^0.7.5",
     "yargs": "^17.2.1"
   },
   "devDependencies": {},
   "bundledDependencies": [
-    "async",
     "@xmldom/xmldom",
     "yargs"
   ],
