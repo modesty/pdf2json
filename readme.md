@@ -888,7 +888,7 @@ In order to support this auto merging capability, text block objects have an add
   * More test coverage, 4 more test scripts added, see _package.json_ for details
   * Easier access to dictionaries, including color, font face and font style, see Dictionary reference section for details
   * Refactor to ES6 class for major entry modules
-  * Dependency is removed: lodash.
+  * Dependencies removed: lodash, async
   * Upgrade to Node v14.18.0 LTSs
 
 ### Install on Ubuntu

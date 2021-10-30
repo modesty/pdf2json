@@ -1,7 +1,7 @@
 const fs = require("fs"),
+    { readFile } = require("fs/promises"),
     {EventEmitter} = require("events"),
 	nodeUtil = require("util"),    
-    async = require("async"),
 	PDFJS = require("./lib/pdf"),
     {ParserStream} = require("./lib/parserstream"),
     {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
@@ -21,7 +21,6 @@ class PDFParser extends EventEmitter { // inherit from event emitter
     #password = "";
 
     #context = null; // service context object, only used in Web Service project; null in command line
-    #fq = null; //async queue for reading files
     
     #pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
     #pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
@@ -37,9 +36,6 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         // private
         // service context object, only used in Web Service project; null in command line
         this.#context = context;
-        this.#fq = async.queue( (task, callback) => {
-            fs.readFile(task.path, callback);
-        }, 1);
 
         this.#pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
         this.#pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
@@ -104,37 +100,34 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		return false;
 	}
 
-	#processPDFContent(err, data) {
-		nodeUtil.p2jinfo("Load PDF file status:" + (!!err ? "Error!" : "Success!") );
-		if (err) {
-			this.#data = null;
-			this.emit("pdfParser_dataError", err);
-		}
-		else {
-			PDFParser.#binBuffer[this.binBufferKey] = data;
-			this.#startParsingPDF();
-		}
-	};
-
 	//public APIs
     createParserStream() {
         return new ParserStream(this, {objectMode: true, bufferSize: 64 * 1024});
     }
 
-	loadPDF(pdfFilePath, verbosity) {
+	async loadPDF(pdfFilePath, verbosity) {
 		nodeUtil.verbosity(verbosity || 0);
 		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
 		this.#pdfFilePath = pdfFilePath;
-		this.#pdfFileMTime = fs.statSync(pdfFilePath).mtimeMs;
-		if (this.#processFieldInfoXML) {
-			this.#PDFJS.tryLoadFieldInfoXML(pdfFilePath);
-		}
 
-		if (this.#processBinaryCache())
-			return;
+		try {
+            this.#pdfFileMTime = fs.statSync(pdfFilePath).mtimeMs;
+            if (this.#processFieldInfoXML) {
+                this.#PDFJS.tryLoadFieldInfoXML(pdfFilePath);
+            }
 
-		this.#fq.push({path: pdfFilePath}, this.#processPDFContent.bind(this));
+            if (this.#processBinaryCache())
+                return;
+        
+            PDFParser.#binBuffer[this.binBufferKey] = await readFile(pdfFilePath);
+            nodeUtil.p2jinfo(`Load OK: ${pdfFilePath}`);
+            this.#startParsingPDF();
+        }
+        catch(err) {
+            nodeUtil.p2jerror(`Load Failed: ${pdfFilePath} - ${err}`);
+            this.emit("pdfParser_dataError", err);
+        }
 	}
 
 	// Introduce a way to directly process buffers without the need to write it to a temporary file
