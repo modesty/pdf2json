@@ -29,15 +29,15 @@
   "scripts": {
     "test": "cd ./test && sh p2j.forms.sh",
     "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 5 success, 2 exception with stack trace\" ",
-    "parse": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
-    "parse-s": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
-    "parse-t": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
-    "parse-c": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
-    "parse-m": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
-    "parse-r": "node --trace-deprecation pdf2json.js -f ./test/pdf/fd/form -o ./test/target/fd/form -t -c -m -r",
-    "parse-242": "node --trace-deprecation pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
-    "parse-e": "node --trace-deprecation pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
-    "parse-e2": "node --trace-deprecation pdf2json.js -f ./test/pdf/misc/i243_problem_file_anon.pdf -o ./test/target/misc"
+    "parse": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
+    "parse-s": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
+    "parse-t": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
+    "parse-c": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
+    "parse-m": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
+    "parse-r": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form -o ./test/target/fd/form -t -c -m -r",
+    "parse-242": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
+    "parse-e": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
+    "parse-e2": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i243_problem_file_anon.pdf -o ./test/target/misc"
   },
   "engines": {
     "node": ">=14.18.0",
@@ -47,13 +47,11 @@
     "pdf2json": "./bin/pdf2json"
   },
   "dependencies": {
-    "@xmldom/xmldom": "^0.7.5",
-    "yargs": "^17.2.1"
+    "@xmldom/xmldom": "^0.7.5"
   },
   "devDependencies": {},
   "bundledDependencies": [
-    "@xmldom/xmldom",
-    "yargs"
+    "@xmldom/xmldom"
   ],
   "maintainers": [
     {
