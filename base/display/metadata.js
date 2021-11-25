@@ -57,7 +57,7 @@ var Metadata = PDFJS.Metadata = (function MetadataClosure() {
       var doc = this.metaDocument;
       var rdf = doc.documentElement;
 
-      if (rdf.nodeName.toLowerCase() !== 'rdf:rdf') { // Wrapped in <xmpmeta>
+      if (rdf && rdf.nodeName.toLowerCase() !== 'rdf:rdf') { // Wrapped in <xmpmeta>
         rdf = rdf.firstChild;
         while (rdf && rdf.nodeName.toLowerCase() !== 'rdf:rdf')
           rdf = rdf.nextSibling;

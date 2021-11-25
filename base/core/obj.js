@@ -1001,6 +1001,7 @@ var XRef = (function XRefClosure() {
           throw e;
         }
         log('(while reading XRef): ' + e);
+        error(e);
       }
 
       if (recoveryMode)

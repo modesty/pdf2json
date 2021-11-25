@@ -1241,18 +1241,18 @@ nodeUtil.p2jinfo = info;
 nodeUtil.p2jwarn = warn;
 nodeUtil.p2jerror = error;
 nodeUtil.verbosity = function(verbo) {
-    if (!isNaN(verbo)) {
-        if (verbo <= ERRORS) {
-            verbo = ERRORS;
-        }
-        else if (verbo >= INFOS) {
-            verbo = INFOS;
-        }
-
-        verbosity = verbo;
+    if (isNaN(verbo)) {
+        verbosity = WARNINGS;
     }
     else {
-        verbosity = ERRORS;
+        if (verbo <= ERRORS) {
+            verbosity = ERRORS;
+        }
+        else if (verbo >= INFOS) {
+            verbosity = INFOS;
+        }
+        else
+            verbosity = verbo;
     }
 };
 nodeUtil.verbosity();
