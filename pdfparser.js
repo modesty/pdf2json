@@ -110,7 +110,7 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
 
 		this.#pdfFilePath = pdfFilePath;
-		this.pdfFilePassword = password;
+		this.#password = password;
 
 		try {
             this.#pdfFileMTime = fs.statSync(pdfFilePath).mtimeMs;
