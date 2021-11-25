@@ -17,15 +17,43 @@ To update with latest version:
 To Run in RESTful Web Service or as Commandline Utility
 * More details can be found at the bottom of this document.
 
+## Test
+
+After install, run command line:
+
+> npm run test
+
+It'll scan and parse *260* PDF AcroForm files under *_./test/pdf_*, runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check *_./test/target/_* for outputs.
+
+### Test Exception Handlings
+
+After install, run command line:
+
+> npm run test-misc
+
+It'll scan and parse all PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 5 PDF fields, while catches exceptions with stack trace for:
+ * _bad XRef entry_ for `pdf/misc/i200_test.pdf`
+ * _unsupported encryption algorithm_ for `pdf/misc/i43_encrypted.pdf` 
+ * _Invalid XRef stream header_ for `pdf/misc/i243_problem_file_anon.pdf`
+
+### Test Streams
+After install, run command line:
+
+> npm run parse-r
+
+It scans 165 PDF files under *../test/pdf/fd/form_*, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to *_./test/target/fd/form_*.
+
+More test scripts with different commandline options can be found at *_package.json_*.
+
 ## Code Example
 
 * Parse a PDF file then write to a JSON file:
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
 
-    let pdfParser = new PDFParser();
+    const pdfParser = new PDFParser();
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
@@ -45,17 +73,25 @@ Or, call directly with buffer:
     })
 ````
 
+Or, use more granular page level parsing events (v2.0.0)
+
+````javascript
+    pdfParser.on("readable", meta => console.log("PDF Metadata", meta) );
+    pdfParser.on("data", page => console.log(page ? "One page paged" : "All pages parsed", page));
+    pdfParser.on("error", err => console.erro("Parser Error", err);
+````
+
 * Parse a PDF then write a .txt file (which only contains textual content of the PDF)
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
 
-    let pdfParser = new PDFParser(this,1);
+    const pdfParser = new PDFParser(this,1);
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
-        fs.writeFile("./pdf2json/test/F1040EZ.content.txt", pdfParser.getRawTextContent());
+        fs.writeFile("./pdf2json/test/F1040EZ.content.txt", pdfParser.getRawTextContent(), ()=>{console.log("Done.");});
     });
 
     pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
@@ -64,14 +100,14 @@ Or, call directly with buffer:
 * Parse a PDF then write a fields.json file that only contains interactive forms' fields information:
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
 
-    let pdfParser = new PDFParser();
+    const pdfParser = new PDFParser();
 
     pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
     pdfParser.on("pdfParser_dataReady", pdfData => {
-        fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pdfParser.getAllFieldsTypes()));
+        fs.writeFile("./pdf2json/test/F1040EZ.fields.json", JSON.stringify(pdfParser.getAllFieldsTypes()), ()=>{console.log("Done.");});
     });
 
     pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
@@ -80,13 +116,36 @@ Or, call directly with buffer:
 Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ````javascript
-    let fs = require('fs'),
+    const fs = require('fs'),
         PDFParser = require("pdf2json");
     
-    let inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
-    let outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
+    const inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
+    const outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
     
     inputStream.pipe(new PDFParser()).pipe(new StringifyStream()).pipe(outputStream);
+````
+
+With v2.0.0, last line above changes to
+````javascript
+    inputStream.pipe(this.pdfParser.createParserStream()).pipe(new StringifyStream()).pipe(outputStream);
+````
+
+For additional output streams support:
+````javascript
+    #generateMergedTextBlocksStream(callback) {
+		const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".merged.json"), callback);
+		this.pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);
+	}
+
+    #generateRawTextContentStream(callback) {
+	    const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".content.txt"), callback);
+	    this.pdfParser.getRawTextContentStream().pipe(outputStream);
+    }
+
+    #generateFieldsTypesStream(callback) {
+		const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".fields.json"), callback);
+		this.pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
+	}
 ````
 See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) for more details.
 
@@ -97,12 +156,17 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
     * pdfParser_dataError: will be raised when parsing failed
     * pdfParser_dataReady: when parsing succeeded
 
+* alternative events: (v2.0.0)
+    * readable: first event dispatched after PDF file metadata is parsed and before processing any page
+    * data: one parsed page succeeded, null means last page has been processed, signle end of data stream
+    * error: exception or error occured
+
 * start to parse PDF file from specified file path asynchronously:
 ````javascript
         function loadPDF(pdfFilePath);
 ````
 If failed, event "pdfParser_dataError" will be raised with error object: {"parserError": errObj};
-If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service.
+If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service. __note__: "formImage" is removed from v2.0.0, see breaking changes for details.
 
 * Get all textual content from "pdfParser_dataReady" event handler:
 ````javascript
@@ -120,9 +184,9 @@ returns an array of field objects.
 
 Current parsed data has four main sub objects to describe the PDF document.
 
-* 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title;
 * 'Transcoder': pdf2json version number
-* 'Id': the XML meta data that embedded in PDF document
+* 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title; (_deprecated since v2.0.0, see notes below_)
+* 'Id': the XML meta data that embedded in PDF document (_deprecated since v2.0.0, see notes below_)
     * all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
     * v0.1.22 added support for the following custom properties:
         * AgencyId: default "unknown";
@@ -130,14 +194,44 @@ Current parsed data has four main sub objects to describe the PDF document.
         * MC: default false;
         * Max: default -1;
         * Parent: parent name, default "unknown";
+    * *_v2.0.0_*: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
+  ````json
+        Meta: {
+            PDFFormatVersion: '1.7',
+            IsAcroFormPresent: true,
+            IsXFAPresent: false,
+            Author: 'SE:W:CAR:MP',
+            Subject: 'U.S. Individual Income Tax Return',
+            Creator: 'Adobe Acrobat Pro 10.1.8',
+            Producer: 'Adobe Acrobat Pro 10.1.8',
+            CreationDate: "D:20131203133943-08'00'",
+            ModDate: "D:20140131180702-08'00'",
+            Metadata: {
+                'xmp:modifydate': '2014-01-31T18:07:02-08:00',
+                'xmp:createdate': '2013-12-03T13:39:43-08:00',
+                'xmp:metadatadate': '2014-01-31T18:07:02-08:00',
+                'xmp:creatortool': 'Adobe Acrobat Pro 10.1.8',
+                'dc:format': 'application/pdf',
+                'dc:description': 'U.S. Individual Income Tax Return',
+                'dc:creator': 'SE:W:CAR:MP',
+                'xmpmm:documentid': 'uuid:4d81e082-7ef2-4df7-b07b-8190e5d3eadf',
+                'xmpmm:instanceid': 'uuid:7ea96d1c-3d2f-284a-a469-f0f284a093de',
+                'pdf:producer': 'Adobe Acrobat Pro 10.1.8',
+                'adhocwf:state': '1',
+                'adhocwf:version': '1.1'
+            }
+        }
+  ````   
 * 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
 * 'Width': the PDF page width in page unit
+
 
 ### Page object Reference
 
 Each page object within 'Pages' array describes page elements and attributes with 5 main fields:
 
 * 'Height': height of the page in page unit
+* 'Width': width of the page in page unit, moved from root to page object in v2.0.0
 * 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
 * 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit;
     * v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
@@ -153,6 +247,7 @@ Each page object within 'Pages' array describes page elements and attributes wit
     * 'R': an array of text run, each text run object has two main fields:
         * 'T': actual text
         * 'S': style index from style dictionary. More info about 'Style Dictionary' can be found at 'Dictionary Reference' section
+        * 'TS': [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic]
 
 v0.4.5 added support when fields attributes information is defined in external xml file. pdf2json will always try load field attributes xml file based on file name convention (pdfFileName.pdf's field XML file must be named pdfFileName_fieldInfo.xml in the same directory). If found, fields info will be injected.
 
@@ -163,8 +258,8 @@ This dictionary data contract design will allow the output just reference a dict
 It does require the client of the payload to have the same dictionary definition to make sense out of it when render the parser output on to screen.
 
 * Color Dictionary
-
-        var kColors = [
+````javascript
+        const kColors = [
                 '#000000',		// 0
                 '#ffffff',		// 1
                 '#4c4c4c',		// 2
@@ -204,11 +299,11 @@ It does require the client of the payload to have the same dictionary definition
                 '#008000',		// Last + 6
                 '#000000'		// Last + 7
             ];
-
+````
 
 * Style Dictionary:
-
-            var _kFontFaces = [
+````javascript
+            const kFontFaces = [
                "QuickType,Arial,Helvetica,sans-serif",							// 00 - QuickType - sans-serif variable font
                "QuickType Condensed,Arial Narrow,Arial,Helvetica,sans-serif",	// 01 - QuickType Condensed - thin sans-serif variable font
                "QuickTypePi",													// 02 - QuickType Pi
@@ -217,7 +312,7 @@ It does require the client of the payload to have the same dictionary definition
                "OCR B MT,Courier New,Courier,monospace"							// 05 - OCR-B MT - OCR readable san-serif fixed font
             ];
 
-            var _kFontStyles = [
+            const kFontStyles = [
                 // Face		Size	Bold	Italic		StyleID(Comment)
                 // -----	----	----	-----		-----------------
                     [0,		6,		0,		0],			//00
@@ -282,7 +377,17 @@ It does require the client of the payload to have the same dictionary definition
                     [5,		10,		0,		0],			//59
                     [5,		12,		0,		0]			//60
             ];
-
+````
+v2.0.0: to access these dictionary programactically, do either
+````javascript 
+    const {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
+````
+or via public static getters of PDFParser:
+````javascript
+    console.dir(PDFParser.colorDict);
+    console.dir(PDFParser.fontFaceDict);
+    console.dir(PDFParser.fontStyleDict);
+````
 
 ## Interactive Forms Elements
 
@@ -602,7 +707,7 @@ In order to run pdf.js in Node.js, we have to address those dependencies and als
     * pdf.js' global objects (like PDFJS and globalScope) need to be wrapped in a node module's scope
 * API Dependencies
     * XHR Level 2: I don't need XMLHttpRequest to load PDF asynchronously in node.js, so replaced it with node's fs (File System) to load PDF file based on request parameters;
-    * DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at https://github.com/jindw/xmldom;
+    * DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at https://github.com/xmldom/xmldom;
     * Web Worker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
     * Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the json format above, rather than drawing graphics on html5 canvas;
 * Extend/Modify pdf.js
@@ -769,9 +874,25 @@ In order to support this auto merging capability, text block objects have an add
 
 * v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
     * event "pdfParser_dataError": {"parserError": errObj}
-    * event "pdfParser_dataReady": {"formImage": parseOutput}
+    * event "pdfParser_dataReady": {"formImage": parseOutput} __note__: "formImage" is removed from v2.0.0, see breaking changes for details.
 
 * v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
+
+* v2.0.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
+
+**Major Refactoring**
+* v2.0.0 has the major refactoring since 2015. Primary updates including:
+  * Full PDF metadata support (see page format and breaking changes for details)
+  * Simplify root properties, besides the addition of `Meta` as root property, unnecessary "formImage" is removed from v2.0.0, also `Width` is move from root to each page object under `Pages`.
+  * Improved Stream support with test _`npm run parse-r`_, plus new events are added to PDF.js, including _`readable`_, _`data`_, _`end`_, _`error`_. These new Readable Stream like events can be optional replacement for customed events (_`pdfjs_parseDataReady`_, and _`pdfjs_parseDataError`_). It offers more granular data chunk flow control, like _`readable`_ with Meta, _`data`_ sequence for each PDF page result, instead of _`pdfjs_parseDataReady`_ combines all pages in one shot. See `./lib/parserstream.js` for more details
+  * Object with {clr:-1} (like HLines, VLines, Fills, etc.) is replaced with {oc: "#xxxxxx"}. If `clr` index value is valid, then `oc` (original color) field is removed.
+  * Greater performance, near ~20% improvements with PDFs under _test_ directory
+  * Better exception handling, fixes a few uncaught exception errors
+  * More test coverage, 4 more test scripts added, see _package.json_ for details
+  * Easier access to dictionaries, including color, font face and font style, see Dictionary reference section for details
+  * Refactor to ES6 class for major entry modules
+  * Dependencies removed: lodash, async and yargs
+  * Upgrade to Node v14.18.0 LTSs
 
 ### Install on Ubuntu
 
@@ -830,12 +951,3 @@ Licensed under the [Apache License Version 2.0](https://github.com/modesty/pdf2j
 ## Support
 
 I'm currently running this project in my spare time. Thanks all for your [stars](https://github.com/modesty/pdf2json/stargazers) and [supports](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=modestyZ%40gmail%2ecom&lc=GB&item_name=modesty%20zhang&item_number=git%40github%2ecom%3amodesty%2fpdf2json%2egit&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted).
-
-
-
-
-
-
-
-
-

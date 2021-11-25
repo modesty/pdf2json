@@ -170,13 +170,17 @@ var Page = (function PageClosure() {
 
 
         var opList = new OperatorList(handler, self.pageIndex);
-
-        handler.send('StartRenderPage', {
-          transparency: partialEvaluator.hasBlendModes(self.resources),
-          pageIndex: self.pageIndex
-        });
-        partialEvaluator.getOperatorList(contentStream, self.resources, opList);
-        pageListPromise.resolve(opList);
+        try {
+            handler.send('StartRenderPage', {
+            transparency: partialEvaluator.hasBlendModes(self.resources),
+            pageIndex: self.pageIndex
+            });
+            partialEvaluator.getOperatorList(contentStream, self.resources, opList);
+            pageListPromise.resolve(opList);
+        }
+        catch(e) {
+            pageListPromise.reject(e);
+        }
       });
 
       var annotationsPromise = pdfManager.ensure(this, 'annotations');

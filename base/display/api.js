@@ -412,8 +412,13 @@ var PDFPageProxy = (function PDFPageProxyClosure() {
             return;
           }
           stats.time('Rendering');
-          internalRenderTask.initalizeGraphics(transparency);
-          internalRenderTask.operatorListChanged();
+          try {//MQZ. catch canvas drawing exceptions
+            internalRenderTask.initalizeGraphics(transparency);
+            internalRenderTask.operatorListChanged();
+          }
+          catch(err) {
+            complete(err); 
+          }
         },
         function pageDisplayReadPromiseError(reason) {
           complete(reason);

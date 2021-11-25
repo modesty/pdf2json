@@ -1036,7 +1036,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     showText: function CanvasGraphics_showText(glyphs, skipTextSelection) {
       var ctx = this.ctx;
       var current = this.current;
-      var font = current.font;
+      var font = current.font || {};
       var fontSize = current.fontSize;
       var fontSizeScale = current.fontSizeScale;
       var charSpacing = current.charSpacing;
@@ -1095,19 +1095,20 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         this.processingType3 = null;
       } else {
         ctx.save();
-          var tx = 0;
 
 //MQZ Dec.04.2013 handles leading word spacing
+          var tx = 0;
           if (wordSpacing !== 0) {
-              var firstGlyph = _.find(glyphs, function(g) { return _.isObject(g);});
+              var firstGlyph = glyphs.filter(g => g && ('fontChar' in g || 'unicode' in g))[0];
               if (firstGlyph && (firstGlyph.fontChar === ' ' || firstGlyph.unicode === ' ')) {
-                  if (_.find(glyphs, function(g) { return _.isObject(g) && g.unicode !== ' ';})) {
-                    current.x += wordSpacing * fontSize * textHScale;
-                  }
+                tx = wordSpacing * fontSize * textHScale;
               }
           }
 
+        current.x += tx
         this.applyTextTransforms();
+        current.x -= tx
+        // MQZ-GYJ Apr.20.2017 handles leading word spacing over
 
         var lineWidth = current.lineWidth;
         var a1 = current.textMatrix[0], b1 = current.textMatrix[1];
@@ -1286,7 +1287,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
               }
           }
           else {
-              if (-e >= spaceWidth) {
+            //MQZ-GYJ. Apr.20.2017 split word when spacing is a positive number but very big
+              if (Math.abs(e) >= spaceWidth) {
                   if (vertical) {
                       current.y += spacingLength;
                   } else {
@@ -1533,6 +1535,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var depth = this.current.paintFormXObjectDepth;
       do {
         this.restore();
+        this.current.paintFormXObjectDepth--;
         // some pdf don't close all restores inside object
         // closing those for them
       } while (this.current.paintFormXObjectDepth >= depth);
@@ -1616,6 +1619,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     },
 
     endGroup: function CanvasGraphics_endGroup(group) {
+        //MQZ. make sure endGroup is always invoked after beginGroup
+        if (this.groupLevel == 0)
+            this.beginGroup(group);
+            
       this.groupLevel--;
       var groupCtx = this.ctx;
       this.ctx = this.groupStack.pop();

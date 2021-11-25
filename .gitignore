@@ -6,4 +6,6 @@
 *.out
 node_modules/
 target/
+.idea
+.npmrc
 
