@@ -46,10 +46,6 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         this.#password = password;
     } 
     
-    //public getter
-    get data() { return this.#data; }
-    get binBufferKey() { return this.#pdfFilePath + this.#pdfFileMTime; }
-
 	//private methods, needs to invoked by [funcName].call(this, ...)
 	#onPDFJSParseDataReady(data) {
 		if (!data) { //v1.1.2: data===null means end of parsed data
@@ -70,13 +66,13 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 	#startParsingPDF(buffer) {
 		this.#data = {};
 
-		this.#PDFJS.on("pdfjs_parseDataReady", this.#onPDFJSParseDataReady.bind(this));
-		this.#PDFJS.on("pdfjs_parseDataError", this.#onPDFJSParserDataError.bind(this));
+		this.#PDFJS.on("pdfjs_parseDataReady", data => this.#onPDFJSParseDataReady(data));
+		this.#PDFJS.on("pdfjs_parseDataError", err => this.#onPDFJSParserDataError(err));
 
         //v1.3.0 the following Readable Stream-like events are replacement for the top two custom events
         this.#PDFJS.on("readable", meta => this.emit("readable", meta));
         this.#PDFJS.on("data", data => this.emit("data", data));
-        this.#PDFJS.on("error", this.#onPDFJSParserDataError.bind(this));    
+        this.#PDFJS.on("error", err => this.#onPDFJSParserDataError(err));    
 
 		this.#PDFJS.parsePDFData(buffer || PDFParser.#binBuffer[this.binBufferKey], this.#password);
 	}
@@ -100,7 +96,11 @@ class PDFParser extends EventEmitter { // inherit from event emitter
 		return false;
 	}
 
-	//public APIs
+    //public getter
+    get data() { return this.#data; }
+    get binBufferKey() { return this.#pdfFilePath + this.#pdfFileMTime; }
+        
+    //public APIs
     createParserStream() {
         return new ParserStream(this, {objectMode: true, bufferSize: 64 * 1024});
     }
