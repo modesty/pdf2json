@@ -124,14 +124,17 @@ var Page = (function PageClosure() {
         this.resourcesPromise = this.pdfManager.ensure(this, 'resources');
       }
       var promise = new Promise();
-      this.resourcesPromise.then(function resourceSuccess() {
-        var objectLoader = new ObjectLoader(this.resources.map,
-                                            keys,
-                                            this.xref);
-        objectLoader.load().then(function objectLoaderSuccess() {
-          promise.resolve();
-        });
-      }.bind(this));
+      if (!this.resources) //empty page
+        promise.resolve();
+      else    
+        this.resourcesPromise.then(function resourceSuccess() {
+            var objectLoader = new ObjectLoader(this.resources.map,
+                                                keys,
+                                                this.xref);
+            objectLoader.load().then(function objectLoaderSuccess() {
+            promise.resolve();
+            });
+        }.bind(this));
       return promise;
     },
     getOperatorList: function Page_getOperatorList(handler) {
