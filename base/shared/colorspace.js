@@ -870,6 +870,7 @@ var LabCS = (function LabCSClosure() {
     getOutputLength: function LabCS_getOutputLength(inputLength) {
       return inputLength;
     },
+    createRgbBuffer: ColorSpace.prototype.createRgbBuffer,
     isPassthrough: ColorSpace.prototype.isPassthrough,
     isDefaultDecode: function LabCS_isDefaultDecode(decodeMap) {
       // XXX: Decoding is handled with the lab conversion because of the strange
