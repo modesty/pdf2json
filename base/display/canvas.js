@@ -406,6 +406,11 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
     this.baseTransform = null;
     this.baseTransformStack = [];
     this.groupLevel = 0;
+
+    //MQZ.Mar.22 Disabled Operators
+    this.opMode = true;
+    this.noOpStartIdx = -1;
+
     if (canvasCtx) {
       addContextCurrentTransform(canvasCtx);
     }
@@ -511,7 +516,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var fnId;
 
 //MQZ.Mar.22 Disabled Operators
-      var opMode = true, noOpIdx = -1, noOpStartIdx = -1;
+      var noOpIdx = -1;
 
       while (true) {
         if (stepper && i === stepper.nextBreakPoint) {
@@ -524,10 +529,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         if (fnId !== OPS.dependency) {
 //MQZ.Mar.22 Disabled Operators within specified ranages
           noOpIdx = NO_OPS_RANGE.indexOf(fnId);
-          if (opMode) {
+          if (this.opMode) {
              if (noOpIdx >= 0) {
-               opMode = false;
-               noOpStartIdx = noOpIdx;
+               this.opMode = false;
+               this.noOpStartIdx = noOpIdx;
                info("NO_OP Begin: " + this[fnId].name + " - " + i);
              }
              else if (NO_OPS.indexOf(fnId) < 0) {
@@ -535,9 +540,9 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
              }
           }
           else {
-             if (noOpIdx >= 0 && noOpIdx === (noOpStartIdx+1)) {
-               opMode = true;
-               noOpStartIdx = -1;
+             if (noOpIdx >= 0 && noOpIdx === (this.noOpStartIdx+1)) {
+               this.opMode = true;
+               this.noOpStartIdx = -1;
                info("NO_OP End: " + this[fnId].name + " - " + i);
              }
           }
