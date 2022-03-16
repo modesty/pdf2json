@@ -566,6 +566,37 @@ Another supported field attributes is "required": when form author mark a field 
                     h: 0.85
                 }
 
+v2.X.X added support for the signature form element (Name: 'signature'). If the field has been signed, the 'Sig' property will be present, and will contain any of the following signature details if available:
+- 'Name' - Signer's name
+- 'M' - Time of signing in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format
+- 'Location' - Location of signing
+- 'Reason' - Reason for signing
+- 'ContactInfo' - Signer's contact information
+
+Signature example:
+
+                {
+                    style: 48,
+                    T: {
+                        Name: "signature",
+                        TypeInfo: {}
+                    },
+                    id: {
+                        Id: "SignatureFormField_1",
+                        EN: 0
+                    },
+                    TI: 0,
+                    AM: 16,
+                    x: 5.506,
+                    y: 31.394,
+                    w: 14.367,
+                    h: 4.241,
+                    Sig: {
+                        Name: "Signer Name",
+                        M: "2022-03-15T19:17:34-04:00"
+                    }
+                }
+
 ## Text Input Field Formatter Types
 
 v0.1.8 added text input field formatter types detection for
