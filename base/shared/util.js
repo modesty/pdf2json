@@ -246,7 +246,7 @@ function isValidUrl(url, allowRelative) {
   if (colon < 0) {
     return allowRelative;
   }
-  var protocol = url.substr(0, colon);
+  var protocol = url.substring(0, colon);
   switch (protocol) {
     case 'http':
     case 'https':
