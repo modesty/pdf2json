@@ -200,7 +200,7 @@ var CMap = (function CMapClosure() {
       while (low <= high) {
         this.map[low] = dstLow;
         // Only the last byte has to be incremented.
-        dstLow = dstLow.substr(0, lastByte) +
+        dstLow = dstLow.substring(0, lastByte) +
                  String.fromCharCode(dstLow.charCodeAt(lastByte) + 1);
         ++low;
       }
