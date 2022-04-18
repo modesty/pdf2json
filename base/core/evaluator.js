@@ -1023,7 +1023,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
       var cmapObj = toUnicode;
       var charToUnicode = [];
       if (isName(cmapObj)) {
-        var isIdentityMap = cmapObj.name.substr(0, 9) == 'Identity-';
+        var isIdentityMap = cmapObj.name.substring(0, 9) == 'Identity-';
         if (!isIdentityMap)
           error('ToUnicode file cmap translation not implemented');
       } else if (isStream(cmapObj)) {

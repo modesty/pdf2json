@@ -168,8 +168,8 @@ var FontLoader = {
       }
 
       function spliceString(s, offset, remove, insert) {
-        var chunk1 = data.substr(0, offset);
-        var chunk2 = data.substr(offset + remove);
+        var chunk1 = data.substring(0, offset);
+        var chunk2 = data.substring(offset + remove);
         return chunk1 + insert + chunk2;
       }
 
