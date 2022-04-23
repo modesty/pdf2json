@@ -132,21 +132,43 @@ With v2.0.0, last line above changes to
 
 For additional output streams support:
 ````javascript
-    #generateMergedTextBlocksStream(callback) {
-		const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".merged.json"), callback);
-		this.pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);
+    //private methods	
+	#generateMergedTextBlocksStream() {
+		return new Promise( (resolve, reject) => {
+			const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".merged.json"), resolve, reject);
+			this.pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);	
+		});
 	}
 
-    #generateRawTextContentStream(callback) {
-	    const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".content.txt"), callback);
-	    this.pdfParser.getRawTextContentStream().pipe(outputStream);
+    #generateRawTextContentStream() {
+		return new Promise( (resolve, reject) => {
+			const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".content.txt"), resolve, reject);
+			this.pdfParser.getRawTextContentStream().pipe(outputStream);
+		});
     }
 
-    #generateFieldsTypesStream(callback) {
-		const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".fields.json"), callback);
-		this.pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
+    #generateFieldsTypesStream() {
+		return new Promise( (resolve, reject) => {
+			const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".fields.json"), resolve, reject);
+			this.pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
+		});
+	}
+
+	#processAdditionalStreams() {
+        const outputTasks = [];
+        if (PROCESS_FIELDS_CONTENT) {//needs to generate fields.json file
+            outputTasks.push(this.#generateFieldsTypesStream());
+        }
+        if (PROCESS_RAW_TEXT_CONTENT) {//needs to generate content.txt file
+            outputTasks.push(this.#generateRawTextContentStream());
+        }
+        if (PROCESS_MERGE_BROKEN_TEXT_BLOCKS) {//needs to generate json file with merged broken text blocks
+            outputTasks.push(this.#generateMergedTextBlocksStream());
+        }
+		return Promise.allSettled(outputTasks);
 	}
 ````
+Note, if primary JSON parsing has exceptions, none of additional stream will be processed.
 See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) for more details.
 
  
