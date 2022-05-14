@@ -53,8 +53,8 @@ More test scripts with different commandline options can be found at *_package.j
 * Parse a PDF file then write to a JSON file:
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
 
     const pdfParser = new PDFParser();
 
@@ -87,8 +87,8 @@ Or, use more granular page level parsing events (v2.0.0)
 * Parse a PDF then write a .txt file (which only contains textual content of the PDF)
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
 
     const pdfParser = new PDFParser(this,1);
 
@@ -103,8 +103,8 @@ Or, use more granular page level parsing events (v2.0.0)
 * Parse a PDF then write a fields.json file that only contains interactive forms' fields information:
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
 
     const pdfParser = new PDFParser();
 
@@ -119,8 +119,8 @@ Or, use more granular page level parsing events (v2.0.0)
 Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
     
     const inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
     const outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
@@ -405,7 +405,7 @@ It does require the client of the payload to have the same dictionary definition
 ````
 v2.0.0: to access these dictionary programactically, do either
 ````javascript 
-    const {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
+    import {kColors, kFontFaces, kFontStyles} from "./lib/pdfconst.js";
 ````
 or via public static getters of PDFParser:
 ````javascript
