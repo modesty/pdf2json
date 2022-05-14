@@ -1159,36 +1159,38 @@ function MessageHandler(name, comObj) {
     warn(data);
   }];
 
-  comObj.onmessage = function messageHandlerComObjOnMessage(event) {
-    var data = event.data;
-    if (data.isReply) {
-      var callbackId = data.callbackId;
-      if (data.callbackId in callbacks) {
-        var callback = callbacks[callbackId];
-        delete callbacks[callbackId];
-        callback(data.data);
-      } else {
-        error('Cannot resolve callback ' + callbackId);
-      }
-    } else if (data.action in ah) {
-      var action = ah[data.action];
-      if (data.callbackId) {
-        var promise = new Promise();
-        promise.then(function(resolvedData) {
-          comObj.postMessage({
-            isReply: true,
-            callbackId: data.callbackId,
-            data: resolvedData
-          });
-        });
-        action[0].call(action[1], data.data, promise);
-      } else {
-        action[0].call(action[1], data.data);
-      }
-    } else {
-      error('Unkown action from worker: ' + data.action);
-    }
-  };
+  if (typeof comObj === 'object') {
+		comObj.onmessage = function messageHandlerComObjOnMessage(event) {
+			var data = event.data;
+			if (data.isReply) {
+			var callbackId = data.callbackId;
+			if (data.callbackId in callbacks) {
+				var callback = callbacks[callbackId];
+				delete callbacks[callbackId];
+				callback(data.data);
+			} else {
+				error('Cannot resolve callback ' + callbackId);
+			}
+			} else if (data.action in ah) {
+			var action = ah[data.action];
+			if (data.callbackId) {
+				var promise = new Promise();
+				promise.then(function(resolvedData) {
+					comObj.postMessage({
+						isReply: true,
+						callbackId: data.callbackId,
+						data: resolvedData
+					});
+				});
+				action[0].call(action[1], data.data, promise);
+			} else {
+				action[0].call(action[1], data.data);
+			}
+			} else {
+				error('Unkown action from worker: ' + data.action);
+			}
+		};
+	}
 }
 
 MessageHandler.prototype = {
@@ -1235,7 +1237,6 @@ function loadJpegStream(id, imageUrl, objs) {
 }
 
 //MQZ Oct.18.2013 expose util methods
-var nodeUtil = require("util");
 nodeUtil.p2jlog = log;
 nodeUtil.p2jinfo = info;
 nodeUtil.p2jwarn = warn;
