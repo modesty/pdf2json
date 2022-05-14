@@ -1,13 +1,13 @@
-const fs = require("fs"),
-    { readFile } = require("fs/promises"),
-    {EventEmitter} = require("events"),
-	nodeUtil = require("util"),    
-	PDFJS = require("./lib/pdf"),
-    {ParserStream} = require("./lib/parserstream"),
-    {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
+import fs from "fs";
+import nodeUtil from "util";
+import { readFile } from "fs/promises";
+import { EventEmitter } from "events";
 
+import PDFJS from "./lib/pdf.js";
+import {ParserStream} from "./lib/parserstream.js";
+import {kColors, kFontFaces, kFontStyles} from "./lib/pdfconst.js";
 
-class PDFParser extends EventEmitter { // inherit from event emitter
+export default class PDFParser extends EventEmitter { // inherit from event emitter
     //public static
     static get colorDict() {return kColors; }
     static get fontFaceDict() { return kFontFaces; }
@@ -162,6 +162,3 @@ class PDFParser extends EventEmitter { // inherit from event emitter
         this.#PDFJS = null;
 	}
 }
-
-module.exports = PDFParser;
-
