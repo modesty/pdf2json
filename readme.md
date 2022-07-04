@@ -1,3 +1,6 @@
+> Pre-merge PR: [Convert commonJS to ES Module](https://github.com/modesty/pdf2json/pull/271). Please help to test it out and [report issues](https://github.com/modesty/pdf2json/issues) before 7/31/2022. Thanks.
+
+
 # pdf2json
 
 pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends it with interactive form elements and text content parsing outside browser.
