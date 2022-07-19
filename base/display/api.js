@@ -867,8 +867,8 @@ var WorkerTransport = (function WorkerTransportClosure() {
           promise.resolve({ data: buf, width: width, height: height});
         }).bind(this);
 //MQZ. Oct.17.2012 - disable image drawing
-//          img.src = imageUrl;
-          img.src = 'data:image/jpeg;base64,' + img.btoa(imageUrl);
+          img.src = imageUrl;
+//          img.src = 'data:image/jpeg;base64,' + img.btoa(imageUrl);
       });
     },
 

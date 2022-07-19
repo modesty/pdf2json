@@ -145,8 +145,11 @@ var OPS = PDFJS.OPS = {
 
 //MQZ.Mar.22 Disabled Operators (to prevent image painting & annotation default appearance)
 //paintJpegXObject, paintImageMaskXObject, paintImageMaskXObjectGroup, paintImageXObject, paintInlineImageXObject, paintInlineImageXObjectGroup
-var NO_OPS = PDFJS.NO_OPS = [82, 83, 84, 85, 86, 87];
+var NO_OPS = PDFJS.NO_OPS = [83, 84, 86, 87];
 var NO_OPS_RANGE = PDFJS.NO_OPS_RANGE = [78, 79, 80, 81]; //range pairs, all ops with each pair will be skipped. !important!
+var HTMLElement = typeof HTMLElement === "undefined" ?
+  function() { } : HTMLElement;
+
 
 // Use only for debugging purposes. This should not be used in any code that is
 // in mozilla master.
@@ -1229,9 +1232,9 @@ function loadJpegStream(id, imageUrl, objs) {
   img.onload = (function loadJpegStream_onloadClosure() {
     objs.resolve(id, img);
   });
-//  img.src = imageUrl;
+  img.src = imageUrl;
     //MQZ. Apr.09.2013 calls windows.btoa safely
-    img.src = 'data:image/jpeg;base64,' + img.btoa(imageUrl);
+//    img.src = 'data:image/jpeg;base64,' + img.btoa(imageUrl);
 }
 
 //MQZ Oct.18.2013 expose util methods
