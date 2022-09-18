@@ -27,6 +27,7 @@
     "url": "git://github.com/modesty/pdf2json.git"
   },
   "main": "./pdfparser.js",
+  "typings": "./pdfparser.d.ts",
   "scripts": {
     "test": "cd ./test && sh p2j.forms.sh",
     "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 5 success, 3 exception with stack trace\" ",
@@ -52,7 +53,9 @@
   "dependencies": {
     "@xmldom/xmldom": "^0.7.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^18.7.18"
+  },
   "bundledDependencies": [
     "@xmldom/xmldom"
   ],
@@ -68,5 +71,8 @@
     "url": "http://github.com/modesty/pdf2json/issues"
   },
   "license": "Apache-2.0",
-  "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
+  "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
+  "bundleDependencies": [
+    "@xmldom/xmldom"
+  ]
 }
