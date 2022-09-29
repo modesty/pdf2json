@@ -187,7 +187,11 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
             continue;
           }
           var xResources = xObject.dict.get('Resources');
-          if (isDict(xResources)) {
+          if (
+            isDict(xResources) && 
+            xResources !== node && 
+            nodes.indexOf(xResources) < 0
+          ) {
             nodes.push(xResources);
           }
         }
