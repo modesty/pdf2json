@@ -20,6 +20,8 @@
 
 'use strict';
 
+const PDFAnno = require('../lib/pdfanno.js').default;
+
 var Annotation = (function AnnotationClosure() {
   // 12.5.5: Algorithm: Appearance streams
   function getTransformMatrix(rect, bbox, matrix) {

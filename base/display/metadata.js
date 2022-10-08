@@ -17,6 +17,7 @@
  */
 
 'use strict';
+const { DOMParser } = require('@xmldom/xmldom');
 
 var Metadata = PDFJS.Metadata = (function MetadataClosure() {
   function fixMetadata(meta) {
