@@ -17,7 +17,7 @@
 /* globals Cmd, ColorSpace, Dict, MozBlobBuilder, Name, PDFJS, Ref, URL */
 
 'use strict';
-const nodeUtil = require('util');
+import nodeUtil from 'util';
 
 //MQZ. Oct.10.2012. Moved globalScope definition to lib/pdf.js
 //var globalScope = (typeof window === 'undefined') ? this : window;
