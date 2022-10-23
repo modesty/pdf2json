@@ -51,7 +51,7 @@
     "pdf2json": "./bin/pdf2json"
   },
   "dependencies": {
-    "@xmldom/xmldom": "^0.8.2"
+    "@xmldom/xmldom": "^0.8.3"
   },
   "devDependencies": {},
   "bundledDependencies": [
