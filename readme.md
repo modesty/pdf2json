@@ -933,6 +933,8 @@ In order to support this auto merging capability, text block objects have an add
 
 * v2.0.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
 
+* v3.0.0 converted commonJS to ES Modules, plus dependency update and other minor bug fixes. Please update your project configuration file to enable ES Module before upgrade, ex., in `tsconfig.json`, set `"compilerOptions":{"module":"ESNext"}`
+
 **Major Refactoring**
 * v2.0.0 has the major refactoring since 2015. Primary updates including:
   * Full PDF metadata support (see page format and breaking changes for details)
@@ -946,6 +948,8 @@ In order to support this auto merging capability, text block objects have an add
   * Refactor to ES6 class for major entry modules
   * Dependencies removed: lodash, async and yargs
   * Upgrade to Node v14.18.0 LTSs
+* v3.0.0 converted commonJS to ES Modules
+
 
 ### Install on Ubuntu
 
