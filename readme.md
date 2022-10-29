@@ -1,9 +1,6 @@
-> Pre-merge PR: [Convert commonJS to ES Module](https://github.com/modesty/pdf2json/pull/271). Please help to test it out and [report issues](https://github.com/modesty/pdf2json/issues) before 7/31/2022. Thanks.
-
-
 # pdf2json
 
-pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends it with interactive form elements and text content parsing outside browser.
+pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends with interactive form elements and text content parsing outside browser.
 
 The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, and also enable parsing local PDF to json file when using as a command line utility.
 
@@ -53,8 +50,8 @@ More test scripts with different commandline options can be found at *_package.j
 * Parse a PDF file then write to a JSON file:
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
 
     const pdfParser = new PDFParser();
 
@@ -87,8 +84,8 @@ Or, use more granular page level parsing events (v2.0.0)
 * Parse a PDF then write a .txt file (which only contains textual content of the PDF)
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
 
     const pdfParser = new PDFParser(this,1);
 
@@ -103,8 +100,8 @@ Or, use more granular page level parsing events (v2.0.0)
 * Parse a PDF then write a fields.json file that only contains interactive forms' fields information:
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
 
     const pdfParser = new PDFParser();
 
@@ -119,8 +116,8 @@ Or, use more granular page level parsing events (v2.0.0)
 Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ````javascript
-    const fs = require('fs'),
-        PDFParser = require("pdf2json");
+    import fs from "fs";
+    import PDFParser from "./pdfparser.js";
     
     const inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
     const outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
@@ -405,7 +402,7 @@ It does require the client of the payload to have the same dictionary definition
 ````
 v2.0.0: to access these dictionary programactically, do either
 ````javascript 
-    const {kColors, kFontFaces, kFontStyles} = require("./lib/pdfconst");
+    import {kColors, kFontFaces, kFontStyles} from "./lib/pdfconst.js";
 ````
 or via public static getters of PDFParser:
 ````javascript
@@ -936,6 +933,8 @@ In order to support this auto merging capability, text block objects have an add
 
 * v2.0.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
 
+* v3.0.0 converted commonJS to ES Modules, plus dependency update and other minor bug fixes. Please update your project configuration file to enable ES Module before upgrade, ex., in `tsconfig.json`, set `"compilerOptions":{"module":"ESNext"}`
+
 **Major Refactoring**
 * v2.0.0 has the major refactoring since 2015. Primary updates including:
   * Full PDF metadata support (see page format and breaking changes for details)
@@ -949,6 +948,8 @@ In order to support this auto merging capability, text block objects have an add
   * Refactor to ES6 class for major entry modules
   * Dependencies removed: lodash, async and yargs
   * Upgrade to Node v14.18.0 LTSs
+* v3.0.0 converted commonJS to ES Modules
+
 
 ### Install on Ubuntu
 
