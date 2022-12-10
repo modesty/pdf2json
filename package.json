@@ -43,8 +43,8 @@
     "parse-e3": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i200_test.pdf -o ./test/target/misc"
   },
   "engines": {
-    "node": ">=14.18.0",
-    "npm": ">=8.12.1"
+    "node": ">=18.12.1",
+    "npm": ">=8.19.2"
   },
   "type": "module",
   "bin": {
