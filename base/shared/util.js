@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* globals Cmd, ColorSpace, Dict, MozBlobBuilder, Name, PDFJS, Ref, URL */
+/* globals Cmd, ColorSpace, Dict, Blob, Name, PDFJS, Ref, URL */
 
 'use strict';
 
@@ -1098,12 +1098,7 @@ var StatTimer = (function StatTimerClosure() {
 })();
 
 PDFJS.createBlob = function createBlob(data, contentType) {
-  if (typeof Blob === 'function')
-    return new Blob([data], { type: contentType });
-  // Blob builder is deprecated in FF14 and removed in FF18.
-  var bb = new MozBlobBuilder();
-  bb.append(data);
-  return bb.getBlob(contentType);
+	return new Blob([data], { type: contentType });
 };
 
 PDFJS.createObjectURL = (function createObjectURLClosure() {
