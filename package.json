@@ -38,6 +38,7 @@
     "parse-r": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
     "parse-fd": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
     "parse-tb": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
+	"parse-tc": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
     "parse-e": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
     "parse-e2": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i243_problem_file_anon.pdf -o ./test/target/misc",
     "parse-e3": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i200_test.pdf -o ./test/target/misc"
