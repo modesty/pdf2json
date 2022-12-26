@@ -51,7 +51,7 @@ More test scripts with different commandline options can be found at *_package.j
 
 ````javascript
     import fs from "fs";
-    import PDFParser from "./pdfparser.js";
+    import PDFParser from "pdf2json";
 
     const pdfParser = new PDFParser();
 
@@ -85,7 +85,7 @@ Or, use more granular page level parsing events (v2.0.0)
 
 ````javascript
     import fs from "fs";
-    import PDFParser from "./pdfparser.js";
+    import PDFParser from "pdf2json";
 
     const pdfParser = new PDFParser(this,1);
 
@@ -101,7 +101,7 @@ Or, use more granular page level parsing events (v2.0.0)
 
 ````javascript
     import fs from "fs";
-    import PDFParser from "./pdfparser.js";
+    import PDFParser from "pdf2json";
 
     const pdfParser = new PDFParser();
 
@@ -117,7 +117,7 @@ Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ````javascript
     import fs from "fs";
-    import PDFParser from "./pdfparser.js";
+    import PDFParser from "pdf2json";
     
     const inputStream = fs.createReadStream("./pdf2json/test/pdf/fd/form/F1040EZ.pdf", {bufferSize: 64 * 1024});
     const outputStream = fs.createWriteStream("./pdf2json/test/target/fd/form/F1040EZ.json");
