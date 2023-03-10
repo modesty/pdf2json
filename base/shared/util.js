@@ -519,43 +519,34 @@ var Util = PDFJS.Util = (function UtilClosure() {
   };
 
   // Returns a rectangle [x1, y1, x2, y2] corresponding to the
-  // intersection of rect1 and rect2. If no intersection, returns 'false'
+  // intersection of rect1 and rect2. If no intersection, returns 'null'
   // The rectangle coordinates of rect1, rect2 should be [x1, y1, x2, y2]
   Util.intersect = function Util_intersect(rect1, rect2) {
-    function compare(a, b) {
-      return a - b;
+    const xLow = Math.max(
+      Math.min(rect1[0], rect1[2]),
+      Math.min(rect2[0], rect2[2])
+    );
+    const xHigh = Math.min(
+      Math.max(rect1[0], rect1[2]),
+      Math.max(rect2[0], rect2[2])
+    );
+    if (xLow > xHigh) {
+      return null;
+    }
+    const yLow = Math.max(
+      Math.min(rect1[1], rect1[3]),
+      Math.min(rect2[1], rect2[3])
+    );
+    const yHigh = Math.min(
+      Math.max(rect1[1], rect1[3]),
+      Math.max(rect2[1], rect2[3])
+    );
+    if (yLow > yHigh) {
+      return null;
     }
 
-    // Order points along the axes
-    var orderedX = [rect1[0], rect1[2], rect2[0], rect2[2]].sort(compare),
-        orderedY = [rect1[1], rect1[3], rect2[1], rect2[3]].sort(compare),
-        result = [];
-
-    rect1 = Util.normalizeRect(rect1);
-    rect2 = Util.normalizeRect(rect2);
-
-    // X: first and second points belong to different rectangles?
-    if ((orderedX[0] === rect1[0] && orderedX[1] === rect2[0]) ||
-        (orderedX[0] === rect2[0] && orderedX[1] === rect1[0])) {
-      // Intersection must be between second and third points
-      result[0] = orderedX[1];
-      result[2] = orderedX[2];
-    } else {
-      return false;
-    }
-
-    // Y: first and second points belong to different rectangles?
-    if ((orderedY[0] === rect1[1] && orderedY[1] === rect2[1]) ||
-        (orderedY[0] === rect2[1] && orderedY[1] === rect1[1])) {
-      // Intersection must be between second and third points
-      result[1] = orderedY[1];
-      result[3] = orderedY[2];
-    } else {
-      return false;
-    }
-
-    return result;
-  };
+    return [xLow, yLow, xHigh, yHigh];
+  }
 
   Util.sign = function Util_sign(num) {
     return num < 0 ? -1 : 1;
