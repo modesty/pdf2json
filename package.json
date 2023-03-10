@@ -30,7 +30,7 @@
   "typings": "./pdfparser.d.ts",
   "scripts": {
     "test": "cd ./test && sh p2j.forms.sh",
-    "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 6 success, 3 fail exception with stack trace\" ",
+    "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 7 success, 3 fail exception with stack trace\" ",
     "parse": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
     "parse-s": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
     "parse-t": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
