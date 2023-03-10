@@ -546,7 +546,7 @@ var Util = PDFJS.Util = (function UtilClosure() {
     }
 
     return [xLow, yLow, xHigh, yHigh];
-  }
+  };
 
   Util.sign = function Util_sign(num) {
     return num < 0 ? -1 : 1;
