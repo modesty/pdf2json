@@ -76,9 +76,9 @@ var Annotation = (function AnnotationClosure() {
     var data = this.data = {};
 
     data.subtype = dict.get('Subtype').name;
-    var rect = dict.get('Rect');
-    data.rect = Util.normalizeRect(rect);
     data.annotationFlags = dict.get('F');
+    this.setRectangle(dict.get('Rect'));
+    data.rect = this.rectangle;
 
     var color = dict.get('C');
     if (isArray(color) && color.length === 3) {
@@ -104,6 +104,20 @@ var Annotation = (function AnnotationClosure() {
   }
 
   Annotation.prototype = {
+    /**
+     * Set the rectangle.
+     *
+     * @public
+     * @memberof Annotation
+     * @param {Array} rectangle - The rectangle array with exactly four entries
+     */
+    setRectangle: function Annotation_setRectangle(rectangle) {
+      if (isArray(rectangle) && rectangle.length === 4) {
+        this.rectangle = Util.normalizeRect(rectangle);
+      } else {
+        this.rectangle = [0, 0, 0, 0];
+      }
+    },
 
     getData: function Annotation_getData() {
       return this.data;
