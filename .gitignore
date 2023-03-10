@@ -8,4 +8,4 @@ node_modules/
 target/
 .idea
 .npmrc
-
+package-lock.json
