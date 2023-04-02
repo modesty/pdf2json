@@ -1,5 +1,5 @@
 import fs from "fs";
-import nodeUtil from "util";
+import nodeUtil from "./base/shared/util";
 import { readFile } from "fs/promises";
 import { EventEmitter } from "events";
 
