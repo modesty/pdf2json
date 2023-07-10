@@ -8,7 +8,7 @@ declare class Pdfparser extends EventEmitter{
     on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
 }
 
-type EventMap = {
+export type EventMap = {
     "pdfParser_dataError": (errMsg: string) => void;
     "pdfParser_dataReady": (pdfData: Output) => void;
     "readable": (meta: Output["Meta"]) => void;
@@ -26,7 +26,7 @@ export interface Output{
     Pages: Page[]
 }
 
-declare interface Page{
+export declare interface Page{
     Width: number,
     Height: number,
     HLines: Line[],
@@ -37,7 +37,7 @@ declare interface Page{
     Boxsets: Boxset[]
 }
 
-declare interface Fill {
+export declare interface Fill {
     x: number,
     y: number,
     w: number,
@@ -46,7 +46,7 @@ declare interface Fill {
     clr?: number
 }
 
-declare interface Line {
+export declare interface Line {
     x: number,
     y: number,
     w: number,
@@ -54,7 +54,7 @@ declare interface Line {
     clr?:number
 }
 
-declare interface Text {
+export declare interface Text {
     x: number,
     y: number,
     w: number,
@@ -65,14 +65,14 @@ declare interface Text {
     clr?: number;
 }
 
-declare interface TextRun {
+export declare interface TextRun {
     T: string,
     S: number,
     TS: [number, number, 0|1, 0|1]
     RA?: number
 }
 
-declare interface Boxset {
+export declare interface Boxset {
     boxes: Box[],
     id : {
         Id: string,
@@ -80,7 +80,7 @@ declare interface Boxset {
     }
 }
 
-declare interface Field {
+export declare interface Field {
     id: {
         Id: string,
         EN?: number
@@ -99,7 +99,7 @@ declare interface Field {
     }
 }
 
-declare interface Box {
+export declare interface Box {
     x: number,
     y: number,
     w: number,
@@ -108,7 +108,7 @@ declare interface Box {
     clr?: number
 }
 
-declare interface Box {
+export declare interface Box {
     id : {
         Id : string,
         EN? : number
