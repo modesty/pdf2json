@@ -35,7 +35,6 @@ export default class PDFParser extends EventEmitter {
 
     #password = "";
     #context = null; // service context object, only used in Web Service project; null in command line	    #pdfFilePath = null;
-    #pdfFileMTime = null;
     #pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started	    #data = null;
     #pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache	    #PDFJS = null;
     #data = null; //if file read success, data is PDF content; if failed, data is "err" object	    #processFieldInfoXML = false;
@@ -52,7 +51,6 @@ export default class PDFParser extends EventEmitter {
     constructor(context, needRawText, password) {
         super();
         this.#context = context;
-        this.#pdfFilePath = null;
         this.#pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started	        this.#pdfFileMTime = null;
         this.#pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache	        this.#data = null;
         this.#data = null; //if file read success, data is PDF content; if failed, data is "err" object	        this.#processFieldInfoXML = false;
