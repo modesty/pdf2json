@@ -131,7 +131,8 @@ export default class PDFParser extends EventEmitter { // inherit from event emit
 	}
 
 	// Introduce a way to directly process buffers without the need to write it to a temporary file
-	parseBuffer(pdfBuffer) {
+	parseBuffer(pdfBuffer, verbosity) {
+		nodeUtil.verbosity(verbosity || 0);
 		this.#startParsingPDF(pdfBuffer);
 	}
 
