@@ -60,8 +60,10 @@
       "@xmldom/xmldom": "^0.8.8"
    },
    "devDependencies": {
+      "@rollup/plugin-replace": "^5.0.2",
       "@types/node": "^20.3.1",
-      "rollup": "^3.29.2"
+      "rollup": "^3.29.2",
+      "rollup-plugin-node-builtins": "^2.1.2"
    },
    "bundledDependencies": [
       "@xmldom/xmldom"
