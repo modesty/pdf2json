@@ -1,78 +1,87 @@
 {
-  "name": "pdf2json",
-  "version": "3.0.4",
-  "description": "PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
-  "keywords": [
-    "pdf",
-    "pdf parser",
-    "pdf2json",
-    "convert pdf to json",
-    "server side PDF parser",
-    "port pdf.js to node.js",
-    "PDF binary to text",
-    "commandline utility to parse pdf to json",
-    "JSON",
-    "javascript",
-    "PDF canvas",
-    "pdf.js fork"
-  ],
-  "author": {
-    "name": "Modesty Zhang",
-    "email": "modestyz@hotmail.com",
-    "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
-  },
-  "homepage": "https://github.com/modesty/pdf2json",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/modesty/pdf2json.git"
-  },
-  "main": "./pdfparser.js",
-  "typings": "./pdfparser.d.ts",
-  "scripts": {
-    "test": "cd ./test && sh p2j.forms.sh",
-    "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 7 success, 3 fail exception with stack trace\" ",
-    "parse": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
-    "parse-s": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
-    "parse-t": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
-    "parse-c": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
-    "parse-m": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
-    "parse-r": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
-    "parse-fd": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
-    "parse-tb": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
-	"parse-tc": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
-	"parse-rectFix": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
-    "parse-e": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
-    "parse-e2": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i243_problem_file_anon.pdf -o ./test/target/misc",
-    "parse-e3": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i200_test.pdf -o ./test/target/misc"
-  },
-  "engines": {
-    "node": ">=18.12.1",
-    "npm": ">=8.19.2"
-  },
-  "type": "module",
-  "bin": {
-    "pdf2json": "./bin/pdf2json.js"
-  },
-  "dependencies": {
-    "@xmldom/xmldom": "^0.8.8"
-  },
-  "devDependencies": {
-    "@types/node": "^20.3.1"
-  },
-  "bundledDependencies": [
-    "@xmldom/xmldom"
-  ],
-  "maintainers": [
-    {
+   "name": "pdf2json",
+   "version": "3.0.4",
+   "description": "PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
+   "keywords": [
+      "pdf",
+      "pdf parser",
+      "pdf2json",
+      "convert pdf to json",
+      "server side PDF parser",
+      "port pdf.js to node.js",
+      "PDF binary to text",
+      "commandline utility to parse pdf to json",
+      "JSON",
+      "javascript",
+      "PDF canvas",
+      "pdf.js fork"
+   ],
+   "author": {
       "name": "Modesty Zhang",
       "email": "modestyz@hotmail.com",
       "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
-    }
-  ],
-  "contributors": [],
-  "bugs": {
-    "url": "http://github.com/modesty/pdf2json/issues"
-  },
-  "license": "Apache-2.0",
-  "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
+   },
+   "homepage": "https://github.com/modesty/pdf2json",
+   "repository": {
+      "type": "git",
+      "url": "git://github.com/modesty/pdf2json.git"
+   },
+   "main": "./dist/pdfparser.cjs",
+   "module": "./pdfparser.js",
+   "typings": "./pdfparser.d.ts",
+   "scripts": {
+      "test": "cd ./test && sh p2j.forms.sh",
+      "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 7 success, 3 fail exception with stack trace\" ",
+      "parse": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
+      "parse-s": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
+      "parse-t": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
+      "parse-c": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
+      "parse-m": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
+      "parse-r": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
+      "parse-fd": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
+      "parse-tb": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
+      "parse-tc": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
+      "parse-rectFix": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
+      "parse-e": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
+      "parse-e2": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i243_problem_file_anon.pdf -o ./test/target/misc",
+      "parse-e3": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i200_test.pdf -o ./test/target/misc",
+      "build:dist": "rollup -c ./rollup.config.js"
+   },
+   "engines": {
+      "node": ">=18.12.1",
+      "npm": ">=8.19.2"
+   },
+   "type": "module",
+   "bin": {
+      "pdf2json": "./bin/pdf2json.js"
+   },
+   "dependencies": {
+      "@xmldom/xmldom": "^0.8.8"
+   },
+   "devDependencies": {
+      "@types/node": "^20.3.1",
+      "rollup": "^3.29.2"
+   },
+   "bundledDependencies": [
+      "@xmldom/xmldom"
+   ],
+   "maintainers": [
+      {
+         "name": "Modesty Zhang",
+         "email": "modestyz@hotmail.com",
+         "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+      }
+   ],
+   "contributors": [],
+   "bugs": {
+      "url": "http://github.com/modesty/pdf2json/issues"
+   },
+   "exports": {
+      ".": {
+         "import": "./pdfparser.js",
+         "require": "./dist/pdfparser.cjs"
+      }
+   },
+   "license": "Apache-2.0",
+   "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
 }
