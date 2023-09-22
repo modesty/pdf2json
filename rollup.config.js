@@ -13,7 +13,7 @@ export default [
          'stream',
       ],
       output: {
-         file: 'dist/pdfparser.cjs',
+         file: 'pdfparser.cjs',
          format: 'cjs',
          name: 'pdfparser',
          exports: 'default',
@@ -33,7 +33,7 @@ export default [
          'stream',
       ],
       output: {
-         file: 'dist/pdfparser.mjs',
+         file: 'pdfparser.mjs',
          format: 'es',
       },
    },
