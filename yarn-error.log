@@ -1,0 +1,145 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn publish
+
+PATH: 
+  /opt/homebrew/opt/imagemagick@6/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.13.0
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: Cannot find module "."
+      at webpackMissingModule (/usr/local/lib/node_modules/yarn/lib/cli.js:118255:64)
+      at pkg (/usr/local/lib/node_modules/yarn/lib/cli.js:118255:142)
+      at again (/usr/local/lib/node_modules/yarn/lib/cli.js:118210:22)
+      at depsFor (/usr/local/lib/node_modules/yarn/lib/cli.js:118224:4)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:42622:30
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+     "name": "@juristic/pdf2json",
+     "version": "3.0.5",
+     "description": "PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
+     "keywords": [
+        "pdf",
+        "pdf parser",
+        "pdf2json",
+        "convert pdf to json",
+        "server side PDF parser",
+        "port pdf.js to node.js",
+        "PDF binary to text",
+        "commandline utility to parse pdf to json",
+        "JSON",
+        "javascript",
+        "PDF canvas",
+        "pdf.js fork"
+     ],
+     "author": {
+        "name": "Modesty Zhang",
+        "email": "modestyz@hotmail.com",
+        "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+     },
+     "homepage": "https://github.com/modesty/pdf2json",
+     "repository": {
+        "type": "git",
+        "url": "git://github.com/modesty/pdf2json.git"
+     },
+     "main": "./dist/pdfparser.cjs",
+     "module": "./pdfparser.js",
+     "typings": "./pdfparser.d.ts",
+     "scripts": {
+        "test": "cd ./test && sh p2j.forms.sh",
+        "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 7 success, 3 fail exception with stack trace\" ",
+        "parse": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
+        "parse-s": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
+        "parse-t": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
+        "parse-c": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
+        "parse-m": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
+        "parse-r": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
+        "parse-fd": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
+        "parse-tb": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
+        "parse-tc": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
+        "parse-rectFix": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
+        "parse-e": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
+        "parse-e2": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i243_problem_file_anon.pdf -o ./test/target/misc",
+        "parse-e3": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i200_test.pdf -o ./test/target/misc",
+        "build:dist": "rollup -c ./rollup.config.js",
+        "build": "npm run build:dist"
+     },
+     "engines": {
+        "node": ">=18.12.1",
+        "npm": ">=8.19.2"
+     },
+     "type": "module",
+     "bin": {
+        "pdf2json": "./bin/pdf2json.js"
+     },
+     "dependencies": {
+        "@xmldom/xmldom": "^0.8.8"
+     },
+     "devDependencies": {
+        "@types/node": "^20.3.1",
+        "rollup": "^3.29.2"
+     },
+     "bundledDependencies": [
+        "@xmldom/xmldom"
+     ],
+     "maintainers": [
+        {
+           "name": "Modesty Zhang",
+           "email": "modestyz@hotmail.com",
+           "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+        }
+     ],
+     "contributors": [],
+     "bugs": {
+        "url": "http://github.com/modesty/pdf2json/issues"
+     },
+     "exports": {
+        ".": {
+           "import": "./pdfparser.js",
+           "require": "./dist/pdfparser.cjs"
+        }
+     },
+     "license": "Apache-2.0",
+     "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  # THIS IS AN AUTOGENERATED FILE. DO NOT EDIT THIS FILE DIRECTLY.
+  # yarn lockfile v1
+  
+  
+  "@types/node@^20.3.1":
+    version "20.6.3"
+    resolved "https://registry.yarnpkg.com/@types/node/-/node-20.6.3.tgz#5b763b321cd3b80f6b8dde7a37e1a77ff9358dd9"
+    integrity sha512-HksnYH4Ljr4VQgEy2lTStbCKv/P590tmPe5HqOnv9Gprffgv5WXAY+Y5Gqniu0GGqeTCUdBnzC3QSrzPkBkAMA==
+  
+  "@xmldom/xmldom@^0.8.8":
+    version "0.8.10"
+    resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.8.10.tgz#a1337ca426aa61cef9fe15b5b28e340a72f6fa99"
+    integrity sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==
+  
+  fsevents@~2.3.2:
+    version "2.3.3"
+    resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
+    integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
+  
+  rollup@^3.29.2:
+    version "3.29.2"
+    resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.29.2.tgz#cbc76cd5b03b9f9e93be991d23a1dff9c6d5b740"
+    integrity sha512-CJouHoZ27v6siztc21eEQGo0kIcE5D1gVPA571ez0mMYb25LGYGKnVNXpEj5MGlepmDWGXNjDB5q7uNiPHC11A==
+    optionalDependencies:
+      fsevents "~2.3.2"
