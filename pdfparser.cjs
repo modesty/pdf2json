@@ -1598,9 +1598,13 @@ function createScratchCanvas(width, height) { return new CanvasRenderingContext2
 
 const PDFJS = {};
 
-const baseDir = `${__dirname$1}/../base/`;
+const baseDir = `${__dirname$1}/base/`;
 const _baseCode = _pdfjsFiles.reduce( (preContent, fileName, idx, arr) => preContent += fs.readFileSync(baseDir + fileName, 'utf8'), "");
-eval(_baseCode);
+(function (globalScope = {}) {
+               (function (globalScope = {}) {
+               eval(_baseCode);
+            })();
+            })();
 
 ////////////////////////////////start of helper classes
 class PDFPageParser {

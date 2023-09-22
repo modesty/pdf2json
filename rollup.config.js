@@ -1,3 +1,6 @@
+import replace from '@rollup/plugin-replace';
+import builtins from 'rollup-plugin-node-builtins';
+
 export default [
    {
       input: './pdfparser.js',
@@ -18,6 +21,20 @@ export default [
          name: 'pdfparser',
          exports: 'default',
       },
+      plugins: [
+         replace({
+            '../base': '/base/',
+            delimiters: ['/', '/'],
+         }),
+         replace({
+            'eval(_baseCode);': `(function (globalScope = {}) {
+               eval(_baseCode);
+            })();`,
+            delimiters: ['', ''],
+            preventAssignment: false,
+         }),
+         builtins(),
+      ],
    },
    {
       input: './pdfparser.js',
@@ -36,5 +53,12 @@ export default [
          file: 'pdfparser.mjs',
          format: 'es',
       },
+      plugins: [
+         replace({
+            '../base': '/base/',
+            delimiters: ['/', '/'],
+         }),
+         builtins(),
+      ],
    },
 ];

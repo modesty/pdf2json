@@ -1595,7 +1595,7 @@ function createScratchCanvas(width, height) { return new CanvasRenderingContext2
 
 const PDFJS = {};
 
-const baseDir = `${__dirname}/../base/`;
+const baseDir = `${__dirname}/base/`;
 const _baseCode = _pdfjsFiles.reduce( (preContent, fileName, idx, arr) => preContent += fs.readFileSync(baseDir + fileName, 'utf8'), "");
 eval(_baseCode);
 
