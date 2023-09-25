@@ -7,8 +7,8 @@ var vows = require('vows'),
 (nodeEvents = require('events')),
    (_ = require('lodash')),
    (PdfParser_js = require('../pdfparser.js'));
-PdfParser_cjs = require('../dist/pdfparser.cjs');
-PdfParser_mjs = require('../dist/pdfparser.mjs');
+PdfParser_cjs = require('../pdfparser.cjs');
+PdfParser_mjs = require('../pdfparser.mjs');
 
 testSuite(PdfParser_js);
 testSuite(PdfParser_cjs);
