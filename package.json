@@ -31,6 +31,7 @@
    "typings": "./pdfparser.d.ts",
    "scripts": {
       "test": "cd ./test && sh p2j.forms.sh",
+      "test:folder": "node ./test/index.cjs",
       "test-misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 7 success, 3 fail exception with stack trace\" ",
       "parse": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
       "parse-s": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
@@ -62,8 +63,10 @@
    "devDependencies": {
       "@rollup/plugin-replace": "^5.0.2",
       "@types/node": "^20.3.1",
+      "lodash": "^4.17.21",
       "rollup": "^3.29.2",
-      "rollup-plugin-node-builtins": "^2.1.2"
+      "rollup-plugin-node-builtins": "^2.1.2",
+      "vows": "^0.8.3"
    },
    "bundledDependencies": [
       "@xmldom/xmldom"

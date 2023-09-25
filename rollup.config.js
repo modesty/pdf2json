@@ -21,38 +21,7 @@ export default [
          name: 'pdfparser',
          exports: 'default',
       },
-      plugins: [
-         replace({
-            '../base': '/base/',
-            delimiters: ['/', '/'],
-         }),
-         replace({
-            'eval(_baseCode);': `(function (globalScope = {}) {
-               eval(_baseCode);
-            })();`,
-            delimiters: ['', ''],
-            preventAssignment: false,
-         }),
-         builtins(),
-      ],
-   },
-   {
-      input: './pdfparser.js',
-      external: [
-         'fs',
-         'util',
-         'fs/promises',
-         'events',
-         'path',
-         'url',
-         'buffer',
-         '@xmldom/xmldom',
-         'stream',
-      ],
-      output: {
-         file: 'pdfparser.mjs',
-         format: 'es',
-      },
+      treeshake: false,
       plugins: [
          replace({
             '../base': '/base/',
