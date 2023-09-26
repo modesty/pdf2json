@@ -1,3 +1,4 @@
+import nodeResolve from '@rollup/plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
 import builtins from 'rollup-plugin-node-builtins';
 
@@ -18,8 +19,7 @@ export default [
       output: {
          file: 'pdfparser.cjs',
          format: 'cjs',
-         name: 'pdfparser',
-         exports: 'default',
+         // exports: 'named',
       },
       treeshake: false,
       plugins: [
