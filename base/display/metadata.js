@@ -18,22 +18,6 @@
 
 'use strict';
 
-// since this gets evaluated in pdfparser and DOMParser somehow does not exist in a CJS environment
-// we catch the error early and use @xmldom/xmldom DOMParser
-
-// Not exactly sure how DOMParser is available globally in a node environment in the first place
-// feel free to change this if a better method is to be found
-try {
-   var DomParser = DOMParser;
-} catch (error) {
-   if (typeof module === 'object' && typeof module.exports === 'object') {
-      // This is a CommonJS (CJS) environment
-      DomParser = require('@xmldom/xmldom').DOMParser;
-   } else {
-      throw error;
-   }
-}
-
 var Metadata = (PDFJS.Metadata = (function MetadataClosure() {
    function fixMetadata(meta) {
       return meta.replace(/>\\376\\377([^<]+)/g, function (all, codes) {
@@ -65,7 +49,7 @@ var Metadata = (PDFJS.Metadata = (function MetadataClosure() {
          // Ghostscript produces invalid metadata
          meta = fixMetadata(meta);
 
-         var parser = new DomParser();
+         var parser = new DOMParser();
          meta = parser.parseFromString(meta, 'application/xml');
       } else if (!(meta instanceof Document)) {
          error('Metadata: Invalid metadata object');
