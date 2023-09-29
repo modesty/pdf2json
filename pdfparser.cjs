@@ -296,473 +296,551 @@ class PDFFill{
     }
 }
 
-const _boldSubNames = ["bd", "bold", "demi", "black"];
-const _stdFonts = ["arial", "helvetica", "sans-serif ", "courier ","monospace ", "ocr "];
+const _boldSubNames = ['bd', 'bold', 'demi', 'black'];
+const _stdFonts = [
+   'arial',
+   'helvetica',
+   'sans-serif ',
+   'courier ',
+   'monospace ',
+   'ocr ',
+];
 const DISTANCE_DELTA = 0.1;
 
 class PDFFont {
-    #initTypeName() {
-        let typeName = (this.fontObj.name || this.fontObj.fallbackName);
-        if (!typeName) {
-            typeName = kFontFaces[0]; //default font family name
-        }
-        typeName = typeName.toLowerCase();
-        return typeName;
-    }
+   #initTypeName() {
+      let typeName = this.fontObj.name || this.fontObj.fallbackName;
+      if (!typeName) {
+         typeName = kFontFaces[0]; //default font family name
+      }
+      typeName = typeName.toLowerCase();
+      return typeName;
+   }
 
-    #initSubType() {
-        let subType = this.typeName;
-        let bold = false;
+   #initSubType() {
+      let subType = this.typeName;
+      let bold = false;
 
-        let nameArray = this.typeName.split('+');
-        if (Array.isArray(nameArray) && nameArray.length > 1) {
-            subType = nameArray[1].split("-");
-            if (Array.isArray(subType) && subType.length > 1) {
-                let subName = subType[1].toLowerCase();
-                bold = _boldSubNames.indexOf(subName) >= 0;
-                subType = subType[0];
-            }
-        }
-        return {subType, bold};
-    }
+      let nameArray = this.typeName.split('+');
+      if (Array.isArray(nameArray) && nameArray.length > 1) {
+         subType = nameArray[1].split('-');
+         if (Array.isArray(subType) && subType.length > 1) {
+            let subName = subType[1].toLowerCase();
+            bold = _boldSubNames.indexOf(subName) >= 0;
+            subType = subType[0];
+         }
+      }
+      return { subType, bold };
+   }
 
-    #initSymbol() {
-        let isSymbol = this.typeName.indexOf("symbol") > 0 || kFontFaces[2].indexOf(this.subType) >= 0;
-        if (this.fontObj.isSymbolicFont) {
-            let mFonts = _stdFonts.filter( (oneName) => (this.typeName.indexOf(oneName) >= 0) );
+   #initSymbol() {
+      let isSymbol =
+         this.typeName.indexOf('symbol') > 0 ||
+         kFontFaces[2].indexOf(this.subType) >= 0;
+      if (this.fontObj.isSymbolicFont) {
+         let mFonts = _stdFonts.filter(
+            (oneName) => this.typeName.indexOf(oneName) >= 0
+         );
 
-            if (mFonts.length > 0) {
-                this.fontObj.isSymbolicFont = false; //lots of Arial-based font is detected as symbol in VA forms (301, 76-c, etc.) reset the flag for now
-                nodeUtil.p2jinfo("Reset: isSymbolicFont (false) for " + this.fontObj.name);
-            }
-        }
-        else {
-            if (isSymbol) {
-                this.fontObj.isSymbolicFont = true; //text pdf: va_ind_760c
-                nodeUtil.p2jinfo("Reset: isSymbolicFont (true) for " + this.fontObj.name);
-            }
-        }  
-        return isSymbol;
-    }
+         if (mFonts.length > 0) {
+            this.fontObj.isSymbolicFont = false; //lots of Arial-based font is detected as symbol in VA forms (301, 76-c, etc.) reset the flag for now
+            nodeUtil.p2jinfo(
+               'Reset: isSymbolicFont (false) for ' + this.fontObj.name
+            );
+         }
+      } else {
+         if (isSymbol) {
+            this.fontObj.isSymbolicFont = true; //text pdf: va_ind_760c
+            nodeUtil.p2jinfo(
+               'Reset: isSymbolicFont (true) for ' + this.fontObj.name
+            );
+         }
+      }
+      return isSymbol;
+   }
 
-    #initSpaceWidth() {
-        let spaceWidth = this.fontObj.spaceWidth;
-	    if (!spaceWidth) {
-		    var spaceId = Array.isArray(this.fontObj.toFontChar) ? this.fontObj.toFontChar.indexOf(32) : -1;
-		    spaceWidth = (spaceId >= 0 && Array.isArray(this.fontObj.widths)) ? this.fontObj.widths[spaceId] : 250;
-	    }
-	    spaceWidth = PDFUnit.toFormX(spaceWidth) / 32;
-        return spaceWidth;
-    }
+   #initSpaceWidth() {
+      let spaceWidth = this.fontObj.spaceWidth;
+      if (!spaceWidth) {
+         var spaceId = Array.isArray(this.fontObj.toFontChar)
+            ? this.fontObj.toFontChar.indexOf(32)
+            : -1;
+         spaceWidth =
+            spaceId >= 0 && Array.isArray(this.fontObj.widths)
+               ? this.fontObj.widths[spaceId]
+               : 250;
+      }
+      spaceWidth = PDFUnit.toFormX(spaceWidth) / 32;
+      return spaceWidth;
+   }
 
-    // constructor
-    constructor(fontObj) {
-        this.fontObj = fontObj;
+   // constructor
+   constructor(fontObj) {
+      this.fontObj = fontObj;
 
-        this.typeName = this.#initTypeName();
+      this.typeName = this.#initTypeName();
 
-        const {subType, bold} = this.#initSubType();
-        this.subType = subType;
-        this.bold = bold;
+      const { subType, bold } = this.#initSubType();
+      this.subType = subType;
+      this.bold = bold;
 
-        this.isSymbol = this.#initSymbol();
-        this.spaceWidth = this.#initSpaceWidth();
+      this.isSymbol = this.#initSymbol();
+      this.spaceWidth = this.#initSpaceWidth();
 
-        this.fontSize = 1;
-        this.faceIdx = 0;
-        this.italic = false;
-        this.fontStyleId = -1;
-    }
-    
-    /** sort text blocks by y then x */    
-    static compareBlockPos(t1, t2) {
-        if (t1.y < t2.y - DISTANCE_DELTA) {
+      this.fontSize = 1;
+      this.faceIdx = 0;
+      this.italic = false;
+      this.fontStyleId = -1;
+   }
+
+   /** sort text blocks by y then x */
+   static compareBlockPos(t1, t2) {
+      if (t1.y < t2.y - DISTANCE_DELTA) {
+         return -1;
+      }
+      if (Math.abs(t1.y - t2.y) <= DISTANCE_DELTA) {
+         if (t1.x < t2.x - DISTANCE_DELTA) {
             return -1;
-        }
-        if (Math.abs(t1.y - t2.y) <= DISTANCE_DELTA) {
-            if (t1.x < t2.x - DISTANCE_DELTA) {
-                return -1;
+         }
+         if (Math.abs(t1.x - t2.x) <= DISTANCE_DELTA) {
+            return 0;
+         }
+      }
+      return 1;
+   }
+
+   static haveSameStyle(t1, t2) {
+      let retVal = t1.R[0].S === t2.R[0].S;
+      if (retVal && t1.R[0].S < 0) {
+         for (let i = 0; i < t1.R[0].TS.length; i++) {
+            if (t1.R[0].TS[i] !== t2.R[0].TS[i]) {
+               retVal = false;
+               break;
             }
-            if (Math.abs(t1.x - t2.x) <= DISTANCE_DELTA) {
-                return 0;
+         }
+      }
+      if (retVal) {
+         // make sure both block are not rotated
+         retVal =
+            typeof t1.R[0].RA === 'undefined' &&
+            typeof t2.R[0].RA === 'undefined';
+      }
+
+      return retVal;
+   }
+
+   static getSpaceThreshHold(t1) {
+      return (PDFFont.getFontSize(t1) / 12) * t1.sw;
+   }
+
+   static areAdjacentBlocks(t1, t2) {
+      const isInSameLine = Math.abs(t1.y - t2.y) <= DISTANCE_DELTA;
+      const isDistanceSmallerThanASpace =
+         t2.x - t1.x - t1.w < PDFFont.getSpaceThreshHold(t1);
+
+      return isInSameLine && isDistanceSmallerThanASpace;
+   }
+
+   static getFontSize(textBlock) {
+      const sId = textBlock.R[0].S;
+      return sId < 0 ? textBlock.R[0].TS[1] : kFontStyles[sId][1];
+   }
+
+   static areDuplicateBlocks(t1, t2) {
+      return (
+         t1.x == t2.x &&
+         t1.y == t2.y &&
+         t1.R[0].T == t2.R[0].T &&
+         PDFFont.haveSameStyle(t1, t2)
+      );
+   }
+
+   // private
+   #setFaceIndex() {
+      const fontObj = this.fontObj;
+
+      this.bold = fontObj.bold;
+      if (!this.bold) {
+         this.bold =
+            this.typeName.indexOf('bold') >= 0 ||
+            this.typeName.indexOf('black') >= 0;
+      }
+      this.italic = fontObj.italic; // fix https://github.com/modesty/pdf2json/issues/42
+      // Extended the fix for https://github.com/modesty/pdf2json/issues/42
+      if (!this.italic) {
+         this.italic =
+            this.typeName.indexOf('italic') >= 0 ||
+            this.typeName.indexOf('oblique') >= 0;
+      }
+      // Added detection of hybrid dual bolditalic fonts
+      if (
+         (!this.bold || !this.italic) &&
+         this.typeName.indexOf('boldobl') >= 0
+      ) {
+         this.bold = true;
+         this.italic = true;
+      }
+
+      let typeName = this.subType;
+      if (fontObj.isSerifFont) {
+         if (kFontFaces[1].indexOf(typeName) >= 0) this.faceIdx = 1;
+      } else if (kFontFaces[2].indexOf(this.subType) >= 0) {
+         this.faceIdx = 2;
+      } else if (fontObj.isMonospace) {
+         this.faceIdx = 3;
+
+         if (kFontFaces[4].indexOf(typeName) >= 0) this.faceIdx = 4;
+         else if (kFontFaces[5].indexOf(typeName) >= 0) this.faceIdx = 5;
+      } else if (fontObj.isSymbolicFont) {
+         this.faceIdx = 2;
+      }
+
+      if (this.faceIdx == 0) {
+         if (this.typeName.indexOf('narrow') > 0) this.faceIdx = 1;
+      }
+
+      //        nodeUtil.p2jinfo"typeName = " + typeName + " => faceIdx = " + this.faceIdx);
+   }
+
+   #getFontStyleIndex(fontSize) {
+      this.#setFaceIndex();
+
+      //MQZ Feb.28.2013. Adjust bold text fontsize to work around word spacing issue
+      this.fontSize = this.bold && fontSize > 12 ? fontSize + 1 : fontSize;
+
+      let fsa = [
+         this.faceIdx,
+         this.fontSize,
+         this.bold ? 1 : 0,
+         this.italic ? 1 : 0,
+      ];
+      let retVal = -1;
+
+      kFontStyles.forEach(function (element, index, list) {
+         if (retVal === -1) {
+            if (
+               element[0] === fsa[0] &&
+               element[1] === fsa[1] &&
+               element[2] === fsa[2] &&
+               element[3] === fsa[3]
+            ) {
+               retVal = index;
             }
-        }
-        return 1;
-    }
+         }
+      });
 
-    static haveSameStyle(t1, t2) {
-        let retVal = t1.R[0].S === t2.R[0].S;
-        if (retVal && t1.R[0].S < 0) {
-            for (let i = 0; i < t1.R[0].TS.length; i++) {
-                if (t1.R[0].TS[i] !== t2.R[0].TS[i]) {
-                    retVal = false;
-                    break;
-                }
-            }
-        }
-        if (retVal) { // make sure both block are not rotated
-            retVal = (typeof t1.R[0].RA === 'undefined') && (typeof t2.R[0].RA === 'undefined');
-        }
+      return retVal;
+   }
 
-        return retVal;
-    }
+   #processSymbolicFont(str) {
+      let retVal = str;
 
-    static getSpaceThreshHold(t1) {
-        return (PDFFont.getFontSize(t1)/12) * t1.sw;
-    }
+      if (!str || str.length !== 1) return retVal;
 
-    static areAdjacentBlocks(t1, t2) {
-        const isInSameLine = Math.abs(t1.y - t2.y) <= DISTANCE_DELTA;
-        const isDistanceSmallerThanASpace = ((t2.x - t1.x - t1.w) < PDFFont.getSpaceThreshHold(t1));
+      if (!this.fontObj.isSymbolicFont || !this.isSymbol) {
+         if (retVal == 'C' || retVal == 'G') {
+            //prevent symbolic encoding from the client
+            retVal = ' ' + retVal + ' '; //sample: va_ind_760c
+         }
+         return retVal;
+      }
 
-        return isInSameLine && isDistanceSmallerThanASpace;
-    }
+      switch (str.charCodeAt(0)) {
+         case 20:
+            retVal = '\u2713';
+            break; //check mark
+         case 70:
+            retVal = this.fontObj.type === 'CIDFontType0' ? '\u26A0' : '\u007D';
+            break; //exclaimation in triangle OR right curly bracket
+         case 71:
+            retVal = '\u25b6';
+            break; //right triangle
+         case 97:
+            retVal = '\u25b6';
+            break; //right triangle
+         case 99:
+            retVal = this.isSymbol ? '\u2022' : '\u25b2';
+            break; //up triangle. set to Bullet Dot for VA SchSCR
+         case 100:
+            retVal = '\u25bc';
+            break; //down triangle
+         case 103:
+            retVal = '\u27A8';
+            break; //right arrow. sample: va_ind_760pff and pmt
+         case 106:
+            retVal = '';
+            break; //VA 301: string j character by the checkbox, hide it for now
+         case 114:
+            retVal = '\u2022';
+            break; //Bullet dot
+         case 115:
+            retVal = '\u25b2';
+            break; //up triangle
+         case 116:
+            retVal = '\u2022';
+            break; //Bullet dot
+         case 118:
+            retVal = '\u2022';
+            break; //Bullet dot
+         default:
+            nodeUtil.p2jinfo(
+               this.fontObj.type +
+                  ' - SymbolicFont - (' +
+                  this.fontObj.name +
+                  ') : ' +
+                  str.charCodeAt(0) +
+                  '::' +
+                  str.charCodeAt(1) +
+                  ' => ' +
+                  retVal
+            );
+      }
 
-	static getFontSize(textBlock) {
-		const sId = textBlock.R[0].S;
-		return (sId < 0) ? textBlock.R[0].TS[1] : kFontStyles[sId][1];
-	}
+      return retVal;
+   }
 
-    static areDuplicateBlocks(t1, t2) {
-        return t1.x == t2.x && t1.y == t2.y && t1.R[0].T == t2.R[0].T && PDFFont.haveSameStyle(t1, t2);
-    }
+   #textRotationAngle(matrix2D) {
+      let retVal = 0;
+      if (matrix2D[0][0] === 0 && matrix2D[1][1] === 0) {
+         if (matrix2D[0][1] != 0 && matrix2D[1][0] != 0) {
+            if (matrix2D[0][1] / matrix2D[1][0] + 1 < 0.0001) retVal = 90;
+         }
+      } else if (matrix2D[0][0] !== 0 && matrix2D[1][1] !== 0) {
+         let r1 = Math.atan(-matrix2D[0][1] / matrix2D[0][0]);
+         let r2 = Math.atan(matrix2D[1][0] / matrix2D[1][1]);
+         if (Math.abs(r1) > 0.0001 && r1 - r2 < 0.0001) {
+            retVal = (r1 * 180) / Math.PI;
+         }
+      }
+      return retVal;
+   }
 
-    // private
-    #setFaceIndex() {
-        const fontObj = this.fontObj;
+   // public instance methods
+   processText(p, str, maxWidth, color, fontSize, targetData, matrix2D) {
+      const text = this.#processSymbolicFont(str);
+      if (!text) {
+         return;
+      }
+      this.fontStyleId = this.#getFontStyleIndex(fontSize);
 
-        this.bold = fontObj.bold;
-        if (!this.bold) {
-            this.bold = this.typeName.indexOf("bold") >= 0 || this.typeName.indexOf("black") >= 0;
-        }
-        this.italic = fontObj.italic; // fix https://github.com/modesty/pdf2json/issues/42
-        // Extended the fix for https://github.com/modesty/pdf2json/issues/42
-        if (!this.italic) {
-            this.italic = this.typeName.indexOf("italic") >= 0 || this.typeName.indexOf("oblique") >= 0;
-        }
-        // Added detection of hybrid dual bolditalic fonts
-        if (((!this.bold) || (!this.italic)) && (this.typeName.indexOf("boldobl") >= 0)) {
-            this.bold = true;
-            this.italic = true;
-        }
+      // when this.fontStyleId === -1, it means the text style doesn't match any entry in the dictionary
+      // adding TS to better describe text style [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic];
+      const TS = [
+         this.faceIdx,
+         this.fontSize,
+         this.bold ? 1 : 0,
+         this.italic ? 1 : 0,
+      ];
 
-        let typeName = this.subType;
-        if (fontObj.isSerifFont) {
-            if (kFontFaces[1].indexOf(typeName) >= 0)
-                this.faceIdx = 1;
-        }
-        else if (kFontFaces[2].indexOf(this.subType) >= 0) {
-            this.faceIdx = 2;
-        }
-        else if (fontObj.isMonospace) {
-            this.faceIdx = 3;
+      const clrId = PDFUnit.findColorIndex(color);
+      const colorObj =
+         clrId >= 0 && clrId < PDFUnit.colorCount()
+            ? { clr: clrId }
+            : { oc: color };
 
-            if (kFontFaces[4].indexOf(typeName) >= 0)
-                this.faceIdx = 4;
-            else if (kFontFaces[5].indexOf(typeName) >= 0)
-                this.faceIdx = 5;
-        }
-        else if (fontObj.isSymbolicFont) {
-            this.faceIdx = 2;
-        }
+      let textRun = {
+         T: this.flash_encode(text),
+         S: this.fontStyleId,
+         TS: TS,
+      };
+      const rAngle = this.#textRotationAngle(matrix2D);
+      if (rAngle != 0) {
+         nodeUtil.p2jinfo(str + ': rotated ' + rAngle + ' degree.');
+         textRun = { ...textRun, RA: rAngle };
+      }
 
-        if (this.faceIdx == 0) {
-            if (this.typeName.indexOf("narrow") > 0)
-                this.faceIdx = 1;
-        }
+      const oneText = {
+         x: PDFUnit.toFormX(p.x) - 0.25,
+         y: PDFUnit.toFormY(p.y) - 0.75,
+         w: PDFUnit.toFixedFloat(maxWidth),
+         ...colorObj, //MQZ.07/29/2013: when color is not in color dictionary, set the original color (oc)
+         sw: this.spaceWidth, //font space width, use to merge adjacent text blocks
+         A: 'left',
+         R: [textRun],
+      };
 
-//        nodeUtil.p2jinfo"typeName = " + typeName + " => faceIdx = " + this.faceIdx);
-    }
+      targetData.Texts.push(oneText);
+   }
 
-    #getFontStyleIndex(fontSize) {
-        this.#setFaceIndex();
+   flash_encode(str) {
+      let retVal = encodeURIComponent(str);
+      retVal = retVal.replace('%C2%96', '-');
+      retVal = retVal.replace('%C2%91', '%27');
+      retVal = retVal.replace('%C2%92', '%27');
+      retVal = retVal.replace('%C2%82', '%27');
+      retVal = retVal.replace('%C2%93', '%22');
+      retVal = retVal.replace('%C2%94', '%22');
+      retVal = retVal.replace('%C2%84', '%22');
+      retVal = retVal.replace('%C2%8B', '%C2%AB');
+      retVal = retVal.replace('%C2%9B', '%C2%BB');
 
-        //MQZ Feb.28.2013. Adjust bold text fontsize to work around word spacing issue
-        this.fontSize = (this.bold && (fontSize > 12)) ? fontSize + 1 : fontSize;
+      return retVal;
+   }
 
-        let fsa = [this.faceIdx, this.fontSize, this.bold?1:0, this.italic?1:0];
-        let retVal = -1;
-
-        kFontStyles.forEach(function(element, index, list){
-            if (retVal === -1) {
-                if (element[0] === fsa[0] && element[1] === fsa[1] &&
-                    element[2] === fsa[2] && element[3] === fsa[3]) {
-                        retVal = index;
-                }
-            }
-        });
-
-        return retVal;
-    }
-
-    #processSymbolicFont(str) {
-        let retVal = str;
-
-        if (!str || str.length !== 1)
-            return retVal;
-
-        if (!this.fontObj.isSymbolicFont || !this.isSymbol) {
-            if (retVal == "C" || retVal == "G") { //prevent symbolic encoding from the client
-                retVal = " " + retVal + " "; //sample: va_ind_760c
-            }
-            return retVal;
-        }
-
-        switch(str.charCodeAt(0)) {
-            case 20: retVal = '\u2713'; break; //check mark
-            case 70: retVal = (this.fontObj.type === "CIDFontType0") ? '\u26A0' : '\u007D'; break; //exclaimation in triangle OR right curly bracket
-            case 71: retVal = '\u25b6'; break; //right triangle
-            case 97: retVal = '\u25b6'; break; //right triangle
-            case 99: retVal = this.isSymbol ? '\u2022' : '\u25b2'; break; //up triangle. set to Bullet Dot for VA SchSCR
-            case 100: retVal = '\u25bc'; break; //down triangle
-            case 103: retVal = '\u27A8'; break; //right arrow. sample: va_ind_760pff and pmt
-            case 106: retVal = ''; break; //VA 301: string j character by the checkbox, hide it for now
-            case 114: retVal = '\u2022'; break; //Bullet dot
-            case 115: retVal = '\u25b2'; break; //up triangle
-            case 116: retVal = '\u2022'; break; //Bullet dot
-            case 118: retVal = '\u2022'; break; //Bullet dot
-            default:
-                nodeUtil.p2jinfo(this.fontObj.type + " - SymbolicFont - (" + this.fontObj.name + ") : " +
-                    str.charCodeAt(0) + "::" + str.charCodeAt(1) + " => " + retVal);
-        }
-
-        return retVal;
-    }
-
-    #textRotationAngle(matrix2D) {
-        let retVal = 0;
-        if (matrix2D[0][0] === 0 && matrix2D[1][1] === 0) {
-            if (matrix2D[0][1] != 0 && matrix2D[1][0] != 0) {
-                if ((matrix2D[0][1] / matrix2D[1][0]) + 1 < 0.0001)
-                    retVal = 90;
-            }
-        }
-        else if (matrix2D[0][0] !== 0 && matrix2D[1][1] !== 0) {
-            let r1 = Math.atan(-matrix2D[0][1] / matrix2D[0][0]);
-            let r2 = Math.atan(matrix2D[1][0] / matrix2D[1][1]);
-            if (Math.abs(r1) > 0.0001 && (r1 - r2 < 0.0001)) {
-                retVal = r1 * 180 / Math.PI;
-            }
-        }
-        return retVal;
-    }
-
-    // public instance methods
-    processText(p, str, maxWidth, color, fontSize, targetData, matrix2D) {
-        const text = this.#processSymbolicFont(str);
-        if (!text) {
-            return;
-        }
-        this.fontStyleId = this.#getFontStyleIndex(fontSize);
-
-        // when this.fontStyleId === -1, it means the text style doesn't match any entry in the dictionary
-        // adding TS to better describe text style [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic];
-        const TS = [this.faceIdx, this.fontSize, this.bold?1:0, this.italic?1:0];
-
-        const clrId = PDFUnit.findColorIndex(color);
-        const colorObj = (clrId >= 0 && clrId < PDFUnit.colorCount()) ? {clr: clrId} : {oc: color};		
-        
-        let textRun = {
-            T: this.flash_encode(text),
-            S: this.fontStyleId,
-            TS: TS
-        };
-        const rAngle = this.#textRotationAngle(matrix2D);
-        if (rAngle != 0) {
-            nodeUtil.p2jinfo(str + ": rotated " + rAngle + " degree.");
-            textRun = {...textRun, RA: rAngle};
-        }
-
-        const oneText = {x: PDFUnit.toFormX(p.x) - 0.25,
-            y: PDFUnit.toFormY(p.y) - 0.75,
-            w: PDFUnit.toFixedFloat(maxWidth),
-			...colorObj, //MQZ.07/29/2013: when color is not in color dictionary, set the original color (oc)
-	        sw: this.spaceWidth, //font space width, use to merge adjacent text blocks
-            A: "left",
-            R: [textRun]
-        };
-
-	    targetData.Texts.push(oneText);
-    }
-
-    flash_encode(str) {
-        let retVal = encodeURIComponent(str);
-        retVal = retVal.replace("%C2%96", "-");
-        retVal = retVal.replace("%C2%91", "%27");
-        retVal = retVal.replace("%C2%92", "%27");
-        retVal = retVal.replace("%C2%82", "%27");
-        retVal = retVal.replace("%C2%93", "%22");
-        retVal = retVal.replace("%C2%94", "%22");
-        retVal = retVal.replace("%C2%84", "%22");
-        retVal = retVal.replace("%C2%8B", "%C2%AB");
-        retVal = retVal.replace("%C2%9B", "%C2%BB");
-
-        return retVal;
-    }
-
-    clean() {
-        this.fontObj = null;
-        delete this.fontObj;
-    }
+   clean() {
+      this.fontObj = null;
+      delete this.fontObj;
+   }
 }
 
 // alias some functions to make (compiled) code shorter
-const {round: mr, sin: ms, cos: mc, abs, sqrt} = Math;    
+const { round: mr, sin: ms, cos: mc, abs, sqrt } = Math;
 
 // precompute "00" to "FF"
 const dec2hex = [];
 for (let i = 0; i < 16; i++) {
-    for (let j = 0; j < 16; j++) {
-        dec2hex[i * 16 + j] = i.toString(16) + j.toString(16);
-    }
+   for (let j = 0; j < 16; j++) {
+      dec2hex[i * 16 + j] = i.toString(16) + j.toString(16);
+   }
 }
 
 function createMatrixIdentity() {
-    return [
-        [1, 0, 0],
-        [0, 1, 0],
-        [0, 0, 1]
-    ];
+   return [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+   ];
 }
 
 function matrixMultiply(m1, m2) {
-    let result = createMatrixIdentity();
+   let result = createMatrixIdentity();
 
-    for (let x = 0; x < 3; x++) {
-        for (let y = 0; y < 3; y++) {
-            let sum = 0;
+   for (let x = 0; x < 3; x++) {
+      for (let y = 0; y < 3; y++) {
+         let sum = 0;
 
-            for (let z = 0; z < 3; z++) {
-                sum += m1[x][z] * m2[z][y];
-            }
+         for (let z = 0; z < 3; z++) {
+            sum += m1[x][z] * m2[z][y];
+         }
 
-            result[x][y] = sum;
-        }
-    }
-    return result;
+         result[x][y] = sum;
+      }
+   }
+   return result;
 }
 
 function copyState(o1, o2) {
-    o2.fillStyle = o1.fillStyle;
-    o2.lineCap = o1.lineCap;
-    o2.lineJoin = o1.lineJoin;
-    o2.lineWidth = o1.lineWidth;
-    o2.miterLimit = o1.miterLimit;
-    o2.shadowBlur = o1.shadowBlur;
-    o2.shadowColor = o1.shadowColor;
-    o2.shadowOffsetX = o1.shadowOffsetX;
-    o2.shadowOffsetY = o1.shadowOffsetY;
-    o2.strokeStyle = o1.strokeStyle;
-    o2.globalAlpha = o1.globalAlpha;
-    o2.arcScaleX_ = o1.arcScaleX_;
-    o2.arcScaleY_ = o1.arcScaleY_;
-    o2.lineScale_ = o1.lineScale_;
-    o2.dashArray = o1.dashArray;
+   o2.fillStyle = o1.fillStyle;
+   o2.lineCap = o1.lineCap;
+   o2.lineJoin = o1.lineJoin;
+   o2.lineWidth = o1.lineWidth;
+   o2.miterLimit = o1.miterLimit;
+   o2.shadowBlur = o1.shadowBlur;
+   o2.shadowColor = o1.shadowColor;
+   o2.shadowOffsetX = o1.shadowOffsetX;
+   o2.shadowOffsetY = o1.shadowOffsetY;
+   o2.strokeStyle = o1.strokeStyle;
+   o2.globalAlpha = o1.globalAlpha;
+   o2.arcScaleX_ = o1.arcScaleX_;
+   o2.arcScaleY_ = o1.arcScaleY_;
+   o2.lineScale_ = o1.lineScale_;
+   o2.dashArray = o1.dashArray;
 }
 
 function processStyle(styleString) {
-    let str, alpha = 1;
+   let str,
+      alpha = 1;
 
-    styleString = String(styleString);
-    if (styleString.substring(0, 3) == 'rgb') {
-        let start = styleString.indexOf('(', 3);
-        let end = styleString.indexOf(')', start + 1);
-        let guts = styleString.substring(start + 1, end).split(',');
+   styleString = String(styleString);
+   if (styleString.substring(0, 3) == 'rgb') {
+      let start = styleString.indexOf('(', 3);
+      let end = styleString.indexOf(')', start + 1);
+      let guts = styleString.substring(start + 1, end).split(',');
 
-        str = '#';
-        for (let i = 0; i < 3; i++) {
-            str += dec2hex[Number(guts[i])];
-        }
+      str = '#';
+      for (let i = 0; i < 3; i++) {
+         str += dec2hex[Number(guts[i])];
+      }
 
-        if (guts.length == 4 && styleString.substring(3, 4) == 'a') {
-            alpha = guts[3];
-        }
-    } else {
-        str = styleString;
-    }
+      if (guts.length == 4 && styleString.substring(3, 4) == 'a') {
+         alpha = guts[3];
+      }
+   } else {
+      str = styleString;
+   }
 
-    return {color:str, alpha:alpha};
+   return { color: str, alpha: alpha };
 }
 
 function processLineCap(lineCap) {
-    switch (lineCap) {
-        case 'butt':
-            return 'flat';
-        case 'round':
-            return 'round';
-        case 'square':
-        default:
-            return 'square';
-    }
+   switch (lineCap) {
+      case 'butt':
+         return 'flat';
+      case 'round':
+         return 'round';
+      case 'square':
+      default:
+         return 'square';
+   }
 }
 
 // Helper function that takes the already fixed cordinates.
 function bezierCurveToHelper(self, cp1, cp2, p) {
-    self.currentPath_.push({
-        type:'bezierCurveTo',
-        cp1x:cp1.x,
-        cp1y:cp1.y,
-        cp2x:cp2.x,
-        cp2y:cp2.y,
-        x:p.x,
-        y:p.y
-    });
-    self.currentX_ = p.x;
-    self.currentY_ = p.y;
+   self.currentPath_.push({
+      type: 'bezierCurveTo',
+      cp1x: cp1.x,
+      cp1y: cp1.y,
+      cp2x: cp2.x,
+      cp2y: cp2.y,
+      x: p.x,
+      y: p.y,
+   });
+   self.currentX_ = p.x;
+   self.currentY_ = p.y;
 }
 
 function matrixIsFinite(m) {
-    for (let j = 0; j < 3; j++) {
-        for (let k = 0; k < 2; k++) {
-            if (!isFinite(m[j][k]) || isNaN(m[j][k])) {
-                return false;
-            }
-        }
-    }
-    return true;
+   for (let j = 0; j < 3; j++) {
+      for (let k = 0; k < 2; k++) {
+         if (!isFinite(m[j][k]) || isNaN(m[j][k])) {
+            return false;
+         }
+      }
+   }
+   return true;
 }
 
 function setM(ctx, m, updateLineScale) {
-    if (!matrixIsFinite(m)) {
-        return;
-    }
-    ctx.m_ = m;
+   if (!matrixIsFinite(m)) {
+      return;
+   }
+   ctx.m_ = m;
 
-    if (updateLineScale) {
-        // Get the line scale.
-        // Determinant of this.m_ means how much the area is enlarged by the
-        // transformation. So its square root can be used as a scale factor
-        // for width.
-        let det = m[0][0] * m[1][1] - m[0][1] * m[1][0];
-        ctx.lineScale_ = sqrt(abs(det));
-    }
+   if (updateLineScale) {
+      // Get the line scale.
+      // Determinant of this.m_ means how much the area is enlarged by the
+      // transformation. So its square root can be used as a scale factor
+      // for width.
+      let det = m[0][0] * m[1][1] - m[0][1] * m[1][0];
+      ctx.lineScale_ = sqrt(abs(det));
+   }
 }
 
 class CanvasPattern_ {
-    constructor() {        
-    }
+   constructor() {}
 }
 
 // Gradient / Pattern Stubs
 class CanvasGradient_ {
-    constructor(aType) {
-        this.type_ = aType;
-        this.x0_ = 0;
-        this.y0_ = 0;
-        this.r0_ = 0;
-        this.x1_ = 0;
-        this.y1_ = 0;
-        this.r1_ = 0;
-        this.colors_ = [];
-    }
-    addColorStop(aOffset, aColor) {
-        aColor = processStyle(aColor);
-        this.colors_.push({offset:aOffset,
-            color:aColor.color,
-            alpha:aColor.alpha});
-    }    
+   constructor(aType) {
+      this.type_ = aType;
+      this.x0_ = 0;
+      this.y0_ = 0;
+      this.r0_ = 0;
+      this.x1_ = 0;
+      this.y1_ = 0;
+      this.r1_ = 0;
+      this.colors_ = [];
+   }
+   addColorStop(aOffset, aColor) {
+      aColor = processStyle(aColor);
+      this.colors_.push({
+         offset: aOffset,
+         color: aColor.color,
+         alpha: aColor.alpha,
+      });
+   }
 }
-
 
 /**
  * This class implements CanvasRenderingContext2D interface as described by
@@ -771,433 +849,464 @@ class CanvasGradient_ {
  * be associated with
  */
 class CanvasRenderingContext2D_ {
-    constructor(canvasTarget, scaledWidth, scaledHeight) {
-        this.m_ = createMatrixIdentity();
+   constructor(canvasTarget, scaledWidth, scaledHeight) {
+      this.m_ = createMatrixIdentity();
 
-        this.mStack_ = [];
-        this.aStack_ = [];
-        this.currentPath_ = [];
+      this.mStack_ = [];
+      this.aStack_ = [];
+      this.currentPath_ = [];
 
-        // Canvas context properties
-        this.strokeStyle = '#000';
-        this.fillStyle = '#000';
+      // Canvas context properties
+      this.strokeStyle = '#000';
+      this.fillStyle = '#000';
 
-        this.lineWidth = 1;
-        this.lineJoin = 'miter';
-        this.lineCap = 'butt';
-        this.dashArray = [];
-        this.miterLimit = 1;
-        this.globalAlpha = 1;
+      this.lineWidth = 1;
+      this.lineJoin = 'miter';
+      this.lineCap = 'butt';
+      this.dashArray = [];
+      this.miterLimit = 1;
+      this.globalAlpha = 1;
 
-        if (!("HLines" in canvasTarget) || !Array.isArray(canvasTarget.HLines))
-            canvasTarget.HLines = [];
-        if (!("VLines" in canvasTarget) || !Array.isArray(canvasTarget.VLines))
-            canvasTarget.VLines = [];
-        if (!("Fills" in canvasTarget) || !Array.isArray(canvasTarget.Fills))
-            canvasTarget.Fills = [];
-        if (!("Texts" in canvasTarget) || !Array.isArray(canvasTarget.Texts))
-            canvasTarget.Texts = [];
+      if (!('HLines' in canvasTarget) || !Array.isArray(canvasTarget.HLines))
+         canvasTarget.HLines = [];
+      if (!('VLines' in canvasTarget) || !Array.isArray(canvasTarget.VLines))
+         canvasTarget.VLines = [];
+      if (!('Fills' in canvasTarget) || !Array.isArray(canvasTarget.Fills))
+         canvasTarget.Fills = [];
+      if (!('Texts' in canvasTarget) || !Array.isArray(canvasTarget.Texts))
+         canvasTarget.Texts = [];
 
-        this.canvas = canvasTarget;
+      this.canvas = canvasTarget;
 
-        this.width = scaledWidth;
-        this.height = scaledHeight;
+      this.width = scaledWidth;
+      this.height = scaledHeight;
 
-        this.arcScaleX_ = 1;
-        this.arcScaleY_ = 1;
-        this.lineScale_ = 1;
+      this.arcScaleX_ = 1;
+      this.arcScaleY_ = 1;
+      this.lineScale_ = 1;
 
-        this.currentFont = null;
-    }
+      this.currentFont = null;
+   }
 
-    //private helper methods
-    #drawPDFLine(p1, p2, lineWidth, color) {
-        let dashedLine = Array.isArray(this.dashArray) && (this.dashArray.length > 1);
-        let pL = new PDFLine(p1.x, p1.y, p2.x, p2.y, lineWidth, color, dashedLine);
-        pL.processLine(this.canvas);
-    }
+   //private helper methods
+   #drawPDFLine(p1, p2, lineWidth, color) {
+      let dashedLine =
+         Array.isArray(this.dashArray) && this.dashArray.length > 1;
+      let pL = new PDFLine(
+         p1.x,
+         p1.y,
+         p2.x,
+         p2.y,
+         lineWidth,
+         color,
+         dashedLine
+      );
+      pL.processLine(this.canvas);
+   }
 
-    #drawPDFFill(cp, min, max, color) {
-        let width = max.x - min.x;
-        let height = max.y - min.y;
-        let pF = new PDFFill(cp.x, cp.y, width, height, color);
-        pF.processFill(this.canvas);
-    }
+   #drawPDFFill(cp, min, max, color) {
+      let width = max.x - min.x;
+      let height = max.y - min.y;
+      let pF = new PDFFill(cp.x, cp.y, width, height, color);
+      pF.processFill(this.canvas);
+   }
 
-    #needRemoveRect(x, y, w, h) {
-        let retVal = (Math.abs(w - Math.abs(h)) < 1 && w < 13);
-        if (retVal) {
-            nodeUtil.p2jinfo("Skipped: tiny rect: w=" + w + ", h=" + h);
-        }
-        return retVal;
-    }
+   #needRemoveRect(x, y, w, h) {
+      let retVal = Math.abs(w - Math.abs(h)) < 1 && w < 13;
+      if (retVal) {
+         nodeUtil.p2jinfo('Skipped: tiny rect: w=' + w + ', h=' + h);
+      }
+      return retVal;
+   }
 
-    getContext(ctxType) {
-        return (ctxType === "2d") ? this : null;
-    }
+   getContext(ctxType) {
+      return ctxType === '2d' ? this : null;
+   }
 
-    setLineDash(lineDash) {
-        this.dashArray = lineDash;
-    }
+   setLineDash(lineDash) {
+      this.dashArray = lineDash;
+   }
 
-    getLineDash() {
-        return this.dashArray;
-    }
+   getLineDash() {
+      return this.dashArray;
+   }
 
-    fillText(text, x, y, maxWidth, fontSize) {
-        if (!text || text.trim().length < 1)
-            return;
-        let p = this.getCoords_(x, y);
+   fillText(text, x, y, maxWidth, fontSize) {
+      if (!text || (!text.length === 1 && text.trim().length < 1)) return;
+      let p = this.getCoords_(x, y);
 
-        let a = processStyle(this.fillStyle || this.strokeStyle);
-        let color = (!!a) ? a.color : '#000000';
+      let a = processStyle(this.fillStyle || this.strokeStyle);
+      let color = !!a ? a.color : '#000000';
 
-        this.currentFont.processText(p, text, maxWidth, color, fontSize, this.canvas, this.m_);
-    };
+      this.currentFont.processText(
+         p,
+         text,
+         maxWidth,
+         color,
+         fontSize,
+         this.canvas,
+         this.m_
+      );
+   }
 
-    strokeText(text, x, y, maxWidth) {
-        //MQZ. 10/23/2012, yeah, no hollow text for now
-        this.fillText(text, x, y, maxWidth);
-    }
+   strokeText(text, x, y, maxWidth) {
+      //MQZ. 10/23/2012, yeah, no hollow text for now
+      this.fillText(text, x, y, maxWidth);
+   }
 
-    measureText(text) {
-        console.warn("to be implemented: contextPrototype.measureText - ", text);
-        let chars = text.length || 1;
-        return {width: chars * (this.currentFont.spaceWidth || 5)};
-    }
+   measureText(text) {
+      console.warn('to be implemented: contextPrototype.measureText - ', text);
+      let chars = text.length || 1;
+      return { width: chars * (this.currentFont.spaceWidth || 5) };
+   }
 
-    setFont(fontObj) {
-        if ((!!this.currentFont) && typeof(this.currentFont.clean) === "function") {
-            this.currentFont.clean();
-            this.currentFont = null;
-        }
+   setFont(fontObj) {
+      if (!!this.currentFont && typeof this.currentFont.clean === 'function') {
+         this.currentFont.clean();
+         this.currentFont = null;
+      }
 
-        this.currentFont = new PDFFont(fontObj);
-    }
+      this.currentFont = new PDFFont(fontObj);
+   }
 
-    clearRect() {
-        console.warn("to be implemented: contextPrototype.clearRect");
-    }
+   clearRect() {
+      console.warn('to be implemented: contextPrototype.clearRect');
+   }
 
-    beginPath() {
-        // TODO: Branch current matrix so that save/restore has no effect
-        //       as per safari docs.
-        this.currentPath_ = [];
-    }
+   beginPath() {
+      // TODO: Branch current matrix so that save/restore has no effect
+      //       as per safari docs.
+      this.currentPath_ = [];
+   }
 
-    moveTo(aX, aY) {
-        let p = this.getCoords_(aX, aY);
-        this.currentPath_.push({type:'moveTo', x:p.x, y:p.y});
-        this.currentX_ = p.x;
-        this.currentY_ = p.y;
-    }
+   moveTo(aX, aY) {
+      let p = this.getCoords_(aX, aY);
+      this.currentPath_.push({ type: 'moveTo', x: p.x, y: p.y });
+      this.currentX_ = p.x;
+      this.currentY_ = p.y;
+   }
 
-    lineTo(aX, aY) {
-        let p = this.getCoords_(aX, aY);
-        this.currentPath_.push({type:'lineTo', x:p.x, y:p.y});
+   lineTo(aX, aY) {
+      let p = this.getCoords_(aX, aY);
+      this.currentPath_.push({ type: 'lineTo', x: p.x, y: p.y });
 
-        this.currentX_ = p.x;
-        this.currentY_ = p.y;
-    }
+      this.currentX_ = p.x;
+      this.currentY_ = p.y;
+   }
 
-    bezierCurveTo(aCP1x, aCP1y, aCP2x, aCP2y, aX, aY) {
-        let p = this.getCoords_(aX, aY);
-        let cp1 = this.getCoords_(aCP1x, aCP1y);
-        let cp2 = this.getCoords_(aCP2x, aCP2y);
-        bezierCurveToHelper(this, cp1, cp2, p);
-    }
+   bezierCurveTo(aCP1x, aCP1y, aCP2x, aCP2y, aX, aY) {
+      let p = this.getCoords_(aX, aY);
+      let cp1 = this.getCoords_(aCP1x, aCP1y);
+      let cp2 = this.getCoords_(aCP2x, aCP2y);
+      bezierCurveToHelper(this, cp1, cp2, p);
+   }
 
-    quadraticCurveTo(aCPx, aCPy, aX, aY) {
-        // the following is lifted almost directly from
-        // http://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes
+   quadraticCurveTo(aCPx, aCPy, aX, aY) {
+      // the following is lifted almost directly from
+      // http://developer.mozilla.org/en/docs/Canvas_tutorial:Drawing_shapes
 
-        let cp = this.getCoords_(aCPx, aCPy);
-        let p = this.getCoords_(aX, aY);
+      let cp = this.getCoords_(aCPx, aCPy);
+      let p = this.getCoords_(aX, aY);
 
-        let cp1 = {
-            x:this.currentX_ + 2.0 / 3.0 * (cp.x - this.currentX_),
-            y:this.currentY_ + 2.0 / 3.0 * (cp.y - this.currentY_)
-        };
-        let cp2 = {
-            x:cp1.x + (p.x - this.currentX_) / 3.0,
-            y:cp1.y + (p.y - this.currentY_) / 3.0
-        };
+      let cp1 = {
+         x: this.currentX_ + (2.0 / 3.0) * (cp.x - this.currentX_),
+         y: this.currentY_ + (2.0 / 3.0) * (cp.y - this.currentY_),
+      };
+      let cp2 = {
+         x: cp1.x + (p.x - this.currentX_) / 3.0,
+         y: cp1.y + (p.y - this.currentY_) / 3.0,
+      };
 
-        bezierCurveToHelper(this, cp1, cp2, p);
-    }
+      bezierCurveToHelper(this, cp1, cp2, p);
+   }
 
-    arc(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
-        let arcType = aClockwise ? 'at' : 'wa';
+   arc(aX, aY, aRadius, aStartAngle, aEndAngle, aClockwise) {
+      let arcType = aClockwise ? 'at' : 'wa';
 
-        let xStart = aX + mc(aStartAngle) * aRadius;
-        let yStart = aY + ms(aStartAngle) * aRadius;
+      let xStart = aX + mc(aStartAngle) * aRadius;
+      let yStart = aY + ms(aStartAngle) * aRadius;
 
-        let xEnd = aX + mc(aEndAngle) * aRadius;
-        let yEnd = aY + ms(aEndAngle) * aRadius;
+      let xEnd = aX + mc(aEndAngle) * aRadius;
+      let yEnd = aY + ms(aEndAngle) * aRadius;
 
-        // IE won't render arches drawn counter clockwise if xStart == xEnd.
-        if (xStart == xEnd && !aClockwise) {
-            xStart += 0.125; // Offset xStart by 1/80 of a pixel. Use something
-            // that can be represented in binary
-        }
+      // IE won't render arches drawn counter clockwise if xStart == xEnd.
+      if (xStart == xEnd && !aClockwise) {
+         xStart += 0.125; // Offset xStart by 1/80 of a pixel. Use something
+         // that can be represented in binary
+      }
 
-        let p = this.getCoords_(aX, aY);
-        let pStart = this.getCoords_(xStart, yStart);
-        let pEnd = this.getCoords_(xEnd, yEnd);
+      let p = this.getCoords_(aX, aY);
+      let pStart = this.getCoords_(xStart, yStart);
+      let pEnd = this.getCoords_(xEnd, yEnd);
 
-        this.currentPath_.push({type:arcType,
-            x:p.x,
-            y:p.y,
-            radius:aRadius,
-            xStart:pStart.x,
-            yStart:pStart.y,
-            xEnd:pEnd.x,
-            yEnd:pEnd.y});
-    }
+      this.currentPath_.push({
+         type: arcType,
+         x: p.x,
+         y: p.y,
+         radius: aRadius,
+         xStart: pStart.x,
+         yStart: pStart.y,
+         xEnd: pEnd.x,
+         yEnd: pEnd.y,
+      });
+   }
 
-    rect(aX, aY, aWidth, aHeight) {
-        if (this.#needRemoveRect(aX, aY, aWidth, aHeight)) {
-            return;//try to remove the rectangle behind radio buttons and checkboxes
-        }
+   rect(aX, aY, aWidth, aHeight) {
+      if (this.#needRemoveRect(aX, aY, aWidth, aHeight)) {
+         return; //try to remove the rectangle behind radio buttons and checkboxes
+      }
 
-        this.moveTo(aX, aY);
-        this.lineTo(aX + aWidth, aY);
-        this.lineTo(aX + aWidth, aY + aHeight);
-        this.lineTo(aX, aY + aHeight);
-        this.closePath();
-    }
+      this.moveTo(aX, aY);
+      this.lineTo(aX + aWidth, aY);
+      this.lineTo(aX + aWidth, aY + aHeight);
+      this.lineTo(aX, aY + aHeight);
+      this.closePath();
+   }
 
-    strokeRect(aX, aY, aWidth, aHeight) {
-        if (this.#needRemoveRect(aX, aY, aWidth, aHeight)) {
-            return;//try to remove the rectangle behind radio buttons and checkboxes
-        }
+   strokeRect(aX, aY, aWidth, aHeight) {
+      if (this.#needRemoveRect(aX, aY, aWidth, aHeight)) {
+         return; //try to remove the rectangle behind radio buttons and checkboxes
+      }
 
-        let oldPath = this.currentPath_;
-        this.beginPath();
+      let oldPath = this.currentPath_;
+      this.beginPath();
 
-        this.moveTo(aX, aY);
-        this.lineTo(aX + aWidth, aY);
-        this.lineTo(aX + aWidth, aY + aHeight);
-        this.lineTo(aX, aY + aHeight);
-        this.closePath();
-        this.stroke();
+      this.moveTo(aX, aY);
+      this.lineTo(aX + aWidth, aY);
+      this.lineTo(aX + aWidth, aY + aHeight);
+      this.lineTo(aX, aY + aHeight);
+      this.closePath();
+      this.stroke();
 
-        this.currentPath_ = oldPath;
-    }
+      this.currentPath_ = oldPath;
+   }
 
-    fillRect(aX, aY, aWidth, aHeight) {
-        if (this.#needRemoveRect(aX, aY, aWidth, aHeight)) {
-            return;//try to remove the rectangle behind radio buttons and checkboxes
-        }
+   fillRect(aX, aY, aWidth, aHeight) {
+      if (this.#needRemoveRect(aX, aY, aWidth, aHeight)) {
+         return; //try to remove the rectangle behind radio buttons and checkboxes
+      }
 
-        let oldPath = this.currentPath_;
-        this.beginPath();
+      let oldPath = this.currentPath_;
+      this.beginPath();
 
-        this.moveTo(aX, aY);
-        this.lineTo(aX + aWidth, aY);
-        this.lineTo(aX + aWidth, aY + aHeight);
-        this.lineTo(aX, aY + aHeight);
-        this.closePath();
-        this.fill();
+      this.moveTo(aX, aY);
+      this.lineTo(aX + aWidth, aY);
+      this.lineTo(aX + aWidth, aY + aHeight);
+      this.lineTo(aX, aY + aHeight);
+      this.closePath();
+      this.fill();
 
-        this.currentPath_ = oldPath;
-    }
+      this.currentPath_ = oldPath;
+   }
 
-    createLinearGradient(aX0, aY0, aX1, aY1) {
-        let gradient = new CanvasGradient_('gradient');
-        gradient.x0_ = aX0;
-        gradient.y0_ = aY0;
-        gradient.x1_ = aX1;
-        gradient.y1_ = aY1;
-        return gradient;
-    }
+   createLinearGradient(aX0, aY0, aX1, aY1) {
+      let gradient = new CanvasGradient_('gradient');
+      gradient.x0_ = aX0;
+      gradient.y0_ = aY0;
+      gradient.x1_ = aX1;
+      gradient.y1_ = aY1;
+      return gradient;
+   }
 
-    createRadialGradient(aX0, aY0, aR0, aX1, aY1, aR1) {
-        let gradient = new CanvasGradient_('gradientradial');
-        gradient.x0_ = aX0;
-        gradient.y0_ = aY0;
-        gradient.r0_ = aR0;
-        gradient.x1_ = aX1;
-        gradient.y1_ = aY1;
-        gradient.r1_ = aR1;
-        return gradient;
-    }
+   createRadialGradient(aX0, aY0, aR0, aX1, aY1, aR1) {
+      let gradient = new CanvasGradient_('gradientradial');
+      gradient.x0_ = aX0;
+      gradient.y0_ = aY0;
+      gradient.r0_ = aR0;
+      gradient.x1_ = aX1;
+      gradient.y1_ = aY1;
+      gradient.r1_ = aR1;
+      return gradient;
+   }
 
-    drawImage(image, var_args) {
-        //MQZ. no image drawing support for now
-    }
+   drawImage(image, var_args) {
+      //MQZ. no image drawing support for now
+   }
 
-    getImageData(x, y, w, h) {
-        //MQZ. returns empty data buffer for now
-        return {
-            width:w,
-            height:h,
-            data:new Uint8Array(w * h * 4)
-        };
-    }
+   getImageData(x, y, w, h) {
+      //MQZ. returns empty data buffer for now
+      return {
+         width: w,
+         height: h,
+         data: new Uint8Array(w * h * 4),
+      };
+   }
 
-    stroke(aFill) {
-        if (this.currentPath_.length < 2) {
-            return;
-        }
+   stroke(aFill) {
+      if (this.currentPath_.length < 2) {
+         return;
+      }
 
-        let a = processStyle(aFill ? this.fillStyle : this.strokeStyle);
-        let color = a.color;
-//        let opacity = a.alpha * this.globalAlpha;
-        let lineWidth = this.lineScale_ * this.lineWidth;
+      let a = processStyle(aFill ? this.fillStyle : this.strokeStyle);
+      let color = a.color;
+      //        let opacity = a.alpha * this.globalAlpha;
+      let lineWidth = this.lineScale_ * this.lineWidth;
 
-        let min = {x:null, y:null};
-        let max = {x:null, y:null};
+      let min = { x: null, y: null };
+      let max = { x: null, y: null };
 
-        for (let i = 0; i < this.currentPath_.length; i++) {
-            let p = this.currentPath_[i];
+      for (let i = 0; i < this.currentPath_.length; i++) {
+         let p = this.currentPath_[i];
 
-            switch (p.type) {
-                case 'moveTo':
-                    break;
-                case 'lineTo':
-                    if (!aFill) { //lines
-                        if (i > 0) {
-                            this.#drawPDFLine(this.currentPath_[i-1], p, lineWidth, color);
-                        }
-                    }
-                    break;
-                case 'close':
-                    if (!aFill) { //lines
-                        if (i > 0) {
-                            this.#drawPDFLine(this.currentPath_[i-1], this.currentPath_[0], lineWidth, color);
-                        }
-                    }
-                    p = null;
-                    break;
-                case 'bezierCurveTo':
-                    break;
-                case 'at':
-                case 'wa':
-                    break;
+         switch (p.type) {
+            case 'moveTo':
+               break;
+            case 'lineTo':
+               if (!aFill) {
+                  //lines
+                  if (i > 0) {
+                     this.#drawPDFLine(
+                        this.currentPath_[i - 1],
+                        p,
+                        lineWidth,
+                        color
+                     );
+                  }
+               }
+               break;
+            case 'close':
+               if (!aFill) {
+                  //lines
+                  if (i > 0) {
+                     this.#drawPDFLine(
+                        this.currentPath_[i - 1],
+                        this.currentPath_[0],
+                        lineWidth,
+                        color
+                     );
+                  }
+               }
+               p = null;
+               break;
+            case 'bezierCurveTo':
+               break;
+            case 'at':
+            case 'wa':
+               break;
+         }
+
+         // Figure out dimensions so we can set fills' coordinates correctly
+         if (aFill && p) {
+            if (min.x == null || p.x < min.x) {
+               min.x = p.x;
             }
-
-            // Figure out dimensions so we can set fills' coordinates correctly
-            if (aFill && p) {
-                if (min.x == null || p.x < min.x) {
-                    min.x = p.x;
-                }
-                if (max.x == null || p.x > max.x) {
-                    max.x = p.x;
-                }
-                if (min.y == null || p.y < min.y) {
-                    min.y = p.y;
-                }
-                if (max.y == null || p.y > max.y) {
-                    max.y = p.y;
-                }
+            if (max.x == null || p.x > max.x) {
+               max.x = p.x;
             }
-        }
+            if (min.y == null || p.y < min.y) {
+               min.y = p.y;
+            }
+            if (max.y == null || p.y > max.y) {
+               max.y = p.y;
+            }
+         }
+      }
 
-        if (aFill) { //fill
-            this.#drawPDFFill(min, min, max, color);
-        }
-    }
+      if (aFill) {
+         //fill
+         this.#drawPDFFill(min, min, max, color);
+      }
+   }
 
-    fill() {
-        this.stroke(true);
-    }
+   fill() {
+      this.stroke(true);
+   }
 
-    closePath() {
-        this.currentPath_.push({type:'close'});
-    }
+   closePath() {
+      this.currentPath_.push({ type: 'close' });
+   }
 
-    /**
-     * @private
-     */
-    getCoords_ (aX, aY) {
-        let m = this.m_;
-        return {
-            x: (aX * m[0][0] + aY * m[1][0] + m[2][0]),
-            y: (aX * m[0][1] + aY * m[1][1] + m[2][1])
-        };
-    }
+   /**
+    * @private
+    */
+   getCoords_(aX, aY) {
+      let m = this.m_;
+      return {
+         x: aX * m[0][0] + aY * m[1][0] + m[2][0],
+         y: aX * m[0][1] + aY * m[1][1] + m[2][1],
+      };
+   }
 
-    save() {
-        let o = {};
-        copyState(this, o);
-        this.aStack_.push(o);
-        this.mStack_.push(this.m_);
-        this.m_ = matrixMultiply(createMatrixIdentity(), this.m_);
-    }
+   save() {
+      let o = {};
+      copyState(this, o);
+      this.aStack_.push(o);
+      this.mStack_.push(this.m_);
+      this.m_ = matrixMultiply(createMatrixIdentity(), this.m_);
+   }
 
-    restore() {
-        copyState(this.aStack_.pop(), this);
-        this.m_ = this.mStack_.pop();
-    }
+   restore() {
+      copyState(this.aStack_.pop(), this);
+      this.m_ = this.mStack_.pop();
+   }
 
-    translate(aX, aY) {
-        let m1 = [
-            [1, 0, 0],
-            [0, 1, 0],
-            [aX, aY, 1]
-        ];
+   translate(aX, aY) {
+      let m1 = [
+         [1, 0, 0],
+         [0, 1, 0],
+         [aX, aY, 1],
+      ];
 
-        setM(this, matrixMultiply(m1, this.m_), false);
-    }
+      setM(this, matrixMultiply(m1, this.m_), false);
+   }
 
-    rotate(aRot) {
-        let c = mc(aRot);
-        let s = ms(aRot);
+   rotate(aRot) {
+      let c = mc(aRot);
+      let s = ms(aRot);
 
-        let m1 = [
-            [c, s, 0],
-            [-s, c, 0],
-            [0, 0, 1]
-        ];
+      let m1 = [
+         [c, s, 0],
+         [-s, c, 0],
+         [0, 0, 1],
+      ];
 
-        setM(this, matrixMultiply(m1, this.m_), false);
-    }
+      setM(this, matrixMultiply(m1, this.m_), false);
+   }
 
-    scale(aX, aY) {
-        this.arcScaleX_ *= aX;
-        this.arcScaleY_ *= aY;
-        let m1 = [
-            [aX, 0, 0],
-            [0, aY, 0],
-            [0, 0, 1]
-        ];
+   scale(aX, aY) {
+      this.arcScaleX_ *= aX;
+      this.arcScaleY_ *= aY;
+      let m1 = [
+         [aX, 0, 0],
+         [0, aY, 0],
+         [0, 0, 1],
+      ];
 
-        setM(this, matrixMultiply(m1, this.m_), true);
-    }
+      setM(this, matrixMultiply(m1, this.m_), true);
+   }
 
-    transform(m11, m12, m21, m22, dx, dy) {
-        let m1 = [
-            [m11, m12, 0],
-            [m21, m22, 0],
-            [dx, dy, 1]
-        ];
+   transform(m11, m12, m21, m22, dx, dy) {
+      let m1 = [
+         [m11, m12, 0],
+         [m21, m22, 0],
+         [dx, dy, 1],
+      ];
 
-        setM(this, matrixMultiply(m1, this.m_), true);
-    }
+      setM(this, matrixMultiply(m1, this.m_), true);
+   }
 
-    setTransform(m11, m12, m21, m22, dx, dy) {
-        let m = [
-            [m11, m12, 0],
-            [m21, m22, 0],
-            [dx, dy, 1]
-        ];
+   setTransform(m11, m12, m21, m22, dx, dy) {
+      let m = [
+         [m11, m12, 0],
+         [m21, m22, 0],
+         [dx, dy, 1],
+      ];
 
-        setM(this, m, true);
-    }
+      setM(this, m, true);
+   }
 
-    /******** STUBS ********/
-    clip() {
-        // TODO: Implement
-    }
+   /******** STUBS ********/
+   clip() {
+      // TODO: Implement
+   }
 
-    arcTo() {
-        // TODO: Implement
-    }
+   arcTo() {
+      // TODO: Implement
+   }
 
-    createPattern() {
-        return new CanvasPattern_();
-    }
+   createPattern() {
+      return new CanvasPattern_();
+   }
 }
 
 const kFBANotOverridable = 0x00000400; // indicates the field is read only by the user
