@@ -2,7 +2,7 @@ import {EventEmitter} from "events";
 
 declare class Pdfparser extends EventEmitter{
     constructor(context?: any, needRawText?: number, password?: string);
-    parseBuffer(buffer: Buffer): void;
+    parseBuffer(buffer: Buffer, verbosity?: number): void;
     loadPDF(pdfFilePath: string, verbosity?: number):Promise<void>
     createParserStream():ParserStream
     on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
