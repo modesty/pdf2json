@@ -5,6 +5,7 @@ declare class Pdfparser extends EventEmitter{
     parseBuffer(buffer: Buffer, verbosity?: number): void;
     loadPDF(pdfFilePath: string, verbosity?: number):Promise<void>
     createParserStream():ParserStream
+    getRawTextContent(): string
     on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
 }
 
