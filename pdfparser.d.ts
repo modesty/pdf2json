@@ -10,7 +10,7 @@ declare class Pdfparser extends EventEmitter{
 }
 
 export type EventMap = {
-    "pdfParser_dataError": (errMsg: string) => void;
+    "pdfParser_dataError": (errMsg: Record<"parserError", Error>) => void;
     "pdfParser_dataReady": (pdfData: Output) => void;
     "readable": (meta: Output["Meta"]) => void;
     "data": (data: Output["Pages"][number]|null) => void;
