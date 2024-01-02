@@ -54,7 +54,7 @@ The code has two types of logs:
 - The logs that consume the console.log and console.warn APIs;
 - And the logs that consume our own base/shared/util.js log function.
 
-To disable the first type, you could mock the console.log and consolle.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
+To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
 
 ## Code Example
 
