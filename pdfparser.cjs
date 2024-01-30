@@ -1,15 +1,15 @@
 'use strict';
 
-var fs = require('fs');
-var nodeUtil = require('util');
+var fs = require('node:fs');
+var nodeUtil = require('node:util');
 var promises = require('fs/promises');
-var events = require('events');
-var path = require('path');
-var url = require('url');
-var { Blob } = require('buffer');
+var node_events = require('node:events');
+var path = require('node:path');
+var node_url = require('node:url');
+require('node:buffer');
 var xmldom = require('@xmldom/xmldom');
 var DOMParser = xmldom.DOMParser;
-var stream = require('stream');
+var node_stream = require('node:stream');
 
 var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
 const kColors = [
@@ -1523,10 +1523,10 @@ class PDFField {
                 anData.PL.V.push(ele);
             }
         });
-		
-		// add field value to the object 
+
+		// add field value to the object
 		if (field.fieldValue) {
-			anData.V = field.fieldValue; 
+			anData.V = field.fieldValue;
 		}
         this.Fields.push(anData);
     };
@@ -1599,7 +1599,7 @@ class PDFField {
             });
 
             page.Fields.forEach(field => retVal.push(getFieldBase(field)));
-            
+
         });
         return retVal;
     }
@@ -1799,7 +1799,7 @@ class PDFAnno {
         else {
             nodeUtil.p2jwarn("Unknown fieldType: ", item);
         }
-    }   
+    }
 }
 
 class PDFImage {
@@ -1844,7 +1844,7 @@ class PTIXmlParser {
         this.xmlData = null;
         this.ptiPageArray = [];
     }
-	
+
 	parseXml(filePath, callback) {
 		fs.readFile(filePath, 'utf8', (err, data) => {
 			if (err) {
@@ -1872,12 +1872,12 @@ class PTIXmlParser {
 					var fontSize = xmlFields[i].getAttribute('fontSize');
 
 					var item = {};
-					
+
 					var rectLeft = parseInt(xPos) - 21; //was 23.5
 					var rectTop = parseInt(yPos) - 20;//was 23
 					var rectRight = parseInt(rectLeft) + parseInt(width) - 4;
 					var rectBottom = parseInt(rectTop) + parseInt(height) - 4;
-					
+
 					item.fieldType="Tx";
 					if (type == "Boolean") {
 						item.fieldType="Btn";
@@ -1893,10 +1893,10 @@ class PTIXmlParser {
 					item.rect = [rectLeft, rectTop, rectRight, rectBottom];;
 
 					fields.push(item);
-					
+
 					this.ptiPageArray[parseInt(page)]=fields;
 				}
-				
+
 			}
 			callback();
 		});
@@ -1907,13 +1907,13 @@ class PTIXmlParser {
 	}
 }
 
-const __filename$2 = url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.src || new URL('pdfparser.cjs', document.baseURI).href)));
+const __filename$2 = node_url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.src || new URL('pdfparser.cjs', document.baseURI).href)));
 const __dirname$2 = path.dirname(__filename$2);
 
 const pkInfo = JSON.parse(fs.readFileSync(`${__dirname$2}/package.json`, 'utf8'));
 const _PARSER_SIG = `${pkInfo.name}@${pkInfo.version} [${pkInfo.homepage}]`;
 
-const __filename$1 = url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.src || new URL('pdfparser.cjs', document.baseURI).href)));
+const __filename$1 = node_url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.src || new URL('pdfparser.cjs', document.baseURI).href)));
 const __dirname$1 = path.dirname(__filename$1);
 
 const _pdfjsFiles = [
@@ -2113,7 +2113,7 @@ class PDFPageParser {
 }
 
 ////////////////////////////////Start of Node.js Module
-class PDFJSClass extends events.EventEmitter {
+class PDFJSClass extends node_events.EventEmitter {
    pdfDocument = null;
    pages = null;
    rawTextContents = null;
@@ -2376,9 +2376,9 @@ class PDFJSClass extends events.EventEmitter {
    }
 }
 
-class ParserStream extends stream.Transform {
+class ParserStream extends node_stream.Transform {
     static createContentStream(jsonObj) {
-		const rStream = new stream.Readable({objectMode: true});
+		const rStream = new node_stream.Readable({objectMode: true});
 		rStream.push(jsonObj);
 		rStream.push(null);
 		return rStream;
@@ -2394,7 +2394,7 @@ class ParserStream extends stream.Transform {
     #pdfParser = null;
     #chunks = [];
     #parsedData = {Pages:[]};
-    #_flush_callback = null; 
+    #_flush_callback = null;
 
     constructor(pdfParser, options) {
         super(options);
@@ -2413,7 +2413,7 @@ class ParserStream extends stream.Transform {
                 this.push(this.#parsedData);
                 this.#_flush_callback();
             }
-            else 
+            else
                 this.#parsedData.Pages.push(page);
         });
     }
@@ -2432,17 +2432,17 @@ class ParserStream extends stream.Transform {
     _destroy() {
         super.removeAllListeners();
         this.#pdfParser = null;
-        this.#chunks = [];         
+        this.#chunks = [];
     }
-} 
+}
 
 
-class StringifyStream extends stream.Transform {
+class StringifyStream extends node_stream.Transform {
     constructor(options) {
         super(options);
 
         this._readableState.objectMode = false;
-        this._writableState.objectMode = true;    
+        this._writableState.objectMode = true;
     }
 
     _transform(obj, encoding, callback){
@@ -2451,77 +2451,104 @@ class StringifyStream extends stream.Transform {
     }
 }
 
-class PDFParser extends events.EventEmitter { // inherit from event emitter
-    //public static
-    static get colorDict() {return kColors; }
+/**
+ * Class representing a PDF Parser.
+ * @extends EventEmitter
+ */
+class PDFParser extends node_events.EventEmitter {
+    /**
+     * Static method to retrieve color dictionary.
+     * @returns {object} Color dictionary
+     */
+    static get colorDict() { return kColors; }
+
+    /**
+     * Static method to retrieve font face dictionary.
+     * @returns {object} Font face dictionary
+     */
     static get fontFaceDict() { return kFontFaces; }
+
+    /**
+     * Static method to retrieve font style dictionary.
+     * @returns {object} Font style dictionary
+     */
     static get fontStyleDict() { return kFontStyles; }
 
-    //private static    
     static #maxBinBufferCount = 10;
     static #binBuffer = {};
 
-    //private 
     #password = "";
-
-    #context = null; // service context object, only used in Web Service project; null in command line
-    
-    #pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
-    #pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
-    #data = null; //if file read success, data is PDF content; if failed, data is "err" object
+    #context = null; // service context object, only used in Web Service project; null in command line	    #pdfFilePath = null;
+    #pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started	    #data = null;
+    #pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache	    #PDFJS = null;
+    #data = null; //if file read success, data is PDF content; if failed, data is "err" object	    #processFieldInfoXML = false;
     #PDFJS = null; //will be initialized in constructor
-    #processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging (do NOT set to true)
+    #processFieldInfoXML = false; //disable additional _fieldInfo.xml parsing and merging (do NOT set to true)
 
-    // constructor
+    /**
+     * PDFParser constructor.
+     * @param {object} context - The context object (only used in Web Service project); null in command line
+     * @param {boolean} needRawText - Whether raw text is needed or not
+     * @param {string} password - The password for PDF file
+	 * @info Private methods accessible using the [funcName].call(this, ...) syntax
+     */
     constructor(context, needRawText, password) {
-        //call constructor for super class
         super();
-    
-        // private
-        // service context object, only used in Web Service project; null in command line
         this.#context = context;
-
-        this.#pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started
-        this.#pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache
-        this.#data = null; //if file read success, data is PDF content; if failed, data is "err" object
+        this.#pdfFilePath = null; //current PDF file to load and parse, null means loading/parsing not started	        this.#pdfFileMTime = null;
+        this.#pdfFileMTime = null; // last time the current pdf was modified, used to recognize changes and ignore cache	        this.#data = null;
+        this.#data = null; //if file read success, data is PDF content; if failed, data is "err" object	        this.#processFieldInfoXML = false;
         this.#processFieldInfoXML = false;//disable additional _fieldInfo.xml parsing and merging (do NOT set to true)
 
         this.#PDFJS = new PDFJSClass(needRawText);
         this.#password = password;
-    } 
-    
-	//private methods, needs to invoked by [funcName].call(this, ...)
-	#onPDFJSParseDataReady(data) {
-		if (!data) { //v1.1.2: data===null means end of parsed data
-			nodeUtil.p2jinfo("PDF parsing completed.");
-			this.emit("pdfParser_dataReady", this.#data);
-		}
-		else {
-			this.#data = {...this.#data, ...data};            
-		}
-	}
+    }
 
-	#onPDFJSParserDataError(err) {
-		this.#data = null;
-		this.emit("pdfParser_dataError", {"parserError": err});
-        // this.emit("error", err);
-	}
+    /**
+     * @private
+     * @param {object} data - The parsed data
+     */
+    #onPDFJSParseDataReady(data) {
+        if (!data) {
+            nodeUtil.p2jinfo("PDF parsing completed.");
+            this.emit("pdfParser_dataReady", this.#data);
+        }
+        else {
+            this.#data = { ...this.#data, ...data };
+        }
+    }
 
-	#startParsingPDF(buffer) {
-		this.#data = {};
+    /**
+     * @private
+     * @param {Error} err - The error object
+     */
+    #onPDFJSParserDataError(err) {
+        this.#data = null;
+        this.emit("pdfParser_dataError", { "parserError": err });
+    }
 
-		this.#PDFJS.on("pdfjs_parseDataReady", data => this.#onPDFJSParseDataReady(data));
-		this.#PDFJS.on("pdfjs_parseDataError", err => this.#onPDFJSParserDataError(err));
+    /**
+     * @private
+     * @param {Buffer} buffer - The PDF buffer
+     */
+    #startParsingPDF(buffer) {
+        this.#data = {};
+        this.#PDFJS.on("pdfjs_parseDataReady", data => this.#onPDFJSParseDataReady(data));
+        this.#PDFJS.on("pdfjs_parseDataError", err => this.#onPDFJSParserDataError(err));
 
         //v1.3.0 the following Readable Stream-like events are replacement for the top two custom events
         this.#PDFJS.on("readable", meta => this.emit("readable", meta));
         this.#PDFJS.on("data", data => this.emit("data", data));
-        this.#PDFJS.on("error", err => this.#onPDFJSParserDataError(err));    
+        this.#PDFJS.on("error", err => this.#onPDFJSParserDataError(err));
 
-		this.#PDFJS.parsePDFData(buffer || PDFParser.#binBuffer[this.binBufferKey], this.#password);
-	}
+        this.#PDFJS.parsePDFData(buffer || PDFParser.#binBuffer[this.binBufferKey], this.#password);
+    }
 
-	#processBinaryCache() {
+	/**
+     * @private
+     * @returns {boolean}
+     */
+    #processBinaryCache() {
 		if (this.binBufferKey in PDFParser.#binBuffer) {
 			this.#startParsingPDF();
 			return true;
@@ -2540,15 +2567,31 @@ class PDFParser extends events.EventEmitter { // inherit from event emitter
 		return false;
 	}
 
-    //public getter
+    /**
+     * Getter for #data
+     * @returns {object|null} Data
+     */
     get data() { return this.#data; }
+
+    /**
+     * Getter for binBufferKey
+     * @returns {string} The binBufferKey
+     */
     get binBufferKey() { return this.#pdfFilePath + this.#pdfFileMTime; }
-        
-    //public APIs
+
+    /**
+     * Creates a parser stream
+     * @returns {ParserStream} A new parser stream
+     */
     createParserStream() {
-        return new ParserStream(this, {objectMode: true, bufferSize: 64 * 1024});
+        return new ParserStream(this, { objectMode: true, bufferSize: 64 * 1024 });
     }
 
+	/**
+     * Asynchronously load a PDF from a file path.
+     * @param {string} pdfFilePath - Path of the PDF file
+     * @param {number} verbosity - Verbosity level
+     */
 	async loadPDF(pdfFilePath, verbosity) {
 		nodeUtil.verbosity(verbosity || 0);
 		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
@@ -2563,7 +2606,7 @@ class PDFParser extends events.EventEmitter { // inherit from event emitter
 
             if (this.#processBinaryCache())
                 return;
-        
+
             PDFParser.#binBuffer[this.binBufferKey] = await promises.readFile(pdfFilePath);
             nodeUtil.p2jinfo(`Load OK: ${pdfFilePath}`);
             this.#startParsingPDF();
@@ -2574,21 +2617,56 @@ class PDFParser extends events.EventEmitter { // inherit from event emitter
         }
 	}
 
-	// Introduce a way to directly process buffers without the need to write it to a temporary file
-	parseBuffer(pdfBuffer) {
+    /**
+     * Parse PDF buffer. Introduce a way to directly process buffers without the need to write it to a temporary file
+     * @param {Buffer} pdfBuffer - PDF buffer
+     * @param {number} verbosity - Verbosity level
+     */
+	parseBuffer(pdfBuffer, verbosity) {
+		nodeUtil.verbosity(verbosity || 0);
 		this.#startParsingPDF(pdfBuffer);
 	}
 
-	getRawTextContent() { return this.#PDFJS.getRawTextContent(); }
-	getRawTextContentStream() { return ParserStream.createContentStream(this.getRawTextContent()); }
+    /**
+     * Retrieve raw text content from PDF.
+     * @returns {string} Raw text content
+     */
+    getRawTextContent() { return this.#PDFJS.getRawTextContent(); }
 
-	getAllFieldsTypes() { return this.#PDFJS.getAllFieldsTypes(); };
-	getAllFieldsTypesStream() { return ParserStream.createContentStream(this.getAllFieldsTypes()); }
+    /**
+     * Retrieve raw text content stream.
+     * @returns {Stream} Raw text content stream
+     */
+    getRawTextContentStream() { return ParserStream.createContentStream(this.getRawTextContent()); }
 
-	getMergedTextBlocksIfNeeded() { return this.#PDFJS.getMergedTextBlocksIfNeeded(); }
-	getMergedTextBlocksStream() { return ParserStream.createContentStream(this.getMergedTextBlocksIfNeeded()) }
+    /**
+     * Retrieve all field types.
+     * @returns {object[]} All field types
+     */
+    getAllFieldsTypes() { return this.#PDFJS.getAllFieldsTypes(); }
 
-	destroy() { // invoked with stream transform process		
+    /**
+     * Retrieve all field types stream.
+     * @returns {Stream} All field types stream
+     */
+    getAllFieldsTypesStream() { return ParserStream.createContentStream(this.getAllFieldsTypes()); }
+
+    /**
+     * Retrieve merged text blocks if needed.
+     * @returns {object} Merged text blocks
+     */
+    getMergedTextBlocksIfNeeded() { return this.#PDFJS.getMergedTextBlocksIfNeeded(); }
+
+    /**
+     * Retrieve merged text blocks stream.
+     * @returns {Stream} Merged text blocks stream
+     */
+    getMergedTextBlocksStream() { return ParserStream.createContentStream(this.getMergedTextBlocksIfNeeded()) }
+
+    /**
+     * Destroy the PDFParser instance.
+     */
+	destroy() { // invoked with stream transform process
         super.removeAllListeners();
 
 		//context object will be set in Web Service project, but not in command line utility
