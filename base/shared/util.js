@@ -151,7 +151,9 @@ var NO_OPS_RANGE = PDFJS.NO_OPS_RANGE = [78, 79, 80, 81]; //range pairs, all ops
 // Use only for debugging purposes. This should not be used in any code that is
 // in mozilla master.
 var log = (function() {
-  if ('console' in globalScope && 'log' in globalScope['console']) {
+  var disableLogs = Boolean(Number(process?.env?.PDF2JSON_DISABLE_LOGS ?? "0"));
+
+  if (!disableLogs && 'console' in globalScope && 'log' in globalScope['console']) {
     return globalScope['console']['log'].bind(globalScope['console']);
   } else {
     return function nop() {

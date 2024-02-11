@@ -45,6 +45,17 @@ It scans 165 PDF files under *../test/pdf/fd/form_*, parses with [Stream API](ht
 
 More test scripts with different commandline options can be found at *_package.json_*.
 
+### Disabling Test logs
+
+During CI/CD, you probably would like to disable unnecessary logs for unit testing.
+
+The code has two types of logs:
+
+- The logs that consume the console.log and console.warn APIs;
+- And the logs that consume our own base/shared/util.js log function.
+
+To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
+
 ## Code Example
 
 * Parse a PDF file then write to a JSON file:
