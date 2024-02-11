@@ -1,10 +1,10 @@
 import {EventEmitter} from "events";
 
-declare class Pdfparser extends EventEmitter{
+declare class PDFParser extends EventEmitter{
     constructor(context?: any, needRawText?: number, password?: string);
     parseBuffer(buffer: Buffer, verbosity?: number): void;
     loadPDF(pdfFilePath: string, verbosity?: number):Promise<void>
-    createParserStream():ParserStream
+    createParserStream(): ParserStream
     getRawTextContent(): string
     on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
 }
@@ -51,6 +51,7 @@ export declare interface Line {
     x: number,
     y: number,
     w: number,
+    l: number,
     oc?: string,
     clr?:number
 }
