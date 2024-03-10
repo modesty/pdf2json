@@ -1,5 +1,3 @@
-* [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
-
 # pdf2json
 
 pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, 
@@ -14,6 +12,8 @@ git clone https://github.com/universalbit-dev/pdf2json
 npm i
 ```
 ##### note:  "semver": "^7.6.0"
+* [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
+
 
 To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
