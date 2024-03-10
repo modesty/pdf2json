@@ -51,23 +51,25 @@
       "build": "npm run build:rollup && npm run build:add-destructured-imports-to-cjs"
    },
    "engines": {
-      "node": ">=18.12.1",
-      "npm": ">=8.19.2"
+      "node": ">=20"
    },
    "type": "module",
    "bin": {
       "pdf2json": "./bin/pdf2json.js"
    },
    "dependencies": {
-      "@xmldom/xmldom": "^0.8.8"
+      "@xmldom/xmldom": "^0.8.10",
+      "bl": "^3.0.1",
+      "levelup": "^5.1.1",
+      "semver": "^7.6.0"
    },
    "devDependencies": {
       "@rollup/plugin-commonjs": "^25.0.4",
       "@rollup/plugin-node-resolve": "^15.2.1",
       "@rollup/plugin-replace": "^5.0.2",
-      "@types/node": "^20.3.1",
+      "@types/node": "^20.11.25",
       "lodash": "^4.17.21",
-      "rollup": "^3.29.2",
+      "rollup": "^4.12.1",
       "rollup-plugin-node-builtins": "^2.1.2",
       "vows": "^0.8.3"
    },
@@ -92,5 +94,8 @@
       }
    },
    "license": "Apache-2.0",
-   "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
+   "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
+   "bundleDependencies": [
+      "@xmldom/xmldom"
+   ]
 }
