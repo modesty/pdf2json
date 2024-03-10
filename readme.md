@@ -104,7 +104,7 @@ The code has two types of logs:
 
 To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
 
-## Code Example [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
+## Code Examples [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
 
 * Parse a PDF file then write to a JSON file:
 
