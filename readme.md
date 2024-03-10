@@ -14,9 +14,10 @@ npm i
 ##### note:  "semver": "^7.6.0"
 * [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
 
-
+---
 To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
+---
 
 ##### file: easyparser.js
 
