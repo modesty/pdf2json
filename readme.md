@@ -13,6 +13,7 @@ The goal is to enable server side PDF parsing with interactive form elements whe
 git clone https://github.com/universalbit-dev/pdf2json
 npm i
 ```
+##### note:  "semver": "^7.6.0"
 
 To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
