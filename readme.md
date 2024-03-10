@@ -7,7 +7,8 @@ it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends with in
 
 The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, and also enable parsing local PDF to json file when using as a command line utility.
 
-## Install  [ Nodejs v20.11.0  --  Npm 10.2.4 ]
+## Install  
+###### [ Nodejs v20.11.0  --  Npm 10.2.4 ]
 ```bash
 git clone https://github.com/universalbit-dev/pdf2json
 npm i
