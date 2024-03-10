@@ -33,7 +33,8 @@ JsonBin.io project work well with json data.(Zero Database Setup or Maintenance)
 
 */
 
-const fs=require("fs-extra");const PDFParser=require("pdf2json");const pdfParser = new PDFParser();
+const fs=require("fs-extra");const PDFParser=require("pdf2json");
+const pdfParser = new PDFParser();
 
 pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
 
