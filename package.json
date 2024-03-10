@@ -53,6 +53,7 @@
    "engines": {
       "node": ">=20"
    },
+   "type": "module",
    "bin": {
       "pdf2json": "./bin/pdf2json.js"
    },
