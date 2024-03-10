@@ -19,7 +19,7 @@ To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
 ---
 
-##### file: easyparser.js
+##### file: easyparser.js [CommonJs](https://en.wikipedia.org/wiki/CommonJS)
 
 ```js
 /*
