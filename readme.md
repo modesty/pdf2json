@@ -2,29 +2,18 @@
 
 # pdf2json
 
-pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends with interactive form elements and text content parsing outside browser.
+pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, 
+it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends with interactive form elements and text content parsing outside browser.
 
 The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, and also enable parsing local PDF to json file when using as a command line utility.
 
 ## Install
-
 ```bash
-npm install pdf2json
+git clone https://github.com/universalbit-dev/pdf2json
+npm i
 ```
 
-Or, install it globally:
-
-```bash
-sudo npm install pdf2json -g
-```
-
-To update with latest version:
-
-```bash
-sudo npm update pdf2json -g
-```
-
-To Run in RESTful Web Service or as Commandline Utility
+To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
 
 ```js
