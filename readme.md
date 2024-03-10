@@ -17,6 +17,8 @@ npm i
 To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
 
+##### file: easyparser.js
+
 ```js
 /*
 Utility for Parsing Pdf File in Json Format.
