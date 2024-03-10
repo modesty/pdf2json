@@ -1,4 +1,5 @@
 * [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
+
 # pdf2json
 
 pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends with interactive form elements and text content parsing outside browser.
@@ -7,13 +8,21 @@ The goal is to enable server side PDF parsing with interactive form elements whe
 
 ## Install
 
->npm install pdf2json
+```bash
+npm install pdf2json
+```
 
 Or, install it globally:
->sudo npm install pdf2json -g
+
+```bash
+sudo npm install pdf2json -g
+```
 
 To update with latest version:
->sudo npm update pdf2json -g
+
+```bash
+sudo npm update pdf2json -g
+```
 
 To Run in RESTful Web Service or as Commandline Utility
 * More details can be found at the bottom of this document.
@@ -21,16 +30,18 @@ To Run in RESTful Web Service or as Commandline Utility
 ## Test
 
 After install, run command line:
-
-> npm run test
-
+```bash
+npm run test
+```
 It'll scan and parse *260* PDF AcroForm files under *_./test/pdf_*, runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check *_./test/target/_* for outputs.
 
 ### Test Exception Handlings
 
 After install, run command line:
 
-> npm run test-misc
+```bash
+npm run test-misc
+```
 
 It'll scan and parse all PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 5 PDF fields, while catches exceptions with stack trace for:
  * _bad XRef entry_ for `pdf/misc/i200_test.pdf`
@@ -40,8 +51,9 @@ It'll scan and parse all PDF files under *_./test/pdf/misc_*, also runs with *_-
 ### Test Streams
 After install, run command line:
 
-> npm run parse-r
-
+```bash
+npm run parse-r
+```
 It scans 165 PDF files under *../test/pdf/fd/form_*, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to *_./test/target/fd/form_*.
 
 More test scripts with different commandline options can be found at *_package.json_*.
