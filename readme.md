@@ -42,7 +42,8 @@ const pdfParser = new PDFParser();
 pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
 
 //File amicizia.json HERE
-pdfParser.on("pdfParser_dataReady", pdfData => {fs.writeFile("./json/amicizia.json", JSON.stringify(pdfData));});
+pdfParser.on("pdfParser_dataReady", pdfData =>
+{fs.writeFile("./json/amicizia.json", JSON.stringify(pdfData));});
 
 //File amicizia.pdf HERE 
 pdfParser.loadPDF("./pdf/amicizia.pdf");
