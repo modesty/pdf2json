@@ -56,6 +56,11 @@ pdfFilePath="./pdf/";
     })
 ```
 
+##### Convert PDF from binary to json format:
+```bash
+node easyparser.js
+```
+
 ## Test
 
 After install, run command line:
