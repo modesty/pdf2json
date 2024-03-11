@@ -43,14 +43,9 @@
       "semver": "^7.6.0"
    },
    "devDependencies": {
-      "@rollup/plugin-commonjs": "^25.0.4",
-      "@rollup/plugin-node-resolve": "^15.2.1",
-      "@rollup/plugin-replace": "^5.0.2",
       "@types/node": "^20.11.25",
       "lodash": "^4.17.21",
-      "rollup": "^4.12.1",
-      "rollup-plugin-node-builtins": "^2.1.2",
-      "vows": "^0.8.3"
+      "rollup": "^4.12.1"
    },
    "bundledDependencies": [
       "@xmldom/xmldom"
@@ -64,7 +59,7 @@
    ],
    "contributors": [],
    "bugs": {
-      "url": "http://github.com/modesty/pdf2json/issues"
+      "url": ""
    },
    "exports": {
       ".": {
@@ -73,7 +68,7 @@
       }
    },
    "license": "Apache-2.0",
-   "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
+   "readme": "https://github.com/universalbit-dev/pdf2json/blob/master/readme.md",
    "bundleDependencies": [
       "@xmldom/xmldom"
    ]
