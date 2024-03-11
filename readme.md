@@ -11,7 +11,6 @@ The goal is to enable server side PDF parsing with interactive form elements whe
 git clone https://github.com/universalbit-dev/pdf2json
 npm i
 ```
-##### note:  "semver": "^7.6.0"
 * [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
 
 ---
