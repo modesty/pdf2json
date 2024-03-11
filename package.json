@@ -21,10 +21,9 @@
       "email": "modestyz@hotmail.com",
       "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
    },
-   "homepage": "https://github.com/modesty/pdf2json",
    "repository": {
       "type": "git",
-      "url": "git://github.com/modesty/pdf2json.git"
+      "url": "https://github.com/universalbit-dev/pdf2json"
    },
    "main": "./pdfparser.cjs",
    "module": "./pdfparser.js",
