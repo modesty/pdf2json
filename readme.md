@@ -19,7 +19,8 @@ To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
 ---
 
-##### file: easyparser.js [CommonJs](https://en.wikipedia.org/wiki/CommonJS)
+##### Code Examples [CommonJS](https://en.wikipedia.org/wiki/CommonJS)
+##### file: easyparser.js
 
 ```js
 /*
@@ -105,6 +106,7 @@ The code has two types of logs:
 To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
 
 ## Code Examples [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
+##### note: add [type](https://nodejs.org/docs/latest-v20.x/api/packages.html#type) : "module"
 
 * Parse a PDF file then write to a JSON file:
 
