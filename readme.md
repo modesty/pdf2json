@@ -62,37 +62,6 @@ pdfFilePath="./pdf/";
 node easyparser.js
 ```
 
-## Test
-
-After install, run command line:
-```bash
-npm run test
-```
-It'll scan and parse *260* PDF AcroForm files under *_./test/pdf_*, runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check *_./test/target/_* for outputs.
-
-### Test Exception Handlings
-
-After install, run command line:
-
-```bash
-npm run test-misc
-```
-
-It'll scan and parse all PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 5 PDF fields, while catches exceptions with stack trace for:
- * _bad XRef entry_ for `pdf/misc/i200_test.pdf`
- * _unsupported encryption algorithm_ for `pdf/misc/i43_encrypted.pdf` 
- * _Invalid XRef stream header_ for `pdf/misc/i243_problem_file_anon.pdf`
-
-### Test Streams
-After install, run command line:
-
-```bash
-npm run parse-r
-```
-It scans 165 PDF files under *../test/pdf/fd/form_*, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to *_./test/target/fd/form_*.
-
-More test scripts with different commandline options can be found at *_package.json_*.
-
 ### Disabling Test logs
 
 During CI/CD, you probably would like to disable unnecessary logs for unit testing.
