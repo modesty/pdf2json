@@ -11,6 +11,7 @@ The goal is to enable server side PDF parsing with interactive form elements whe
 git clone https://github.com/universalbit-dev/pdf2json
 npm i
 ```
+
 * [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
 
 ---
@@ -20,6 +21,7 @@ To Run in RESTful Web Service or as Command line Utility
 
 ##### Code Examples [CommonJS](https://en.wikipedia.org/wiki/CommonJS)
 ##### file: easyparser.js
+
 
 ```js
 /*
@@ -73,6 +75,9 @@ The code has two types of logs:
 
 To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
 
+---
+
+* ### ECMAScript [read nodejs documentation](https://nodejs.org/api/esm.html)
 ## Code Examples [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
 ##### note: add [type](https://nodejs.org/docs/latest-v20.x/api/packages.html#type) : "module"
 
