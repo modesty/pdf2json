@@ -77,7 +77,7 @@ To disable the first type, you could mock the console.log and console.warn APIs,
 
 ---
 
-* ### ECMAScript [read nodejs documentation](https://nodejs.org/api/esm.html)
+* ### ECMAScript [read nodejs documentation](https://nodejs.org/api/esm.html#modules-ecmascript-modules)
 ## Code Examples [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
 ##### note: add [type](https://nodejs.org/docs/latest-v20.x/api/packages.html#type) : "module"
 
