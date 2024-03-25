@@ -19,6 +19,9 @@ To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
 ---
 
+<img src="https://github.com/universalbit-dev/pdf2json/blob/master/images/gif/pdf2json.gif" width="auto"></img>
+
+
 ##### Code Examples [CommonJS](https://en.wikipedia.org/wiki/CommonJS)
 ##### file: easyparser.js
 
