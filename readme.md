@@ -1,49 +1,71 @@
 # pdf2json
 
-pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends with interactive form elements and text content parsing outside browser.
+pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, 
+it's built with [pdf.js](https://github.com/mozilla/pdf.js/) and extends with interactive form elements and text content parsing outside browser.
 
 The goal is to enable server side PDF parsing with interactive form elements when wrapped in web service, and also enable parsing local PDF to json file when using as a command line utility.
 
-## Install
+## Install  
+###### [ Nodejs v20.11.0  --  Npm 10.2.4 ](https://nodejs.org/en/download)
+```bash
+git clone https://github.com/universalbit-dev/pdf2json
+npm i
+```
 
->npm install pdf2json
+* [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
 
-Or, install it globally:
->sudo npm install pdf2json -g
-
-To update with latest version:
->sudo npm update pdf2json -g
-
-To Run in RESTful Web Service or as Commandline Utility
+---
+To Run in RESTful Web Service or as Command line Utility
 * More details can be found at the bottom of this document.
+---
 
-## Test
+<img src="https://github.com/universalbit-dev/pdf2json/blob/master/images/gif/pdf2json.gif" width="auto"></img>
 
-After install, run command line:
 
-> npm run test
+##### Code Examples [CommonJS](https://en.wikipedia.org/wiki/CommonJS)
+##### file: easyparser.js
 
-It'll scan and parse *260* PDF AcroForm files under *_./test/pdf_*, runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check *_./test/target/_* for outputs.
 
-### Test Exception Handlings
+```js
+/*
+Utility for Parsing Pdf File in Json Format.
+...briefly...instead of using exclusively online tools.
 
-After install, run command line:
+module that parses and converts PDF from binary to json format (https://www.npmjs.com/package/pdf2json)
+Github Repository: https://github.com/universalbit-dev/pdf2json/blob/master/readme.md
+thanks 
 
-> npm run test-misc
+Why: ? : 
+JsonBin.io project work well with json data.(Zero Database Setup or Maintenance)
+- Website: 	 https://jsonbin.io/features
+- API-Reference: https://jsonbin.io/api-reference
 
-It'll scan and parse all PDF files under *_./test/pdf/misc_*, also runs with *_-s -t -c -m_* command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 5 PDF fields, while catches exceptions with stack trace for:
- * _bad XRef entry_ for `pdf/misc/i200_test.pdf`
- * _unsupported encryption algorithm_ for `pdf/misc/i43_encrypted.pdf` 
- * _Invalid XRef stream header_ for `pdf/misc/i243_problem_file_anon.pdf`
+*/
 
-### Test Streams
-After install, run command line:
+const fs=require("fs-extra");const PDFParser=require("pdf2json");
+const pdfParser = new PDFParser();
 
-> npm run parse-r
+pdfParser.on("pdfParser_dataError", errData => console.error(errData.parserError) );
 
-It scans 165 PDF files under *../test/pdf/fd/form_*, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to *_./test/target/fd/form_*.
+//File amicizia.json HERE
+pdfParser.on("pdfParser_dataReady", pdfData =>
+{fs.writeFile("./json/amicizia.json", JSON.stringify(pdfData));});
 
-More test scripts with different commandline options can be found at *_package.json_*.
+//File amicizia.pdf HERE 
+pdfParser.loadPDF("./pdf/amicizia.pdf");
+
+pdfFilePath="./pdf/";
+ fs.readFile(pdfFilePath, (err, pdfBuffer) => {
+      if (!err) {
+        pdfParser.parseBuffer(pdfBuffer);
+      }
+    })
+```
+
+##### Convert PDF from binary to json format:
+```bash
+node easyparser.js
+```
 
 ### Disabling Test logs
 
@@ -56,7 +78,11 @@ The code has two types of logs:
 
 To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
 
-## Code Example
+---
+
+* ### ECMAScript [read nodejs documentation](https://nodejs.org/api/esm.html#modules-ecmascript-modules)
+## Code Examples [ECMAScript](https://en.wikipedia.org/wiki/ECMAScript)
+##### note: add [type](https://nodejs.org/docs/latest-v20.x/api/packages.html#type) : "module"
 
 * Parse a PDF file then write to a JSON file:
 
