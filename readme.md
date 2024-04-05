@@ -1,3 +1,6 @@
+##### [Support UniversalBit Project](https://github.com/universalbit-dev/universalbit-dev/tree/main/support)
+##### [Disambiguation](https://en.wikipedia.org/wiki/Wikipedia:Disambiguation)
+
 # pdf2json
 
 pdf2json is a [node.js](http://nodejs.org/) module that parses and converts PDF from binary to json format, 
