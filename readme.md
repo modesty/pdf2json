@@ -14,15 +14,15 @@ The goal is to enable server side PDF parsing with interactive form elements whe
 git clone https://github.com/universalbit-dev/pdf2json
 npm i
 ```
-
-* [NPM Security best practices](https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html)
-
----
-To Run in RESTful Web Service or as Command line Utility
-* More details can be found at the bottom of this document.
----
-
 <img src="https://github.com/universalbit-dev/pdf2json/blob/master/images/gif/pdf2json.gif" width="auto"></img>
+
+---
+
+### JSONBin.io provides a simple REST interface to store & retrieve your JSON data from the cloud.
+* [Developers API Reference (v3.0)](https://jsonbin.io/api-reference)
+* [Quick Store JSON](https://jsonbin.io/quick-store)
+
+---
 
 
 ##### Code Examples [CommonJS](https://en.wikipedia.org/wiki/CommonJS)
