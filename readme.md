@@ -55,12 +55,14 @@ pdfFilePath="./pdf/";
 
 ```
 
-##### Convert PDF from binary to json format:
+### Convert PDF from binary to json format:
 ```bash
 node easyparser.js
 ```
 
-### Disabling Test logs
+--- 
+
+##### Disabling Test logs
 
 During CI/CD, you probably would like to disable unnecessary logs for unit testing.
 
