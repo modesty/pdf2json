@@ -24,10 +24,8 @@ npm i
 
 ---
 
-
 ##### Code Examples [CommonJS](https://en.wikipedia.org/wiki/CommonJS)
 ##### file: easyparser.js
-
 
 ```js
 /*
@@ -36,13 +34,6 @@ Utility for Parsing Pdf File in Json Format.
 
 module that parses and converts PDF from binary to json format (https://www.npmjs.com/package/pdf2json)
 Github Repository: https://github.com/universalbit-dev/pdf2json/blob/master/readme.md
-thanks 
-
-Why: ? : 
-JsonBin.io project work well with json data.(Zero Database Setup or Maintenance)
-- Website: 	 https://jsonbin.io/features
-- API-Reference: https://jsonbin.io/api-reference
-
 */
 
 const fs=require("fs-extra");const PDFParser=require("pdf2json");
@@ -63,6 +54,7 @@ pdfFilePath="./pdf/";
         pdfParser.parseBuffer(pdfBuffer);
       }
     })
+
 ```
 
 ##### Convert PDF from binary to json format:
