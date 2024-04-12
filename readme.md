@@ -31,8 +31,6 @@ npm i
 /*
 Utility for Parsing Pdf File in Json Format.
 ...briefly...instead of using exclusively online tools.
-
-module that parses and converts PDF from binary to json format (https://www.npmjs.com/package/pdf2json)
 Github Repository: https://github.com/universalbit-dev/pdf2json/blob/master/readme.md
 */
 
