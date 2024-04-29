@@ -29,17 +29,23 @@ To Run in RESTful Web Service or as command line Utility
 
 After install, run command line:
 
-> npm run test
+> npm test
+
+It'll build bundles and source maps for both ES Module and CommonJS, output to `./dist` directory, and run Jest test suit defined in `./test/_test_.cjs`.
+
+The default test suits are eseential tests for all PRs. But it only covers a portion of all tesing PDFs, for more broader converage, run:
+
+> npm run test:forms
 
 It'll scan and parse _260_ PDF AcroForm files under _*./test/pdf*_, runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check _*./test/target/*_ for outputs.
 
-_update on 4/27/2024_: parsing 260 PDFs by `npm run test` on M2 Mac takes 7~8s
+_update on 4/27/2024_: parsing 260 PDFs by `npm run test:forms` on M2 Mac takes 7~8s
 
 ### Test Exception Handlings
 
 After install, run command line:
 
-> npm run test-misc
+> npm run test;misc
 
 It'll scan and parse all PDF files under _*./test/pdf/misc*_, also runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 5 PDF fields, while catches exceptions with stack trace for:
 
