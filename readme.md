@@ -1,12 +1,12 @@
 # pdf2json
 
-pdf2json is a [node.js](http://nodejs.org/) module for efficient binary PDF to JSON conversion. Built with [pdf.js](https://github.com/mozilla/pdf.js/), it extracts text content and interactive form elements for server-side processing and command-line use.
+pdf2json is a [node.js](http://nodejs.org/) module converts binary PDF to JSON and text. Built with [pdf.js](https://github.com/mozilla/pdf.js/), it extracts text content and interactive form elements for server-side processing and command-line use.
 
 ## Features
 
 - PDF text extraction: extracts textual content of PDF documents into structured JSON.
 - Form element handling: parses interactive form fields within PDFs for flexible data capture.
-- Server-side and command-line versatility: Integrate into web services for remote PDF processing or use as a standalone command-line tool for local file conversion.
+- Server-side and command-line versatility: Integrate with web services for remote PDF processing or use as a standalone command-line tool for local file conversion.
 - Community driven: decade+ long community driven development ensures continuous improvement.
 
 ## Install
@@ -74,19 +74,19 @@ To disable the first type, you could mock the console.log and console.warn APIs,
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.0.6, PDFParser is no longer the default export
+import { PDFParser } from "pdf2json"; // starting v3.1.0, PDFParser is no longer the default export
 
 const pdfParser = new PDFParser();
 
 pdfParser.on("pdfParser_dataError", (errData) =>
-	console.error(errData.parserError)
+ console.error(errData.parserError)
 );
 pdfParser.on("pdfParser_dataReady", (pdfData) => {
-	fs.writeFile(
-		"./pdf2json/test/F1040EZ.json",
-		JSON.stringify(pdfData),
-		(data) => console.log(data)
-	);
+ fs.writeFile(
+  "./pdf2json/test/F1040EZ.json",
+  JSON.stringify(pdfData),
+  (data) => console.log(data)
+ );
 });
 
 pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
@@ -96,9 +96,9 @@ Or, call directly with buffer:
 
 ```javascript
 fs.readFile(pdfFilePath, (err, pdfBuffer) => {
-	if (!err) {
-		pdfParser.parseBuffer(pdfBuffer);
-	}
+ if (!err) {
+  pdfParser.parseBuffer(pdfBuffer);
+ }
 });
 ```
 
@@ -107,7 +107,7 @@ Or, use more granular page level parsing events (v2.0.0)
 ```javascript
 pdfParser.on("readable", (meta) => console.log("PDF Metadata", meta));
 pdfParser.on("data", (page) =>
-	console.log(page ? "One page paged" : "All pages parsed", page)
+ console.log(page ? "One page paged" : "All pages parsed", page)
 );
 pdfParser.on("error", (err) => console.error("Parser Error", err));
 ```
@@ -116,21 +116,21 @@ pdfParser.on("error", (err) => console.error("Parser Error", err));
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.0.6, PDFParser is no longer the default export
+import { PDFParser } from "pdf2json"; // starting v3.1.0, PDFParser is no longer the default export
 
 const pdfParser = new PDFParser(this, 1);
 
 pdfParser.on("pdfParser_dataError", (errData) =>
-	console.error(errData.parserError)
+ console.error(errData.parserError)
 );
 pdfParser.on("pdfParser_dataReady", (pdfData) => {
-	fs.writeFile(
-		"./pdf2json/test/F1040EZ.content.txt",
-		pdfParser.getRawTextContent(),
-		() => {
-			console.log("Done.");
-		}
-	);
+ fs.writeFile(
+  "./pdf2json/test/F1040EZ.content.txt",
+  pdfParser.getRawTextContent(),
+  () => {
+   console.log("Done.");
+  }
+ );
 });
 
 pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
@@ -140,21 +140,21 @@ pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.0.6, PDFParser is no longer the default export
+import { PDFParser } from "pdf2json"; // starting v3.1.0, PDFParser is no longer the default export
 
 const pdfParser = new PDFParser();
 
 pdfParser.on("pdfParser_dataError", (errData) =>
-	console.error(errData.parserError)
+ console.error(errData.parserError)
 );
 pdfParser.on("pdfParser_dataReady", (pdfData) => {
-	fs.writeFile(
-		"./pdf2json/test/F1040EZ.fields.json",
-		JSON.stringify(pdfParser.getAllFieldsTypes()),
-		() => {
-			console.log("Done.");
-		}
-	);
+ fs.writeFile(
+  "./pdf2json/test/F1040EZ.fields.json",
+  JSON.stringify(pdfParser.getAllFieldsTypes()),
+  () => {
+   console.log("Done.");
+  }
+ );
 });
 
 pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
@@ -164,57 +164,57 @@ Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.0.6, no default export of PDFParser
+import { PDFParser } from "pdf2json"; // starting v3.1.0, no default export of PDFParser
 
 const inputStream = fs.createReadStream(
-	"./pdf2json/test/pdf/fd/form/F1040EZ.pdf",
-	{ bufferSize: 64 * 1024 }
+ "./pdf2json/test/pdf/fd/form/F1040EZ.pdf",
+ { bufferSize: 64 * 1024 }
 );
 const outputStream = fs.createWriteStream(
-	"./pdf2json/test/target/fd/form/F1040EZ.json"
+ "./pdf2json/test/target/fd/form/F1040EZ.json"
 );
 
 inputStream
-	.pipe(new PDFParser())
-	.pipe(new StringifyStream())
-	.pipe(outputStream);
+ .pipe(new PDFParser())
+ .pipe(new StringifyStream())
+ .pipe(outputStream);
 ```
 
 With v2.0.0, last line above changes to
 
 ```javascript
 inputStream
-	.pipe(this.pdfParser.createParserStream())
-	.pipe(new StringifyStream())
-	.pipe(outputStream);
+ .pipe(this.pdfParser.createParserStream())
+ .pipe(new StringifyStream())
+ .pipe(outputStream);
 ```
 
 For additional output streams support:
 
 ```javascript
     //private methods
-	#generateMergedTextBlocksStream() {
-		return new Promise( (resolve, reject) => {
-			const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".merged.json"), resolve, reject);
-			this.pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);
-		});
-	}
+ #generateMergedTextBlocksStream() {
+  return new Promise( (resolve, reject) => {
+   const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".merged.json"), resolve, reject);
+   this.pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);
+  });
+ }
 
     #generateRawTextContentStream() {
-		return new Promise( (resolve, reject) => {
-			const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".content.txt"), resolve, reject);
-			this.pdfParser.getRawTextContentStream().pipe(outputStream);
-		});
+  return new Promise( (resolve, reject) => {
+   const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".content.txt"), resolve, reject);
+   this.pdfParser.getRawTextContentStream().pipe(outputStream);
+  });
     }
 
     #generateFieldsTypesStream() {
-		return new Promise( (resolve, reject) => {
-			const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".fields.json"), resolve, reject);
-			this.pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
-		});
-	}
+  return new Promise( (resolve, reject) => {
+   const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".fields.json"), resolve, reject);
+   this.pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
+  });
+ }
 
-	#processAdditionalStreams() {
+ #processAdditionalStreams() {
         const outputTasks = [];
         if (PROCESS_FIELDS_CONTENT) {//needs to generate fields.json file
             outputTasks.push(this.#generateFieldsTypesStream());
@@ -225,8 +225,8 @@ For additional output streams support:
         if (PROCESS_MERGE_BROKEN_TEXT_BLOCKS) {//needs to generate json file with merged broken text blocks
             outputTasks.push(this.#generateMergedTextBlocksStream());
         }
-		return Promise.allSettled(outputTasks);
-	}
+  return Promise.allSettled(outputTasks);
+ }
 ```
 
 Note, if primary JSON parsing has exceptions, none of additional stream will be processed.
@@ -277,6 +277,7 @@ Current parsed data has four main sub objects to describe the PDF document.
 - 'Transcoder': pdf2json version number
 - 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title; (_deprecated since v2.0.0, see notes below_)
 - 'Id': the XML meta data that embedded in PDF document (_deprecated since v2.0.0, see notes below_)
+
   - all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
   - v0.1.22 added support for the following custom properties:
     - AgencyId: default "unknown";
@@ -285,6 +286,7 @@ Current parsed data has four main sub objects to describe the PDF document.
     - Max: default -1;
     - Parent: parent name, default "unknown";
   - _*v2.0.0*_: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
+
   ```json
         Meta: {
             PDFFormatVersion: '1.7',
@@ -312,6 +314,7 @@ Current parsed data has four main sub objects to describe the PDF document.
             }
         }
   ```
+
 - 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
 - 'Width': the PDF page width in page unit
 
@@ -350,44 +353,44 @@ It does require the client of the payload to have the same dictionary definition
 
 ```javascript
 const kColors = [
-	"#000000", // 0
-	"#ffffff", // 1
-	"#4c4c4c", // 2
-	"#808080", // 3
-	"#999999", // 4
-	"#c0c0c0", // 5
-	"#cccccc", // 6
-	"#e5e5e5", // 7
-	"#f2f2f2", // 8
-	"#008000", // 9
-	"#00ff00", // 10
-	"#bfffa0", // 11
-	"#ffd629", // 12
-	"#ff99cc", // 13
-	"#004080", // 14
-	"#9fc0e1", // 15
-	"#5580ff", // 16
-	"#a9c9fa", // 17
-	"#ff0080", // 18
-	"#800080", // 19
-	"#ffbfff", // 20
-	"#e45b21", // 21
-	"#ffbfaa", // 22
-	"#008080", // 23
-	"#ff0000", // 24
-	"#fdc59f", // 25
-	"#808000", // 26
-	"#bfbf00", // 27
-	"#824100", // 28
-	"#007256", // 29
-	"#008000", // 30
-	"#000080", // Last + 1
-	"#008080", // Last + 2
-	"#800080", // Last + 3
-	"#ff0000", // Last + 4
-	"#0000ff", // Last + 5
-	"#008000", // Last + 6
-	"#000000", // Last + 7
+ "#000000", // 0
+ "#ffffff", // 1
+ "#4c4c4c", // 2
+ "#808080", // 3
+ "#999999", // 4
+ "#c0c0c0", // 5
+ "#cccccc", // 6
+ "#e5e5e5", // 7
+ "#f2f2f2", // 8
+ "#008000", // 9
+ "#00ff00", // 10
+ "#bfffa0", // 11
+ "#ffd629", // 12
+ "#ff99cc", // 13
+ "#004080", // 14
+ "#9fc0e1", // 15
+ "#5580ff", // 16
+ "#a9c9fa", // 17
+ "#ff0080", // 18
+ "#800080", // 19
+ "#ffbfff", // 20
+ "#e45b21", // 21
+ "#ffbfaa", // 22
+ "#008080", // 23
+ "#ff0000", // 24
+ "#fdc59f", // 25
+ "#808000", // 26
+ "#bfbf00", // 27
+ "#824100", // 28
+ "#007256", // 29
+ "#008000", // 30
+ "#000080", // Last + 1
+ "#008080", // Last + 2
+ "#800080", // Last + 3
+ "#ff0000", // Last + 4
+ "#0000ff", // Last + 5
+ "#008000", // Last + 6
+ "#000000", // Last + 7
 ];
 ```
 
@@ -395,86 +398,86 @@ const kColors = [
 
 ```javascript
 const kFontFaces = [
-	"QuickType,Arial,Helvetica,sans-serif", // 00 - QuickType - sans-serif variable font
-	"QuickType Condensed,Arial Narrow,Arial,Helvetica,sans-serif", // 01 - QuickType Condensed - thin sans-serif variable font
-	"QuickTypePi", // 02 - QuickType Pi
-	"QuickType Mono,Courier New,Courier,monospace", // 03 - QuickType Mono - san-serif fixed font
-	"OCR-A,Courier New,Courier,monospace", // 04 - OCR-A - OCR readable san-serif fixed font
-	"OCR B MT,Courier New,Courier,monospace", // 05 - OCR-B MT - OCR readable san-serif fixed font
+ "QuickType,Arial,Helvetica,sans-serif", // 00 - QuickType - sans-serif variable font
+ "QuickType Condensed,Arial Narrow,Arial,Helvetica,sans-serif", // 01 - QuickType Condensed - thin sans-serif variable font
+ "QuickTypePi", // 02 - QuickType Pi
+ "QuickType Mono,Courier New,Courier,monospace", // 03 - QuickType Mono - san-serif fixed font
+ "OCR-A,Courier New,Courier,monospace", // 04 - OCR-A - OCR readable san-serif fixed font
+ "OCR B MT,Courier New,Courier,monospace", // 05 - OCR-B MT - OCR readable san-serif fixed font
 ];
 
 const kFontStyles = [
-	// Face		Size	Bold	Italic		StyleID(Comment)
-	// -----	----	----	-----		-----------------
-	[0, 6, 0, 0], //00
-	[0, 8, 0, 0], //01
-	[0, 10, 0, 0], //02
-	[0, 12, 0, 0], //03
-	[0, 14, 0, 0], //04
-	[0, 18, 0, 0], //05
-	[0, 6, 1, 0], //06
-	[0, 8, 1, 0], //07
-	[0, 10, 1, 0], //08
-	[0, 12, 1, 0], //09
-	[0, 14, 1, 0], //10
-	[0, 18, 1, 0], //11
-	[0, 6, 0, 1], //12
-	[0, 8, 0, 1], //13
-	[0, 10, 0, 1], //14
-	[0, 12, 0, 1], //15
-	[0, 14, 0, 1], //16
-	[0, 18, 0, 1], //17
-	[0, 6, 1, 1], //18
-	[0, 8, 1, 1], //19
-	[0, 10, 1, 1], //20
-	[0, 12, 1, 1], //21
-	[0, 14, 1, 1], //22
-	[0, 18, 1, 1], //23
-	[1, 6, 0, 0], //24
-	[1, 8, 0, 0], //25
-	[1, 10, 0, 0], //26
-	[1, 12, 0, 0], //27
-	[1, 14, 0, 0], //28
-	[1, 18, 0, 0], //29
-	[1, 6, 1, 0], //30
-	[1, 8, 1, 0], //31
-	[1, 10, 1, 0], //32
-	[1, 12, 1, 0], //33
-	[1, 14, 1, 0], //34
-	[1, 18, 1, 0], //35
-	[1, 6, 0, 1], //36
-	[1, 8, 0, 1], //37
-	[1, 10, 0, 1], //38
-	[1, 12, 0, 1], //39
-	[1, 14, 0, 1], //40
-	[1, 18, 0, 1], //41
-	[2, 8, 0, 0], //42
-	[2, 10, 0, 0], //43
-	[2, 12, 0, 0], //44
-	[2, 14, 0, 0], //45
-	[2, 12, 0, 0], //46
-	[3, 8, 0, 0], //47
-	[3, 10, 0, 0], //48
-	[3, 12, 0, 0], //49
-	[4, 12, 0, 0], //50
-	[0, 9, 0, 0], //51
-	[0, 9, 1, 0], //52
-	[0, 9, 0, 1], //53
-	[0, 9, 1, 1], //54
-	[1, 9, 0, 0], //55
-	[1, 9, 1, 0], //56
-	[1, 9, 1, 1], //57
-	[4, 10, 0, 0], //58
-	[5, 10, 0, 0], //59
-	[5, 12, 0, 0], //60
+ // Face  Size Bold Italic  StyleID(Comment)
+ // ----- ---- ---- -----  -----------------
+ [0, 6, 0, 0], //00
+ [0, 8, 0, 0], //01
+ [0, 10, 0, 0], //02
+ [0, 12, 0, 0], //03
+ [0, 14, 0, 0], //04
+ [0, 18, 0, 0], //05
+ [0, 6, 1, 0], //06
+ [0, 8, 1, 0], //07
+ [0, 10, 1, 0], //08
+ [0, 12, 1, 0], //09
+ [0, 14, 1, 0], //10
+ [0, 18, 1, 0], //11
+ [0, 6, 0, 1], //12
+ [0, 8, 0, 1], //13
+ [0, 10, 0, 1], //14
+ [0, 12, 0, 1], //15
+ [0, 14, 0, 1], //16
+ [0, 18, 0, 1], //17
+ [0, 6, 1, 1], //18
+ [0, 8, 1, 1], //19
+ [0, 10, 1, 1], //20
+ [0, 12, 1, 1], //21
+ [0, 14, 1, 1], //22
+ [0, 18, 1, 1], //23
+ [1, 6, 0, 0], //24
+ [1, 8, 0, 0], //25
+ [1, 10, 0, 0], //26
+ [1, 12, 0, 0], //27
+ [1, 14, 0, 0], //28
+ [1, 18, 0, 0], //29
+ [1, 6, 1, 0], //30
+ [1, 8, 1, 0], //31
+ [1, 10, 1, 0], //32
+ [1, 12, 1, 0], //33
+ [1, 14, 1, 0], //34
+ [1, 18, 1, 0], //35
+ [1, 6, 0, 1], //36
+ [1, 8, 0, 1], //37
+ [1, 10, 0, 1], //38
+ [1, 12, 0, 1], //39
+ [1, 14, 0, 1], //40
+ [1, 18, 0, 1], //41
+ [2, 8, 0, 0], //42
+ [2, 10, 0, 0], //43
+ [2, 12, 0, 0], //44
+ [2, 14, 0, 0], //45
+ [2, 12, 0, 0], //46
+ [3, 8, 0, 0], //47
+ [3, 10, 0, 0], //48
+ [3, 12, 0, 0], //49
+ [4, 12, 0, 0], //50
+ [0, 9, 0, 0], //51
+ [0, 9, 1, 0], //52
+ [0, 9, 0, 1], //53
+ [0, 9, 1, 1], //54
+ [1, 9, 0, 0], //55
+ [1, 9, 1, 0], //56
+ [1, 9, 1, 1], //57
+ [4, 10, 0, 0], //58
+ [5, 10, 0, 0], //59
+ [5, 12, 0, 0], //60
 ];
 ```
 
 v2.0.0: to access these dictionary programactically, do either
 
 ```javascript
-import { kColors, kFontFaces, kFontStyles } from "./lib/pdfconst.js"; // <-- pre 3.0.6
-import { kColors, kFontFaces, kFontStyles } from "pdf2json"; // <-- since 3.0.6
+import { kColors, kFontFaces, kFontStyles } from "./lib/pdfconst.js"; // <-- pre 3.1.0
+import { kColors, kFontFaces, kFontStyles } from "pdf2json"; // <-- since 3.1.0
 ```
 
 or via public static getters of PDFParser:
@@ -495,147 +498,155 @@ All interactive form elements parsing output will be part of corresponding 'Page
 
 Each object with in 'Boxset' can be either checkbox or radio button, the only difference is that radio button object will have more than one element in 'boxes' array, it indicates it's a radio button group. The following sample output illustrate one checkbox ( Id: F8888 ) and one radio button group ( Id: ACC ) in the 'Boxsets' array:
 
-             Boxsets: [
-                {//first element, check box
-                    boxes: [ //only one box object object in this array
-                    {
-                        x: 47,
-                        y: 40,
-                        w: 3,
-                        h: 1,
-                        style: 48,
-                        TI: 39,
-                        AM: 4,
-                        id: {
-                            Id: "F8888",
-                        },
-                        T: {
-                            Name: "box"
-                        }
-                     }
-                     ],
-                     id: {
-                        Id: "A446",
-                     }
-                },//end of first element
-                {//second element, radio button group
-                    boxes: [// has two box elements in boxes array
-                    {
-                        x: 54,
-                        y: 41,
-                        w: 3,
-                        h: 1,
-                        style: 48,
-                        TI: 43,
-                        AM: 132,
-                        id: {
-                            Id: "ACCC",
-                        },
-                        T: {
-                            Name: "box"
-                        }
-                    },
-                    {
-                        x: 67,
-                        y: 41,
-                        w: 3,
-                        h: 1,
-                        style: 48,
-                        TI: 44,
-                        AM: 132,
-                        id: {
-                            Id: "ACCS",
-                            EN: 0
-                        },
-                        T: {
-                            Name: "box"
-                        }
-                    }
-                    ],
-                    id: {
-                        Id: "ACC",
-                        EN: 0
-                    }
-                }//end of second element
-             ] //end of Boxsets array
+```Javascript
+Boxsets: [
+{//first element, check box
+ boxes: [ //only one box object object in this array
+ {
+  x: 47,
+  y: 40,
+  w: 3,
+  h: 1,
+  style: 48,
+  TI: 39,
+  AM: 4,
+  id: {
+   Id: "F8888",
+  },
+  T: {
+   Name: "box"
+  }
+  }
+  ],
+  id: {
+  Id: "A446",
+  }
+},//end of first element
+{//second element, radio button group
+ boxes: [// has two box elements in boxes array
+ {
+  x: 54,
+  y: 41,
+  w: 3,
+  h: 1,
+  style: 48,
+  TI: 43,
+  AM: 132,
+  id: {
+   Id: "ACCC",
+  },
+  T: {
+   Name: "box"
+  }
+ },
+ {
+  x: 67,
+  y: 41,
+  w: 3,
+  h: 1,
+  style: 48,
+  TI: 44,
+  AM: 132,
+  id: {
+   Id: "ACCS",
+   EN: 0
+  },
+  T: {
+   Name: "box"
+  }
+ }
+ ],
+ id: {
+  Id: "ACC",
+  EN: 0
+ }
+}//end of second element
+] //end of Boxsets array
+```
 
 'Fields' array contains parsed object for text input (Name: 'alpha'), drop down list (Name: 'apha', but has 'PL' object which contains label array in 'PL.D' and value array in 'PL.V'), link button (Name: 'link', linked URL is in 'FL.form.Id' field). Some examples:
 
 Text input box example:
 
-                {
-                    style: 48,
-                    T: {
-                        Name: "alpha",
-                        TypeInfo: { }
-                    },
-                    id: {
-                        Id: "p1_t40",
-                        EN: 0
-                    },
-                    TU: "alternative text", //for accessibility, added only when available from PDF stream. (v0.3.6).
-                    TI: 0,
-                    x: 6.19,
-                    y: 5.15,
-                    w: 30.94,
-                    h: 0.85,
-                    V: "field value" //only available when the text input box has value
-                },
+```javascript
+{
+ style: 48,
+ T: {
+  Name: "alpha",
+  TypeInfo: { }
+ },
+ id: {
+  Id: "p1_t40",
+  EN: 0
+ },
+ TU: "alternative text", //for accessibility, added only when available from PDF stream. (v0.3.6).
+ TI: 0,
+ x: 6.19,
+ y: 5.15,
+ w: 30.94,
+ h: 0.85,
+ V: "field value" //only available when the text input box has value
+},
+```
 
 Note: v0.7.0 extends TU (Alternative Text) to all interactive fields to better support accessibility.
 
 Drop down list box example:
 
-               {
-                    x: 60,
-                    y: 11,
-                    w: 4,
-                    h: 1,
-                    style: 48,
-                    TI: 13,
-                    AM: 388,
-                    mxL: 2,
-                    id: {
-                        Id: "ST",
-                        EN: 0
-                    },
-                    T: {
-                        Name: "alpha",
-                        TypeInfo: {
-                        }
-                    },
-                    PL: {
-                        V: [
-                            "",
-                            "AL",
-                            "AK"
-                        ],
-                        D: [
-                        "%28no%20entry%29",
-                        "Alabama",
-                        "Alaska"
-                        ]
-                    }
-               }
+```javascript
+{
+ x: 60,
+ y: 11,
+ w: 4,
+ h: 1,
+ style: 48,
+ TI: 13,
+ AM: 388,
+ mxL: 2,
+ id: {
+  Id: "ST",
+  EN: 0
+ },
+ T: {
+  Name: "alpha",
+  TypeInfo: {
+  }
+ },
+ PL: {
+  V: [
+   "",
+   "AL",
+   "AK"
+  ],
+  D: [
+  "%28no%20entry%29",
+  "Alabama",
+  "Alaska"
+  ]
+ }
+}
+```
 
 Link button example:
 
-                {
-                    style: 48,
-                    T: {
-                        Name: "link"
-                    },
-                    FL: {form: {Id:"http://www.github.com"},
-                    id: {
-                        Id: "quad8",
-                        EN: 0
-                    },
-                    TI: 0,
-                    x: 52.35,
-                    y: 28.35,
-                    w: 8.88,
-                    h: 0.85
-                }
+```javascript
+{
+ style: 48,
+ T: {
+  Name: "link"
+ },
+ FL: {form: {Id:"http://www.github.com"},
+ id: {
+  Id: "quad8",
+  EN: 0
+ },
+ TI: 0,
+ x: 52.35,
+ y: 28.35,
+ w: 8.88,
+ h: 0.85
+}
+```
 
 v0.2.2 added support for "field attribute mask", it'd be common for all fields, form author can set it in Acrobat Pro's Form Editing mode: if a field is ReadOnly, it's AM field will be set as 0x00000400, otherwise AM will be set as 0.
 
@@ -643,23 +654,25 @@ Another supported field attributes is "required": when form author mark a field 
 
 "Read-Only" filed attribute mask example:
 
-                {
-                    style: 48,
-                    T: {
-                        Name: "alpha",
-                        TypeInfo: { }
-                    },
-                    id: {
-                        Id: "p1_t40",
-                        EN: 0
-                    },
-                    TI: 0,
-                    AM: 1024, //If (AM & 0x00000400) set, it indicates this is a read-only filed
-                    x: 6.19,
-                    y: 5.15,
-                    w: 30.94,
-                    h: 0.85
-                }
+```favascript
+{
+ style: 48,
+ T: {
+  Name: "alpha",
+  TypeInfo: { }
+ },
+ id: {
+  Id: "p1_t40",
+  EN: 0
+ },
+ TI: 0,
+ AM: 1024, //If (AM & 0x00000400) set, it indicates this is a read-only filed
+ x: 6.19,
+ y: 5.15,
+ w: 30.94,
+ h: 0.85
+}
+```
 
 v2.X.X added support for the signature form element (Name: 'signature'). If the field has been signed, the 'Sig' property will be present, and will contain any of the following signature details if available:
 
@@ -671,27 +684,29 @@ v2.X.X added support for the signature form element (Name: 'signature'). If the 
 
 Signature example:
 
-                {
-                    style: 48,
-                    T: {
-                        Name: "signature",
-                        TypeInfo: {}
-                    },
-                    id: {
-                        Id: "SignatureFormField_1",
-                        EN: 0
-                    },
-                    TI: 0,
-                    AM: 16,
-                    x: 5.506,
-                    y: 31.394,
-                    w: 14.367,
-                    h: 4.241,
-                    Sig: {
-                        Name: "Signer Name",
-                        M: "2022-03-15T19:17:34-04:00"
-                    }
-                }
+```javascript
+{
+ style: 48,
+ T: {
+  Name: "signature",
+  TypeInfo: {}
+ },
+ id: {
+  Id: "SignatureFormField_1",
+  EN: 0
+ },
+ TI: 0,
+ AM: 16,
+ x: 5.506,
+ y: 31.394,
+ w: 14.367,
+ h: 4.241,
+ Sig: {
+  Name: "Signer Name",
+  M: "2022-03-15T19:17:34-04:00"
+ }
+}
+```
 
 ## Text Input Field Formatter Types
 
@@ -729,41 +744,45 @@ Types above are detected only when the widget field type is "Tx" and the additio
 
 For the supported types, the result data is set to the field item's T object. Example of a 'number' field in final json output:
 
-                {
-                    style: 48,
-                    T: {
-                        Name: "number",
-                        TypeInfo: { }
-                    },
-                    id: {
-                        Id: "FAGI",
-                        EN: 0
-                    },
-                    TI: 0,
-                    x: 68.35,
-                    y: 22.43,
-                    w: 21.77,
-                    h: 1.08
-                },
+```javascript
+{
+ style: 48,
+ T: {
+  Name: "number",
+  TypeInfo: { }
+ },
+ id: {
+  Id: "FAGI",
+  EN: 0
+ },
+ TI: 0,
+ x: 68.35,
+ y: 22.43,
+ w: 21.77,
+ h: 1.08
+},
+```
 
 Another example of 'date' field:
 
-                {
-                    style: 48,
-                    T: {
-                        Name: "date",
-                        TypeInfo: { }
-                    },
-                    id: {
-                        Id: "Your Birth Date",
-                        EN: 0
-                    },
-                    TI: 0,
-                    x: 33.43,
-                    y: 20.78,
-                    w: 5.99,
-                    h: 0.89
-                },
+```javascript
+{
+ style: 48,
+ T: {
+  Name: "date",
+  TypeInfo: { }
+ },
+ id: {
+  Id: "Your Birth Date",
+  EN: 0
+ },
+ TI: 0,
+ x: 33.43,
+ y: 20.78,
+ w: 5.99,
+ h: 0.89
+},
+```
 
 ## Text Style data without Style Dictionary
 
@@ -780,20 +799,22 @@ The new TS filed is an Array with format as:
 
 For example, the following is a text block data in the parsing result:
 
-                {
-                    x: 7.11,
-                    y: 2.47,
-                    w: 1.6,
-                    clr: 0,
-                    A: "left",
-                    R: [
-                        {
-                            T: "Modesty%20PDF%20Parser%20NodeJS",
-                            S: -1,
-                            TS: [0, 15, 1, 0]
-                        }
-                    ]
-                },
+```javascript
+{
+ x: 7.11,
+ y: 2.47,
+ w: 1.6,
+ clr: 0,
+ A: "left",
+ R: [
+  {
+   T: "Modesty%20PDF%20Parser%20NodeJS",
+   S: -1,
+   TS: [0, 15, 1, 0]
+  }
+ ]
+},
+```
 
 The text is "Modesty PDF Parser NodeJS", text style dictionary entry ID is -1 (S field, meaning no match), and its Font Face ID is 0 (TS[0], "QuickType,Arial,Helvetica,sans-serif"), Font Size is 15px (TS[1]), Font weight is bold (TS[2]) and font style is normal (TS[3]).
 
@@ -803,21 +824,23 @@ Note: (v0.3.7) When a color is not in style dictionary, "clr" value will be set 
 
 V0.1.13 added text rotation value (degree) in the R array's object, if and only if the text rotation angle is not 0. For example, if text is not rotated, the parsed output would be the same as above. When the rotation angle is 90 degree, the R array object would be extended with "RA" field:
 
-                {
-                    x: 7.11,
-                    y: 2.47,
-                    w: 1.6,
-                    clr: 0,
-                    A: "left",
-                    R: [
-                        {
-                            T: "Modesty%20PDF%20Parser%20NodeJS",
-                            S: -1,
-                            TS: [0, 15, 1, 0],
-                            RA: 90
-                        }
-                    ]
-                },
+```javascript
+{
+ x: 7.11,
+ y: 2.47,
+ w: 1.6,
+ clr: 0,
+ A: "left",
+ R: [
+  {
+   T: "Modesty%20PDF%20Parser%20NodeJS",
+   S: -1,
+   TS: [0, 15, 1, 0],
+   RA: 90
+  }
+ ]
+},
+```
 
 ## Notes
 
@@ -835,7 +858,7 @@ In order to run pdf.js in Node.js, we have to address those dependencies and als
   - pdf.js' global objects (like PDFJS and globalScope) need to be wrapped in a node module's scope
 - API Dependencies
   - XHR Level 2: I don't need XMLHttpRequest to load PDF asynchronously in node.js, so replaced it with node's fs (File System) to load PDF file based on request parameters;
-  - DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at https://github.com/xmldom/xmldom;
+  - DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at <https://github.com/xmldom/xmldom>;
   - Web Worker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
   - Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the json format above, rather than drawing graphics on html5 canvas;
 - Extend/Modify pdf.js
@@ -874,42 +897,62 @@ This command line utility is added as an extension, it doesn't break previous fu
 
 To use the command line utility to transcode a folder or a file:
 
-            node pdf2json.js -f [input directory or pdf file]
+```javascript
+node pdf2json.js -f [input directory or pdf file]
+```
 
 When -f is a PDF file, it'll be converted to json file with the same name and saved in the same directory. If -f is a directory, it'll scan all ".pdf" files within the specified directory to transcode them one by one.
 
 Optionally, you can specify the output directory: -o:
 
-            node pdf2json.js -f [input directory or pdf file] -o [output directory]
+```javascript
+node pdf2json.js -f [input directory or pdf file] -o [output directory]
+```
 
 The output directory must exist, otherwise, it'll exit with an error.
 
 Additionally, you can also use -v or --version to show version number or to display more help info with -h.
 
-### Note:
+### Note
 
 v0.2.1 added the ability to run pdf2json directly from the command line without specifying "node" and the path of pdf2json. To run this self-executable in command line, first install pdf2json globally:
 
-            npm install pdf2json -g
+```javascript
+npm install pdf2json -g
+```
 
 Then run it in command line:
 
-            pdf2json -f [input directory or pdf file]
-            or
-            pdf2json -f [input directory or pdf file] -o [output directory]
+```javascript
+pdf2json -f [input directory or pdf file]
+```
 
-v0.5.4 added "-s" or "--silent" command line argument to suppress informative logging output. When using pdf2json as a commandline tool, the default verbosity is 5 (INFOS). While when running as a web service, default verbosity is 9 (ERRORS).
-Examples to suppress logging info from commandline:
+or
 
-            pdf2json -f [input directory or pdf file] -o [output directory] -s
-            or
-            pdf2json -f [input directory or pdf file] -o [output directory] --silent
+```javascript
+pdf2json -f [input directory or pdf file] -o [output directory]
+```
+
+v0.5.4 added "-s" or "--silent" command line argument to suppress informative logging output. When using pdf2json as a command line tool, the default verbosity is 5 (INFOS). While when running as a web service, default verbosity is 9 (ERRORS).
+Examples to suppress logging info from command line:
+
+```javascript
+pdf2json -f [input directory or pdf file] -o [output directory] -s
+```
+
+or
+
+```javascript
+pdf2json -f [input directory or pdf file] -o [output directory] --silent
+```
 
 Examples to turn on logging info in web service:
 
-            var pdfParser = new PFParser();
-            ...
-            pdfParser.loadPDF(pdfFilePath, 5);
+```javascript
+var pdfParser = new PFParser();
+...
+pdfParser.loadPDF(pdfFilePath, 5);
+```
 
 v0.5.7 added the capability to skip input PDF files if filename begins with any one of "!@#$%^&\*()+=[]\\\';,/{}|\":<>?~`.-\_ ", usually these files are created by PDF authoring tools as backup files.
 
@@ -922,12 +965,14 @@ v0.6.2 added "-t" command line argument to generate fields json file in addition
 
 Example of fields.json content:
 
-            [
-             {"id":"ADDRCH","type":"alpha","calc":false,"value":"user input data"},
-             {"id":"FSRB","type":"radio","calc":false,"value":"Single"},
-             {"id":"APPROVED","type":"alpha","calc":true,"value":"Approved Form"}
-            ...
-            ]
+```javascript
+[
+ {"id":"ADDRCH","type":"alpha","calc":false,"value":"user input data"},
+ {"id":"FSRB","type":"radio","calc":false,"value":"Single"},
+ {"id":"APPROVED","type":"alpha","calc":true,"value":"Approved Form"}
+...
+]
+```
 
 The fields.json output can be used to validate fields IDs with other data source, and/or to extract data value from user submitted PDFs.
 
@@ -936,64 +981,64 @@ If all you need is the textual content of the PDF, "-c" essentially converts PDF
 
 ## Run Unit Test (commandline)
 
-It takes less than 1 minutes for pdf2json to parse 261 PDFs under `test/pdf` directory. Usually, it takes about 40 seconds or so to parses all of them. Besides the parimary JSON for each PDF, it also generates text content JSON and form fields JSON file (by `-c` and `-t` parameters) for further testing.
+It takes less than 1 minutes for pdf2json to parse 261 PDFs under `test/pdf` directory. Usually, it takes about 40 seconds or so to parses all of them. Besides the primary JSON for each PDF, it also generates text content JSON and form fields JSON file (by `-c` and `-t` parameters) for further testing.
 
 The 265 PDFs are all fill-able tax forms from government agencies for tax year 2013, including 165 federal forms, 23 efile instructions and 9 other state tax forms.
 
 Shell script is current driver for unit test. To parse one agency's PDFs, run the command line:
 
-```
-	cd test
-	sh p2f.one.sh [2_character_agency_name]
+```terminal
+ cd test
+ sh p2f.one.sh [2_character_agency_name]
 ```
 
 For example, to parse and generate all 165 federal forms together with text content and forms fields:
 
-```
-	cd test
-	sh p2f.one.sh fd
+```terminal
+ cd test
+ sh p2f.one.sh fd
 ```
 
 To parse and generate all VA forms together with text content and forms fields:
 
-```
-	cd test
-	sh p2f.one.sh va
+```terminal
+ cd test
+ sh p2f.one.sh va
 ```
 
 Additionally, to parse all 261 PDFs from commandline:
 
-```
-	cd test
-	sh p2f.forms.sh
+```terminal
+ cd test
+ sh p2f.forms.sh
 ```
 
 Or, from `npm scripts`:
 
-```
-	npm test
+```terminal
+ npm test
 ```
 
 Some testing PDFs are provided by bug reporters, like the "unsupported encryption" ([#43](https://github.com/modesty/pdf2json/issues/43)), "read property num from undefined" ([#26](https://github.com/modesty/pdf2json/issues/26)), and "excessive line breaks in text content" ([#28](https://github.com/modesty/pdf2json/issues/28)), their PDFs are all stored in `test/pdf/misc` directory. To run tests against these community contributed PDFs, run commandline:
 
-```
-	npm run-script test-misc
+```terminal
+ npm run-script test-misc
 ```
 
 ## Upgrade to ~v1.x.x
 
-If you have an early version of pdf2json, please remove your local `node_modules` directory and re-run `npm install` to upgrade to pdf2json@1.0.x.
+If you have an early version of pdf2json, please remove your local `node_modules` directory and re-run `npm install` to upgrade to <pdf2json@1.0.x>.
 
 v1.x.x upgraded dependency packages, removed some unnecessary dependencies, started to assumes ES6 / ES2015 with node ~v4.x. More PDFs are added for unit testing.
 
 **Note:**
 pdf2json has been in production for over 3 years, it's pretty reliable and solid when parsing hundreds (sometimes tens of thousands) of PDF forms every day, thanks to everybody's help.
 
-Starting v1.0.3, I'm trying to address a long over due annoying problem on [broken text blocks](https://github.com/modesty/pdf2json/issues/18). It's the biggest problem that hinders the efficiency of PDF content creation in our projects. Although the root cause lies in the original PDF streams, since the client doesn't render JSON character by character, it's a problem often appears in final rendered web content. We had to work around it by manually merge those text blocks. With the solution in v1.0.x, the need for manual text block merging is greately reduced.
+Starting v1.0.3, I'm trying to address a long over due annoying problem on [broken text blocks](https://github.com/modesty/pdf2json/issues/18). It's the biggest problem that hinders the efficiency of PDF content creation in our projects. Although the root cause lies in the original PDF streams, since the client doesn't render JSON character by character, it's a problem often appears in final rendered web content. We had to work around it by manually merge those text blocks. With the solution in v1.0.x, the need for manual text block merging is greatly reduced.
 
 The solution is to put to a post-parsing process stage to identify and auto-merge those adjacent blocks. It's not ideal, but works in most of my tests with those 261 PDFs underneath test directory.
 
-The auto merge solution still needs some fine tuning, I keep it as an experimental feature for now, it's off by default, can be turned on by "-m" switch in commandline.
+The auto merge solution still needs some fine tuning, I keep it as an experimental feature for now, it's off by default, can be turned on by "-m" switch in command line.
 
 In order to support this auto merging capability, text block objects have an additional "sw" (space width of the font) property together with x, y, clr and R. If you have a more effective usage of this new property for merging text blocks, please drop me a line.
 
@@ -1010,7 +1055,7 @@ In order to support this auto merging capability, text block objects have an add
 
 - v3.0.0 converted commonJS to ES Modules, plus dependency update and other minor bug fixes. Please update your project configuration file to enable ES Module before upgrade, ex., in `tsconfig.json`, set `"compilerOptions":{"module":"ESNext"}`
 
-**Major Refactoring**
+## Major Refactoring
 
 - v2.0.0 has the major refactoring since 2015. Primary updates including:
   - Full PDF metadata support (see page format and breaking changes for details)
@@ -1025,26 +1070,30 @@ In order to support this auto merging capability, text block objects have an add
   - Dependencies removed: lodash, async and yargs
   - Upgrade to Node v14.18.0 LTSs
 - v3.0.0 converted commonJS to ES Modules
+  - v3.1.0 added build step to output both ES Module and CommonJS bundles
+    - `PDFParser` is no longer the default export, it's a named export that requires changes to import statement.
+    - test is written in Jest
+    - PR will require GitHub work flow check, currently is `npm ci` and `npm test`
 
 ### Install on Ubuntu
 
-- Make sure nodejs is installed. Detailed installation steps can be found at http://stackoverflow.com/a/16303380/433814.
+- Make sure nodejs is installed. Detailed installation steps can be found at <http://stackoverflow.com/a/16303380/433814>.
 
-```
+```terminal
 $ nodejs --version
 v0.10.22
 ```
 
 - Create a symbolic link from node to nodejs
 
-```
-$ sudo rm -f /usr/sbin/node
-$ sudo ln -s /usr/bin/nodejs /usr/sbin/node
+```terminal
+sudo rm -f /usr/sbin/node
+sudo ln -s /usr/bin/nodejs /usr/sbin/node
 ```
 
 - Verify the version of node and installation
 
-```
+```terminal
 $ which node
 /usr/sbin/node
 
@@ -1054,8 +1103,8 @@ v4.5.0
 
 - Proceed with the install of pdf2json as described above
 
-```
-$ sudo npm install -g pdf2json
+```terminal
+$ npm install -g pdf2json
 npm http GET https://registry.npmjs.org/pdf2json
 npm http 304 https://registry.npmjs.org/pdf2json
 /usr/bin/pdf2json -> /usr/lib/node_modules/pdf2json/bin/pdf2json

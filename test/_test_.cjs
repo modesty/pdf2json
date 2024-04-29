@@ -204,4 +204,15 @@ describe("Federal other forms", () => {
 		await parseAndVerifyOnePDF("F2210AI", false, 1);
 		await parseAndVerifyOnePDF("F2210F", false, 1);
 	});
+	test("F2439", async () => {
+		await parseAndVerifyOnePDF("F2439", false, 1);
+	});
+	test("F2441, DEP", async () => {
+		await parseAndVerifyOnePDF("F2441", false, 2);
+		await parseAndVerifyOnePDF("F2441DEP", false, 1);
+	});
+	test("F2555EZ, EZS", async () => {
+		await parseAndVerifyOnePDF("F2555EZ", false, 2);
+		await parseAndVerifyOnePDF("F2555EZS", false, 2);
+	});
 });
