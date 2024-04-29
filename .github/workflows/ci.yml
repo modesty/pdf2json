@@ -18,23 +18,9 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Install dependencies
+      - name: Run ci
         run: npm ci
 
       - name: Run tests
         id: test
         run: npm test
-
-  check-tests:
-    needs: build # Depends on the 'build' job
-    runs-on: ubuntu-latest
-    if: ${{ always() }}
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            if (needs.build.outputs.test-result !== '0') {
-              core.setFailed('Tests failed - ' + needs.build.outputs.test-result + '. Please fix errors before merging.');
-            }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
