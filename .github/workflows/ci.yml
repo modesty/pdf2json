@@ -25,15 +25,16 @@ jobs:
         id: test
         run: npm test
 
-      - name: Require tests to pass
-        if: ${{ always() }}
-        uses: actions/github-script@v6
+  check-tests:
+    needs: build # Depends on the 'build' job
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    steps:
+      - uses: actions/github-script@v6
         with:
           script: |
-            console.log('Exit code:', core.getInput('result'));
-            if (core.getInput('result') !== '0') {
-              core.setFailed('Tests failed. Please fix errors before merging.');
+            if (needs.build.outputs.test-result !== '0') {
+              core.setFailed('Tests failed - ' + needs.build.outputs.test-result + '. Please fix errors before merging.');
             }
-          result: ${{ jobs.build.outputs.test-result }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
