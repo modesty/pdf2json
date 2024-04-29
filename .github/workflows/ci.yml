@@ -1,18 +1,19 @@
 name: Node.js CI/CD
 
-# Trigger the workflow on pull requests to any branch
 on:
   pull_request:
     branches: [ "*" ]
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use an Ubuntu runner
+    runs-on: ubuntu-latest
+    outputs:  # Add the 'outputs' section
+      test-result: ${{ steps.test.outcome }}  # Capture test outcome
 
     steps:
-      - uses: actions/checkout@v3  # Check out the repository
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js 18.x  # Specify a Node.js version
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
@@ -21,18 +22,14 @@ jobs:
         run: npm ci
 
       - name: Run tests
+        id: test  # Assign an ID to the step
         run: npm test
 
-      # Required status check for PR merge
       - name: Require tests to pass
         if: ${{ always() }}
         uses: actions/github-script@v6
         with:
           script: |
-            const { exitCode } = await core.getInput('result');
-            if (exitCode !== '0') {
-              core.setFailed('Tests failed. Please fix errors before merging.');
-            }
-          result: ${{ jobs.build.outputs.test-result }}
+            core.setFailed('Tests failed. Please fix errors before merging.');
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
