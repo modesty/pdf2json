@@ -1,5 +1,4 @@
 import nodeResolve from "@rollup/plugin-node-resolve";
-import replace from "@rollup/plugin-replace";
 import builtins from "rollup-plugin-node-builtins";
 import path from "path";
 import inject from "rollup-plugin-inject";
@@ -36,16 +35,19 @@ export default [
 			nodeResolve({
 				preferBuiltins: true,
 			}),
-			replace({
-				"../base": "/base/",
-				preventAssignment: true,
-				delimiters: ["/", "/"],
-			}),
 			builtins(),
 			inject({
 				createScratchCanvas: [
 					path.resolve("lib/pdfcanvas.js"),
 					"createScratchCanvas",
+				],
+				PDFAnno: [
+					path.resolve("lib/pdfanno.js"),
+					"PDFAnno",
+				],
+				Image: [
+					path.resolve("lib/pdfimage.js"),
+					"Image",
 				],
 			}),
 			sourcemaps(),

@@ -1,3 +1,4 @@
 {
-	"testMatch": ["**/test/index.cjs"]
+	"testMatch": ["**/test/_test_.*"],
+	"testEnvironment": "node"
 }

@@ -3,10 +3,6 @@ const fs = require("fs");
 
 const { PDFParser } = require("../dist/pdfparser.cjs");
 
-// import("../dist/pdfparser.js").then((PdfParser_mjs) => {
-// 	const { PDFParser } = PdfParser_mjs;
-// });
-
 function pdfParserRunner(fileName, fromBuffer) {
 	const pdfParser = new PDFParser();
 
@@ -137,18 +133,26 @@ describe("Federal main forms", () => {
 		await parseAndVerifyOnePDF("F1040", false, 2);
 		await parseAndVerifyOnePDF("F1040", true, 2);
 	});
+	test("1040st file and buffer", async () => {
+		await parseAndVerifyOnePDF("F1040ST", false, 2);
+		await parseAndVerifyOnePDF("F1040ST", true, 2);
+	});
+	test("1040V file and buffer", async () => {
+		await parseAndVerifyOnePDF("F1040V", false, 1);
+		await parseAndVerifyOnePDF("F1040V", true, 1);
+	});
 });
 
 describe("Federal schedules", () => {
 	test("Fed Schedule A", async () => {
 		await parseAndVerifyOnePDF("FSCHA", false, 1);
 	});
-	test("Fed Schedule B", async () => {
+	test("Fed Schedule B, B2, B3", async () => {
 		await parseAndVerifyOnePDF("FSCHB", true, 1);
 		await parseAndVerifyOnePDF("FSCHB2", false, 1);
 		await parseAndVerifyOnePDF("FSCHB3", true, 1);
 	});
-	test("Fed schedule C", async () => {
+	test("Fed schedule C, CEZS, CEZT", async () => {
 		await parseAndVerifyOnePDF("FSCHC", true, 2);
 		await parseAndVerifyOnePDF("FSCHCEZS", true, 1);
 		await parseAndVerifyOnePDF("FSCHCEZT", true, 1);
@@ -156,7 +160,7 @@ describe("Federal schedules", () => {
 	test("Fed schedule D", async () => {
 		await parseAndVerifyOnePDF("FSCHD", true, 2);
 	});
-	test("Fed schedule E", async () => {
+	test("Fed schedule E1, E2, EIC", async () => {
 		await parseAndVerifyOnePDF("FSCHE1", true, 1);
 		await parseAndVerifyOnePDF("FSCHE2", true, 1);
 		await parseAndVerifyOnePDF("FSCHEIC", true, 1);
@@ -164,7 +168,7 @@ describe("Federal schedules", () => {
 	test("Fed schedule F", async () => {
 		await parseAndVerifyOnePDF("FSCHF", true, 2);
 	});
-	test("Fed schedule H", async () => {
+	test("Fed schedule H HS, HT", async () => {
 		await parseAndVerifyOnePDF("FSCHHS", true, 2);
 		await parseAndVerifyOnePDF("FSCHHT", true, 2);
 	});
@@ -173,5 +177,31 @@ describe("Federal schedules", () => {
 	});
 	test("Fed schedule R", async () => {
 		await parseAndVerifyOnePDF("FSCHR", true, 2);
+	});
+});
+
+describe("Federal other forms", () => {
+	test("F982", async () => {
+		await parseAndVerifyOnePDF("F982", false, 1);
+	});
+	test("F1116", async () => {
+		await parseAndVerifyOnePDF("F1116", false, 2);
+	});
+	test("F1310", async () => {
+		await parseAndVerifyOnePDF("F1310", false, 1);
+	});
+	test("F2106, EZ, EZS, S", async () => {
+		await parseAndVerifyOnePDF("F2106", false, 2);
+		await parseAndVerifyOnePDF("F2106EZ", false, 1);
+		await parseAndVerifyOnePDF("F2106EZS", false, 1);
+		await parseAndVerifyOnePDF("F2106S", false, 2);
+	});
+	test("F2120", async () => {
+		await parseAndVerifyOnePDF("F2120", false, 1);
+	});
+	test("F2210, AI, F", async () => {
+		await parseAndVerifyOnePDF("F2210", false, 3);
+		await parseAndVerifyOnePDF("F2210AI", false, 1);
+		await parseAndVerifyOnePDF("F2210F", false, 1);
 	});
 });
