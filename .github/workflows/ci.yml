@@ -1,0 +1,26 @@
+name: Node.js CI/CD
+
+on:
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      test-result: ${{ steps.test.outcome }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js 20.x # Updated for Node 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.x
+
+      - name: Run ci
+        run: npm ci
+
+      - name: Run tests
+        id: test
+        run: npm test
