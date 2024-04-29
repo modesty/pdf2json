@@ -30,6 +30,10 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            core.setFailed('Tests failed. Please fix errors before merging.');
+            console.log('Exit code:', core.getInput('result'));
+            if (core.getInput('result') !== '0') {
+              core.setFailed('Tests failed. Please fix errors before merging.');
+            }
+          result: ${{ jobs.build.outputs.test-result }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

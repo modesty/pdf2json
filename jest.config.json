@@ -1,4 +1,6 @@
 {
 	"testMatch": ["**/test/_test_.*"],
-	"testEnvironment": "node"
+	"testEnvironment": "node",
+	"bail": false,
+	"testFailureExitCode": 1
 }
