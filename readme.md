@@ -29,17 +29,21 @@ To Run in RESTful Web Service or as command line Utility
 
 After install, run command line:
 
-> npm test
+> npm test:jest
 
 It'll build bundles and source maps for both ES Module and CommonJS, output to `./dist` directory, and run Jest test suit defined in `./test/_test_.cjs`.
 
-The default test suits are eseential tests for all PRs. But it only covers a portion of all tesing PDFs, for more broader converage, run:
+The default test suits are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
 > npm run test:forms
 
 It'll scan and parse _260_ PDF AcroForm files under _*./test/pdf*_, runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check _*./test/target/*_ for outputs.
 
 _update on 4/27/2024_: parsing 260 PDFs by `npm run test:forms` on M2 Mac takes 7~8s
+
+To run full test suits:
+
+> npm test
 
 ### Test Exception Handlings
 
@@ -80,7 +84,7 @@ To disable the first type, you could mock the console.log and console.warn APIs,
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.1.0, PDFParser is no longer the default export
+import PDFParser from "pdf2json"; 
 
 const pdfParser = new PDFParser();
 
@@ -122,7 +126,7 @@ pdfParser.on("error", (err) => console.error("Parser Error", err));
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.1.0, PDFParser is no longer the default export
+import PDFParser from "pdf2json"; 
 
 const pdfParser = new PDFParser(this, 1);
 
@@ -146,7 +150,7 @@ pdfParser.loadPDF("./pdf2json/test/pdf/fd/form/F1040EZ.pdf");
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.1.0, PDFParser is no longer the default export
+import PDFParser from "pdf2json"; 
 
 const pdfParser = new PDFParser();
 
@@ -170,7 +174,7 @@ Alternatively, you can pipe input and output streams: (requires v1.1.4)
 
 ```javascript
 import fs from "fs";
-import { PDFParser } from "pdf2json"; // starting v3.1.0, no default export of PDFParser
+import PDFParser from "pdf2json";
 
 const inputStream = fs.createReadStream(
  "./pdf2json/test/pdf/fd/form/F1040EZ.pdf",
@@ -248,8 +252,8 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
 - alternative events: (v2.0.0)
 
   - readable: first event dispatched after PDF file metadata is parsed and before processing any page
-  - data: one parsed page succeeded, null means last page has been processed, signle end of data stream
-  - error: exception or error occured
+  - data: one parsed page succeeded, null means last page has been processed, single end of data stream
+  - error: exception or error occurred
 
 - start to parse PDF file from specified file path asynchronously:
 
@@ -293,33 +297,33 @@ Current parsed data has four main sub objects to describe the PDF document.
     - Parent: parent name, default "unknown";
   - _*v2.0.0*_: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
 
-  ```json
-        Meta: {
-            PDFFormatVersion: '1.7',
-            IsAcroFormPresent: true,
-            IsXFAPresent: false,
-            Author: 'SE:W:CAR:MP',
-            Subject: 'U.S. Individual Income Tax Return',
-            Creator: 'Adobe Acrobat Pro 10.1.8',
-            Producer: 'Adobe Acrobat Pro 10.1.8',
-            CreationDate: "D:20131203133943-08'00'",
-            ModDate: "D:20140131180702-08'00'",
-            Metadata: {
-                'xmp:modifydate': '2014-01-31T18:07:02-08:00',
-                'xmp:createdate': '2013-12-03T13:39:43-08:00',
-                'xmp:metadatadate': '2014-01-31T18:07:02-08:00',
-                'xmp:creatortool': 'Adobe Acrobat Pro 10.1.8',
-                'dc:format': 'application/pdf',
-                'dc:description': 'U.S. Individual Income Tax Return',
-                'dc:creator': 'SE:W:CAR:MP',
-                'xmpmm:documentid': 'uuid:4d81e082-7ef2-4df7-b07b-8190e5d3eadf',
-                'xmpmm:instanceid': 'uuid:7ea96d1c-3d2f-284a-a469-f0f284a093de',
-                'pdf:producer': 'Adobe Acrobat Pro 10.1.8',
-                'adhocwf:state': '1',
-                'adhocwf:version': '1.1'
-            }
-        }
-  ```
+```javascript
+Meta: {
+ PDFFormatVersion: '1.7',
+ IsAcroFormPresent: true,
+ IsXFAPresent: false,
+ Author: 'SE:W:CAR:MP',
+ Subject: 'U.S. Individual Income Tax Return',
+ Creator: 'Adobe Acrobat Pro 10.1.8',
+ Producer: 'Adobe Acrobat Pro 10.1.8',
+ CreationDate: "D:20131203133943-08'00'",
+ ModDate: "D:20140131180702-08'00'",
+ Metadata: {
+  'xmp:modifydate': '2014-01-31T18:07:02-08:00',
+  'xmp:createdate': '2013-12-03T13:39:43-08:00',
+  'xmp:metadatadate': '2014-01-31T18:07:02-08:00',
+  'xmp:creatortool': 'Adobe Acrobat Pro 10.1.8',
+  'dc:format': 'application/pdf',
+  'dc:description': 'U.S. Individual Income Tax Return',
+  'dc:creator': 'SE:W:CAR:MP',
+  'xmpmm:documentid': 'uuid:4d81e082-7ef2-4df7-b07b-8190e5d3eadf',
+  'xmpmm:instanceid': 'uuid:7ea96d1c-3d2f-284a-a469-f0f284a093de',
+  'pdf:producer': 'Adobe Acrobat Pro 10.1.8',
+  'adhocwf:state': '1',
+  'adhocwf:version': '1.1'
+ }
+}
+```
 
 - 'Pages': array of 'Page' object that describes each page in the PDF, including sizes, lines, fills and texts within the page. More info about 'Page' object can be found at 'Page Object Reference' section
 - 'Width': the PDF page width in page unit
