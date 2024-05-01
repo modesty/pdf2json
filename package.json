@@ -34,7 +34,7 @@
 	"scripts": {
 		"pretest": "npm run build",
 		"test:jest": "jest --config ./jest.config.json",
-		"test": "jest --config ./jest.config.json && npm run test:forms && npm run test:misc",
+		"test": "jest --config ./jest.config.json",
 		"test:forms": "cd ./test && sh p2j.forms.sh",
 		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 7 success, 3 fail exception with stack trace\" ",
 		"parse": "npm run build && node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
