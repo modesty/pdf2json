@@ -28,8 +28,8 @@
 		"type": "git",
 		"url": "git://github.com/modesty/pdf2json.git"
 	},
-	"main": "dist/pdfparser.js",
-	"module": "dist/pdfparser.js",
+	"main": "./dist/pdfparser.cjs",
+	"module": "./dist/pdfparser.js",
 	"typings": "./pdfparser.d.ts",
 	"scripts": {
 		"pretest": "npm run build",
@@ -92,5 +92,11 @@
 		"url": "http://github.com/modesty/pdf2json/issues"
 	},
 	"license": "Apache-2.0",
-	"readme": "https://github.com/modesty/pdf2json/blob/master/readme.md"
+	"readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
+	"exports": {
+		".": {
+			"import": "./dist/pdfparser.js",
+			"require": "./dist/pdfparser.cjs"
+		}
+	}
 }
