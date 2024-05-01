@@ -1,6 +1,6 @@
 {
 	"name": "pdf2json",
-	"version": "3.1.0",
+	"version": "3.1.1",
 	"description": "PDF file parser that converts PDF binaries to text based JSON, powered by porting a fork of PDF.JS to Node.js",
 	"keywords": [
 		"pdf",
@@ -33,6 +33,7 @@
 	"typings": "./pdfparser.d.ts",
 	"scripts": {
 		"pretest": "npm run build",
+		"test:jest": "jest --config ./jest.config.json",
 		"test": "jest --config ./jest.config.json",
 		"test:forms": "cd ./test && sh p2j.forms.sh",
 		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 7 success, 3 fail exception with stack trace\" ",
@@ -69,7 +70,8 @@
 		"@rollup/plugin-commonjs": "^25.0.4",
 		"@rollup/plugin-node-resolve": "^15.2.1",
 		"@rollup/plugin-replace": "^5.0.2",
-		"rollup": "^4.17.0",
+		"@rollup/plugin-terser": "^0.4.4",
+		"rollup": "^4.17.2",
 		"rollup-plugin-node-builtins": "^2.1.2",
 		"rollup-plugin-inject": "^3.0.2",
 		"rollup-plugin-sourcemaps": "^0.6.3",

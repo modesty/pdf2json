@@ -7,12 +7,13 @@ import PDFJS from "./lib/pdf.js";
 import { ParserStream, StringifyStream } from "./lib/parserstream.js";
 import { kColors, kFontFaces, kFontStyles } from "./lib/pdfconst.js";
 import { pkInfo, _PARSER_SIG } from "./lib/pkinfo.js";
+import PDFUnit from "./lib/pdfunit.js";
 
 /**
  * Class representing a PDF Parser.
  * @extends EventEmitter
  */
-class PDFParser extends EventEmitter {
+export default class PDFParser extends EventEmitter {
 	/**
 	 * Static method to retrieve color dictionary.
 	 * @returns {object} Color dictionary
@@ -35,6 +36,42 @@ class PDFParser extends EventEmitter {
 	 */
 	static get fontStyleDict() {
 		return kFontStyles;
+	}
+
+	/**
+	 * static property to expose PDFUnit class
+	 * @returns {PDFUnit} PDFUnit class
+	 */
+	static get PDFUnit() {
+		return PDFUnit;
+	}
+
+	/**
+	 * static property to expose ParserStream class
+	 */
+	static get ParserStream() {
+		return ParserStream;
+	}
+
+	/**
+	 * static property to expose StringifyStream class
+	 */
+	static get StringifyStream() {
+		return StringifyStream;
+	}
+
+	/**
+	 * static property to expose pkInfo function
+	 */
+	static get pkInfo() {
+		return pkInfo;
+	}
+
+	/**
+	 * static property to expose _PARSER_SIG function
+	 */
+	static get _PARSER_SIG() {
+		return _PARSER_SIG;
 	}
 
 	static #maxBinBufferCount = 10;
@@ -268,14 +305,3 @@ class PDFParser extends EventEmitter {
 		this.#PDFJS = null;
 	}
 }
-
-export {
-	PDFParser,
-	ParserStream,
-	StringifyStream,
-	kColors,
-	kFontFaces,
-	kFontStyles,
-	pkInfo,
-	_PARSER_SIG,
-};

@@ -1,7 +1,7 @@
 const assert = require("assert");
 const fs = require("fs");
 
-const { PDFParser } = require("../dist/pdfparser.cjs");
+const PDFParser = require("../dist/pdfparser.cjs");
 
 function pdfParserRunner(fileName, fromBuffer) {
 	const pdfParser = new PDFParser();
