@@ -51,6 +51,7 @@
 		"parse-e2": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i243_problem_file_anon.pdf -o ./test/target/misc",
 		"parse-e3": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i200_test.pdf -o ./test/target/misc",
 		"parse-e4": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i321_21583473018.pdf -o ./test/target/misc",
+		"parse-e5": "node --trace-deprecation --trace-warnings pdf2json.js -f ./test/pdf/misc/i318_error.pdf -o ./test/target/misc",
 		"build:rollup": "rollup -c ./rollup.config.js",
 		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
 		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup"
