@@ -485,8 +485,14 @@ var PDFImage = (function PDFImageClosure() {
         height: drawHeight,
         data: new Uint8Array(drawWidth * drawHeight * 4)
       };
-      var pixels = imgData.data;
-      this.fillRgbaBuffer(pixels, drawWidth, drawHeight);
+
+		var pixels = imgData.data;
+		try {
+			this.fillRgbaBuffer(pixels, drawWidth, drawHeight);
+		} catch (e) {
+			warn('Unable to decode image: ' + e); // keep moving on
+		}
+
       return imgData;
     },
     getImageBytes: function PDFImage_getImageBytes(length) {

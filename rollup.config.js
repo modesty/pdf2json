@@ -1,4 +1,5 @@
 import path from "path";
+import eslint from "@rollup/plugin-eslint";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import builtins from "rollup-plugin-node-builtins";
 import inject from "rollup-plugin-inject";
@@ -6,6 +7,8 @@ import terser from "@rollup/plugin-terser";
 import sourcemaps from "rollup-plugin-sourcemaps";
 
 const external = [
+	"process",
+	"console",
 	"fs",
 	"util",
 	"fs/promises",
@@ -35,6 +38,9 @@ export default [
 		],
 		treeshake: false,
 		plugins: [
+			eslint({
+				throwOnError: true
+			}),
 			nodeResolve({
 				preferBuiltins: true,
 			}),
@@ -49,6 +55,6 @@ export default [
 			}),
 			terser(),
 			sourcemaps(),
-		],
+		]
 	},
 ];
