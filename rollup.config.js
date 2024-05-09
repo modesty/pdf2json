@@ -1,5 +1,5 @@
 import path from "path";
-import json from '@rollup/plugin-json';
+import json from "@rollup/plugin-json";
 import eslint from "@rollup/plugin-eslint";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import builtins from "rollup-plugin-node-builtins";

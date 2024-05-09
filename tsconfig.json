@@ -1,0 +1,39 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+		"outDir": "./type",
+        "baseUrl": ".",
+        "sourceMap": true,
+        "declaration": true,
+		"declarationMap": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
+        "strict": true,
+        "target": "es2022",
+        "module": "esnext",
+        "lib": ["es2022"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "resolveJsonModule": true,
+		"allowJs": true,
+		"checkJs": false,
+    },
+    "include": [
+		"./pdfparser.js",
+		"./lib/*.js"
+	],
+    "exclude": [
+        "node_modules/",
+		"dist/",
+		"base/",
+		"bin/",
+		"rollup/",
+		"test/",
+		"lib/pdfjs-code.js",
+		"**/*.config.js"
+    ]
+}

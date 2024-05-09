@@ -11,6 +11,7 @@ import PDFUnit from "./lib/pdfunit.js";
 
 /**
  * Class representing a PDF Parser.
+ * @class PDFParser
  * @extends EventEmitter
  */
 export default class PDFParser extends EventEmitter {
@@ -88,6 +89,7 @@ export default class PDFParser extends EventEmitter {
 
 	/**
 	 * PDFParser constructor.
+	 * @constructor PDFParser class.
 	 * @param {object} context - The context object (only used in Web Service project); null in command line
 	 * @param {boolean} needRawText - Whether raw text is needed or not
 	 * @param {string} password - The password for PDF file
