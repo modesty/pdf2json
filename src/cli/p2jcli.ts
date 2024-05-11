@@ -168,7 +168,7 @@ class PDFProcessor {
 	}
 
 	//public methods
-	validateParams() {
+	async validateParams() {
 		let retVal = '';
 
 		if (!fs.existsSync(this.inputDir))
@@ -177,9 +177,14 @@ class PDFProcessor {
 		else if (!fs.existsSync(this.inputPath))
 			retVal =
 				`Input error: input file doesn't exist - ${this.inputPath}.`;
-		else if (!fs.existsSync(this.outputDir))
-			retVal =
-				`Input error: output directory doesn't exist - ${this.outputDir}.`;
+		else if (!fs.existsSync(this.outputDir)) {
+			try {
+				await fs.promises.mkdir(this.outputDir, { recursive: true });
+			} finally {
+				if (!fs.existsSync(this.outputDir))
+					retVal = `Input error: output directory doesn't exist and fails to create - ${this.outputDir}.`;
+			}
+		}
 
 		if (retVal !== '') {
 			this.curCLI.addResultCount(retVal);
@@ -225,18 +230,22 @@ class PDFProcessor {
 
 	processFile() {
 		return new Promise((resolve, reject) => {
-			const validateMsg = this.validateParams();
-			if (validateMsg !== '') {
-				reject(validateMsg);
-			} else {
-				const parserFunc = PROCESS_WITH_STREAM
-					? this.parseOnePDFStream
-					: this.parseOnePDF;
-				parserFunc
-					.call(this)
-					.then((value) => resolve(value))
-					.catch((err) => reject(err));
-			}
+			this.validateParams()
+				.then((validateMsg) => {
+					if (validateMsg !== '') {
+						reject(validateMsg);
+					}
+					else {
+						const parserFunc = PROCESS_WITH_STREAM
+							? this.parseOnePDFStream
+							: this.parseOnePDF;
+						parserFunc
+							.call(this)
+							.then((value) => resolve(value))
+							.catch((err) => reject(err));
+					}
+				})
+				.catch((err) => reject(err));
 		});
 	}
 
