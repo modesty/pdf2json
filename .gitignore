@@ -9,5 +9,5 @@ target/
 .idea
 .npmrc
 vscode/
-dist/
 lib/pdfjs-code.js
+src/**/*.js

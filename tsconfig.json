@@ -1,11 +1,12 @@
 {
     "compileOnSave": false,
-    "compilerOptions": {
+	"compilerOptions": {
+		"forceConsistentCasingInFileNames": true,
         "rootDir": ".",
 		"outDir": "./type",
         "baseUrl": ".",
         "sourceMap": true,
-        "declaration": true,
+        "declaration": false,
 		"declarationMap": false,
         "moduleResolution": "node",
         "emitDecoratorMetadata": true,
@@ -18,22 +19,12 @@
         "lib": ["es2022"],
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
+		"esModuleInterop": true,
         "resolveJsonModule": true,
-		"allowJs": true,
+		"allowJs": false,
 		"checkJs": false,
     },
     "include": [
-		"./pdfparser.js",
-		"./lib/*.js"
-	],
-    "exclude": [
-        "node_modules/",
-		"dist/",
-		"base/",
-		"bin/",
-		"rollup/",
-		"test/",
-		"lib/pdfjs-code.js",
-		"**/*.config.js"
-    ]
+		"./src/**/*.ts"
+	]
 }

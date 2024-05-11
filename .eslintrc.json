@@ -9,7 +9,7 @@
 		"ecmaVersion": 2022,
 		"sourceType": "module"
 	},
-  	"ignorePatterns": ["/dist/", "/test/", "/node_modules/", "/base/", "/lib/pdfjs-code.js"],
+  	"ignorePatterns": ["/dist/", "/bin/", "/test/", "/node_modules/", "/base/", "/lib/pdfjs-code.js"],
 	"overrides": [{
       "files": ["*.js", "*.ts"],
       "rules": {

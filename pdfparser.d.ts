@@ -1,29 +1,40 @@
-import {EventEmitter} from "events";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { EventEmitter } from "events";
 
 declare class PDFParser extends EventEmitter{
-    constructor(context?: any, needRawText?: number, password?: string);
-    parseBuffer(buffer: Buffer, verbosity?: number): void;
+	static get ParserStream(): typeof ParserStream
+	static get StringifyStream(): typeof StringifyStream
+	static get pkInfo(): { version: string; name: string; description: string; author: string; license: string; }
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	static get _PARSER_SIG(): string
+
+	constructor(context?: any, needRawText?: boolean, password?: string);
+
+	parseBuffer(buffer: Buffer, verbosity?: number): void;
     loadPDF(pdfFilePath: string, verbosity?: number):Promise<void>
     createParserStream(): ParserStream
     getRawTextContent(): string
-    on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
+	on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
 }
 
 export type EventMap = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     "pdfParser_dataError": (errMsg: Record<"parserError", Error>) => void;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     "pdfParser_dataReady": (pdfData: Output) => void;
     "readable": (meta: Output["Meta"]) => void;
     "data": (data: Output["Pages"][number]|null) => void;
 }
 
 declare class ParserStream{
-    //TODO
+	static createContentStream(jsonObj): Readable
+	static createOutputStream(outputPath, resolve, reject): fs.WriteStream
 }
 
 
 export interface Output{
     Transcoder: string,
-    Meta: Record<string, any>
+    Meta: Record<string, object>
     Pages: Page[]
 }
 
@@ -97,7 +108,7 @@ export declare interface Field {
     h: number,
     T: {
         Name: 'alpha' | 'link',
-        TypeInfo: {}
+        TypeInfo: object
     }
 }
 
@@ -117,7 +128,7 @@ export declare interface Box {
     }
     T: {
         Name : string,
-        TypeInfo? : {}
+        TypeInfo? : object
     }
     x: number,
     y: number,

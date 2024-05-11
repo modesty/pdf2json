@@ -1,11 +1,11 @@
-import path from "path";
+
 import json from "@rollup/plugin-json";
 import eslint from "@rollup/plugin-eslint";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import builtins from "rollup-plugin-node-builtins";
-import inject from "rollup-plugin-inject";
 import terser from "@rollup/plugin-terser";
 import sourcemaps from "rollup-plugin-sourcemaps";
+import typescript from "@rollup/plugin-typescript";
 
 const external = [
 	"process",
@@ -47,16 +47,38 @@ export default [
 				preferBuiltins: true,
 			}),
 			builtins(),
-			inject({
-				createScratchCanvas: [
-					path.resolve("lib/pdfcanvas.js"),
-					"createScratchCanvas",
-				],
-				PDFAnno: [path.resolve("lib/pdfanno.js"), "PDFAnno"],
-				Image: [path.resolve("lib/pdfimage.js"), "Image"],
-			}),
 			terser(),
 			sourcemaps(),
 		]
 	},
+	{
+		input: "./src/cli/p2jcli.ts",
+		external: [...external, "../../dist/pdfparser.js"],
+		output: [
+			// {
+			// 	file: "dist/pdfparser_cli.cjs",
+			// 	format: "cjs",
+			// 	sourcemap: true,
+			// },
+			{
+				file: "bin/cli/pdfparser_cli.js",
+				format: "es",
+				sourcemap: true,
+			},
+		],
+		treeshake: false,
+		plugins: [
+			typescript({ tsconfig: './tsconfig.json' }),
+			json(),
+			eslint({
+				throwOnError: true
+			}),
+			nodeResolve({
+				preferBuiltins: true,
+			}),
+			builtins(),
+			terser(),
+			sourcemaps(),
+		]
+	}
 ];
