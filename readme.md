@@ -341,7 +341,7 @@ Each page object within 'Pages' array describes page elements and attributes wit
 - 'Fills': an array of rectangular area with solid color fills, same as lines, each 'fill' object has 'x', 'y' in relative coordinates for positioning, 'w' and 'h' for width and height in page unit, plus 'clr' to reference a color with index in color dictionary. More info about 'color dictionary' can be found at 'Dictionary Reference' section.
 - 'Texts': an array of text blocks with position, actual text and styling information:
   - 'x' and 'y': relative coordinates for positioning
-  - 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object. If a color can be found in color dictionary, 'oc' field will be added to the field as 'original color" value.
+  - 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object. If a color can't be found in color dictionary, 'oc' field will be added to the field as 'original color" value.
   - 'A': text alignment, including:
     - left
     - center
