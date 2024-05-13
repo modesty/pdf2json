@@ -1648,7 +1648,9 @@ var CCITTFaxStream = (function CCITTFaxStreamClosure() {
     this.str = str;
     this.dict = str.dict;
 
-    params = params || new Dict();
+	if (!(params instanceof Dict)) {
+		params = new Dict();
+	}
 
     this.encoding = params.get('K') || 0;
     this.eoline = params.get('EndOfLine') || false;
@@ -1707,7 +1709,7 @@ var CCITTFaxStream = (function CCITTFaxStreamClosure() {
 
     if (a1 > codingLine[codingPos]) {
       if (a1 > this.columns) {
-        info('row is wrong length');
+        info('row is wrong length: ' + a1 + ' > ' + this.columns);
         this.err = true;
         a1 = this.columns;
       }
@@ -1727,7 +1729,7 @@ var CCITTFaxStream = (function CCITTFaxStreamClosure() {
 
     if (a1 > codingLine[codingPos]) {
       if (a1 > this.columns) {
-        info('row is wrong length');
+        info('row is wrong length: ' + a1 + ' > ' + this.columns);
         this.err = true;
         a1 = this.columns;
       }
