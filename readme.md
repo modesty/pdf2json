@@ -1,13 +1,22 @@
 # pdf2json
 
+![GitHub stars](https://img.shields.io/github/stars/modesty/pdf2json?style=social)
+![GitHub forks](https://img.shields.io/github/forks/modesty/pdf2json?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/modesty/pdf2json?style=social)
+![GitHub repo size](https://img.shields.io/github/repo-size/modesty/pdf2json)
+![GitHub language count](https://img.shields.io/github/languages/count/modesty/pdf2json)
+![GitHub top language](https://img.shields.io/github/languages/top/modesty/pdf2json)
+![GitHub last commit](https://img.shields.io/github/last-commit/modesty/pdf2json?color=red)
+
 pdf2json is a [node.js](http://nodejs.org/) module converts binary PDF to JSON and text. Built with [pdf.js](https://github.com/mozilla/pdf.js/), it extracts text content and interactive form elements for server-side processing and command-line use.
 
 ## Features
 
-- PDF text extraction: extracts textual content of PDF documents into structured JSON.
-- Form element handling: parses interactive form fields within PDFs for flexible data capture.
-- Server-side and command-line versatility: Integrate with web services for remote PDF processing or use as a standalone command-line tool for local file conversion.
-- Community driven: decade+ long community driven development ensures continuous improvement.
+- **PDF text extraction**: extracts textual content of PDF documents into structured JSON.
+- **Form element handling**: parses interactive form fields within PDFs for flexible data capture.
+- **Server-side and command-line versatility**: Integrate with web services for remote PDF processing or use as a standalone command-line tool for local file conversion.
+- **Swift Performance**: fast performance with minimal depdendencies
+- **Community driven**: decade+ long community driven development ensures continuous improvement.
 
 ## Install
 
@@ -29,11 +38,11 @@ To Run in RESTful Web Service or as command line Utility
 
 After install, run command line:
 
-> npm test:jest
+> npm test
 
-It'll build bundles and source maps for both ES Module and CommonJS, output to `./dist` directory, and run Jest test suit defined in `./test/_test_.cjs`.
+`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The Jest test suit is defined in `./test/_test_.cjs` with commonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
 
-The default test suits are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
+The default Jest test suits are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
 > npm run test:forms
 
@@ -41,17 +50,17 @@ It'll scan and parse _260_ PDF AcroForm files under _*./test/pdf*_, runs with _*
 
 _update on 4/27/2024_: parsing 260 PDFs by `npm run test:forms` on M2 Mac takes 7~8s
 
-To run full test suits:
+To run Jest test suits with commonJS bundle only
 
-> npm test
+> npm run test:jest
 
 ### Test Exception Handlings
 
 After install, run command line:
 
-> npm run test;misc
+> npm run test:misc
 
-It'll scan and parse all PDF files under _*./test/pdf/misc*_, also runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 5 PDF fields, while catches exceptions with stack trace for:
+It'll scan and parse all PDF files under _*./test/pdf/misc*_, also runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 15 PDF fields, 12 are expected to success while the other three's exceptions are expected to catch with stack trace for:
 
 - _bad XRef entry_ for `pdf/misc/i200_test.pdf`
 - _unsupported encryption algorithm_ for `pdf/misc/i43_encrypted.pdf`
@@ -63,7 +72,7 @@ After install, run command line:
 
 > npm run parse-r
 
-It scans 165 PDF files under \_../test/pdf/fd/form\__, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to \_\_./test/target/fd/form_\_.
+It scans 165 PDF files under _*./test/pdf/fd/form/*_, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to _*./test/target/fd/form/*_.
 
 More test scripts with different command line options can be found at _*package.json*_.
 
@@ -76,7 +85,7 @@ The code has two types of logs:
 - The logs that consume the console.log and console.warn APIs;
 - And the logs that consume our own base/shared/util.js log function.
 
-To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you must set the env variable `PDF2JSON_DISABLE_LOGS` to "1".
+To disable the first type, you could mock the console.log and console.warn APIs, but to disable the second one, you can either set the env variable `PDF2JSON_DISABLE_LOGS` to "1", passes `-s` _(silect)_ in command line, or pass in `VERBOSITY_LEVEL` to be 0 when invoking `PDFParser.loadPDF` _(ex. src/cli/p2jcli.js)_.
 
 ## Code Example
 
