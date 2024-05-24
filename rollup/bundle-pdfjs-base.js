@@ -62,8 +62,7 @@ const _baseCode = _pdfjsFiles.reduce(
 	""
 );
 
-fs.writeFileSync(
-	__dirname + "/../lib/pdfjs-code.js",
+fs.writeFileSync(path.join(__dirname, "../lib/pdfjs-code.js"),
 	`
   ${"import nodeUtil from 'util';import { Blob } from 'buffer';import { DOMParser } from '@xmldom/xmldom';import PDFAnno from './pdfanno.js';import Image from './pdfimage.js';import { createScratchCanvas } from './pdfcanvas.js';"}
   ${"export const PDFJS = {};"}
@@ -75,3 +74,9 @@ fs.writeFileSync(
 		mode: 0o666,
 	}
 );
+
+const targetDir = path.join(__dirname, "../dist");
+if (!fs.existsSync(targetDir)) {
+	fs.mkdirSync(targetDir);
+}
+fs.copyFileSync(path.join(__dirname, "../pdfparser.d.ts"), path.join(targetDir, "pdfparser.d.ts"));

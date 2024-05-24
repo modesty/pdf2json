@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
-import PDFCLI from "../lib/p2jcmd.js";
+import PDFCLI from "./cli/pdfparser_cli.js";
 new PDFCLI().start();

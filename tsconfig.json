@@ -1,0 +1,30 @@
+{
+    "compileOnSave": false,
+	"compilerOptions": {
+		"forceConsistentCasingInFileNames": true,
+        "rootDir": ".",
+		"outDir": "./type",
+        "baseUrl": ".",
+        "sourceMap": true,
+        "declaration": false,
+		"declarationMap": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
+        "strict": true,
+        "target": "es2022",
+        "module": "esnext",
+        "lib": ["es2022"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+		"esModuleInterop": true,
+        "resolveJsonModule": true,
+		"allowJs": false,
+		"checkJs": false,
+    },
+    "include": [
+		"./src/**/*.ts"
+	]
+}

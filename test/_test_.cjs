@@ -60,6 +60,66 @@ function checkResult_pageCount(Pages, count, fileName) {
 			" not equal to " +
 			count
 	);
+
+	const baseParsedFilePath = __dirname + "/data/fd/form/" + fileName + ".json";
+	const { formImage: baseParsed } = JSON.parse(fs.readFileSync(baseParsedFilePath, "utf8"));
+
+	assert(
+		baseParsed.Pages.length === count,
+		fileName +
+			" base parsed error: Pages count " +
+			baseParsed.Pages.length +
+			" not equal to " +
+			count
+	);
+	for (let i = 0; i < count; i++) {
+		assert(Pages[i].Height === baseParsed.Pages[i].Height,
+			fileName + " page " + i + " Height not equal");
+		// assert(
+		// 	Pages[i].VLines.length === baseParsed.Pages[i].VLines.length,
+		// 	fileName +
+		// 	" page " +
+		// 	i +
+		// 	" VLines count " +
+		// 	Pages[i].VLines.length +
+		// 	" not equal to " +
+		// 	baseParsed.Pages[i].VLines.length
+		// );
+		// assert(
+		// 	Pages[i].HLines.length === baseParsed.Pages[i].HLines.length,
+		// 	fileName +
+		// 	" page " +
+		// 	i +
+		// 	" HLines count " +
+		// 	Pages[i].HLines.length +
+		// 	" not equal to " +
+		// 	baseParsed.Pages[i].HLines.length
+		// );
+		// assert(
+		// 	Pages[i].Fills.length === baseParsed.Pages[i].Fills.length,
+		// 	fileName +
+		// 	" page " +
+		// 	i +
+		// 	" Fills count " +
+		// 	Pages[i].Fills.length +
+		// 	" not equal to " +
+		// 	baseParsed.Pages[i].Fills.length
+		// );
+		// assert(
+		// 	Pages[i].Texts.length === baseParsed.Pages[i].Texts.length,
+		// 	fileName +
+		// 	" page " +
+		// 	i +
+		// 	" Texts count " +
+		// 	Pages[i].Texts.length +
+		// 	" not equal to " +
+		// 	baseParsed.Pages[i].Texts.length
+		// );
+		assert(Pages[i].Fields.length === baseParsed.Pages[i].Fields.length,
+			"Fields count of page " + i + " is " + Pages[i].Fields.length + ", not equal to " + baseParsed.Pages[i].Fields.length);
+		assert(Pages[i].Boxsets.length === baseParsed.Pages[i].Boxsets.length,
+			"Boxsets count of page " + i + " is " + Pages[i].Boxsets.length + ", not equal to " + baseParsed.Pages[i].Boxsets.length);
+	}
 }
 
 function checkResult_pageContent(Pages, fileName) {

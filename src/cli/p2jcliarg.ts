@@ -1,66 +1,89 @@
-import PDFParser from "../dist/pdfparser.js";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import PDFParser from "../../dist/pdfparser.js";
 const { pkInfo, _PARSER_SIG: _PRO_TIMER } = PDFParser;
 
-class CLIArgParser {
-	args = [];
-	#aliases = {};
+type Alias = {
+	[key: string]: AliasEntry;
+};
 
-	#usage = "";
-	#argv = null;
+type AliasEntry = {
+	name: string;
+	description: string;
+};
+
+export type Argv = {
+	v?: string,
+	h?: string,
+	f?: string,
+	o?: string,
+	s?: string,
+	t?: string,
+	c?: string,
+	m?: string,
+	r?: string,
+};
+
+export class CLIArgParser {
+	args : string[] = [];
+	private aliases: Alias = {};
+
+	private usageMsg = ""; // Rename 'usage' to 'usageMsg'
+	private parsedArgv : object | null = null;
 
 	// constructor
-	constructor(args) {
+	constructor(args: string[]) {
 		if (Array.isArray(args)) this.args = args;
 	}
 
-	usage(usageMsg) {
-		this.#usage = usageMsg + "\n\nOptions:\n";
+	usage(usageMsg:string) {
+		this.usageMsg = `${usageMsg}\n\nOptions:\n`; // Rename 'usage' to 'usageMsg'
 		return this;
 	}
 
-	alias(key, name, description) {
-		this.#aliases[key] = { name, description };
+	alias(key:string, name:string, description:string) {
+		this.aliases[key] = { name, description };
 		return this;
 	}
 
 	showHelp() {
-		let helpMsg = this.#usage;
-		for (const [key, value] of Object.entries(this.#aliases)) {
-			helpMsg += `-${key},--${value.name}\t ${value.description}\n`;
+		let helpMsg = this.usageMsg;
+		for (const [key, value] of Object.entries(this.aliases)) {
+			const { name, description } = value;
+			helpMsg += `-${key},--${name}\t ${description}\n`;
 		}
 		console.log(helpMsg);
 	}
 
-	get argv() {
-		return this.#argv ? this.#argv : this.#parseArgv();
+	get argv() : Argv {
+		return this.parsedArgv ? this.parsedArgv : this.parseArgv();
 	}
 
-	static isNumber(x) {
+	static isNumber(x: any): boolean {
 		if (typeof x === "number") return true;
 		if (/^0x[0-9a-f]+$/i.test(x)) return true;
 		return /^[-+]?(?:\d+(?:\.\d*)?|\.\d+)(e[-+]?\d+)?$/.test(x);
 	}
 
-	#setArg(key, val, argv) {
+	private setArg(key: string, val: any, argv: Argv) {
 		const value = CLIArgParser.isNumber(val) ? Number(val) : val;
-		this.#setKey(argv, key.split("."), value);
+		this.setKey(argv, key.split("."), value);
 
-		const aliasKey = key in this.#aliases ? [this.#aliases[key].name] : [];
+		const aliasKey = key in this.aliases ? [this.aliases[key].name] : [];
 		if (aliasKey.length < 1) {
-			for (const [akey, avalue] of Object.entries(this.#aliases)) {
+			for (const [akey, avalue] of Object.entries(this.aliases)) {
 				if (key === avalue.name) {
 					aliasKey.push(akey);
 					break;
 				}
 			}
 		}
-		aliasKey.forEach((x) => this.#setKey(argv, x.split("."), value));
+		aliasKey.forEach((x) => this.setKey(argv, x.split("."), value));
 	}
 
-	#setKey(obj, keys, value) {
-		let o = obj;
+	private setKey(obj: object, keys: string[], value: any) {
+		let o: any = obj;
 		for (let i = 0; i < keys.length - 1; i++) {
-			let key = keys[i];
+			const key = keys[i];
 			if (key === "__proto__") return;
 			if (o[key] === undefined) o[key] = {};
 			if (
@@ -73,7 +96,7 @@ class CLIArgParser {
 			o = o[key];
 		}
 
-		let key = keys[keys.length - 1];
+		const key = keys[keys.length - 1];
 		if (key === "__proto__") return;
 		if (
 			o === Object.prototype ||
@@ -91,37 +114,41 @@ class CLIArgParser {
 		}
 	}
 
-	#parseArgv() {
-		let aliases = this.#aliases,
-			args = this.args;
-		let argv = {};
+	private parseArgv() {
+		const { args } = this; // aliases = this.#aliases,
+		const argv = {};
 
 		for (let i = 0; i < args.length; i++) {
-			let arg = args[i];
+			const arg = args[i];
 
 			if (/^--.+/.test(arg)) {
-				let key = arg.match(/^--(.+)/)[1];
-				let next = args[i + 1];
+				const extractKey = arg.match(/^--(.+)/);
+				if (!Array.isArray(extractKey)) {
+					console.warn("Unknow CLI options:", arg);
+					continue; // continue if no match
+				}
+				const key = extractKey[1];
+				const next = args[i + 1];
 				if (next !== undefined && !/^-/.test(next)) {
-					this.#setArg(key, next, argv);
+					this.setArg(key, next, argv);
 					i++;
 				} else if (/^(true|false)$/.test(next)) {
-					this.#setArg(key, next === "true", argv);
+					this.setArg(key, next === "true", argv);
 					i++;
 				} else {
-					this.#setArg(key, true, argv);
+					this.setArg(key, true, argv);
 				}
 			} else if (/^-[^-]+/.test(arg)) {
-				let key = arg.slice(-1)[0];
+				const key = arg.slice(-1)[0];
 				if (key !== "-") {
 					if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1])) {
-						this.#setArg(key, args[i + 1], argv);
+						this.setArg(key, args[i + 1], argv);
 						i++;
 					} else if (args[i + 1] && /^(true|false)$/.test(args[i + 1])) {
-						this.#setArg(key, args[i + 1] === "true", argv);
+						this.setArg(key, args[i + 1] === "true", argv);
 						i++;
 					} else {
-						this.#setArg(key, true, argv);
+						this.setArg(key, true, argv);
 					}
 				}
 			} else {
@@ -129,7 +156,7 @@ class CLIArgParser {
 			}
 		}
 
-		this.#argv = argv;
+		this.parsedArgv = argv;
 		return argv;
 	}
 }

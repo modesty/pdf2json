@@ -8,6 +8,8 @@ node_modules/
 target/
 .idea
 .npmrc
-vscode/
-dist/
+.vscode/
 lib/pdfjs-code.js
+src/**/*.js
+/dist/
+/bin/cli/

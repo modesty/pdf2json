@@ -126,7 +126,7 @@ var Page = (function PageClosure() {
       var promise = new Promise();
       if (!this.resources) //empty page
         promise.resolve();
-      else    
+      else
         this.resourcesPromise.then(function resourceSuccess() {
             var objectLoader = new ObjectLoader(this.resources.map,
                                                 keys,
@@ -331,8 +331,8 @@ var PDFDocument = (function PDFDocumentClosure() {
 
   PDFDocument.prototype = {
     parse: function PDFDocument_parse(recoveryMode) {
-      this.setup(recoveryMode);
       try {
+	    this.setup(recoveryMode); // setup may throw
         // checking if AcroForm is present
         this.acroForm = this.catalog.catDict.get('AcroForm');
         if (this.acroForm) {
@@ -345,7 +345,7 @@ var PDFDocument = (function PDFDocumentClosure() {
           }
         }
       } catch (ex) {
-        info('Something wrong with AcroForm entry');
+        error(ex);
         this.acroForm = null;
       }
     },

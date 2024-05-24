@@ -11,6 +11,7 @@ import PDFUnit from "./lib/pdfunit.js";
 
 /**
  * Class representing a PDF Parser.
+ * @class PDFParser
  * @extends EventEmitter
  */
 export default class PDFParser extends EventEmitter {
@@ -68,8 +69,9 @@ export default class PDFParser extends EventEmitter {
 	}
 
 	/**
-	 * static property to expose _PARSER_SIG function
+	 * static property to expose _PARSER_SIG string
 	 */
+	// eslint-disable-next-line @typescript-eslint/naming-convention
 	static get _PARSER_SIG() {
 		return _PARSER_SIG;
 	}
@@ -87,6 +89,7 @@ export default class PDFParser extends EventEmitter {
 
 	/**
 	 * PDFParser constructor.
+	 * @constructor PDFParser class.
 	 * @param {object} context - The context object (only used in Web Service project); null in command line
 	 * @param {boolean} needRawText - Whether raw text is needed or not
 	 * @param {string} password - The password for PDF file
@@ -167,7 +170,7 @@ export default class PDFParser extends EventEmitter {
 			PDFParser.#binBuffer[key] = null;
 			delete PDFParser.#binBuffer[key];
 
-			nodeUtil.p2jinfo("re-cycled cache for " + key);
+			nodeUtil.p2jinfo(`re-cycled cache for ${key}`);
 		}
 
 		return false;
@@ -204,7 +207,7 @@ export default class PDFParser extends EventEmitter {
 	 */
 	async loadPDF(pdfFilePath, verbosity) {
 		nodeUtil.verbosity(verbosity || 0);
-		nodeUtil.p2jinfo("about to load PDF file " + pdfFilePath);
+		nodeUtil.p2jinfo(`about to load PDF file ${pdfFilePath}`);
 
 		this.#pdfFilePath = pdfFilePath;
 
