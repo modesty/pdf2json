@@ -103,5 +103,9 @@
 			"import": "./dist/pdfparser.js",
 			"require": "./dist/pdfparser.cjs"
 		}
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.com/",
+		"access": "public"
 	}
 }
