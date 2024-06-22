@@ -1,0 +1,479 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Deutscher Sportautomatenbund e.V.</title>
+	<LINK REL=STYLESHEET TYPE="text/css" href="/WebObjects/VFSProject.woa/Contents/WebServerResources/dsab.css">
+	<LINK REL=STYLESHEET TYPE="text/css" href="/WebObjects/VFSProject.woa/Contents/WebServerResources/scripts/online-html-editor.css">
+	<script src="/WebObjects/VFSProject.woa/Contents/WebServerResources/scripts/online-html-editor.js" type="text/javascript"></script>
+	
+	<!--[if IE 7]>
+	<LINK REL=STYLESHEET TYPE="text/css" href="/WebObjects/VFSProject.woa/Contents/WebServerResources/dsab-ie7.css">
+	<![endif]-->
+		
+    <!-- Cookie banner -->
+	<script type="text/javascript" id="cookiebanner" src="/WebObjects/VFSProject.woa/Contents/WebServerResources/scripts/cookiebanner.min.js"
+	  data-close-text="Ok"
+	  data-message="Diese Website verwendet und ben&ouml;tigt Cookies f&uuml;r personalisierte Inhalte<br>Indem Sie diese Website nutzen, erkl&auml;ren Sie sich mit dieser Verwendung einverstanden<br>"
+	  data-moreinfo="/datenschutzerklaerung.html"
+	  data-linkmsg="Weitere Informationen"
+	  data-bg="#0779bf"
+	  data-fg="#fff"
+	  data-moreinfo-decoration="underline"
+	  data-link="#fff"
+	></script>
+
+</head>
+<body>
+<div id="siteframe">
+	<div id="header">
+		
+		
+		<a id="dsab_logo" href="/">
+			
+		</a>
+		<div id="header_details">
+			<p>									 
+				
+				<span style="margin-left: 70px">Datum: 27.02.2023</span>
+				
+				
+			</p>
+			<div class="clear"></div>
+			<div id="vfs_logo">
+			&nbsp;
+		</div>
+		</div>
+		<div id="header_text">
+			<p>
+				Die Liga
+			</p>
+		</div>
+		
+	</div>
+	<div id="main">
+		
+  <div id="headline">
+		<h1>Ranglisten - Bundesland auswählen</h1>
+		<div class="back"><a href = "javascript:history.go(-1)">zur&uuml;ck</a></div>
+      </div>
+      <div id="content" class="lower_padding" style="height:500px;">
+    	<a target="_blank" border="0" href="/WebObjects/VFSHilfe/ranglisten.html"><img alt="Hilfe" border="0" src="/WebObjects/Frameworks/VFSFrameWork.framework/WebServerResources/help.gif" width="18" height="18" /></a>  
+  <style type="text/css"> 
+#dummy {	Z-INDEX: 10; LEFT: 140px; WIDTH: 300px; POSITION: absolute; TOP: 237px; HEIGHT: 500px}
+#bland {Z-INDEX: 1; LEFT: 130px; WIDTH: 300px; POSITION: absolute; TOP: 230px}
+#blanddummy {Z-INDEX: 10; LEFT:130px; WIDTH: 300px; POSITION: absolute; TOP: 230px}
+#brd {Z-INDEX: 1; LEFT: 150px; WIDTH: 300px; POSITION: absolute; TOP: 230px}
+
+#nrw {Z-INDEX: 7; LEFT: 1px; WIDTH: 200px; POSITION: absolute; TOP: 144px; HEIGHT: 200px}
+#niedersachsen {Z-INDEX: 6; LEFT: 36px; POSITION: absolute; TOP: 61px}
+#pfalz {Z-INDEX: 10; LEFT: 7px; POSITION: absolute; TOP: 238px}
+#hessen {	Z-INDEX: 9; LEFT: 68px; POSITION: absolute; TOP: 198px}
+#baden {Z-INDEX: 11; LEFT: 49px; POSITION: absolute; TOP: 305px}
+#bayern {	Z-INDEX: 11; LEFT: 112px; POSITION: absolute; TOP: 263px}
+#saar {Z-INDEX: 11; LEFT: 14px; POSITION: absolute; TOP: 312px}
+#thuer {Z-INDEX: 8; LEFT: 149px; POSITION: absolute; TOP: 197px}
+#sachsen {Z-INDEX: 8; LEFT: 221px; POSITION: absolute; TOP: 194px}
+#anhalt {Z-INDEX: 7; LEFT: 174px; POSITION: absolute; TOP: 118px}
+#bremen {	Z-INDEX: 5; LEFT: 104px; POSITION: absolute; TOP: 104px}
+#hamburg {Z-INDEX: 5; LEFT: 147px; POSITION: absolute; TOP: 79px}
+#branden {Z-INDEX: 6; LEFT: 200px; POSITION: absolute; TOP: 89px}
+#berlin {Z-INDEX: 5; LEFT: 266px; POSITION: absolute; TOP: 140px}
+#mecklen {Z-INDEX: 4; LEFT: 178px; POSITION: absolute; TOP: 38px}
+#schlesswig {Z-INDEX: 3; LEFT: 103px; POSITION: absolute; TOP: 2px}
+</style> 
+
+<SCRIPT language=javascript>
+var x="",xx,ti,ti1,ti2,ti3,ti4,ti5,ti6,ti7,ti8,ti9,ti10,ti11,ti12,ti13,ti14,ti15,ti16,ppp,ur,i;
+var img1=new Image(),img2=new Image(),img3=new Image(),img4=new Image(),img5=new Image(),img6=new Image();
+var img7=new Image(),img8=new Image(),img9=new Image(),img10=new Image(),img11=new Image(),img12=new Image();
+var img13=new Image(),img14=new Image(),img15=new Image(),img16=new Image();
+var img0=new Image(),img20=new Image();
+
+img20.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/brd.gif";
+img0.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+img1.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/nrw.gif";
+img2.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/niedersachsen.gif";
+img3.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/rh_pfalz.gif";
+img4.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/hessen.gif";
+img5.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/baden_wuertemberg.gif";
+img6.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/bayern.gif";
+img7.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/saarland.gif";
+img8.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/thueringen.gif";
+img9.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/sachsen.gif";
+img10.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/sachsen_anhalt.gif";
+img11.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/bremen.gif";
+img12.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/hamburg.gif";
+img13.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/brandenburg.gif";
+img14.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/berlin.gif";
+img15.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/mecklenburg.gif";
+img16.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/schleswig_holstein.gif";
+
+function openwindow(url)
+{
+win=window.open(url,"","width=635,height=571,scrollbar=no, noresize");
+}
+
+function startland()
+{
+        var list;
+        if(list = document.forms['stadtauswahl']){
+                list = list.stadte;
+        } else list = document.formx.document.forms['stadtauswahl'].stadte;
+        if (!list[list.selectedIndex].value){
+                alert("Bitte w&auml;hlen Sie ein Bundesland");
+        }else{
+                var x=list[list.selectedIndex].value;
+                if (x<=16){
+                        document.location.href="laender.php?count_ebene=0&land="+x;
+                }else{
+                        openwindow("luftbild_frame/standard/index.php?KID=110000&flag=128&stadt="+x);
+                }
+        }
+}
+
+function puts(xx)
+{
+if (document.layers)
+{
+ switch (xx)
+ {
+ case 1:
+ document.brd.document.nrw.document.x1.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/nrw.gif";
+ break;
+ case 2:
+ document.brd.document.niedersachsen.document.x2.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/niedersachsen.gif";
+ break;
+ case 3:
+ document.brd.document.pfalz.document.x3.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/rh_pfalz.gif";
+ break;
+ case 4:
+ document.brd.document.hessen.document.x4.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/hessen.gif";
+ break;
+ case 5:
+ document.brd.document.baden.document.x5.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/baden_wuertemberg.gif";
+ break;
+ case 6:
+ document.brd.document.bayern.document.x6.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/bayern.gif";
+ break;
+ case 7:
+ document.brd.document.saar.document.x7.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/saarland.gif";
+ break;
+ case 8:
+ document.brd.document.thuer.document.x8.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/thueringen.gif";
+ break;
+ case 9:
+ document.brd.document.sachsen.document.x9.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/sachsen.gif";
+ break;
+ case 10:
+ document.brd.document.anhalt.document.x10.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/sachsen_anhalt.gif";
+ break;
+ case 11:
+ document.brd.document.bremen.document.x11.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/bremen.gif";
+ break;
+ case 12:
+ document.brd.document.hamburg.document.x12.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/hamburg.gif";
+ break;
+ case 13:
+ document.brd.document.branden.document.x13.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/brandenburg.gif";
+ break;
+ case 14:
+ document.brd.document.berlin.document.x14.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/berlin.gif";
+ break;
+ case 15:
+ document.brd.document.mecklen.document.x15.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/mecklenburg.gif";
+ break;
+ case 16:
+ document.brd.document.schlesswig.document.x16.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/schleswig_holstein.gif";
+ break;
+
+ }
+}
+else
+{
+ switch (xx)
+ {
+ case 1:
+ document.x1.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/nrw.gif";
+ break;
+ case 2:
+ document.x2.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/niedersachsen.gif";
+ break;
+ case 3:
+ document.x3.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/rh_pfalz.gif";
+ break;
+ case 4:
+ document.x4.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/hessen.gif";
+ break;
+ case 5:
+ document.x5.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/baden_wuertemberg.gif";
+ break;
+ case 6:
+ document.x6.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/bayern.gif";
+ break;
+ case 7:
+ document.x7.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/saarland.gif";
+ break;
+ case 8:
+ document.x8.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/thueringen.gif";
+ break;
+ case 9:
+ document.x9.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/sachsen.gif";
+ break;
+ case 10:
+ document.x10.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/sachsen_anhalt.gif";
+ break;
+ case 11:
+ document.x11.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/bremen.gif";
+ break;
+ case 12:
+ document.x12.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/hamburg.gif";
+ break;
+ case 13:
+ document.x13.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/brandenburg.gif";
+ break;
+ case 14:
+ document.x14.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/berlin.gif";
+ break;
+ case 15:
+ document.x15.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/mecklenburg.gif";
+ break;
+ case 16:
+ document.x16.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/schleswig_holstein.gif";
+ break;
+
+
+ }
+}
+
+
+}
+
+function gets(xx)
+{
+
+if (document.layers)
+{
+ switch (xx)
+ {
+ case 1:
+ document.brd.document.nrw.document.x1.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 2:
+ document.brd.document.niedersachsen.document.x2.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 3:
+ document.brd.document.pfalz.document.x3.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 4:
+ document.brd.document.hessen.document.x4.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 5:
+ document.brd.document.baden.document.x5.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 6:
+ document.brd.document.bayern.document.x6.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 7:
+ document.brd.document.saar.document.x7.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 8:
+ document.brd.document.thuer.document.x8.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 9:
+ document.brd.document.sachsen.document.x9.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 10:
+ document.brd.document.anhalt.document.x10.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 11:
+ document.brd.document.bremen.document.x11.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 12:
+ document.brd.document.hamburg.document.x12.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 13:
+ document.brd.document.branden.document.x13.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 14:
+ document.brd.document.berlin.document.x14.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 15:
+ document.brd.document.mecklen.document.x15.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 16:
+ document.brd.document.schlesswig.document.x16.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+
+ }
+}
+else
+{
+switch (xx)
+ {
+ case 1:
+ document.x1.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 2:
+ document.x2.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 3:
+ document.x3.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 4:
+ document.x4.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 5:
+ document.x5.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 6:
+ document.x6.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 7:
+ document.x7.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 8:
+ document.x8.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 9:
+ document.x9.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 10:
+ document.x10.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 11:
+ document.x11.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 12:
+ document.x12.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 13:
+ document.x13.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 14:
+ document.x14.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 15:
+ document.x15.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+ case 16:
+ document.x16.src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif";
+ break;
+
+ }
+}
+}
+
+</SCRIPT>
+
+<DIV id=brd>
+	<IMG src="/WebObjects/VFSProject.woa/Contents/WebServerResources/brd.gif" border=0>
+	<DIV id=niedersachsen>
+		<IMG height=170 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=180 border=0 name=x2>
+	</DIV>
+	<DIV id=nrw>
+		<IMG height=142 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=141 border=0 name=x1>
+	</DIV>
+	<DIV id=pfalz>
+		<IMG height=126 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=92 border=0 name=x3>
+	</DIV>
+	<DIV id=hessen>
+		<IMG height=143 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=99 border=0 name=x4>
+	</DIV>
+	<DIV id=baden>
+		<IMG height=156 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=124 border=0 name=x5>
+	</DIV>
+	<DIV id=bayern>
+		<IMG height=213 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=191 border=0 name=x6>
+	</DIV>
+	<DIV id=saar>
+		<IMG height=41 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=42 border=0 name=x7>
+	</DIV>
+	<DIV id=thuer>
+		<IMG height=98 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=105 border=0 name=x8>
+	</DIV>
+	<DIV id=sachsen>
+		<IMG height=112 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=120 border=0 name=x9>
+	</DIV>
+	<DIV id=anhalt>
+		<IMG height=136 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=99 border=0 name=x10>
+	</DIV>
+	<DIV id=bremen>
+		<IMG height=26 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=20 border=0 name=x11>
+	</DIV>
+	<DIV id=hamburg>
+		<IMG height=32 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=26 border=0 name=x12>
+	</DIV>
+	<DIV id=branden>
+		<IMG height=139 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=130 border=0 name=x13>
+	</DIV>
+	<DIV id=berlin>
+		<IMG height=31 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=27 border=0 name=x14>
+	</DIV>
+	<DIV id=mecklen>
+		<IMG height=90 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=136 border=0 name=x15>
+	</DIV>
+	<DIV id=schlesswig>
+		<IMG height=114 src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width=100 border=0 name=x16>
+	</DIV>
+</DIV>
+
+<DIV id=dummy>
+	<MAP name=FPMap1>
+	<AREA onmouseover=clearTimeout(ti14);puts(14); title=Berlin onfocus=this.blur() onmouseout="ti14=setTimeout('gets(14);',100);" shape=RECT coords=260,130,310,170 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=berlin&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti12);puts(12); title=Hamburg onfocus=this.blur() onmouseout="ti12=setTimeout('gets(12);',100);" shape=RECT coords=140,70,180,100 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=hamburg&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti11);puts(11); title=Bremen onfocus=this.blur() onmouseout="ti11=setTimeout('gets(11);',100);" shape=RECT coords=100,90,140,130 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=bremen&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti1);puts(1); title=Nordrhein-Westfalen onfocus=this.blur() onmouseout="ti1=setTimeout('gets(1);',100);" shape=POLY coords=48,173,59,166,75,163,82,154,89,163,90,171,86,177,100,180,104,175,115,174,111,163,107,156,117,153,119,161,125,161,133,155,125,169,129,171,133,179,136,188,141,194,139,209,134,213,125,209,124,216,114,215,107,223,112,229,115,228,109,232,104,242,93,247,93,255,87,240,78,242,71,252,62,255,46,262,38,270,29,265,25,259,18,244,14,230,26,225,22,220,30,205,19,187,26,183,44,184,51,177 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=nrw&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti2);puts(2); title=Niedersachsen onfocus=this.blur() onmouseout="ti2=setTimeout('gets(2);',100);" shape=POLY coords=51,140,54,149,63,153,63,162,75,157,80,150,90,158,95,161,94,172,91,175,100,175,109,171,106,155,117,149,122,158,133,153,132,166,139,183,144,199,151,204,151,221,159,214,168,214,177,205,184,206,187,201,184,185,186,177,200,179,201,160,190,134,202,128,216,130,220,124,205,119,189,106,179,103,168,101,157,96,156,91,141,74,135,78,123,74,118,77,116,93,128,111,134,115,131,126,119,122,110,113,112,106,131,110,115,92,109,89,110,101,101,98,97,91,101,88,97,80,84,84,77,81,70,87,64,93,71,99,70,122,64,130,63,140 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=niedersachsen&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti3);puts(3); title=Rheinland-Pfalz onfocus=this.blur() onmouseout="ti3=setTimeout('gets(3);',100);" shape=POLY coords=19,276,34,273,50,266,73,253,86,245,92,258,92,264,89,278,80,288,76,298,85,300,95,296,104,311,97,317,102,325,102,333,91,356,72,348,60,341,63,322,46,313,34,318,27,318,32,304,20,292 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=pfalz&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti4);puts(4); title=Hessen onfocus=this.blur() onmouseout="ti4=setTimeout('gets(4);',100);" shape=POLY coords=160,275,164,261,158,261,159,251,163,241,168,239,168,231,158,220,151,225,147,216,148,204,144,203,137,215,128,213,118,218,113,224,121,229,113,234,106,246,95,251,94,266,93,279,82,294,82,296,95,292,107,310,102,316,108,322,110,318,117,325,116,329,128,319,124,304,123,291,137,291,143,293,143,283,150,282,153,274 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=hessen&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti5);puts(5); title=Baden-W�rttemberg onfocus=this.blur() onmouseout="ti5=setTimeout('gets(5);',100);" shape=POLY coords=146,312,156,320,160,330,168,350,176,364,175,376,169,373,170,384,159,388,159,402,163,411,160,423,162,434,140,436,119,429,105,422,95,427,99,435,80,432,62,435,64,416,66,406,77,373,97,349,104,333,103,324,112,324,115,331,124,331,132,324 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=baden&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti6);puts(6); title=Bayern onfocus=this.blur() onmouseout="ti6=setTimeout('gets(6);',100);" shape=POLY coords=142,441,158,441,170,454,176,438,194,441,198,453,241,436,254,435,265,436,275,449,273,428,263,409,277,398,294,387,293,380,305,382,303,364,284,350,266,336,254,316,256,302,240,289,235,279,229,277,219,279,212,271,206,282,194,277,189,282,184,286,165,265,156,277,152,286,147,286,143,296,127,294,127,306,130,321,146,308,159,316,166,333,177,361,180,376,174,377,174,383,161,391,164,406,163,431,161,437 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=bayern&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti7);puts(7); title=Saarland onfocus=this.blur() onmouseout="ti7=setTimeout('gets(7);',100);" shape=POLY coords=25,320,30,329,34,339,47,343,60,344,60,327,55,320,48,316,36,319 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=saar&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti8);puts(8); title=Th�ringen onfocus=this.blur() onmouseout="ti8=setTimeout('gets(8);',100);" shape=POLY coords=194,206,203,219,213,220,217,227,213,228,222,236,231,240,243,245,249,237,253,242,259,246,247,251,247,260,242,263,236,263,233,275,220,275,213,267,209,275,204,279,197,276,187,280,175,272,165,264,163,255,168,241,170,231,165,222,162,217,178,210 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=thuer&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti9);puts(9); title=Sachsen onfocus=this.blur() onmouseout="ti9=setTimeout('gets(9);',100);" shape=POLY coords=270,275,286,261,312,248,322,244,316,239,330,237,338,250,346,222,337,211,329,209,314,211,309,218,289,219,281,219,275,207,272,204,259,204,245,214,245,231,254,238,263,246,248,255,246,265,237,269,236,275,240,280,250,287,251,274 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=sachsen&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti10);puts(10); title=Sachsen-Anhalt onfocus=this.blur() onmouseout="ti10=setTimeout('gets(10);',100);" shape=POLY coords=262,185,241,173,245,156,243,152,244,142,243,133,234,132,228,128,222,122,218,131,205,130,192,137,199,149,202,163,202,177,193,179,186,181,188,192,190,205,196,205,201,215,213,215,218,229,235,240,245,241,246,226,243,209,258,204,273,203,276,194,265,186 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=anhalt&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti13);puts(13); title=Brandenburg onfocus=this.blur() onmouseout="ti13=setTimeout('gets(13);',100);" shape=POLY coords=207,119,230,111,241,104,253,112,267,115,284,109,294,101,300,95,306,102,311,101,308,109,316,110,319,107,316,121,310,130,317,143,327,150,326,160,331,170,333,178,332,185,328,191,333,200,333,209,314,210,308,217,290,218,281,216,273,206,279,193,271,187,249,179,278,162,290,164,300,166,299,154,293,144,280,140,270,152,275,161,274,165,250,179,242,172,248,157,245,151,246,133,241,131,231,128,216,121 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=branden&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti15);puts(15); title=Mecklenburg-Vorpommern onfocus=this.blur() onmouseout="ti15=setTimeout('gets(15);',100);" shape=POLY coords=189,103,197,94,201,86,195,82,194,74,203,68,210,65,211,72,217,73,227,59,241,55,253,50,259,46,264,49,269,43,276,53,282,60,291,63,296,60,296,68,299,75,311,83,313,86,320,107,311,109,312,101,301,96,297,98,278,113,257,112,241,102,231,107,214,117,205,116,194,108 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=mecklen&typ=ligagruppen">
+	<AREA onmouseover=clearTimeout(ti16);puts(16); title=Schleswig-Holstein onfocus=this.blur() onmouseout="ti16=setTimeout('gets(16);',100);" shape=POLY coords=131,32,123,14,139,15,143,21,156,18,168,24,168,33,162,37,171,39,181,44,192,51,202,46,201,57,190,65,195,71,192,80,198,89,192,97,187,103,179,93,174,80,170,75,157,87,144,71,129,65,134,58,127,54,129,47,121,44,135,41,138,36 href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?bundesland=schlesswig&typ=ligagruppen">
+	</MAP><img useMap="#FPMap1" border="0" src="/WebObjects/VFSProject.woa/Contents/WebServerResources/spacer.gif" width="371" height="478" />
+</DIV>
+
+
+      
+        <form name="f_0_25_7" method="post" action="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen">
+        	
+        	<div class="SearchBlock" style="width:370px; margin: 0pt 0pt 0pt 500px;">
+         	<p>Liga suchen</p>
+            	<dl>
+					<dt>Bundesland</dt>
+		            <dd><select name="bundeslandId"><option value="WONoSelectionString">&lt;keine Angabe&gt;</option><option value="0">Bremen</option><option value="1">Berlin</option><option value="2">Schleswig-Holstein</option><option value="3">Sachsen-Anhalt</option><option value="4">Hessen</option><option value="5">Bayern</option><option value="6">Sachsen</option><option value="7">Thüringen</option><option value="8">Nordrhein-Westfalen</option><option value="9">Baden-Württemberg</option><option value="10">Brandenburg</option><option value="11">Niedersachsen</option><option value="12">Mecklenburg-Vorpommern</option><option value="13">Rheinland-Pfalz</option><option value="14">Hamburg</option><option value="15">Saarland</option></select></dd>
+		            <dt>Liganame</dt>
+		            <dd><input Style="width:180px" type="text" name="ligagruppenname" /></dd>
+		            <dt>Sekret&auml;r</dt>
+		            <dd><input Style="width:180px" type="text" name="sekretaer" /></dd>
+           		</dl>
+           		<input type="hidden" name="typ" value="ligagruppen"/>
+         		<div class="SearchButtons ">
+					<input type="submit" value="Suchen" style="margin-left:1.5em"/>
+				</div>
+				<div class="clear"></div>				
+			</div>	
+			<div class="SearchBlock" style="width:370px; margin: 50pt 0pt 0pt 500px;">
+				<p>Bundesliga</p>
+				<table class=input style="margin-left:1.5em">
+				<tr><td>Zu den aktuellen <a href="/VFSProject/WebObjects/VFSProject.woa/wa/rangListen?typ=saisonLigen&amp;klasse=9">Bundesligen</a></td></tr>
+				</table>
+			</div>
+        </form>
+      
+  </div>
+		
+	</div>
+	<div id="footer">
+		Deutscher-Sportautomatenbund e. V., Spitalwiese 8a, 55425 Waldalgesheim, Tel. +49(0)6721-33787, Fax. +49(0)6721-33559, E-Mail: dsabev@t-online.de &nbsp;&nbsp;-&nbsp;&nbsp; <strong><a href="/datenschutzerklaerung.html" style="color:white">Datenschutzerkl&auml;rung</a></strong>
+	</div>
+
+</div>
+</body>
+
+</html>
