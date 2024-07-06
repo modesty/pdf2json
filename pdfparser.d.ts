@@ -1,7 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { EventEmitter } from "events";
+import { EventEmitter } from "node:events";
+import { Transform, Readable, TransformOptions, TransformCallback } from "node:stream";
+import fs from "node:fs";
 
-declare class PDFParser extends EventEmitter{
+export declare class StringifyStream extends Transform {
+	constructor(options?: TransformOptions);
+	_transform(obj: any, encoding: string, callback: TransformCallback): void;
+}
+
+export declare class ParserStream{
+	static createContentStream(jsonObj): Readable
+	static createOutputStream(outputPath, resolve, reject): fs.WriteStream
+}
+
+export declare class PDFParser extends EventEmitter{
 	static get ParserStream(): typeof ParserStream
 	static get StringifyStream(): typeof StringifyStream
 	static get pkInfo(): { version: string; name: string; description: string; author: string; license: string; }
@@ -25,12 +37,6 @@ export type EventMap = {
     "readable": (meta: Output["Meta"]) => void;
     "data": (data: Output["Pages"][number]|null) => void;
 }
-
-declare class ParserStream{
-	static createContentStream(jsonObj): Readable
-	static createOutputStream(outputPath, resolve, reject): fs.WriteStream
-}
-
 
 export interface Output{
     Transcoder: string,
