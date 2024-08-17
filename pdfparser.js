@@ -2,6 +2,7 @@ import fs from "fs";
 import nodeUtil from "util";
 import { readFile } from "fs/promises";
 import { EventEmitter } from "events";
+import { Buffer } from "buffer";
 
 import PDFJS from "./lib/pdf.js";
 import { ParserStream, StringifyStream } from "./lib/parserstream.js";
@@ -231,11 +232,20 @@ export default class PDFParser extends EventEmitter {
 	/**
 	 * Parse PDF buffer. Introduce a way to directly process buffers without the need to write it to a temporary file
 	 * @param {Buffer} pdfBuffer - PDF buffer
-	 * @param {number} verbosity - Verbosity level
+	 * @param {number} verbosity - Verbosity level, ERRORS = 0, WARNINGS = 1, INFOS = 5;
 	 */
 	parseBuffer(pdfBuffer, verbosity) {
-		nodeUtil.verbosity(verbosity || 0);
-		this.#startParsingPDF(pdfBuffer);
+		nodeUtil.verbosity(verbosity); // validated in util.js
+		if ((!pdfBuffer?.length) || (!pdfBuffer.buffer)) {
+			nodeUtil.p2jerror("Error: empty PDF buffer, nothing to parse.");
+			return;
+		}
+		let pdfBufferParse = pdfBuffer;
+		if (pdfBufferParse.buffer.byteLength !== pdfBufferParse.length) {
+			pdfBufferParse = Buffer.from(pdfBufferParse.buffer, 0, pdfBufferParse.byteLength);
+		}
+
+		this.#startParsingPDF(pdfBufferParse);
 	}
 
 	/**
