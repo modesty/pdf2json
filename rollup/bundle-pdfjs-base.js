@@ -80,3 +80,9 @@ if (!fs.existsSync(targetDir)) {
 	fs.mkdirSync(targetDir);
 }
 fs.copyFileSync(path.join(__dirname, "../pdfparser.d.ts"), path.join(targetDir, "pdfparser.d.ts"));
+// .d.cts should have "export =" instead of "export default"
+const typeDefContent = fs.readFileSync(path.join(__dirname, "../pdfparser.d.ts"), "utf8");
+fs.writeFileSync(
+	path.join(targetDir, "pdfparser.d.cts"),
+	typeDefContent.replace("export default", "export =")
+);
