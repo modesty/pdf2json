@@ -117,7 +117,13 @@ export default class PDFParser extends EventEmitter {
 			nodeUtil.p2jinfo("PDF parsing completed.");
 			this.emit("pdfParser_dataReady", this.#data);
 		} else {
-			this.#data = { ...this.#data, ...data };
+			if(this.#data===data){
+				this.#data=data;
+			}
+			else{
+				this.#data = { ...this.#data, ...data };
+			}
+			
 		}
 	}
 
