@@ -100,6 +100,7 @@
 	"readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
 	"exports": {
 		".": {
+			"types": "./pdfparser.d.ts",
 			"import": "./dist/pdfparser.js",
 			"require": "./dist/pdfparser.cjs"
 		}
