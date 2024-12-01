@@ -1,18 +1,32 @@
 {
 	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"plugins": [
+		"@typescript-eslint"
+	],
 	"extends": [
 		"eslint:recommended",
-		"plugin:@typescript-eslint/eslint-recommended",
-		"plugin:@typescript-eslint/recommended"],
-	"parser": "@typescript-eslint/parser",
+		"plugin:@typescript-eslint/recommended"
+	],
 	"parserOptions": {
 		"ecmaVersion": 2022,
-		"sourceType": "module"
+		"sourceType": "module",
+		"project": ["./tsconfig.json"]
 	},
-  	"ignorePatterns": ["/dist/", "/bin/", "/test/", "/node_modules/", "/base/", "/lib/pdfjs-code.js"],
+  	"ignorePatterns": ["/dist/", "/bin/", "/test/", "/node_modules/", "/base/", "/lib/pdfjs-code.js", "**/*.json"],
+	"rules": {
+	"@typescript-eslint/no-unused-expressions": [
+		"error",
+		{
+			"allowShortCircuit": true,
+			"allowTernary": true,
+			"allowTaggedTemplates": true
+		}
+	]
+	},
 	"overrides": [{
-      "files": ["*.js", "*.ts"],
-      "rules": {
+	  "files": ["*.js", "*.ts"],
+	  "rules": {
 		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
 		"@typescript-eslint/naming-convention": [
 			"error",
@@ -128,7 +142,7 @@
 		"prefer-rest-params": ["error"],
 		"prefer-spread": ["error"],
 		"prefer-template": ["error"]
-      }
-    }
+	  }
+	}
   ]
 }
