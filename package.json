@@ -1,112 +1,114 @@
 {
-	"name": "pdf2json",
-	"version": "3.1.5",
-	"description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
-	"keywords": [
-		"pdf",
-		"pdf parser",
-		"pdf2json",
-		"convert pdf to json",
-		"convert pdf form to json",
-		"server side PDF parser",
-		"port pdf.js to node.js",
-		"PDF to text",
-		"PDF text extractor",
-		"PDF binary to text",
-		"PDF form extractor",
-		"command line utility to parse pdf to json",
-		"JSON",
-		"javascript",
-		"PDF canvas"
-	],
-	"author": {
-		"name": "Modesty Zhang",
-		"email": "modestyz@hotmail.com",
-		"url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
-	},
-	"homepage": "https://github.com/modesty/pdf2json",
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/modesty/pdf2json.git"
-	},
-	"main": "./dist/pdfparser.cjs",
-	"module": "./dist/pdfparser.js",
-	"typings": "./pdfparser.d.ts",
-	"scripts": {
-		"pretest": "npm run build",
-		"test:jest": "jest --config ./jest.config.json",
-		"test": "jest --config ./jest.config.json && npm run parse-r && npm run parse-fd",
-		"test:forms": "cd ./test && sh p2j.forms.sh",
-		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 13 success, 4 fail exception with stack trace\" ",
-		"parse": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
-		"parse-s": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
-		"parse-t": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
-		"parse-c": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
-		"parse-m": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
-		"parse-r": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
-		"parse-fd": "./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
-		"parse-tb": "./bin/pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
-		"parse-tc": "./bin/pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
-		"parse-rectFix": "./bin/pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
-		"parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
-		"build:rollup": "rollup -c ./rollup.config.js",
-		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
-		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
-		"prepare": "npm run build"
-	},
-	"engines": {
-		"node": ">=18.12.1",
-		"npm": ">=8.19.2"
-	},
-	"type": "module",
-	"bin": {
-		"pdf2json": "./bin/pdf2json.js"
-	},
-	"dependencies": {
-		"@xmldom/xmldom": "^0.8.10"
-	},
-	"devDependencies": {
-		"@rollup/plugin-commonjs": "^25.0.4",
-		"@rollup/plugin-eslint": "^9.0.5",
-		"@rollup/plugin-json": "^6.1.0",
-		"@rollup/plugin-node-resolve": "^15.2.1",
-		"@rollup/plugin-terser": "^0.4.4",
-		"@rollup/plugin-typescript": "^11.1.6",
-		"@types/node": "^20.12.7",
-		"@typescript-eslint/eslint-plugin": "^7.8.0",
-		"@typescript-eslint/parser": "^7.8.0",
-		"eslint": "^8.56.0",
-		"jest": "^29.7.0",
-		"rollup": "^4.22.4",  
-		"rollup-plugin-node-builtins": "^2.1.2",
-		"rollup-plugin-sourcemaps": "^0.6.3",
-		"tslib": "^2.6.2",
-		"typescript": "^5.4.5"
-	},
-	"bundledDependencies": [
-		"@xmldom/xmldom"
-	],
-	"maintainers": [{
-			"name": "Modesty Zhang",
-			"email": "modestyz@hotmail.com",
-			"url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
-		}
-	],
-	"contributors": [],
-	"bugs": {
-		"url": "http://github.com/modesty/pdf2json/issues"
-	},
-	"license": "Apache-2.0",
-	"readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
-	"exports": {
-		".": {
-			"types": "./pdfparser.d.ts",
-			"import": "./dist/pdfparser.js",
-			"require": "./dist/pdfparser.cjs"
-		}
-	},
-	"publishConfig": {
-		"registry": "https://registry.npmjs.com/",
-		"access": "public"
-	}
+    "name": "pdf2json",
+    "version": "3.1.5",
+    "description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
+    "keywords": [
+        "pdf",
+        "pdf parser",
+        "pdf2json",
+        "convert pdf to json",
+        "convert pdf form to json",
+        "server side PDF parser",
+        "port pdf.js to node.js",
+        "PDF to text",
+        "PDF text extractor",
+        "PDF binary to text",
+        "PDF form extractor",
+        "command line utility to parse pdf to json",
+        "JSON",
+        "javascript",
+        "PDF canvas"
+    ],
+    "author": {
+        "name": "Modesty Zhang",
+        "email": "modestyz@hotmail.com",
+        "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+    },
+    "homepage": "https://github.com/modesty/pdf2json",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/modesty/pdf2json.git"
+    },
+    "main": "./dist/pdfparser.cjs",
+    "module": "./dist/pdfparser.js",
+    "typings": "./pdfparser.d.ts",
+    "scripts": {
+        "pretest": "npm run build",
+        "test:jest": "jest --config ./jest.config.json",
+        "test": "jest --config ./jest.config.json && npm run parse-r && npm run parse-fd",
+        "test:forms": "cd ./test && sh p2j.forms.sh",
+        "test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 13 success, 4 fail exception with stack trace\" ",
+        "parse": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
+        "parse-s": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
+        "parse-t": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
+        "parse-c": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
+        "parse-m": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
+        "parse-r": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
+        "parse-fd": "./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
+        "parse-tb": "./bin/pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
+        "parse-tc": "./bin/pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
+        "parse-rectFix": "./bin/pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
+        "parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i43_encrypted.pdf -o ./test/target/misc",
+        "build:rollup": "rollup -c ./rollup.config.js",
+        "build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
+        "build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
+        "build:clean": "rm -rf node_modules && rm -f package-lock.json && npm i && npm run build"
+    },
+    "engines": {
+        "node": ">=20.18.0",
+        "npm": ">=10.8.2"
+    },
+    "type": "module",
+    "bin": {
+        "pdf2json": "./bin/pdf2json.js"
+    },
+    "dependencies": {
+        "@xmldom/xmldom": "^0.9.5"
+    },
+    "bundledDependencies": [
+        "@xmldom/xmldom"
+    ],
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^28.0.1",
+        "@rollup/plugin-eslint": "^9.0.5",
+        "@rollup/plugin-json": "^6.1.0",
+        "@rollup/plugin-node-resolve": "^15.2.1",
+        "@rollup/plugin-terser": "^0.4.4",
+        "@rollup/plugin-typescript": "^12.1.1",
+        "@types/node": "^22.10.1",
+        "@typescript-eslint/eslint-plugin": "^7.18.0",
+        "@typescript-eslint/parser": "^7.18.0",
+        "eslint": "^8.57.1",
+        "jest": "^29.7.0",
+        "rollup": "^4.22.4",
+        "rollup-plugin-node-builtins": "^2.1.2",
+        "rollup-plugin-sourcemaps": "^0.6.3",
+        "tslib": "^2.6.2"
+    },
+    "resolutions": {
+        "typescript": "5.7.0"
+      },
+    "maintainers": [{
+            "name": "Modesty Zhang",
+            "email": "modestyz@hotmail.com",
+            "url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+        }
+    ],
+    "contributors": [],
+    "bugs": {
+        "url": "http://github.com/modesty/pdf2json/issues"
+    },
+    "license": "Apache-2.0",
+    "readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
+    "exports": {
+        ".": {
+            "types": "./dist/pdfparser.d.ts",
+            "import": "./dist/pdfparser.js",
+            "require": "./dist/pdfparser.cjs"
+        }
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.com/",
+        "access": "public"
+    }
 }
