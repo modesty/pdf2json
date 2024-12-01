@@ -3,7 +3,7 @@
 	"compilerOptions": {
 		"forceConsistentCasingInFileNames": true,
         "rootDir": ".",
-		"outDir": "./type",
+		"outDir": "./bin",
         "baseUrl": ".",
         "sourceMap": true,
         "declaration": false,
