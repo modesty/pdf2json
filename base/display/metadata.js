@@ -45,19 +45,18 @@ var Metadata = (PDFJS.Metadata = (function MetadataClosure() {
    }
 
    function Metadata(meta) {
-      if (typeof meta === 'string') {
+	this.metadata = {};
+	if (typeof meta === 'string') {
          // Ghostscript produces invalid metadata
          meta = fixMetadata(meta);
-
-         var parser = new DOMParser();
-         meta = parser.parseFromString(meta, 'application/xml');
-      } else if (!(meta instanceof Document)) {
-         error('Metadata: Invalid metadata object');
-      }
-
-      this.metaDocument = meta;
-      this.metadata = {};
-      this.parse();
+		 meta = meta.trim();
+		 if (meta.startsWith('<') && meta.endsWith('>')) {
+			var parser = new DOMParser();
+			meta = parser.parseFromString(meta, 'application/xml');
+			this.metaDocument = meta;
+			this.parse();
+		 }
+	}
    }
 
    Metadata.prototype = {
