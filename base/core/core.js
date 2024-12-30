@@ -138,7 +138,6 @@ var Page = (function PageClosure() {
       return promise;
     },
     getOperatorList: function Page_getOperatorList(handler) {
-      var self = this;
       var promise = new Promise();
 
       function reject(e) {
@@ -148,8 +147,7 @@ var Page = (function PageClosure() {
       var pageListPromise = new Promise();
 
       var pdfManager = this.pdfManager;
-      var contentStreamPromise = pdfManager.ensure(this, 'getContentStream',
-                                                   []);
+      var contentStreamPromise = pdfManager.ensure(this, 'getContentStream', []);
       var resourcesPromise = this.loadResources([
         'ExtGState',
         'ColorSpace',
@@ -166,35 +164,31 @@ var Page = (function PageClosure() {
             this.pageIndex, 'p' + this.pageIndex + '_',
             this.idCounters, this.fontCache);
 
-      var dataPromises = Promise.all(
-          [contentStreamPromise, resourcesPromise], reject);
-      dataPromises.then(function(data) {
+      Promise.all([contentStreamPromise, resourcesPromise]).then(function(data) {
         var contentStream = data[0];
+		try {
+			var opList = new OperatorList(handler, this.pageIndex);
+			partialEvaluator.getOperatorList(contentStream, this.resources, opList);
+			pageListPromise.resolve(opList);
 
-
-        var opList = new OperatorList(handler, self.pageIndex);
-        try {
-            handler.send('StartRenderPage', {
-            transparency: partialEvaluator.hasBlendModes(self.resources),
-            pageIndex: self.pageIndex
-            });
-            partialEvaluator.getOperatorList(contentStream, self.resources, opList);
-            pageListPromise.resolve(opList);
-        }
-        catch(e) {
-            pageListPromise.reject(e);
-        }
-      });
+			handler.send('StartRenderPage', {
+				transparency: partialEvaluator.hasBlendModes(this.resources),
+				pageIndex: this.pageIndex
+			});
+		} catch (ex) {
+			reject(ex);
+		}
+      }.bind(this), reject);
 
       var annotationsPromise = pdfManager.ensure(this, 'annotations');
-      Promise.all([pageListPromise, annotationsPromise]).then(function(datas) {
-        var pageOpList = datas[0];
-        var annotations = datas[1];
+      Promise.all([pageListPromise, annotationsPromise]).then(function(data) {
+        var pageOpList = data[0];
+        var annotations = data[1];
 
         if (annotations.length === 0) {
           pageOpList.flush(true);
           promise.resolve(pageOpList);
-          return;
+          return promise;
         }
 
         var annotationsReadyPromise = Annotation.appendToOperatorList(

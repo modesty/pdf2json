@@ -902,8 +902,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       this.current.font = fontObj;
       this.current.fontSize = size;
 
-      if (fontObj.coded)
-        return; // we don't need ctx.font for Type3 fonts
+	  if (fontObj.coded) {
+        warn('Unsupported Type3 font (custom Glyph) - ' + fontRefName);
+		return; // we don't need ctx.font for Type3 fonts
+	  }
 
       var name = fontObj.loadedName || 'sans-serif';
       var bold = fontObj.black ? (fontObj.bold ? 'bolder' : 'bold') :
@@ -1627,7 +1629,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         //MQZ. make sure endGroup is always invoked after beginGroup
         if (this.groupLevel == 0)
             this.beginGroup(group);
-            
+
       this.groupLevel--;
       var groupCtx = this.ctx;
       this.ctx = this.groupStack.pop();

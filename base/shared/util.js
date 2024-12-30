@@ -197,8 +197,8 @@ function error(msg) {
 	} else {
 		//log('Error: ' + msg);
 	}
-	//log(backtrace());
-	//PDFJS.LogManager.notify('error', msg);
+	// log(backtrace());
+	PDFJS.LogManager.notify('error', msg);
 	throw new Error(msg);
 }
 
