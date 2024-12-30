@@ -230,6 +230,7 @@ var Parser = (function ParserClosure() {
         while (stream.pos < stream.end) {
           var scanBytes = stream.peekBytes(SCAN_BLOCK_SIZE);
           var scanLength = scanBytes.length - ENDSTREAM_SIGNATURE_LENGTH;
+          if (scanLength <= 0) break; // no match possible, end of stream or invalid stream
           var found = false, i, ii, j;
           for (i = 0, j = 0; i < scanLength; i++) {
             var b = scanBytes[i];
@@ -253,7 +254,7 @@ var Parser = (function ParserClosure() {
           stream.pos += scanLength;
         }
         if (!found) {
-          error('Missing endstream');
+          error('Missing endstream or invalid stream');
         }
         length = skipped;
 
