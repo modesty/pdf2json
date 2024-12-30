@@ -14,7 +14,7 @@ describe("Multiple PDFs with same structure",()=>{
         const secondPDFBuffer=fs.readFileSync(secondPDFLocation);
         //we need to check if buffers are indeed different, otherwise it's useless!
         expect(firstPDFBuffer).not.toBe(secondPDFBuffer);
-        const firstPDFData=await new Promise((resolve,reject)=>{
+        const firstData=await new Promise((resolve,reject)=>{
 		    parser.parseBuffer(firstPDFBuffer,5);
             parser.on("pdfParser_dataReady", (evtData) => {
                 resolve(evtData);
@@ -24,7 +24,7 @@ describe("Multiple PDFs with same structure",()=>{
                 reject(evtData);
             });
         });
-        const secondPDFData=await new Promise((resolve,reject)=>{
+        const secondData=await new Promise((resolve,reject)=>{
 		    parser.parseBuffer(secondPDFBuffer,5);
             parser.on("pdfParser_dataReady", (evtData) => {
                 resolve(evtData);
@@ -34,8 +34,6 @@ describe("Multiple PDFs with same structure",()=>{
                 reject(evtData);
             });
         });
-        const firstData=await firstPDFData;
-        const secondData=await secondPDFData;
         //first, make sure the files are read
         expect(firstData).toBeDefined();
         expect(firstData.Pages[0]).toBeDefined();
