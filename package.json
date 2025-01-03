@@ -48,7 +48,7 @@
 		"parse-tb": "./bin/pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
 		"parse-tc": "./bin/pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
 		"parse-rectFix": "./bin/pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
-		"parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i373_err_broken.pdf -o ./test/target/misc",
+		"parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i306_err_invalid.pdf -o ./test/target/misc",
 		"build:rollup": "rollup -c ./rollup.config.js",
 		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
 		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
