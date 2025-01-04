@@ -77,7 +77,7 @@ var Annotation = (function AnnotationClosure() {
 
     data.subtype = dict.get('Subtype').name;
     data.annotationFlags = dict.get('F');
-    this.setRectangle(dict.get('Rect'));
+    this.getAndSetRectangle(dict);
     data.rect = this.rectangle;
 
     var color = dict.get('C');
@@ -117,7 +117,20 @@ var Annotation = (function AnnotationClosure() {
       } else {
         this.rectangle = [0, 0, 0, 0];
       }
-    },
+	},
+
+	getAndSetRectangle: function Annotation_getAndSetRectangle(dict) {
+		var rect = dict.get('Rect');
+		var xref = dict.xref;
+		if (isArray(rect) && rect.length === 4) {
+			for (var i = 0; i < 4; i++) {
+				rect[i] = (typeof rect[i] === "object") ? xref.fetchIfRef(rect[i]) : rect[i];
+			}
+			this.setRectangle(rect);
+		} else {
+			this.rectangle = [0, 0, 0, 0];
+		}
+	},
 
     getData: function Annotation_getData() {
       return this.data;
@@ -330,9 +343,9 @@ var WidgetAnnotation = (function WidgetAnnotationClosure() {
     var rawValue = Util.getInheritableProperty(dict, 'V') || '';
     var value = (rawValue.name ? rawValue.name : rawValue) || '';
     data.fieldValue = stringToPDFString(value);
-             
+
     data.alternativeText = stringToPDFString(dict.get('TU') || '');
-    
+
     data.alternativeID = stringToPDFString(dict.get('TM') || '');
 
     data.defaultAppearance = Util.getInheritableProperty(dict, 'DA') || '';
