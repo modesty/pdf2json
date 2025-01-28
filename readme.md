@@ -1142,7 +1142,7 @@ More info can be found at [Restful Web Service for pdf2json.](https://github.com
 
 ## Contribution
 
-Participating in this project, you are expected to honor [open code of conduct](http://todogroup.org/opencodeofconduct/#Open+Code+of+Conduct/abuse@todogroup.org).
+Participating in this project, you are expected to honor [open code of conduct](https://www.contributor-covenant.org/).
 
 ## License
 
