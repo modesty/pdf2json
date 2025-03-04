@@ -8,7 +8,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/modesty/pdf2json)
 ![GitHub last commit](https://img.shields.io/github/last-commit/modesty/pdf2json?color=red)
 
-pdf2json is a [node.js](http://nodejs.org/) module converts binary PDF to JSON and text. Built with [pdf.js](https://github.com/mozilla/pdf.js/), it extracts text content and interactive form elements for server-side processing and command-line use.
+pdf2json is a [node.js](https://nodejs.org/) module that converts binary PDF to JSON and text. Built with [pdf.js](https://github.com/mozilla/pdf.js/), it extracts text content and interactive form elements for server-side processing and command-line use.
 
 ## Features
 
@@ -20,45 +20,62 @@ pdf2json is a [node.js](http://nodejs.org/) module converts binary PDF to JSON a
 
 ## Install
 
-> npm i pdf2json
+You can install it using npm or bun:
 
-Or, install it globally:
+```bash
+npm install pdf2json
+bun add pdf2json
+```
 
-> npm i pdf2json -g
+If you want to use the `pdf2json` CLI, you can install it globally:
 
-To update with latest version:
+```bash
+npm install pdf2json -g
+bun install pdf2json -g
+```
 
-> npm update pdf2json -g
+## Usage
 
-To Run in RESTful Web Service or as command line Utility
+```javascript
+import PDFParser from "pdf2json";
 
-- More details can be found at the bottom of this document.
+const pdfParser = new PDFParser();
+```
+
+The module is tested with [Node.js](https://nodejs.org/) 18+ and [Bun](https://bun.sh/) 1+.
 
 ## Test
 
-After install, run command line:
+You can run tests in Bun, or in Node.js using Jest.
 
-> npm test
+```bash
+bun run test:bun # runs in Bun
+bun run test:node # runs in Node.js using Jest
+```
 
-`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The Jest test suit is defined in `./test/_test_.cjs` with commonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
+The `pretest` script builds bundles and source maps for both ES Module and CommonJS, then outputs to `./dist` directory. The test suit is defined in `./test/p2j.test.js` with CommonJS, and will also cover `parse-r` and `parse-fd` with ES Modules via command line.
 
-The default Jest test suits are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
+The default test suits are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
-> npm run test:forms
+```bash
+bun run test:forms
+```
 
-It'll scan and parse _260_ PDF AcroForm files under _*./test/pdf*_, runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text file for each PDF. It usually takes ~20s in my MacBook Pro to complete, check _*./test/target/*_ for outputs.
+It'll scan and parse _260_ PDF AcroForm files under _*./test/pdf*_, runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text file for each PDF. It usually takes ~8s in my MacBook Pro to complete, check _*./test/target/*_ for outputs.
 
-_update on 4/27/2024_: parsing 260 PDFs by `npm run test:forms` on M2 Mac takes 7~8s
+To run the test suite with CommonJS bundle only, run:
 
-To run Jest test suits with commonJS bundle only
-
-> npm run test:jest
+```bash
+bun run test
+```
 
 ### Test Exception Handlings
 
 After install, run command line:
 
-> npm run test:misc
+```bash
+bun run test:misc
+```
 
 It'll scan and parse all PDF files under _*./test/pdf/misc*_, also runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 15 PDF fields, 12 are expected to success while the other three's exceptions are expected to catch with stack trace for:
 
@@ -70,7 +87,9 @@ It'll scan and parse all PDF files under _*./test/pdf/misc*_, also runs with _*-
 
 After install, run command line:
 
-> npm run parse-r
+```bash
+bun run parse-r
+```
 
 It scans 165 PDF files under _*./test/pdf/fd/form/*_, parses with [Stream API](https://nodejs.org/dist/latest-v14.x/docs/api/stream.html), then generates output to _*./test/target/fd/form/*_.
 
