@@ -49,11 +49,11 @@ PDFJS.imageResourcesPath = PDFJS.imageResourcesPath === undefined ?
 /**
  * Disable the web worker and run all code on the main thread. This will happen
  * automatically if the browser doesn't support workers or sending typed arrays
- * to workers.
+ * to workers. Default is true when running in a server environment like node or bun.
  * @var {Boolean}
  */
 PDFJS.disableWorker = PDFJS.disableWorker === undefined ?
-                      false : PDFJS.disableWorker;
+                      typeof window === 'undefined' : PDFJS.disableWorker;
 
 /**
  * Path and filename of the worker file. Required when the worker is enabled in
