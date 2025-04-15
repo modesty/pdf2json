@@ -86,7 +86,7 @@
 		"tslib": "^2.6.2"
 	},
 	"resolutions": {
-		"typescript": "5.7.0"
+		"typescript": "5.8.3"
 	},
 	"maintainers": [{
 		"name": "Modesty Zhang",
