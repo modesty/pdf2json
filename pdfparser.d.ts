@@ -28,6 +28,7 @@ export declare class PDFParser extends EventEmitter{
     getRawTextContent(): string
 	on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
     getAllFieldsTypes(): FieldType[]
+    getAllFieldData(): FieldType[]
 }
 
 export type EventMap = {
