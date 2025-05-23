@@ -64,7 +64,7 @@ const _baseCode = _pdfjsFiles.reduce(
 
 fs.writeFileSync(path.join(__dirname, "../lib/pdfjs-code.js"),
 	`
-  ${"import nodeUtil from 'util';import { Blob } from 'buffer';import { DOMParser } from '@xmldom/xmldom';import PDFAnno from './pdfanno.js';import Image from './pdfimage.js';import { createScratchCanvas } from './pdfcanvas.js';"}
+  ${"import nodeUtil from 'util';import { Blob } from 'buffer';import { DOMParser } from './simpleXmlParser.js';import PDFAnno from './pdfanno.js';import Image from './pdfimage.js';import { createScratchCanvas } from './pdfcanvas.js';"}
   ${"export const PDFJS = {};"}
   ${"const globalScope = { console };"}
   ${_baseCode}
