@@ -37,7 +37,7 @@
 		"test:jest": "jest --config ./jest.config.json",
 		"test": "jest --config ./jest.config.json && npm run parse-r && npm run parse-fd",
 		"test:forms": "cd ./test && sh p2j.forms.sh",
-		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 14 success, 5 fail exception with stack trace\" ",
+		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 14 success, 6 fail exception with stack trace\" ",
 		"parse": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
 		"parse-s": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
 		"parse-t": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
