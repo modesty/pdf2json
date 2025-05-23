@@ -1,26 +1,53 @@
-name: Node.js CI/CD
+name: CI/CD
 
 on:
   pull_request:
-    branches: [ "*" ]
 
 jobs:
-  build:
+  node:
+    name: Node.js (${{ matrix.node-version }})
+
     runs-on: ubuntu-latest
-    outputs:
-      test-result: ${{ steps.test.outcome }}
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js 20.x # Updated for Node 20
-        uses: actions/setup-node@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: ${{ matrix.node-version }}
 
-      - name: Run ci
-        run: npm ci
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
-      - name: Run tests
-        id: test
-        run: npm test
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Run Tests
+        run: bun run test:node
+
+  bun:
+    name: Bun (${{ matrix.bun-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        bun-version: [latest]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ matrix.bun-version }}
+
+      - name: Install Dependencies
+        run: bun install
+
+      - name: Run Tests
+        run: bun run test:bun
