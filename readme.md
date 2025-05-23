@@ -8,15 +8,16 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/modesty/pdf2json)
 ![GitHub last commit](https://img.shields.io/github/last-commit/modesty/pdf2json?color=red)
 
-pdf2json is a [node.js](http://nodejs.org/) module converts binary PDF to JSON and text. Built with [pdf.js](https://github.com/mozilla/pdf.js/), it extracts text content and interactive form elements for server-side processing and command-line use.
+pdf2json is a [node.js](http://nodejs.org/) module that converts binary PDF to JSON and text. Built with [pdf.js](https://github.com/mozilla/pdf.js/), it extracts text content and interactive form elements for server-side processing and command-line use.
 
 ## Features
 
 - **PDF text extraction**: extracts textual content of PDF documents into structured JSON.
 - **Form element handling**: parses interactive form fields within PDFs for flexible data capture.
 - **Server-side and command-line versatility**: Integrate with web services for remote PDF processing or use as a standalone command-line tool for local file conversion.
-- **Swift Performance**: fast performance with minimal depdendencies
+- **Swift Performance**: fast performance with zero dependencies (since v3.1.6)
 - **Community driven**: decade+ long community driven development ensures continuous improvement.
+- **Zero dependencies**: completely dependency-free since v3.1.6, only pure JavaScript code.
 
 ## Install
 

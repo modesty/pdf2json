@@ -18,7 +18,6 @@ const external = [
 	"url",
 	"buffer",
 	"stream",
-	"@xmldom/xmldom",
 ];
 
 export default [
