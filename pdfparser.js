@@ -273,6 +273,14 @@ export default class PDFParser extends EventEmitter {
 	}
 
 	/**
+	 * Retrieve all field types.
+	 * @returns {object[]} All field types
+	 */
+		getAllFieldData() {
+			return this.#PDFJS.getAllFieldData();
+		}
+
+	/**
 	 * Retrieve all field types stream.
 	 * @returns {Stream} All field types stream
 	 */
