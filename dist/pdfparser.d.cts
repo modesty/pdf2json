@@ -27,6 +27,8 @@ export declare class PDFParser extends EventEmitter{
     createParserStream(): ParserStream
     getRawTextContent(): string
 	on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this
+    getAllFieldsTypes(): FieldType[]
+    getAllFieldData(): FieldType[]
 }
 
 export type EventMap = {
@@ -116,6 +118,13 @@ export declare interface Field {
         Name: 'alpha' | 'link',
         TypeInfo: object
     }
+}
+
+export declare interface FieldType {
+    id: string,
+    type: 'alpha' | 'box' | 'radio' | 'date' | 'link' | 'signature',
+    calc: boolean,
+    value: string | boolean
 }
 
 export declare interface Box {
