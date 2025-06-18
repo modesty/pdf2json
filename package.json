@@ -1,6 +1,6 @@
 {
 	"name": "pdf2json",
-	"version": "3.1.5",
+	"version": "3.1.6",
 	"description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
 	"keywords": [
 		"pdf",
@@ -37,7 +37,7 @@
 		"test:jest": "jest --config ./jest.config.json",
 		"test": "jest --config ./jest.config.json && npm run parse-r && npm run parse-fd",
 		"test:forms": "cd ./test && sh p2j.forms.sh",
-		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 14 success, 5 fail exception with stack trace\" ",
+		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 14 success, 6 fail exception with stack trace\" ",
 		"parse": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
 		"parse-s": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
 		"parse-t": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
@@ -55,18 +55,21 @@
 		"build:clean": "rm -rf node_modules && rm -f package-lock.json && npm i && npm run build"
 	},
 	"engines": {
-		"node": ">=20.18.0",
-		"npm": ">=10.8.2"
+		"node": ">=20.18.0"
+	},
+	"devEngines": {
+		"packageManager": {
+			"name": "npm",
+			"version": ">=10.8.2"
+		}
 	},
 	"type": "module",
 	"bin": {
 		"pdf2json": "./bin/pdf2json.js"
 	},
 	"dependencies": {
-		"@xmldom/xmldom": "^0.9.6"
 	},
 	"bundleDependencies": [
-		"@xmldom/xmldom"
 	],
 	"devDependencies": {
 		"@rollup/plugin-commonjs": "^28.0.2",
@@ -86,7 +89,7 @@
 		"tslib": "^2.6.2"
 	},
 	"resolutions": {
-		"typescript": "5.7.0"
+		"typescript": "5.8.3"
 	},
 	"maintainers": [{
 		"name": "Modesty Zhang",
