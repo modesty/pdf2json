@@ -113,5 +113,14 @@
 	"publishConfig": {
 		"registry": "https://registry.npmjs.com/",
 		"access": "public"
-	}
+	},
+	"files": [
+		"bin/",
+		"dist/",
+		"package.json",
+		"pdfparser.d.ts",
+		"pdfparser.js",
+		"readme.md",
+		"license.txt"
+	]
 }
