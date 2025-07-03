@@ -18,6 +18,7 @@ const PROCESS_RAW_TEXT_CONTENT = "c" in argv;
 const PROCESS_FIELDS_CONTENT = "t" in argv;
 const PROCESS_MERGE_BROKEN_TEXT_BLOCKS = "m" in argv;
 const PROCESS_WITH_STREAM = "r" in argv;
+const SINGLETON_PDF_PARSER= "si" in argv;
 
 const INPUT_DIR_OR_FILE = argv.f;
 
@@ -123,10 +124,14 @@ class PDFProcessor {
 
 	private parseOnePDFStream() {
 		return new Promise((resolve, reject) => {
-			this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
-			this.pdfParser.on("pdfParser_dataError", (evtData: any) =>
-				this.onPrimaryError(evtData.parserError, reject)
-			);
+			if(!SINGLETON_PDF_PARSER || !this.pdfParser){
+				//we initialize the PDFParser object only if the object itself is null, or the singleton parameter was not provided
+				this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
+				this.pdfParser.on("pdfParser_dataError", (evtData: any) =>
+					this.onPrimaryError(evtData.parserError, reject)
+				);
+			}
+
 
 			const outputStream = fs.createWriteStream(this.outputPath);
 			outputStream.on("finish", () => this.onPrimarySuccess(resolve, reject));
@@ -145,10 +150,14 @@ class PDFProcessor {
 
 	private parseOnePDF() {
 		return new Promise((resolve, reject) => {
-			this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
-			this.pdfParser.on("pdfParser_dataError", (evtData: any) => {
-				this.onPrimaryError(evtData.parserError, reject);
-			});
+			if(!SINGLETON_PDF_PARSER || !this.pdfParser){
+				//we initialize the PDFParser object only if the object itself is null, or the singleton parameter was not provided
+				this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
+				this.pdfParser.on("pdfParser_dataError", (evtData: any) =>
+					this.onPrimaryError(evtData.parserError, reject)
+				);
+			}
+
 
 			this.pdfParser.on("pdfParser_dataReady", (evtData: any) => {
 				fs.writeFile(this.outputPath, JSON.stringify(evtData), (err) => {

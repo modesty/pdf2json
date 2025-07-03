@@ -21,6 +21,7 @@ export type Argv = {
 	c?: string,
 	m?: string,
 	r?: string,
+	si?: string,
 };
 
 export class CLIArgParser {
@@ -199,4 +200,8 @@ export const yargs = new CLIArgParser(process.argv.slice(2))
 		"r",
 		"stream",
 		"(optional) when specified, will process and parse with buffer/object transform stream rather than file system."
+	).alias(
+		"si",
+		"singleton",
+		"(optional) when specified, only an instance of PDFParser will be initialized."
 	);
