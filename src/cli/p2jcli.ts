@@ -124,14 +124,13 @@ class PDFProcessor {
 
 	private parseOnePDFStream() {
 		return new Promise((resolve, reject) => {
-			if(!SINGLETON_PDF_PARSER || !this.pdfParser){
-				//we initialize the PDFParser object only if the object itself is null, or the singleton parameter was not provided
+			if((SINGLETON_PDF_PARSER && !this.pdfParser) || !SINGLETON_PDF_PARSER){
+				//initialize the parser if the singleton parameter was not provided, or if the singleton parameter was provided and the parser is not initialized
 				this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
 				this.pdfParser.on("pdfParser_dataError", (evtData: any) =>
 					this.onPrimaryError(evtData.parserError, reject)
 				);
 			}
-
 
 			const outputStream = fs.createWriteStream(this.outputPath);
 			outputStream.on("finish", () => this.onPrimarySuccess(resolve, reject));
@@ -150,14 +149,13 @@ class PDFProcessor {
 
 	private parseOnePDF() {
 		return new Promise((resolve, reject) => {
-			if(!SINGLETON_PDF_PARSER || !this.pdfParser){
-				//we initialize the PDFParser object only if the object itself is null, or the singleton parameter was not provided
+			if((SINGLETON_PDF_PARSER && !this.pdfParser) || !SINGLETON_PDF_PARSER){
+				//initialize the parser if the singleton parameter was not provided, or if the singleton parameter was provided and the parser is not initialized
 				this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
 				this.pdfParser.on("pdfParser_dataError", (evtData: any) =>
 					this.onPrimaryError(evtData.parserError, reject)
 				);
 			}
-
 
 			this.pdfParser.on("pdfParser_dataReady", (evtData: any) => {
 				fs.writeFile(this.outputPath, JSON.stringify(evtData), (err) => {
