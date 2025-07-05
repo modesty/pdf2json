@@ -1,5 +1,5 @@
 {
-	"testMatch": ["**/test/_test_.cjs"],
+	"testMatch": ["**/test/_test_*"],
 	"testEnvironment": "node",
 	"bail": false,
 	"testFailureExitCode": 1,

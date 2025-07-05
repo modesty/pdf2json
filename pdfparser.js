@@ -305,6 +305,15 @@ export default class PDFParser extends EventEmitter {
 	}
 
 	/**
+	 * Destroys the current instance of PDFJS and sets a new one
+	 * @param {boolean} needRawText - Whether raw text is needed or not
+	 */
+	resetPDFJS(needRawText){
+		this.#PDFJS.destroy();
+		this.#PDFJS=new PDFJS(needRawText);
+	}
+
+	/**
 	 * Destroy the PDFParser instance.
 	 */
 	destroy() {
