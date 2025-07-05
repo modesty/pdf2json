@@ -55,13 +55,13 @@
 		"build:clean": "rm -rf node_modules && rm -f package-lock.json && npm i && npm run build"
 	},
 	"engines": {
-		"node": ">=18.12.1",
-	  "devEngines": {
-		  "packageManager": {
-			  "name": "npm",
-			  "version": ">=8.19.2"
-		  }
-    }
+		"node": ">=20.18.0"
+	},
+	"devEngines": {
+		"packageManager": {
+			"name": "npm",
+			"version": ">=10.8.2"
+		}
 	},
 	"type": "module",
 	"bin": {
