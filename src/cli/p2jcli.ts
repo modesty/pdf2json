@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import nodeUtil from "util";
-import fs from "fs";
-import path from "path";
+import nodeUtil from "node:util";
+import fs from "node:fs";
+import path from "node:path";
 
 import { yargs } from "./p2jcliarg.js";
 import PDFParser from "../../dist/pdfparser.js";
