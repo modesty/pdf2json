@@ -1,8 +1,8 @@
-import fs from "fs";
-import nodeUtil from "util";
-import { readFile } from "fs/promises";
-import { EventEmitter } from "events";
-import { Buffer } from "buffer";
+import fs from "node:fs";
+import nodeUtil from "node:util";
+import { readFile } from "node:fs/promises";
+import { EventEmitter } from "node:events";
+import { Buffer } from "node:buffer";
 
 import PDFJS from "./lib/pdf.js";
 import { ParserStream, StringifyStream } from "./lib/parserstream.js";
