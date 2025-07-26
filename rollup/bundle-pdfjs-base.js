@@ -81,9 +81,11 @@ if (fs.existsSync(targetDir)) {
 }
 fs.mkdirSync(targetDir);
 
-fs.copyFileSync(path.join(__dirname, "../pdfparser.d.ts"), path.join(targetDir, "pdfparser.d.ts"));
+// copy and patch the type definition file
+const typeDefSrcPath = path.join(__dirname, "../src/types/pdfparser.d.ts");
+fs.copyFileSync(typeDefSrcPath, path.join(targetDir, "pdfparser.d.ts"));
 // .d.cts should have "export =" instead of "export default"
-const typeDefContent = fs.readFileSync(path.join(__dirname, "../pdfparser.d.ts"), "utf8");
+const typeDefContent = fs.readFileSync(typeDefSrcPath, "utf8");
 fs.writeFileSync(
 	path.join(targetDir, "pdfparser.d.cts"),
 	typeDefContent.replace("export default", "export =")
