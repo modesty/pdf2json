@@ -52,7 +52,9 @@
 		"build:rollup": "rollup -c ./rollup.config.js",
 		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
 		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
-		"build:clean": "rm -rf node_modules && rm -f package-lock.json && npm i && npm run build"
+		"build:clean": "rm -rf node_modules && rm -f package-lock.json && npm i && npm run build",
+		"test:deno": "deno --allow-read --allow-write --allow-net --allow-env --no-check ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
+		"test:bun": "bun ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r"
 	},
 	"engines": {
 		"node": ">=20.18.0"
