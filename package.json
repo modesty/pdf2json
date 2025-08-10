@@ -22,7 +22,7 @@
 	"author": {
 		"name": "Modesty Zhang",
 		"email": "modestyz@hotmail.com",
-		"url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+		"url": "https://www.google.com/search?q=modesty+zhang+site%3Acodeproject.com"
 	},
 	"homepage": "https://github.com/modesty/pdf2json",
 	"repository": {
@@ -62,7 +62,7 @@
 	"devEngines": {
 		"packageManager": {
 			"name": "npm",
-			"version": ">=10.8.2"
+			"version": ">=10.2.3"
 		}
 	},
 	"type": "module",
@@ -74,7 +74,7 @@
 	"bundleDependencies": [
 	],
 	"devDependencies": {
-		"typescript": "5.8.3",
+		"typescript": "5.9.2",
 		"rollup": "^4.46.2",
 		"eslint": "^9.33.0",
 		"jest": "^30.0.5",
@@ -90,12 +90,12 @@
 		"@rollup/plugin-typescript": "^12.1.4"
 	},
 	"resolutions": {
-		"typescript": "5.8.3"
+		"typescript": "5.9.2"
 	},
 	"maintainers": [{
 		"name": "Modesty Zhang",
 		"email": "modestyz@hotmail.com",
-		"url": "http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=62372"
+		"url": "https://www.google.com/search?q=modesty+zhang+site%3Acodeproject.com"
 		}
 	],
 	"contributors": [],

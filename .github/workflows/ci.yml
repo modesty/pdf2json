@@ -19,24 +19,12 @@ jobs:
           node-version: 20.18.0
           cache: "npm"
           
-      - name: Update npm to required version
-        run: npm install -g npm@10.8.2
-
       - name: Install dependencies
         run: npm ci
 
       - name: Build project
         run: npm run build
-        
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output
-          path: |
-            dist/
-            node_modules/
-          retention-days: 1
-  
+          
   test:
     name: Test Project
     needs: setup
@@ -45,14 +33,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-      - name: Setup Node.js 20.18.0
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20.18.0
-
-      - name: Update npm to required version
-        run: npm install -g npm@10.8.2
-          
       - name: Setup Deno 2.4.x
         uses: denoland/setup-deno@v1
         with:
@@ -62,11 +42,6 @@ jobs:
         uses: oven-sh/setup-bun@v1
         with:
           bun-version: 1.2.x
-          
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: build-output
           
       - name: Run tests
         id: test
