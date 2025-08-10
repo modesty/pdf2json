@@ -1,6 +1,6 @@
 {
 	"name": "pdf2json",
-	"version": "3.2.0",
+	"version": "3.2.1",
 	"description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
 	"keywords": [
 		"pdf",
@@ -74,21 +74,22 @@
 	"bundleDependencies": [
 	],
 	"devDependencies": {
+		"typescript": "5.8.3",
+		"rollup": "^4.46.2",
+		"eslint": "^9.33.0",
+		"jest": "^30.0.5",
+		"tslib": "^2.6.2",
+		"@types/node": "^24.2.1",
+		"@typescript-eslint/eslint-plugin": "^8.39.0",
+		"@typescript-eslint/parser": "^8.39.0",
+		"rollup-plugin-node-builtins": "^2.0.0",
+		"rollup-plugin-sourcemaps": "^0.6.3",
 		"@rollup/plugin-commonjs": "^28.0.6",
 		"@rollup/plugin-eslint": "^9.0.5",
 		"@rollup/plugin-json": "^6.1.0",
 		"@rollup/plugin-node-resolve": "^16.0.0",
 		"@rollup/plugin-terser": "^0.4.4",
-		"@rollup/plugin-typescript": "^12.1.4",
-		"@types/node": "^24.0.7",
-		"@typescript-eslint/eslint-plugin": "^8.35.0",
-		"@typescript-eslint/parser": "^8.35.0",
-		"eslint": "^9.30.0",
-		"jest": "^30.0.3",
-		"rollup": "^4.44.1",
-		"rollup-plugin-node-builtins": "^2.0.0",
-		"rollup-plugin-sourcemaps": "^0.6.3",
-		"tslib": "^2.6.2"
+		"@rollup/plugin-typescript": "^12.1.4"
 	},
 	"resolutions": {
 		"typescript": "5.8.3"
