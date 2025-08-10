@@ -4,7 +4,6 @@ import eslint from "@rollup/plugin-eslint";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import builtins from "rollup-plugin-node-builtins";
 import terser from "@rollup/plugin-terser";
-import sourcemaps from "rollup-plugin-sourcemaps";
 import typescript from "@rollup/plugin-typescript";
 
 const external = [
@@ -46,8 +45,7 @@ export default [
 				preferBuiltins: true,
 			}),
 			builtins(),
-			terser(),
-			sourcemaps(),
+			terser()
 		]
 	},
 	{
@@ -76,8 +74,7 @@ export default [
 				preferBuiltins: true,
 			}),
 			builtins(),
-			terser(),
-			sourcemaps(),
+			terser()
 		]
 	}
 ];
