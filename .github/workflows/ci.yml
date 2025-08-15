@@ -18,8 +18,11 @@ jobs:
         with:
           node-version: 20.18.0
           
-      - name: Clean install dependencies
-        run: rm -rf node_modules package-lock.json && npm i
+      # - name: Clean install dependencies
+      #   run: rm -rf node_modules package-lock.json && npm i
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build project
         run: npm run build
@@ -32,16 +35,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-      - name: Setup Deno 2.4.x
+      - name: Setup Deno 2.4.3
         uses: denoland/setup-deno@v1
         with:
-          deno-version: 2.4.x
+          deno-version: 2.4.3
           
-      - name: Setup Bun 1.2.x
+      - name: Setup Bun 1.2.19
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: 1.2.x
+          bun-version: 1.2.19
           
       - name: Run tests
         id: test
-        run: npm test
+        run: npm run test
