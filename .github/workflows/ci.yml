@@ -17,16 +17,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.18.0
-          cache: "npm"
           
-      - name: Install dependencies
-        run: npm ci
+      - name: Clean install dependencies
+        run: rm -rf node_modules package-lock.json && npm i
 
       - name: Build project
         run: npm run build
           
   test:
-    name: Test Project
+    name: Run Tests
     needs: setup
     runs-on: ubuntu-latest
     steps:
