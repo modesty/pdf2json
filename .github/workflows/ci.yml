@@ -18,11 +18,11 @@ jobs:
         with:
           node-version: 20.18.0
           
-      # - name: Clean install dependencies
-      #   run: rm -rf node_modules package-lock.json && npm i
+      - name: Clean install dependencies
+        run: rm -rf node_modules package-lock.json && npm i
 
-      - name: Install dependencies
-        run: npm ci
+      # - name: Install dependencies
+      #   run: npm ci
 
       - name: Build project
         run: npm run build
