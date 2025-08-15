@@ -2,9 +2,7 @@
 import json from "@rollup/plugin-json";
 import eslint from "@rollup/plugin-eslint";
 import nodeResolve from "@rollup/plugin-node-resolve";
-import builtins from "rollup-plugin-node-builtins";
 import terser from "@rollup/plugin-terser";
-import sourcemaps from "rollup-plugin-sourcemaps";
 import typescript from "@rollup/plugin-typescript";
 
 const external = [
@@ -43,11 +41,10 @@ export default [
 				throwOnError: true
 			}),
 			nodeResolve({
-				preferBuiltins: true,
-			}),
-			builtins(),
-			terser(),
-			sourcemaps(),
+      	preferBuiltins: true,  // Prefer Node.js built-in modules
+      	browser: false         // Set to true only if targeting browsers
+    	}),
+			terser()
 		]
 	},
 	{
@@ -73,11 +70,10 @@ export default [
 				throwOnError: true
 			}),
 			nodeResolve({
-				preferBuiltins: true,
-			}),
-			builtins(),
-			terser(),
-			sourcemaps(),
+      	preferBuiltins: true,  // Prefer Node.js built-in modules
+      	browser: false         // Set to true only if targeting browsers
+    	}),
+			terser()
 		]
 	}
 ];
