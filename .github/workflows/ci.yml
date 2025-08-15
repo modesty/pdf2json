@@ -7,11 +7,21 @@ on:
 
 jobs:
   setup:
-    name: Setup and Build
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Setup Deno 2.4.3
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: 2.4.3
+          
+      - name: Setup Bun 1.2.19
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.2.19
 
       - name: Setup Node.js 20.18.0
         uses: actions/setup-node@v3
@@ -26,31 +36,6 @@ jobs:
 
       - name: Build project
         run: npm run build
-          
-  test:
-    name: Run Tests
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        
-      - name: Restore npm cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          
-      - name: Setup Deno 2.4.3
-        uses: denoland/setup-deno@v1
-        with:
-          deno-version: 2.4.3
-          
-      - name: Setup Bun 1.2.19
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: 1.2.19
-          
+
       - name: Run tests
-        id: test
-        run: npm run test
+        run: npm run test        
