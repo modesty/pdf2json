@@ -542,14 +542,15 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                   entryValue = entry.toString();
                 }
                 
-                info(`Entry type: ${entryType}, value: ${entryValue}`);
+                // info(`Entry type: ${entryType}, value: ${entryValue}`);
                 
                 charProcMapping[currentCode] = entryValue;
-                info(`Mapped code ${currentCode} to glyph '${entryValue}'`);
+                // info(`Mapped code ${currentCode} to glyph '${entryValue}'`);
                 currentCode++;
               }
             }
-          }          // Use BaseEncoding if available
+          }          
+          // Use BaseEncoding if available
           if (baseEncoding && baseEncoding.name) {
             info(`Using BaseEncoding: ${baseEncoding.name}`);
             var baseEncodingMap = Encodings[baseEncoding.name];
@@ -557,7 +558,7 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               for (var code = 0; code < 256; code++) {
                 if (!charProcMapping[code] && baseEncodingMap[code]) {
                   charProcMapping[code] = baseEncodingMap[code];
-                  info(`Mapped code ${code} to glyph '${baseEncodingMap[code]}' from BaseEncoding`);
+                  // info(`Mapped code ${code} to glyph '${baseEncodingMap[code]}' from BaseEncoding`);
                 }
               }
             }
@@ -566,14 +567,14 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         
         // Store the mapping in the font object for text extraction
         font.translated.charProcMapping = charProcMapping;
-        info(`Final charProcMapping has ${Object.keys(charProcMapping).length} entries`);
+        // info(`Final charProcMapping has ${Object.keys(charProcMapping).length} entries`);
         
         for (var i = 0, n = charProcKeys.length; i < n; ++i) {
           var key = charProcKeys[i];
           var glyphStream = charProcs[key];
           var operatorList = this.getOperatorList(glyphStream, fontResources);
           charProcOperatorList[key] = operatorList.getIR();
-          info(`Processed CharProc for glyph '${key}'`);
+          // info(`Processed CharProc for glyph '${key}'`);
           if (!parentOperatorList) {
             continue;
           }
