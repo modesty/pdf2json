@@ -36,7 +36,7 @@
 		"test:jest": "jest --config ./jest.config.json --detectOpenHandles",
 		"test": "npm run test:jest && npm run parse-r && npm run parse-fd && npm run test:deno && npm run test:bun",
 		"test:forms": "cd ./test && sh p2j.forms.sh",
-		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 14 success, 6 fail exception with stack trace\" ",
+		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 15 success, 6 fail exception with stack trace\" ",
 		"parse": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
 		"parse-s": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
 		"parse-t": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
