@@ -506,19 +506,83 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
         var fontResources = font.get('Resources') || resources;
         var charProcKeys = Object.keys(charProcs);
         var charProcOperatorList = {};
+        
+        info(`Processing Type3 font: ${fontName}, found ${charProcKeys.length} CharProcs`);
+        
+        // Create a mapping from character code to glyph name
+        var charProcMapping = {};
+        var encoding = font.get('Encoding');
+        
+        if (encoding) {
+          info(`Type3 font has encoding: ${encoding.name || 'custom'}`);
+          var differences = encoding.get('Differences');
+          var baseEncoding = encoding.get('BaseEncoding');
+          
+                // Process Differences array if it exists
+          if (differences) {
+            info(`Processing Differences array of length ${differences.length}`);
+            var currentCode = 0;
+            for (var i = 0; i < differences.length; i++) {
+              var entry = differences[i];
+              if (typeof entry === 'number') {
+                currentCode = entry;
+                info(`Setting current code to ${currentCode}`);
+              } else {
+                // Check the type of entry to debug what's happening
+                var entryType = typeof entry;
+                var entryValue;
+                
+                // Ensure we always get a string name (not an object)
+                if (entryType === 'object' && entry.name) {
+                  entryValue = entry.name;
+                } else if (entryType === 'object') {
+                  entryValue = JSON.stringify(entry);
+                  info(`Warning: Non-name object in Differences array: ${entryValue}`);
+                } else {
+                  entryValue = entry.toString();
+                }
+                
+                info(`Entry type: ${entryType}, value: ${entryValue}`);
+                
+                charProcMapping[currentCode] = entryValue;
+                info(`Mapped code ${currentCode} to glyph '${entryValue}'`);
+                currentCode++;
+              }
+            }
+          }          // Use BaseEncoding if available
+          if (baseEncoding && baseEncoding.name) {
+            info(`Using BaseEncoding: ${baseEncoding.name}`);
+            var baseEncodingMap = Encodings[baseEncoding.name];
+            if (baseEncodingMap) {
+              for (var code = 0; code < 256; code++) {
+                if (!charProcMapping[code] && baseEncodingMap[code]) {
+                  charProcMapping[code] = baseEncodingMap[code];
+                  info(`Mapped code ${code} to glyph '${baseEncodingMap[code]}' from BaseEncoding`);
+                }
+              }
+            }
+          }
+        }
+        
+        // Store the mapping in the font object for text extraction
+        font.translated.charProcMapping = charProcMapping;
+        info(`Final charProcMapping has ${Object.keys(charProcMapping).length} entries`);
+        
         for (var i = 0, n = charProcKeys.length; i < n; ++i) {
           var key = charProcKeys[i];
           var glyphStream = charProcs[key];
           var operatorList = this.getOperatorList(glyphStream, fontResources);
           charProcOperatorList[key] = operatorList.getIR();
+          info(`Processed CharProc for glyph '${key}'`);
           if (!parentOperatorList) {
             continue;
           }
           // Add the dependencies to the parent operator list so they are
           // resolved before sub operator list is executed synchronously.
-          parentOperatorList.addDependencies(charProcOperatorList.dependencies);
+          parentOperatorList.addDependencies(operatorList.dependencies);
         }
         font.translated.charProcOperatorList = charProcOperatorList;
+        font.translated.charProcMapping = charProcMapping;
         font.loaded = true;
       } else {
         font.loaded = true;

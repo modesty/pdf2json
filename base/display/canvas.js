@@ -903,8 +903,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       this.current.fontSize = size;
 
 	  if (fontObj.coded) {
-        warn('Unsupported Type3 font (custom Glyph) - ' + fontRefName);
-		return; // we don't need ctx.font for Type3 fonts
+      warn('Found Type3 font (custom Glyph) - ' + fontRefName + ', trying to decode'); // MQZ 8/23 added Type3 glyph font support
+		  return; // we don't need ctx.font for Type3 fonts
 	  }
 
       var name = fontObj.loadedName || 'sans-serif';
@@ -1053,13 +1053,86 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var glyphsLength = glyphs.length;
       var textLayer = this.textLayer;
       var geom;
-      var textSelection = textLayer && !skipTextSelection ? true : false;
+      
+      // Always use textSelection for Type3 fonts
+      var textSelection = textLayer && (font.coded || !skipTextSelection) ? true : false;
+      
       var canvasWidth = 0.0;
       var vertical = font.vertical;
       var defaultVMetrics = font.defaultVMetrics;
 
+      info(`showText called with ${glyphsLength} glyphs, font type: ${font.coded ? 'Type3' : font.type || 'Unknown'}, textSelection: ${textSelection}`);
+
       // Type3 fonts - each glyph is a "mini-PDF"
       if (font.coded) {
+        info(`Processing Type3 font with ${glyphsLength} glyphs`);
+        
+        // For Type3 fonts, collect unicode characters or character codes
+        var type3Text = "";
+        for (var i = 0; i < glyphsLength; ++i) {
+          var glyph = glyphs[i];
+          if (glyph !== null) {
+            // Use unicode value if available, otherwise use fontChar
+            if (glyph.unicode) {
+              type3Text += glyph.unicode;
+            } else if (glyph.fontChar) {
+              type3Text += String.fromCharCode(glyph.fontChar);
+            }
+          }
+        }
+        
+          // If we have collected text, store it for later use in appendText
+          if (type3Text && type3Text.length > 0 && this.commonObjs) {
+            info(`Extracted Type3 text: ${type3Text}`);
+            
+            // Create a custom font info for this Type3 text
+            var fontInfo = {
+              name: font.name || "Type3Font",
+              type: "Type3",
+              isType3Font: true
+            };
+            
+            // Add text directly to the canvas Texts array if available
+            if (ctx && ctx.canvas && Array.isArray(ctx.canvas.Texts)) {
+              // Create text object directly
+              var textObj = {
+                T: encodeURIComponent(type3Text),
+                x: current.x,
+                y: current.y,
+                w: canvasWidth,
+                A: "left",
+                R: [{ 
+                  T: encodeURIComponent(type3Text),
+                  S: -1,
+                  TS: [0, fontSize || 10, 0, 0]
+                }],
+                sw: 0.32, // Default space width
+                TT: 1 // Type3 text
+              };
+              
+              info(`Directly adding Type3 text to canvas: ${type3Text}`);
+              ctx.canvas.Texts.unshift(textObj);
+            }
+            
+            // Store the extracted Type3 text in a global array that can be accessed later
+            if (!this.commonObjs._extractedType3Texts) {
+              this.commonObjs._extractedType3Texts = [];
+            }
+            
+            // Store the text with its position
+            this.commonObjs._extractedType3Texts.push({
+              text: type3Text,
+              x: current.x,
+              y: current.y,
+              fontSize: fontSize,
+              font: fontInfo
+            });
+            
+            info(`Added Type3 text to extracted texts array: ${type3Text}`);
+            
+            // We'll pass this to the textLayer appendText method later
+            // but we don't create the text object here
+        }
         ctx.save();
         ctx.transform.apply(ctx, current.textMatrix);
         ctx.translate(current.x, current.y);
@@ -1070,6 +1143,9 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           this.save();
           ctx.scale(1, -1);
           geom = this.createTextGeometry();
+          // Add the Type3 text to the geometry object so it can be added to the output
+          geom.type3Text = type3Text;
+          geom.fontSize = fontSize;
           this.restore();
         }
         for (var i = 0; i < glyphsLength; ++i) {
@@ -1077,11 +1153,13 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           var glyph = glyphs[i];
           if (glyph === null) {
             // word break
+            info(`Type3 word break at glyph ${i}`);
             this.ctx.translate(wordSpacing, 0);
             current.x += wordSpacing * textHScale;
             continue;
           }
 
+          info(`Processing Type3 glyph ${i}: ${glyph.unicode || glyph.fontChar}`);
           this.processingType3 = glyph;
           this.save();
           ctx.scale(fontSize, fontSize);
@@ -1093,6 +1171,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           var width = (transformed[0] * fontSize + charSpacing) *
                       current.fontDirection;
 
+          info(`Type3 glyph width: ${width}`);
           ctx.translate(width, 0);
           current.x += width * textHScale;
 
@@ -1240,15 +1319,34 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         ctx.restore();
       }
 
-      if (textSelection) {
-        geom.canvasWidth = canvasWidth;
-        if (vertical) {
-          var VERTICAL_TEXT_ROTATION = Math.PI / 2;
-          geom.angle += VERTICAL_TEXT_ROTATION;
-        }
-        this.textLayer.appendText(geom);
+        if (textSelection) {
+          geom.canvasWidth = canvasWidth;
+          if (vertical) {
+            var VERTICAL_TEXT_ROTATION = Math.PI / 2;
+            geom.angle += VERTICAL_TEXT_ROTATION;
+          }
+          
+          // Check if we have Type3 text to add to the geometry object
+          if (type3Text && type3Text.length > 0) {
+            info(`Adding Type3 text to geometry object: ${type3Text}`);
+            geom.type3Text = type3Text;
+            geom.fontSize = fontSize;
+            geom.canvasWidth = canvasWidth;
+            
+            // Pass matrix information for coordinate transformation
+            if (current.textMatrix) {
+              geom.textMatrix = current.textMatrix;
+            }
+            
+            // Pass the commonObjs reference to access extracted Type3 texts
+            if (this.commonObjs) {
+              geom.commonObjs = this.commonObjs;
+            }
+          }
+          
+          info(`Appending text to textLayer, canvasWidth: ${canvasWidth}`);
+          this.textLayer.appendText(geom);
       }
-
       return canvasWidth;
     },
     showSpacedText: function CanvasGraphics_showSpacedText(arr) {
