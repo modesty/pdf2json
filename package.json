@@ -66,35 +66,36 @@
 	},
 	"type": "module",
 	"bin": {
-		"pdf2json": "./bin/pdf2json.js"
+		"pdf2json": "bin/pdf2json.js"
 	},
 	"dependencies": {
+		"user": "^0.0.0"
 	},
-	"bundleDependencies": [
-	],
+	"bundleDependencies": [],
 	"devDependencies": {
-		"typescript": "5.9.2",
-		"rollup": "^4.46.2",
-		"eslint": "^9.33.0",
-		"jest": "^30.0.5",
-		"tslib": "^2.6.2",
-		"@types/node": "^24.2.1",
-		"@typescript-eslint/eslint-plugin": "^8.39.0",
-		"@typescript-eslint/parser": "^8.39.0",
 		"@rollup/plugin-commonjs": "^28.0.6",
 		"@rollup/plugin-eslint": "^9.0.5",
 		"@rollup/plugin-json": "^6.1.0",
 		"@rollup/plugin-node-resolve": "^16.0.0",
 		"@rollup/plugin-terser": "^0.4.4",
-		"@rollup/plugin-typescript": "^12.1.4"
+		"@rollup/plugin-typescript": "^12.1.4",
+		"@types/node": "^24.2.1",
+		"@typescript-eslint/eslint-plugin": "^8.39.0",
+		"@typescript-eslint/parser": "^8.39.0",
+		"eslint": "^9.33.0",
+		"jest": "^30.0.5",
+		"rollup": "^4.46.2",
+		"tslib": "^2.6.2",
+		"typescript": "5.9.2"
 	},
 	"resolutions": {
 		"typescript": "5.9.2"
 	},
-	"maintainers": [{
-		"name": "Modesty Zhang",
-		"email": "modestyz@hotmail.com",
-		"url": "https://www.google.com/search?q=modesty+zhang+site%3Acodeproject.com"
+	"maintainers": [
+		{
+			"name": "Modesty Zhang",
+			"email": "modestyz@hotmail.com",
+			"url": "https://www.google.com/search?q=modesty+zhang+site%3Acodeproject.com"
 		}
 	],
 	"contributors": [],
