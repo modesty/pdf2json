@@ -30,7 +30,7 @@ export declare class PDFParser extends EventEmitter {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     static get _PARSER_SIG(): string;
 
-    constructor(context?: any, needRawText?: boolean, password?: string);
+    constructor(context?: PDFParserContext | null, needRawText?: boolean, password?: string);
     on<K extends keyof EventMap>(eventName: K, listener: EventMap[K]): this;
 
     readonly data: object | null;
@@ -170,6 +170,10 @@ export declare interface Box {
     AM?: number;
     checked?: boolean;
     style?: number;
+}
+
+export interface PDFParserContext {
+    destroy?(): void;
 }
 
 export default PDFParser
