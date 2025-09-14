@@ -1,10 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import nodeUtil from "node:util";
 import fs from "node:fs";
 import path from "node:path";
 
 import { yargs } from "./p2jcliarg.js";
 import PDFParser from "../../dist/pdfparser.js";
+
+// Type definitions for CLI operations
+type PDFParserError = { parserError: Error };
+type PDFParserData = Record<string, unknown>;
+type PromiseResolve<T> = (value: T) => void;
+type PromiseReject = (reason: Error) => void;
+type ProcessingResult = PromiseSettledResult<unknown>[];
 
 const { ParserStream, StringifyStream, pkInfo, _PARSER_SIG: _PRO_TIMER } = PDFParser;
 
@@ -110,14 +115,14 @@ class PDFProcessor {
 		return Promise.allSettled(outputTasks);
 	}
 
-	private onPrimarySuccess(resolve: (data:any) => void, reject: (error: any) => void): void {
+	private onPrimarySuccess(resolve: PromiseResolve<ProcessingResult>, reject: PromiseReject): void {
 		this.curCLI.addResultCount(false);
 		this.processAdditionalStreams()
 			.then((retVal: PromiseSettledResult<unknown>[]) => resolve(retVal))
-			.catch((err: any) => reject(err));
+			.catch((err: Error) => reject(err));
 	}
 
-	private onPrimaryError(err: any, reject: (error: any) => void): void {
+	private onPrimaryError(err: Error, reject: PromiseReject): void {
 		this.curCLI.addResultCount(err);
 		reject(err);
 	}
@@ -127,7 +132,7 @@ class PDFProcessor {
 			if((SINGLETON_PDF_PARSER && !this.pdfParser) || !SINGLETON_PDF_PARSER){
 				//initialize the parser if the singleton parameter was not provided, or if the singleton parameter was provided and the parser is not initialized
 				this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
-				this.pdfParser.on("pdfParser_dataError", (evtData: any) =>
+				this.pdfParser.on("pdfParser_dataError", (evtData: PDFParserError) =>
 					this.onPrimaryError(evtData.parserError, reject)
 				);
 			}
@@ -152,12 +157,12 @@ class PDFProcessor {
 			if((SINGLETON_PDF_PARSER && !this.pdfParser) || !SINGLETON_PDF_PARSER){
 				//initialize the parser if the singleton parameter was not provided, or if the singleton parameter was provided and the parser is not initialized
 				this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
-				this.pdfParser.on("pdfParser_dataError", (evtData: any) =>
+				this.pdfParser.on("pdfParser_dataError", (evtData: PDFParserError) =>
 					this.onPrimaryError(evtData.parserError, reject)
 				);
 			}
 
-			this.pdfParser.on("pdfParser_dataReady", (evtData: any) => {
+			this.pdfParser.on("pdfParser_dataReady", (evtData: PDFParserData) => {
 				fs.writeFile(this.outputPath, JSON.stringify(evtData), (err) => {
 					if (err) {
 						this.onPrimaryError(err, reject);
@@ -276,9 +281,6 @@ export default class PDFCLI {
 	}
 
 	initialize() {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		nodeUtil.verbosity(VERBOSITY_LEVEL);
 		let retVal = true;
 		try {
 			if (ONLY_SHOW_VERSION) {
@@ -292,8 +294,9 @@ export default class PDFCLI {
 				console.error("-f is required to specify input directory or file.");
 				retVal = false;
 			}
-		} catch (e: any) {
-			console.error(`Exception: ${e.message}`);
+		} catch (e: unknown) {
+			const error = e instanceof Error ? e : new Error(String(e));
+			console.error(`Exception: ${error.message}`);
 			retVal = false;
 		}
 		return retVal;
@@ -338,18 +341,22 @@ export default class PDFCLI {
 	}
 
 	processOneFile(inputDir:string, inputFile:string) {
-		return new Promise((resolve, reject) => {
+		return new Promise<ProcessingResult>((resolve, reject) => {
 			const p2j = new PDFProcessor(inputDir, inputFile, this);
 			p2j
 				.processFile()
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				.then((retVal:any) => {
+				.then((retVal: unknown) => {
+					const result = retVal as ProcessingResult;
 					this.addStatusMsg(
-						null,
+						false,
 						`${path.join(inputDir, inputFile)} => ${p2j.getOutputFile()}`
 					);
-					retVal.forEach((ret:any) => this.addStatusMsg(null, `+ ${ret.value}`));
-					resolve(retVal);
+					result.forEach((ret: PromiseSettledResult<unknown>) => {
+						if (ret.status === 'fulfilled') {
+							this.addStatusMsg(false, `+ ${ret.value}`);
+						}
+					});
+					resolve(result);
 				})
 				.catch((error) => {
 					this.addStatusMsg(
@@ -398,7 +405,7 @@ export default class PDFCLI {
 		});
 	}
 
-	addStatusMsg(error:any, oneMsg:any) {
+	addStatusMsg(error:boolean, oneMsg:string) {
 		this.statusMsgs.push(
 			error ? `✗ Error : ${oneMsg}` : `✓ Success : ${oneMsg}`
 		);
