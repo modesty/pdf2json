@@ -1,12 +1,11 @@
 import fs from "node:fs";
-import nodeUtil from "node:util";
 import { readFile } from "node:fs/promises";
 import { EventEmitter } from "node:events";
 import { Buffer } from "node:buffer";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Readable } from "node:stream";
 
-import PDFJS from "./lib/pdf.js";
+import PDFJS, { PJS } from "./lib/pdf.js";
 import { ParserStream, StringifyStream } from "./lib/parserstream.js";
 import { kColors, kFontFaces, kFontStyles } from "./lib/pdfconst.js";
 import { pkInfo, _PARSER_SIG } from "./lib/pkinfo.js";
@@ -123,7 +122,7 @@ export default class PDFParser extends EventEmitter {
 	 */
 	#onPDFJSParseDataReady(data) {
 		if (!data) {
-			nodeUtil.p2jinfo("PDF parsing completed.");
+			PJS.info("PDF parsing completed.");
 			this.emit("pdfParser_dataReady", this.#data);
 		} else {
 			this.#data = { ...(this.#data || {}), ...data };
@@ -183,7 +182,7 @@ export default class PDFParser extends EventEmitter {
 			PDFParser.#binBuffer[key] = null;
 			delete PDFParser.#binBuffer[key];
 
-			nodeUtil.p2jinfo(`re-cycled cache for ${key}`);
+			PJS.info(`re-cycled cache for ${key}`);
 		}
 
 		return false;
@@ -223,8 +222,8 @@ export default class PDFParser extends EventEmitter {
 	 * @returns {Promise<void>} Promise that resolves when PDF is loaded
 	 */
 	async loadPDF(pdfFilePath, verbosity) {
-		nodeUtil.verbosity(verbosity || 0);
-		nodeUtil.p2jinfo(`about to load PDF file ${pdfFilePath}`);
+		PJS.verbosity(verbosity || 1); // 1: default to WARNINGS if not specified or invalid
+		PJS.info(`about to load PDF file ${pdfFilePath}`);
 
 		this.#pdfFilePath = pdfFilePath;
 
@@ -237,10 +236,10 @@ export default class PDFParser extends EventEmitter {
 			if (this.#processBinaryCache()) return;
 
 			PDFParser.#binBuffer[this.binBufferKey] = await readFile(pdfFilePath);
-			nodeUtil.p2jinfo(`Load OK: ${pdfFilePath}`);
+			PJS.info(`Load OK: ${pdfFilePath}`);
 			this.#startParsingPDF();
 		} catch (err) {
-			nodeUtil.p2jerror(`Load Failed: ${pdfFilePath} - ${err}`);
+			PJS.error(`Load Failed: ${pdfFilePath} - ${err}`);
 			this.emit("pdfParser_dataError", err);
 		}
 	}
@@ -251,9 +250,9 @@ export default class PDFParser extends EventEmitter {
 	 * @param {number} verbosity - Verbosity level, ERRORS = 0, WARNINGS = 1, INFOS = 5;
 	 */
 	parseBuffer(pdfBuffer, verbosity) {
-		nodeUtil.verbosity(verbosity); // validated in util.js
+		PJS.verbosity(verbosity || 1); // 1: default to WARNINGS if not specified or invalid
 		if ((!pdfBuffer?.length) || (!pdfBuffer.buffer)) {
-			nodeUtil.p2jerror("Error: empty PDF buffer, nothing to parse.");
+			PJS.error("Error: empty PDF buffer, nothing to parse.");
 			return;
 		}
 		let pdfBufferParse = pdfBuffer;

@@ -1261,12 +1261,12 @@ function loadJpegStream(id, imageUrl, objs) {
 	img.src = "data:image/jpeg;base64," + img.btoa(imageUrl);
 }
 
-//MQZ Oct.18.2013 expose util methods
-nodeUtil.p2jlog = log;
-nodeUtil.p2jinfo = info;
-nodeUtil.p2jwarn = warn;
-nodeUtil.p2jerror = error;
-nodeUtil.verbosity = function (verbo) {
+// MQZ Sep.14.2025 expose util methods without coupling to node:util
+PDFJS.log = log;
+PDFJS.info = info;
+PDFJS.warn = warn;
+PDFJS.error = error;
+PDFJS.verbosity = function (verbo) {
 	if (isNaN(verbo)) {
 		verbosity = WARNINGS;
 	} else {
@@ -1274,7 +1274,10 @@ nodeUtil.verbosity = function (verbo) {
 			verbosity = ERRORS;
 		} else if (verbo >= INFOS) {
 			verbosity = INFOS;
-		} else verbosity = verbo;
+		} else {
+			verbosity = verbo;
+		}
 	}
 };
-nodeUtil.verbosity();
+// Initialize default verbosity level
+PDFJS.verbosity();
