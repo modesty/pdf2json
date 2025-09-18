@@ -69,7 +69,6 @@
 		"pdf2json": "bin/pdf2json.js"
 	},
 	"dependencies": {
-		"user": "^0.0.0"
 	},
 	"bundleDependencies": [],
 	"devDependencies": {
