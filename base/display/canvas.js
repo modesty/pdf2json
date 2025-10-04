@@ -1269,10 +1269,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //              info(nodeUtil.inspect(glyphs));
 //          }
 
-
-        ctx.restore();
-      }
-
       // Text rendering for regular fonts (Type3 fonts are handled in their own context above)
       if (str && !font.disableFontFace && !font.coded) {
           var curFontSize = fontSize * scale * textHScale + 3;
@@ -1291,6 +1287,9 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
                 break;
             default: // other unsupported rendering modes
         }
+      }
+
+        ctx.restore();
       }
 
       return canvasWidth;
