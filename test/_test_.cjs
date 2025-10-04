@@ -163,6 +163,46 @@ function checkResult_pageContent(Pages, fileName) {
 	});
 }
 
+function checkResult_textCoordinates(Pages, fileName) {
+	// Verify text block coordinates are unique (issue #408 regression test)
+	Pages.forEach((page, pageIndex) => {
+		const texts = page.Texts || [];
+		if (texts.length === 0) return; // Skip pages with no text
+
+		// Collect all coordinates
+		const coords = texts.map(t => ({ x: t.x, y: t.y }));
+
+		// Create unique coordinate strings
+		const uniqueCoords = new Set(coords.map(c => `${c.x},${c.y}`));
+
+		// Check that we have more than one unique coordinate if we have multiple text elements
+		// This prevents the regression where all text elements had identical coordinates (-0.25, 48.75)
+		if (texts.length > 5) {
+			assert(
+				uniqueCoords.size > 1,
+				fileName + " page " + pageIndex +
+				" : all " + texts.length + " text elements have identical coordinates. " +
+				"This is a regression of issue #408. Found only " + uniqueCoords.size +
+				" unique coordinate(s): " + Array.from(uniqueCoords).slice(0, 3).join(", ")
+			);
+		}
+
+		// Verify coordinates are reasonable (not all the same broken value)
+		texts.forEach((text, textIndex) => {
+			assert(
+				typeof text.x === 'number' && !isNaN(text.x),
+				fileName + " page " + pageIndex + " text " + textIndex +
+				" : has invalid x coordinate: " + text.x
+			);
+			assert(
+				typeof text.y === 'number' && !isNaN(text.y),
+				fileName + " page " + pageIndex + " text " + textIndex +
+				" : has invalid y coordinate: " + text.y
+			);
+		});
+	});
+}
+
 async function parseAndVerifyOnePDF(fileName, fromBuffer, pageCount) {
 	let timeoutId;
 	let pdfParser = null;
@@ -203,12 +243,13 @@ async function parseAndVerifyOnePDF(fileName, fromBuffer, pageCount) {
 		});
 
 		const evtData = await pdfParserDataReady;
-		
+
 		expect(evtData).toBeDefined();
 		checkResult_parseStatus(null, evtData, fileName);
 		checkResult_mainFields(evtData, fileName);
 		checkResult_pageCount(evtData.Pages, pageCount, fileName);
 		checkResult_pageContent(evtData.Pages, fileName);
+		checkResult_textCoordinates(evtData.Pages, fileName);
 	} catch (error) {
 		console.error(`Error parsing PDF ${fileName}: `, error);
 		throw error; // Re-throw to ensure Jest knows the test failed
