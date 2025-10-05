@@ -987,6 +987,38 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
               bidiText.x += renderParams.vScale / 2;
               bidiText.y -= renderParams.vScale;
             }
+            
+            // MQZ: Add font metrics for accurate spacing calculation
+            bidiText.fontName = font.loadedName || font.name;
+            bidiText.fontSize = textState.fontSize;
+            
+            // Get fontMatrix once (used for both spaceWidth and textWidth calculations)
+            var fontMatrix = font.fontMatrix || FONT_IDENTITY_MATRIX;
+            var fontDirection = textState.fontDirection || 1;
+            
+            // Scale spaceWidth to PDF coordinates using fontMatrix (NO textHScale)
+            // Must match canvas.js canvasWidth calculation (line 1258 - no textHScale)
+            bidiText.spaceWidth = font.spaceWidth * textState.fontSize * fontMatrix[0];
+            bidiText.charSpace = charSpace;
+            bidiText.wordSpace = wordSpace;
+            bidiText.textHScale = textState.textHScale;
+            
+            // Calculate actual text width using font glyph widths
+            // Match canvas.js calculation exactly (lines 1210-1211, 1258, canvasWidth does NOT include textHScale)
+            var textWidth = 0;
+            var glyphs = font.charsToGlyphs(chunk);
+            for (var i = 0, ii = glyphs.length; i < ii; i++) {
+              var glyph = glyphs[i];
+              // Use glyph.width if available, otherwise font.defaultWidth (like canvas.js does)
+              var glyphWidth = (glyph && glyph.width) || font.defaultWidth || 0;
+              // Match canvas.js line 1210-1211: width * fontSize * fontMatrix[0] + charSpacing * fontDirection
+              var charWidth = glyphWidth * textState.fontSize * fontMatrix[0] + charSpace * fontDirection;
+              textWidth += charWidth;
+            }
+            // DO NOT apply textHScale - canvasWidth is in unscaled coordinates
+            // (bidiText.x is scaled, but bidiText.width matches JSON w property which is unscaled)
+            bidiText.width = textWidth;
+            
             bidiTexts.push(bidiText);
 
             chunk = '';
