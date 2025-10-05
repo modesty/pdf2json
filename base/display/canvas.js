@@ -1239,14 +1239,18 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
             //MQZ. Feb.20.2013. Disable character based painting, make it a string
 //            this.paintChar(character, scaledX, scaledY);
-            str += glyph.unicode || character;
             if (accent) {
               scaledAccentX = scaledX + accent.offset.x / fontSizeScale;
               scaledAccentY = scaledY - accent.offset.y / fontSizeScale;
                 //MQZ. Feb.20.2013. Disable character based painting, make it a string
 //              this.paintChar(accent.fontChar, scaledAccentX, scaledAccentY);
-//                str += accent.fontChar;
             }
+          }
+          
+          // Always extract text for pdf2json, even if glyph is disabled for rendering (fixes issue #385)
+          str += glyph.unicode || character;
+          if (accent) {
+            // str += accent.fontChar;  // Accent characters handled above
           }
 
           x += charWidth;
