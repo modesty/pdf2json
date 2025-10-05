@@ -137,7 +137,7 @@ class PDFProcessor {
 				);
 			}
 
-			const outputStream = fs.createWriteStream(this.outputPath);
+			const outputStream = fs.createWriteStream(this.outputPath, { encoding: 'utf8' });
 			outputStream.on("finish", () => this.onPrimarySuccess(resolve, reject));
 			outputStream.on("error", (err) => this.onPrimaryError(err, reject));
 
@@ -163,7 +163,7 @@ class PDFProcessor {
 			}
 
 			this.pdfParser.on("pdfParser_dataReady", (evtData: PDFParserData) => {
-				fs.writeFile(this.outputPath, JSON.stringify(evtData), (err) => {
+				fs.writeFile(this.outputPath, JSON.stringify(evtData), 'utf8', (err) => {
 					if (err) {
 						this.onPrimaryError(err, reject);
 					} else {

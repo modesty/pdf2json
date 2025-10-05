@@ -32,28 +32,27 @@ describe('Type3 Glyph Font Tests', () => {
 					expect(pdfData).toBeDefined();
 					expect(pdfData.Pages).toBeDefined();
 					expect(pdfData.Pages.length).toBe(1);
-					
 					const page = pdfData.Pages[0];
 					expect(page.Texts).toBeDefined();
 					expect(page.Texts.length).toBe(2); // Should have both Type3 and regular text
 					
 					// Check for Type3 text "CONTENT"
 					const type3Text = page.Texts.find(text => 
-						text.R && text.R[0] && decodeURIComponent(text.R[0].T) === 'CONTENT'
+						text.R && text.R[0] && text.R[0].T === 'CONTENT'
 					);
 					expect(type3Text).toBeDefined();
-					expect(type3Text.R[0].T).toBe('CONTENT');
+					expect((type3Text.R[0].T)).toBe('CONTENT');
 					
 					// Check for regular text "Added Text from Acrobat"
 					const regularText = page.Texts.find(text => 
-						text.R && text.R[0] && decodeURIComponent(text.R[0].T) === 'Added Text from Acrobat'
+						text.R && text.R[0] && text.R[0].T === 'Added Text from Acrobat'
 					);
 					expect(regularText).toBeDefined();
-					expect(decodeURIComponent(regularText.R[0].T)).toBe('Added Text from Acrobat');
+					expect(regularText.R[0].T).toBe('Added Text from Acrobat');
 					
 					console.log('✓ Type3 glyph font parsing successful');
-					console.log(`✓ Found Type3 text: "${decodeURIComponent(type3Text.R[0].T)}"`);
-					console.log(`✓ Found regular text: "${decodeURIComponent(regularText.R[0].T)}"`);
+					console.log(`✓ Found Type3 text: "${type3Text.R[0].T}"`);
+					console.log(`✓ Found regular text: "${regularText.R[0].T}"`);
 					
 					resolve();
 				} catch (error) {
@@ -89,7 +88,7 @@ describe('Type3 Glyph Font Tests', () => {
 						page.Texts.forEach(text => {
 							if (text.R) {
 								text.R.forEach(run => {
-									contentOutput += decodeURIComponent(run.T) + '\n';
+									contentOutput += run.T + '\n';
 								});
 							}
 						});
@@ -104,7 +103,7 @@ describe('Type3 Glyph Font Tests', () => {
 					
 					expect(parsedJson.Pages[0].Texts.length).toBe(2);
 					expect(jsonContent).toContain('CONTENT');
-					expect(jsonContent).toContain('Added%20Text%20from%20Acrobat');
+					expect(jsonContent).toContain('Added Text from Acrobat');
 					
 					// Verify content file exists and contains both texts
 					expect(fs.existsSync(contentOutputPath)).toBe(true);
@@ -139,7 +138,7 @@ describe('Type3 Glyph Font Tests', () => {
 					
 					// Find Type3 text
 					const type3Text = page.Texts.find(text => 
-						text.R && text.R[0] && decodeURIComponent(text.R[0].T) === 'CONTENT'
+						text.R && text.R[0] && text.R[0].T === 'CONTENT'
 					);
 					
 					// Verify Type3 text has proper positioning
