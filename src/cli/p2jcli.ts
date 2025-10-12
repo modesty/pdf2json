@@ -280,63 +280,129 @@ export default class PDFCLI {
 		this.statusMsgs = [];
 	}
 
-	initialize() {
-		let retVal = true;
+	initialize(): { success: boolean; error?: string } {
 		try {
+			// Handle version and help flags
 			if (ONLY_SHOW_VERSION) {
 				console.log(pkInfo.version);
-				retVal = false;
-			} else if (ONLY_SHOW_HELP) {
-				yargs.showHelp();
-				retVal = false;
-			} else if (!HAS_INPUT_DIR_OR_FILE) {
-				yargs.showHelp();
-				console.error("-f is required to specify input directory or file.");
-				retVal = false;
+				return { success: false };
 			}
+
+			if (ONLY_SHOW_HELP) {
+				yargs.showHelp();
+				return { success: false };
+			}
+
+			// Validate mandatory -f parameter
+			if (!HAS_INPUT_DIR_OR_FILE) {
+				return {
+					success: false,
+					error: "-f|--file parameter is required to specify input directory or file."
+				};
+			}
+
+			// Validate that -f has a value
+			if (typeof INPUT_DIR_OR_FILE !== 'string' || INPUT_DIR_OR_FILE.trim() === '') {
+				return {
+					success: false,
+					error: "-f|--file parameter must have a valid path value."
+				};
+			}
+
+			// Validate that -f is not specified multiple times
+			if (Array.isArray(INPUT_DIR_OR_FILE)) {
+				return {
+					success: false,
+					error: `-f|--file parameter can only be specified once. Received multiple values: ${INPUT_DIR_OR_FILE.join(", ")}`
+				};
+			}
+
+			// Validate input path exists
+			if (!fs.existsSync(INPUT_DIR_OR_FILE)) {
+				return {
+					success: false,
+					error: `Input path does not exist: ${INPUT_DIR_OR_FILE}`
+				};
+			}
+
+			// Validate output directory if specified
+			if (argv.o && !fs.existsSync(argv.o)) {
+				return {
+					success: false,
+					error: `Output directory does not exist: ${argv.o}`
+				};
+			}
+
+			return { success: true };
 		} catch (e: unknown) {
 			const error = e instanceof Error ? e : new Error(String(e));
-			console.error(`Exception: ${error.message}`);
-			retVal = false;
+			return {
+				success: false,
+				error: `Exception during initialization: ${error.message}`
+			};
 		}
-		return retVal;
 	}
 
 	async start() {
-		if (!this.initialize() || !INPUT_DIR_OR_FILE) {
-			console.error("Invalid input parameters.");
-			return;
+		// Initialize and validate parameters
+		const initResult = this.initialize();
+		if (!initResult.success) {
+			if (initResult.error) {
+				// Show help for parameter errors
+				yargs.showHelp();
+				console.error(`\nError: ${initResult.error}`);
+				process.exit(1);
+			}
+			// Exit cleanly for -v or -h flags (no error)
+			process.exit(0);
 		}
 
 		console.log(_PRO_TIMER);
 		console.time(_PRO_TIMER);
 
+		let hasError = false;
+		let errorMessage: string | undefined;
+
 		try {
-			const inputStatus = fs.statSync(INPUT_DIR_OR_FILE);
+			const inputStatus = fs.statSync(INPUT_DIR_OR_FILE as string);
 			if (inputStatus.isFile()) {
 				this.inputCount = 1;
 				await this.processOneFile(
-					path.dirname(INPUT_DIR_OR_FILE),
-					path.basename(INPUT_DIR_OR_FILE)
+					path.dirname(INPUT_DIR_OR_FILE as string),
+					path.basename(INPUT_DIR_OR_FILE as string)
 				);
 			} else if (inputStatus.isDirectory()) {
-				await this.processOneDirectory(path.normalize(INPUT_DIR_OR_FILE));
+				await this.processOneDirectory(path.normalize(INPUT_DIR_OR_FILE as string));
 			}
 		} catch (e) {
-			console.error("Exception: ", e);
+			hasError = true;
+			const error = e instanceof Error ? e : new Error(String(e));
+			errorMessage = `Exception during processing: ${error.message}`;
+			this.addStatusMsg(true, errorMessage);
+			this.failedCount++;
 		} finally {
-			this.complete();
+			this.complete(hasError, errorMessage);
 		}
 	}
 
-	complete() {
-		if (this.statusMsgs.length > 0) console.log(this.statusMsgs);
-		console.log(
-			`${this.inputCount} input files\t${this.successCount} success\t${this.failedCount} fail\t${this.warningCount} warning`
+	complete(hasError: boolean = false, errorMessage?: string) {
+		const stdioFunc = (hasError || this.failedCount > 0) ? console.error : console.log;
+
+		if (errorMessage) {
+			stdioFunc(`\nError: ${errorMessage}`);
+		}
+		if (this.statusMsgs.length > 0) {
+			stdioFunc(this.statusMsgs);
+		}
+		stdioFunc(
+			`\n${this.inputCount} input files\t${this.successCount} success\t${this.failedCount} fail\t${this.warningCount} warning`
 		);
+
 		process.nextTick(() => {
 			console.timeEnd(_PRO_TIMER);
-			// process.exit((this.inputCount === this.successCount) ? 0 : 1);
+			if (hasError || this.failedCount > 0) {
+				process.exit(1);
+			}
 		});
 	}
 
