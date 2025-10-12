@@ -326,12 +326,12 @@ export default class PDFCLI {
 			}
 
 			// Validate output directory if specified
-			if (argv.o && !fs.existsSync(argv.o)) {
-				return {
-					success: false,
-					error: `Output directory does not exist: ${argv.o}`
-				};
-			}
+			// if (argv.o && !fs.existsSync(argv.o)) {
+			// 	return {
+			// 		success: false,
+			// 		error: `Output directory does not exist: ${argv.o}`
+			// 	};
+			// }
 
 			return { success: true };
 		} catch (e: unknown) {
