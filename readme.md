@@ -1063,16 +1063,26 @@ In order to support this auto merging capability, text block objects have an add
 
 **Breaking Changes:**
 
+- v4.0.0 introduces several important changes that may affect existing implementations:
+
+    - **Text encoding removed**: Text in JSON output is no longer URI-encoded (fixes [#385](https://github.com/modesty/pdf2json/issues/385)). Chinese, CJK, and other Unicode characters now display directly as UTF-8 instead of percent-encoded strings. If your application was decoding text with `decodeURIComponent()`, you should remove that step.
+
+    - **Text block spacing improvements**: Text block gaps and space widths are now calculated from fontMatrix for more accurate spacing (fixes [#355](https://github.com/modesty/pdf2json/issues/355), [#361](https://github.com/modesty/pdf2json/issues/361), [#319](https://github.com/modesty/pdf2json/issues/319)). This uses actual glyph-based width calculation with proper coordinate system handling and applies textHScale for compressed/expanded text. The spacing in both content.txt and JSON output will be more accurate but may differ from previous versions.
+
+    - **Text coordinate fixes**: Text block coordinate calculations have been corrected (fixes [#408](https://github.com/modesty/pdf2json/issues/408)), which may result in slightly different positioning values compared to v3.x.
+
+    - **Node.js version requirement**: Minimum Node.js version is now 20.18.0 or higher.
+
+- v3.0.0 converted commonJS to ES Modules, plus dependency update and other minor bug fixes. Please update your project configuration file to enable ES Module before upgrade, ex., in `tsconfig.json`, set `"compilerOptions":{"module":"ESNext"}`
+
+- v2.0.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
+
 - v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
 
     - event "pdfParser_dataError": {"parserError": errObj}
     - event "pdfParser_dataReady": {"formImage": parseOutput} **note**: "formImage" is removed from v2.0.0, see breaking changes for details.
 
 - v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
-
-- v2.0.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
-
-- v3.0.0 converted commonJS to ES Modules, plus dependency update and other minor bug fixes. Please update your project configuration file to enable ES Module before upgrade, ex., in `tsconfig.json`, set `"compilerOptions":{"module":"ESNext"}`
 
 ## Major Refactoring
 
