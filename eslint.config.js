@@ -11,13 +11,102 @@ export default [
 			"node_modules/**",
 			"base/**",
 			"lib/pdfjs-code.js",
-			"**/*.json",
-			"eslint.config.js",
-			"rollup.config.js"
+			"**/*.json"
 		]
 	},
+	// Configuration for JavaScript files - basic ESLint rules only
 	{
-		files: ["**/*.js", "**/*.ts"],
+		files: ["**/*.js"],
+		languageOptions: {
+			ecmaVersion: 2022,
+			sourceType: "module",
+			globals: {
+				console: "readonly",
+				process: "readonly",
+				Buffer: "readonly",
+				__dirname: "readonly",
+				__filename: "readonly",
+				module: "readonly",
+				require: "readonly",
+				exports: "writable",
+				global: "readonly",
+				setImmediate: "readonly",
+				clearImmediate: "readonly",
+				setTimeout: "readonly",
+				clearTimeout: "readonly",
+				setInterval: "readonly",
+				clearInterval: "readonly"
+			}
+		},
+		rules: {
+			...js.configs.recommended.rules,
+			"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+			"arrow-body-style": ["error", "as-needed"],
+			"dot-notation": ["error"],
+			"eqeqeq": ["error", "always"],
+			"no-case-declarations": "error",
+			"no-duplicate-imports": ["error"],
+			"no-else-return": [
+				"error",
+				{
+					allowElseIf: true
+				}
+			],
+			"no-eval": [
+				"error",
+				{
+					allowIndirect: false
+				}
+			],
+			"no-iterator": ["error"],
+			"no-multi-assign": ["error"],
+			"no-new-func": ["error"],
+			"no-new-wrappers": ["error"],
+			"no-object-constructor": ["error"],
+			"no-param-reassign": "off",
+			"no-restricted-imports": ["error", "lodash", "moment"],
+			"no-throw-literal": "warn",
+			"no-unused-vars": [
+				"error",
+				{
+					vars: "all",
+					args: "after-used",
+					argsIgnorePattern: "(^_?|fs|uri|options|opts|source|signal|destination|Uri$|args|jsonObj|outputPath|resolve|reject|meta|page|evtData)",
+					ignoreRestSiblings: true,
+					destructuredArrayIgnorePattern: "^_?"
+				}
+			],
+			"no-useless-call": ["error"],
+			"object-curly-spacing": ["error", "always"],
+			"object-shorthand": [
+				"error",
+				"always",
+				{
+					avoidExplicitReturnArrows: true
+				}
+			],
+			"prefer-arrow-callback": [
+				"error",
+				{
+					allowNamedFunctions: true
+				}
+			],
+			"prefer-const": ["error"],
+			"prefer-destructuring": [
+				"error",
+				{
+					object: true,
+					array: false
+				}
+			],
+			"prefer-rest-params": ["error"],
+			"prefer-spread": ["error"],
+			"prefer-template": ["error"]
+		}
+	},
+	// Configuration for TypeScript files - full TypeScript ESLint rules
+	{
+		files: ["**/*.ts"],
 		languageOptions: {
 			parser: tsparser,
 			parserOptions: {
