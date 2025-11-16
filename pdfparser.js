@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { readFile } from "node:fs/promises";
 import { EventEmitter } from "node:events";
 import { Buffer } from "node:buffer";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// eslint-disable-next-line no-unused-vars
 import { Readable } from "node:stream";
 
 import PDFJS, { PJS } from "./lib/pdf.js";
@@ -73,7 +73,7 @@ export default class PDFParser extends EventEmitter {
 	/**
 	 * static property to expose _PARSER_SIG string
 	 */
-	// eslint-disable-next-line @typescript-eslint/naming-convention
+	// Underscore prefix convention for internal constants
 	static get _PARSER_SIG() {
 		return _PARSER_SIG;
 	}
