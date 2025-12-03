@@ -3,14 +3,22 @@ const fs = require("fs");
 
 const PDFParser = require("../dist/pdfparser.cjs");
 
+// Add event listener for unhandled promise rejections
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  process.exit(1); // Force exit when an unhandled promise rejection occurs
+});
+
 function pdfParserRunner(fileName, fromBuffer) {
 	const pdfParser = new PDFParser();
-
 	var pdfFilePath = __dirname + "/pdf/fd/form/" + fileName + ".pdf";
+	
 	if (fromBuffer) {
-		pdf = fs.readFileSync(pdfFilePath);
+		console.log("Parsing PDF from buffer: " + pdfFilePath);
+		let pdf = fs.readFileSync(pdfFilePath);
 		pdfParser.parseBuffer(pdf);
 	} else {
+		console.log("Parsing PDF from file: " + pdfFilePath);
 		pdfParser.loadPDF(pdfFilePath);
 	}
 
@@ -155,124 +163,183 @@ function checkResult_pageContent(Pages, fileName) {
 	});
 }
 
-async function parseAndVerifyOnePDF(fileName, fromBuffer, pageCount) {
-	const pdfParser = pdfParserRunner(fileName, fromBuffer);
-	const pdfParserDataReady = new Promise((resolve, reject) => {
-		pdfParser.on("pdfParser_dataReady", (evtData) => {
-			resolve(evtData);
-		});
+function checkResult_textCoordinates(Pages, fileName) {
+	// Verify text block coordinates are unique (issue #408 regression test)
+	Pages.forEach((page, pageIndex) => {
+		const texts = page.Texts || [];
+		if (texts.length === 0) return; // Skip pages with no text
 
-		pdfParser.on("pdfParser_dataError", (evtData) => {
-			reject(evtData);
+		// Collect all coordinates
+		const coords = texts.map(t => ({ x: t.x, y: t.y }));
+
+		// Create unique coordinate strings
+		const uniqueCoords = new Set(coords.map(c => `${c.x},${c.y}`));
+
+		// Check that we have more than one unique coordinate if we have multiple text elements
+		// This prevents the regression where all text elements had identical coordinates (-0.25, 48.75)
+		if (texts.length > 5) {
+			assert(
+				uniqueCoords.size > 1,
+				fileName + " page " + pageIndex +
+				" : all " + texts.length + " text elements have identical coordinates. " +
+				"This is a regression of issue #408. Found only " + uniqueCoords.size +
+				" unique coordinate(s): " + Array.from(uniqueCoords).slice(0, 3).join(", ")
+			);
+		}
+
+		// Verify coordinates are reasonable (not all the same broken value)
+		texts.forEach((text, textIndex) => {
+			assert(
+				typeof text.x === 'number' && !isNaN(text.x),
+				fileName + " page " + pageIndex + " text " + textIndex +
+				" : has invalid x coordinate: " + text.x
+			);
+			assert(
+				typeof text.y === 'number' && !isNaN(text.y),
+				fileName + " page " + pageIndex + " text " + textIndex +
+				" : has invalid y coordinate: " + text.y
+			);
 		});
 	});
+}
 
+async function parseAndVerifyOnePDF(fileName, fromBuffer, pageCount) {
+	let timeoutId;
+	let pdfParser = null;
+	
 	try {
+		pdfParser = pdfParserRunner(fileName, fromBuffer);
+		
+		const pdfParserDataReady = new Promise((resolve, reject) => {
+			// Setup cleanup function to avoid memory leaks
+			const cleanupListeners = () => {
+				try {
+					if (pdfParser) {
+						pdfParser.removeAllListeners("pdfParser_dataReady");
+						pdfParser.removeAllListeners("pdfParser_dataError");
+					}
+				} catch (e) {
+					console.error("Error during listener cleanup:", e);
+				}
+				if (timeoutId) clearTimeout(timeoutId);
+			};
+			
+			pdfParser.on("pdfParser_dataReady", (evtData) => {
+				cleanupListeners();
+				resolve(evtData);
+			});
+
+			pdfParser.on("pdfParser_dataError", (evtData) => {
+				cleanupListeners();
+				reject(evtData);
+			});
+			
+			// Add a timeout to avoid hanging
+			timeoutId = setTimeout(() => {
+				console.error(`*** Timeout triggered for ${fileName} after 15 seconds ***`);
+				cleanupListeners();
+				reject(new Error(`Parsing ${fileName} timed out after 15 seconds`));
+			}, 15000);
+		});
+
 		const evtData = await pdfParserDataReady;
+
 		expect(evtData).toBeDefined();
 		checkResult_parseStatus(null, evtData, fileName);
 		checkResult_mainFields(evtData, fileName);
 		checkResult_pageCount(evtData.Pages, pageCount, fileName);
 		checkResult_pageContent(evtData.Pages, fileName);
+		checkResult_textCoordinates(evtData.Pages, fileName);
 	} catch (error) {
-		console.error("Error: ", error);
-		expect(error).toBeNull();
+		console.error(`Error parsing PDF ${fileName}: `, error);
+		throw error; // Re-throw to ensure Jest knows the test failed
+	} finally {
+		// Force cleanup any references in finally block to ensure it happens even on error
+		try {
+			if (pdfParser) {
+				// Remove all listeners that might prevent garbage collection
+				pdfParser.removeAllListeners();
+				
+				pdfParser.destroy();			
+				pdfParser = null;
+			}			
+		} catch (e) {
+			console.error(`Error during cleanup for ${fileName}:`, e);
+		}
 	}
 }
 
 describe("Federal main forms", () => {
-	test("1040ez file and buffer", async () => {
-		await parseAndVerifyOnePDF("F1040EZ", false, 2);
-		await parseAndVerifyOnePDF("F1040EZ", true, 2);
-	});
-	test("1040a file and buffer", async () => {
-		await parseAndVerifyOnePDF("F1040A", false, 2);
-		await parseAndVerifyOnePDF("F1040A", true, 2);
-	});
-	test("1040 file and buffer", async () => {
-		await parseAndVerifyOnePDF("F1040", false, 2);
-		await parseAndVerifyOnePDF("F1040", true, 2);
-	});
-	test("1040st file and buffer", async () => {
-		await parseAndVerifyOnePDF("F1040ST", false, 2);
-		await parseAndVerifyOnePDF("F1040ST", true, 2);
-	});
-	test("1040V file and buffer", async () => {
-		await parseAndVerifyOnePDF("F1040V", false, 1);
-		await parseAndVerifyOnePDF("F1040V", true, 1);
+	// Using test.each for better isolation
+	const testCases = [
+		{ name: "1040ez from file", fileName: "F1040EZ", fromBuffer: false, pageCount: 2 },
+		{ name: "1040ez from buffer", fileName: "F1040EZ", fromBuffer: true, pageCount: 2 },
+		{ name: "1040a from file", fileName: "F1040A", fromBuffer: false, pageCount: 2 },
+		{ name: "1040a from buffer", fileName: "F1040A", fromBuffer: true, pageCount: 2 },
+		{ name: "1040 from file", fileName: "F1040", fromBuffer: false, pageCount: 2 },
+		{ name: "1040 from buffer", fileName: "F1040", fromBuffer: true, pageCount: 2 },
+		{ name: "1040st from file", fileName: "F1040ST", fromBuffer: false, pageCount: 2 },
+		{ name: "1040st from buffer", fileName: "F1040ST", fromBuffer: true, pageCount: 2 },
+		{ name: "1040V from file", fileName: "F1040V", fromBuffer: false, pageCount: 1 },
+		{ name: "1040V from buffer", fileName: "F1040V", fromBuffer: true, pageCount: 1 }
+	];
+
+	// Run each test in isolation
+	test.each(testCases)('$name', async ({ fileName, fromBuffer, pageCount }) => {
+		await parseAndVerifyOnePDF(fileName, fromBuffer, pageCount);
 	});
 });
 
 describe("Federal schedules", () => {
-	test("Fed Schedule A", async () => {
-		await parseAndVerifyOnePDF("FSCHA", false, 1);
-	});
-	test("Fed Schedule B, B2, B3", async () => {
-		await parseAndVerifyOnePDF("FSCHB", true, 1);
-		await parseAndVerifyOnePDF("FSCHB2", false, 1);
-		await parseAndVerifyOnePDF("FSCHB3", true, 1);
-	});
-	test("Fed schedule C, CEZS, CEZT", async () => {
-		await parseAndVerifyOnePDF("FSCHC", true, 2);
-		await parseAndVerifyOnePDF("FSCHCEZS", true, 1);
-		await parseAndVerifyOnePDF("FSCHCEZT", true, 1);
-	});
-	test("Fed schedule D", async () => {
-		await parseAndVerifyOnePDF("FSCHD", true, 2);
-	});
-	test("Fed schedule E1, E2, EIC", async () => {
-		await parseAndVerifyOnePDF("FSCHE1", true, 1);
-		await parseAndVerifyOnePDF("FSCHE2", true, 1);
-		await parseAndVerifyOnePDF("FSCHEIC", true, 1);
-	});
-	test("Fed schedule F", async () => {
-		await parseAndVerifyOnePDF("FSCHF", true, 2);
-	});
-	test("Fed schedule H HS, HT", async () => {
-		await parseAndVerifyOnePDF("FSCHHS", true, 2);
-		await parseAndVerifyOnePDF("FSCHHT", true, 2);
-	});
-	test("Fed schedule J", async () => {
-		await parseAndVerifyOnePDF("FSCHJ", true, 2);
-	});
-	test("Fed schedule R", async () => {
-		await parseAndVerifyOnePDF("FSCHR", true, 2);
+	// Using test.each for better isolation
+	const scheduleTestCases = [
+		{ name: "Fed Schedule A", fileName: "FSCHA", fromBuffer: false, pageCount: 1 },
+		{ name: "Fed Schedule B", fileName: "FSCHB", fromBuffer: true, pageCount: 1 },
+		{ name: "Fed Schedule B2", fileName: "FSCHB2", fromBuffer: false, pageCount: 1 },
+		{ name: "Fed Schedule B3", fileName: "FSCHB3", fromBuffer: true, pageCount: 1 },
+		{ name: "Fed Schedule C", fileName: "FSCHC", fromBuffer: true, pageCount: 2 },
+		{ name: "Fed Schedule CEZS", fileName: "FSCHCEZS", fromBuffer: true, pageCount: 1 },
+		{ name: "Fed Schedule CEZT", fileName: "FSCHCEZT", fromBuffer: true, pageCount: 1 },
+		{ name: "Fed Schedule D", fileName: "FSCHD", fromBuffer: true, pageCount: 2 },
+		{ name: "Fed Schedule E1", fileName: "FSCHE1", fromBuffer: true, pageCount: 1 },
+		{ name: "Fed Schedule E2", fileName: "FSCHE2", fromBuffer: true, pageCount: 1 },
+		{ name: "Fed Schedule EIC", fileName: "FSCHEIC", fromBuffer: true, pageCount: 1 },
+		{ name: "Fed Schedule F", fileName: "FSCHF", fromBuffer: true, pageCount: 2 },
+		{ name: "Fed Schedule HS", fileName: "FSCHHS", fromBuffer: true, pageCount: 2 },
+		{ name: "Fed Schedule HT", fileName: "FSCHHT", fromBuffer: true, pageCount: 2 },
+		{ name: "Fed Schedule J", fileName: "FSCHJ", fromBuffer: true, pageCount: 2 },
+		{ name: "Fed Schedule R", fileName: "FSCHR", fromBuffer: true, pageCount: 2 }
+	];
+
+	// Run each test in isolation
+	test.each(scheduleTestCases)('$name', async ({ fileName, fromBuffer, pageCount }) => {
+		await parseAndVerifyOnePDF(fileName, fromBuffer, pageCount);
 	});
 });
 
 describe("Federal other forms", () => {
-	test("F982", async () => {
-		await parseAndVerifyOnePDF("F982", false, 1);
-	});
-	test("F1116", async () => {
-		await parseAndVerifyOnePDF("F1116", false, 2);
-	});
-	test("F1310", async () => {
-		await parseAndVerifyOnePDF("F1310", false, 1);
-	});
-	test("F2106, EZ, EZS, S", async () => {
-		await parseAndVerifyOnePDF("F2106", false, 2);
-		await parseAndVerifyOnePDF("F2106EZ", false, 1);
-		await parseAndVerifyOnePDF("F2106EZS", false, 1);
-		await parseAndVerifyOnePDF("F2106S", false, 2);
-	});
-	test("F2120", async () => {
-		await parseAndVerifyOnePDF("F2120", false, 1);
-	});
-	test("F2210, AI, F", async () => {
-		await parseAndVerifyOnePDF("F2210", false, 3);
-		await parseAndVerifyOnePDF("F2210AI", false, 1);
-		await parseAndVerifyOnePDF("F2210F", false, 1);
-	});
-	test("F2439", async () => {
-		await parseAndVerifyOnePDF("F2439", false, 1);
-	});
-	test("F2441, DEP", async () => {
-		await parseAndVerifyOnePDF("F2441", false, 2);
-		await parseAndVerifyOnePDF("F2441DEP", false, 1);
-	});
-	test("F2555EZ, EZS", async () => {
-		await parseAndVerifyOnePDF("F2555EZ", false, 2);
-		await parseAndVerifyOnePDF("F2555EZS", false, 2);
+	// Using test.each for better isolation
+	const otherFormsTestCases = [
+		{ name: "F982", fileName: "F982", fromBuffer: false, pageCount: 1 },
+		{ name: "F1116", fileName: "F1116", fromBuffer: false, pageCount: 2 },
+		{ name: "F1310", fileName: "F1310", fromBuffer: false, pageCount: 1 },
+		{ name: "F2106", fileName: "F2106", fromBuffer: false, pageCount: 2 },
+		{ name: "F2106EZ", fileName: "F2106EZ", fromBuffer: false, pageCount: 1 },
+		{ name: "F2106EZS", fileName: "F2106EZS", fromBuffer: false, pageCount: 1 },
+		{ name: "F2106S", fileName: "F2106S", fromBuffer: false, pageCount: 2 },
+		{ name: "F2120", fileName: "F2120", fromBuffer: false, pageCount: 1 },
+		{ name: "F2210", fileName: "F2210", fromBuffer: false, pageCount: 3 },
+		{ name: "F2210AI", fileName: "F2210AI", fromBuffer: false, pageCount: 1 },
+		{ name: "F2210F", fileName: "F2210F", fromBuffer: false, pageCount: 1 },
+		{ name: "F2439", fileName: "F2439", fromBuffer: false, pageCount: 1 },
+		{ name: "F2441", fileName: "F2441", fromBuffer: false, pageCount: 2 },
+		{ name: "F2441DEP", fileName: "F2441DEP", fromBuffer: false, pageCount: 1 },
+		{ name: "F2555EZ", fileName: "F2555EZ", fromBuffer: false, pageCount: 2 },
+		{ name: "F2555EZS", fileName: "F2555EZS", fromBuffer: false, pageCount: 2 }
+	];
+
+	// Run each test in isolation
+	test.each(otherFormsTestCases)('$name', async ({ fileName, fromBuffer, pageCount }) => {
+		await parseAndVerifyOnePDF(fileName, fromBuffer, pageCount);
 	});
 });

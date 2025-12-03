@@ -64,9 +64,9 @@ const _baseCode = _pdfjsFiles.reduce(
 
 fs.writeFileSync(path.join(__dirname, "../lib/pdfjs-code.js"),
 	`
-  ${"import nodeUtil from 'util';import { Blob } from 'buffer';import { DOMParser } from './simpleXmlParser.js';import PDFAnno from './pdfanno.js';import Image from './pdfimage.js';import { createScratchCanvas } from './pdfcanvas.js';"}
-  ${"export const PDFJS = {};"}
-  ${"const globalScope = { console };"}
+  ${"import { Blob } from 'node:buffer';import { DOMParser } from './simpleXmlParser.js';import PDFAnno from './pdfanno.js';import Image from './pdfimage.js';import { createScratchCanvas } from './pdfcanvas.js';"}
+  ${"export const PDFJS = { disableWorker: true };"}
+  ${"const globalScope = { console, PDFJS };"}
   ${_baseCode}
   `,
 	{
@@ -76,12 +76,16 @@ fs.writeFileSync(path.join(__dirname, "../lib/pdfjs-code.js"),
 );
 
 const targetDir = path.join(__dirname, "../dist");
-if (!fs.existsSync(targetDir)) {
-	fs.mkdirSync(targetDir);
+if (fs.existsSync(targetDir)) {
+	fs.rmSync(targetDir, { recursive: true, force: true });
 }
-fs.copyFileSync(path.join(__dirname, "../pdfparser.d.ts"), path.join(targetDir, "pdfparser.d.ts"));
+fs.mkdirSync(targetDir);
+
+// copy and patch the type definition file
+const typeDefSrcPath = path.join(__dirname, "../src/types/pdfparser.d.ts");
+fs.copyFileSync(typeDefSrcPath, path.join(targetDir, "pdfparser.d.ts"));
 // .d.cts should have "export =" instead of "export default"
-const typeDefContent = fs.readFileSync(path.join(__dirname, "../pdfparser.d.ts"), "utf8");
+const typeDefContent = fs.readFileSync(typeDefSrcPath, "utf8");
 fs.writeFileSync(
 	path.join(targetDir, "pdfparser.d.cts"),
 	typeDefContent.replace("export default", "export =")

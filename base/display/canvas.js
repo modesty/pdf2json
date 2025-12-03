@@ -903,8 +903,10 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       this.current.fontSize = size;
 
 	  if (fontObj.coded) {
-        warn('Unsupported Type3 font (custom Glyph) - ' + fontRefName);
-		return; // we don't need ctx.font for Type3 fonts
+      warn('Found Type3 font (custom Glyph) - ' + fontRefName + ', trying to decode'); // MQZ 8/23 added Type3 glyph font support
+		  // MQZ. 08/24/2025 need to set up the font context for glyph based text processing
+		  this.ctx.setFont(fontObj);
+		  return; // we don't need ctx.font for Type3 fonts
 	  }
 
       var name = fontObj.loadedName || 'sans-serif';
@@ -1053,13 +1055,36 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       var glyphsLength = glyphs.length;
       var textLayer = this.textLayer;
       var geom;
-      var textSelection = textLayer && !skipTextSelection ? true : false;
+      
+      // Always use textSelection for Type3 fonts
+      var textSelection = textLayer && (font.coded || !skipTextSelection) ? true : false;
+      var type3Text = "";
+
       var canvasWidth = 0.0;
       var vertical = font.vertical;
       var defaultVMetrics = font.defaultVMetrics;
 
+      info(`showText called with ${glyphsLength} glyphs, font type: ${font.coded ? 'Type3' : font.type || 'Unknown'}, textSelection: ${textSelection}`);
+
       // Type3 fonts - each glyph is a "mini-PDF"
       if (font.coded) {
+        info(`Processing Type3 font with ${glyphsLength} glyphs`);
+        
+        // For Type3 fonts, collect unicode characters or character codes
+        for (var i = 0; i < glyphsLength; ++i) {
+          var glyph = glyphs[i];
+          if (glyph !== null) {
+            // Use unicode value if available, otherwise use fontChar
+            if (glyph.unicode) {
+              type3Text += glyph.unicode;
+            } else if (glyph.fontChar) {
+              type3Text += String.fromCharCode(glyph.fontChar);
+            }
+          }
+        }
+        info(`Type3 text: ${type3Text}`);
+        
+        // If we have collected text, store it for later use in appendText
         ctx.save();
         ctx.transform.apply(ctx, current.textMatrix);
         ctx.translate(current.x, current.y);
@@ -1070,18 +1095,22 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           this.save();
           ctx.scale(1, -1);
           geom = this.createTextGeometry();
+          // Add the Type3 text to the geometry object so it can be added to the output
+          geom.type3Text = type3Text;
+          geom.fontSize = fontSize;
           this.restore();
         }
         for (var i = 0; i < glyphsLength; ++i) {
-
           var glyph = glyphs[i];
           if (glyph === null) {
             // word break
+            info(`Type3 word break at glyph ${i}`);
             this.ctx.translate(wordSpacing, 0);
             current.x += wordSpacing * textHScale;
             continue;
           }
 
+          //info(`Processing Type3 glyph ${i}: ${glyph.unicode || glyph.fontChar}`);
           this.processingType3 = glyph;
           this.save();
           ctx.scale(fontSize, fontSize);
@@ -1093,24 +1122,46 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           var width = (transformed[0] * fontSize + charSpacing) *
                       current.fontDirection;
 
+          //info(`Type3 glyph width: ${width}`);
           ctx.translate(width, 0);
           current.x += width * textHScale;
 
           canvasWidth += width;
         }
+        // Render Type3 text within the transformation context
+        if (type3Text) {
+          info(`render Type3 text: '${type3Text}', disableFontFace: ${font.disableFontFace}`);
+          var curFontSize = fontSize;
+            switch (current.textRenderingMode) {
+              case TextRenderingMode.FILL:
+                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize);
+                  break;
+              case TextRenderingMode.STROKE:
+                  ctx.strokeText(type3Text, 0, 0, canvasWidth, curFontSize);
+                  break;
+              case TextRenderingMode.FILL_STROKE:
+                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize);
+                  break;
+              case TextRenderingMode.INVISIBLE:
+              case TextRenderingMode.ADD_TO_PATH:
+                  break;
+              default: // other unsupported rendering modes
+          }
+        }
+        
         ctx.restore();
         this.processingType3 = null;
       } else {
         ctx.save();
 
-//MQZ Dec.04.2013 handles leading word spacing
-          var tx = 0;
-          if (wordSpacing !== 0) {
-              var firstGlyph = glyphs.filter(g => g && ('fontChar' in g || 'unicode' in g))[0];
-              if (firstGlyph && (firstGlyph.fontChar === ' ' || firstGlyph.unicode === ' ')) {
+        //MQZ Dec.04.2013 handles leading word spacing
+        var tx = 0;
+        if (wordSpacing !== 0) {
+            var firstGlyph = glyphs.filter(g => g && ('fontChar' in g || 'unicode' in g))[0];
+            if (firstGlyph && (firstGlyph.fontChar === ' ' || firstGlyph.unicode === ' ')) {
                 tx = wordSpacing * fontSize * textHScale;
-              }
-          }
+            }
+        }
 
         current.x += tx
         this.applyTextTransforms();
@@ -1135,8 +1186,8 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
         ctx.lineWidth = lineWidth;
 
-//MQZ. Feb.20.2013. Disable character based painting, make it a string
-          var str = "";
+        //MQZ. Feb.20.2013. Disable character based painting, make it a string
+        var str = "";
 
         var x = 0;
         for (var i = 0; i < glyphsLength; ++i) {
@@ -1188,14 +1239,18 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
             //MQZ. Feb.20.2013. Disable character based painting, make it a string
 //            this.paintChar(character, scaledX, scaledY);
-              str += glyph.unicode || character;
             if (accent) {
               scaledAccentX = scaledX + accent.offset.x / fontSizeScale;
               scaledAccentY = scaledY - accent.offset.y / fontSizeScale;
                 //MQZ. Feb.20.2013. Disable character based painting, make it a string
 //              this.paintChar(accent.fontChar, scaledAccentX, scaledAccentY);
-//                str += accent.fontChar;
             }
+          }
+          
+          // Always extract text for pdf2json, even if glyph is disabled for rendering (fixes issue #385)
+          str += glyph.unicode || character;
+          if (accent) {
+            // str += accent.fontChar;  // Accent characters handled above
           }
 
           x += charWidth;
@@ -1218,35 +1273,27 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 //              info(nodeUtil.inspect(glyphs));
 //          }
 
-          if (str && !font.disableFontFace) {
-              var curFontSize = fontSize * scale * textHScale + 3;
-              switch (current.textRenderingMode) {
-                case TextRenderingMode.FILL:
-                    ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
-                    break;
-                case TextRenderingMode.STROKE:
-                    ctx.strokeText(str, 0, 0, canvasWidth, curFontSize);
-                    break;
-                case TextRenderingMode.FILL_STROKE:
-                    ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
-                    break;
-                case TextRenderingMode.INVISIBLE:
-                case TextRenderingMode.ADD_TO_PATH:
-                    break;
-                default: // other unsupported rendering modes
-            }
-          }
-
-        ctx.restore();
+      // Text rendering for regular fonts (Type3 fonts are handled in their own context above)
+      if (str && !font.disableFontFace && !font.coded) {
+          var curFontSize = fontSize * scale * textHScale + 3;
+          switch (current.textRenderingMode) {
+            case TextRenderingMode.FILL:
+                ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
+                break;
+            case TextRenderingMode.STROKE:
+                ctx.strokeText(str, 0, 0, canvasWidth, curFontSize);
+                break;
+            case TextRenderingMode.FILL_STROKE:
+                ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
+                break;
+            case TextRenderingMode.INVISIBLE:
+            case TextRenderingMode.ADD_TO_PATH:
+                break;
+            default: // other unsupported rendering modes
+        }
       }
 
-      if (textSelection) {
-        geom.canvasWidth = canvasWidth;
-        if (vertical) {
-          var VERTICAL_TEXT_ROTATION = Math.PI / 2;
-          geom.angle += VERTICAL_TEXT_ROTATION;
-        }
-        this.textLayer.appendText(geom);
+        ctx.restore();
       }
 
       return canvasWidth;
@@ -1334,7 +1381,6 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
           var VERTICAL_TEXT_ROTATION = Math.PI / 2;
           geom.angle += VERTICAL_TEXT_ROTATION;
         }
-        this.textLayer.appendText(geom);
       }
     },
     nextLineShowText: function CanvasGraphics_nextLineShowText(text) {

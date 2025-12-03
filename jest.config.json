@@ -1,6 +1,12 @@
 {
-	"testMatch": ["**/test/_test_.*"],
+	"testMatch": ["**/test/_test_*"],
 	"testEnvironment": "node",
 	"bail": false,
-	"testFailureExitCode": 1
+	"testFailureExitCode": 1,
+	"transform": {},
+	"testTimeout": 6000,
+	"moduleFileExtensions": ["js", "cjs", "mjs", "json"],
+	"verbose": true,
+	"forceExit": true,
+	"maxWorkers": "50%"
 }

@@ -215,40 +215,40 @@ For additional output streams support:
 
 ```javascript
     //private methods
- #generateMergedTextBlocksStream() {
+#generateMergedTextBlocksStream() {
   return new Promise( (resolve, reject) => {
    const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".merged.json"), resolve, reject);
    this.pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);
   });
  }
 
-    #generateRawTextContentStream() {
+#generateRawTextContentStream() {
   return new Promise( (resolve, reject) => {
    const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".content.txt"), resolve, reject);
    this.pdfParser.getRawTextContentStream().pipe(outputStream);
   });
-    }
+ }
 
-    #generateFieldsTypesStream() {
+#generateFieldsTypesStream() {
   return new Promise( (resolve, reject) => {
    const outputStream = ParserStream.createOutputStream(this.outputPath.replace(".json", ".fields.json"), resolve, reject);
    this.pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
   });
  }
 
- #processAdditionalStreams() {
-        const outputTasks = [];
-        if (PROCESS_FIELDS_CONTENT) {//needs to generate fields.json file
-            outputTasks.push(this.#generateFieldsTypesStream());
-        }
-        if (PROCESS_RAW_TEXT_CONTENT) {//needs to generate content.txt file
-            outputTasks.push(this.#generateRawTextContentStream());
-        }
-        if (PROCESS_MERGE_BROKEN_TEXT_BLOCKS) {//needs to generate json file with merged broken text blocks
-            outputTasks.push(this.#generateMergedTextBlocksStream());
-        }
+#processAdditionalStreams() {
+  const outputTasks = [];
+  if (PROCESS_FIELDS_CONTENT) {//needs to generate fields.json file
+      outputTasks.push(this.#generateFieldsTypesStream());
+  }
+  if (PROCESS_RAW_TEXT_CONTENT) {//needs to generate content.txt file
+      outputTasks.push(this.#generateRawTextContentStream());
+  }
+  if (PROCESS_MERGE_BROKEN_TEXT_BLOCKS) {//needs to generate json file with merged broken text blocks
+      outputTasks.push(this.#generateMergedTextBlocksStream());
+  }
   return Promise.allSettled(outputTasks);
- }
+}
 ```
 
 Note, if primary JSON parsing has exceptions, none of additional stream will be processed.
@@ -257,20 +257,18 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
 ## API Reference
 
 - events:
-
-  - pdfParser_dataError: will be raised when parsing failed
-  - pdfParser_dataReady: when parsing succeeded
+    - pdfParser_dataError: will be raised when parsing failed
+    - pdfParser_dataReady: when parsing succeeded
 
 - alternative events: (v2.0.0)
-
-  - readable: first event dispatched after PDF file metadata is parsed and before processing any page
-  - data: one parsed page succeeded, null means last page has been processed, single end of data stream
-  - error: exception or error occurred
+    - readable: first event dispatched after PDF file metadata is parsed and before processing any page
+    - data: one parsed page succeeded, null means last page has been processed, single end of data stream
+    - error: exception or error occurred
 
 - start to parse PDF file from specified file path asynchronously:
 
 ```javascript
-        function loadPDF(pdfFilePath);
+    function loadPDF(pdfFilePath);
 ```
 
 If failed, event "pdfParser_dataError" will be raised with error object: {"parserError": errObj};
@@ -279,7 +277,7 @@ If success, event "pdfParser_dataReady" will be raised with output data object: 
 - Get all textual content from "pdfParser_dataReady" event handler:
 
 ```javascript
-        function getRawTextContent();
+    function getRawTextContent();
 ```
 
 returns text in string.
@@ -287,7 +285,7 @@ returns text in string.
 - Get all input fields information from "pdfParser_dataReady" event handler:
 
 ```javascript
-        function getAllFieldsTypes();
+    function getAllFieldsTypes();
 ```
 
 returns an array of field objects.
@@ -299,15 +297,14 @@ Current parsed data has four main sub objects to describe the PDF document.
 - 'Transcoder': pdf2json version number
 - 'Agency': the main text identifier for the PDF document. If Id.AgencyId present, it'll be same, otherwise it'll be set as document title; (_deprecated since v2.0.0, see notes below_)
 - 'Id': the XML meta data that embedded in PDF document (_deprecated since v2.0.0, see notes below_)
-
-  - all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
-  - v0.1.22 added support for the following custom properties:
-    - AgencyId: default "unknown";
-    - Name: default "unknown";
-    - MC: default false;
-    - Max: default -1;
-    - Parent: parent name, default "unknown";
-  - _*v2.0.0*_: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
+    - all forms attributes metadata are defined in "Custom" tab of "Document Properties" dialog in Acrobat Pro;
+    - v0.1.22 added support for the following custom properties:
+        - AgencyId: default "unknown";
+        - Name: default "unknown";
+        - MC: default false;
+        - Max: default -1;
+        - Parent: parent name, default "unknown";
+    - _*v2.0.0*_: 'Agency' and 'Id' are replaced with full metadata, example: for `./test/pdf/fd/form/F1040.pdf`, full metadata is:
 
 ```javascript
 Meta: {
@@ -348,20 +345,20 @@ Each page object within 'Pages' array describes page elements and attributes wit
 - 'Width': width of the page in page unit, moved from root to page object in v2.0.0
 - 'HLines': horizontal line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit
 - 'Vline': vertical line array, each line has 'x', 'y' in relative coordinates for positioning, and 'w' for width, plus 'l' for length. Both width and length are in page unit;
-  - v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
-  - v0.4.4 added dashed line support. Default is 'solid', if line style is dashed line, {dsh:1} is added to line object;
+    - v0.4.3 added Line color support. Default is 'black', other wise set in 'clr' if found in color dictionary, or 'oc' field if not found in dictionary;
+    - v0.4.4 added dashed line support. Default is 'solid', if line style is dashed line, {dsh:1} is added to line object;
 - 'Fills': an array of rectangular area with solid color fills, same as lines, each 'fill' object has 'x', 'y' in relative coordinates for positioning, 'w' and 'h' for width and height in page unit, plus 'clr' to reference a color with index in color dictionary. More info about 'color dictionary' can be found at 'Dictionary Reference' section.
 - 'Texts': an array of text blocks with position, actual text and styling information:
-  - 'x' and 'y': relative coordinates for positioning
-  - 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object. If a color can't be found in color dictionary, 'oc' field will be added to the field as 'original color" value.
-  - 'A': text alignment, including:
-    - left
-    - center
-    - right
-  - 'R': an array of text run, each text run object has two main fields:
-    - 'T': actual text
-    - 'S': style index from style dictionary. More info about 'Style Dictionary' can be found at 'Dictionary Reference' section
-    - 'TS': [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic]
+    - 'x' and 'y': relative coordinates for positioning
+    - 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object. If a color can't be found in color dictionary, 'oc' field will be added to the field as 'original color" value.
+    - 'A': text alignment, including:
+        - left
+        - center
+        - right
+    - 'R': an array of text run, each text run object has two main fields:
+        - 'T': actual text
+        - 'S': style index from style dictionary. More info about 'Style Dictionary' can be found at 'Dictionary Reference' section
+        - 'TS': [fontFaceId, fontSize, 1/0 for bold, 1/0 for italic]
 
 v0.4.5 added support when fields attributes information is defined in external xml file. pdf2json will always try load field attributes xml file based on file name convention (pdfFileName.pdf's field XML file must be named pdfFileName_fieldInfo.xml in the same directory). If found, fields info will be injected.
 
@@ -877,17 +874,17 @@ pdf.js is designed and implemented to run within browsers that have HTML5 suppor
 In order to run pdf.js in Node.js, we have to address those dependencies and also extend/modify the fork of pdf.js. Here below are some works implemented in this pdf2json module to enable pdf.js running with Node.js:
 
 - Global Variables
-  - pdf.js' global objects (like PDFJS and globalScope) need to be wrapped in a node module's scope
+    - pdf.js' global objects (like PDFJS and globalScope) need to be wrapped in a node module's scope
 - API Dependencies
-  - XHR Level 2: I don't need XMLHttpRequest to load PDF asynchronously in node.js, so replaced it with node's fs (File System) to load PDF file based on request parameters;
-  - DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at <https://github.com/xmldom/xmldom>;
-  - Web Worker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
-  - Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the json format above, rather than drawing graphics on html5 canvas;
+    - XHR Level 2: I don't need XMLHttpRequest to load PDF asynchronously in node.js, so replaced it with node's fs (File System) to load PDF file based on request parameters;
+    - DOMParser: pdf.js instantiates DOMParser to parse XML based PDF meta data, I used xmldom node module to replace this browser JS library dependency. xmldom can be found at <https://github.com/xmldom/xmldom>;
+    - Web Worker: pdf.js has "fake worker" code built in, not much works need to be done, only need to stay aware the parsing would occur in the same thread, not in background worker thread;
+    - Canvas: in order to keep pdf.js code intact as much as possible, I decided to create a HTML5 Canvas API implementation in a node module. It's named as 'PDFCanvas' and has the same API as HTML5 Canvas does, so no change in pdf.js' canvas.js file, we just need to replace the browser's Canvas API with PDFCanvas. This way, when 2D context API invoked, PDFCanvas just write it to a JS object based on the json format above, rather than drawing graphics on html5 canvas;
 - Extend/Modify pdf.js
-  - Fonts: no need to call ensureFonts to make sure fonts downloaded, only need to parse out font info in CSS font format to be used in json's texts array.
-  - DOM: all DOM manipulation code in pdf.js are commented out, including creating canvas and div for screen rendering and font downloading purpose.
-  - Interactive Forms elements: (in process to support them)
-  - Leave out the support to embedded images
+    - Fonts: no need to call ensureFonts to make sure fonts downloaded, only need to parse out font info in CSS font format to be used in json's texts array.
+    - DOM: all DOM manipulation code in pdf.js are commented out, including creating canvas and div for screen rendering and font downloading purpose.
+    - Interactive Forms elements: (in process to support them)
+    - Leave out the support to embedded images
 
 After the changes and extensions listed above, this pdf2json node.js module will work either in a server environment ( I have a RESTful web service built with resitify and pdf2json, it's been running on an Amazon EC2 instance) or as a standalone command line tool (something similar to the Vows unit tests).
 
@@ -898,18 +895,18 @@ More porting notes can be found at [Porting and Extending PDFJS to NodeJS](http:
 This pdf2json module's output does not 100% maps from PDF definitions, some of them is because of time limitation I currently have, some others result from the 'dictionary' concept for the output. Given these known issues or unsupported features in current implementation, it allows me to contribute back to the open source community with the most important features implemented while leaving some improvement space for the future. All un-supported features listed below can be resolved technically some way or other, if your use case really requires them:
 
 - Embedded content:
-  - All embedded content are igored, current implementation focuses on static contents and interactive forms. Un-supported PDF embedded contents includes 'Images', 'Fonts' and other dynamic contents;
+    - All embedded content are igored, current implementation focuses on static contents and interactive forms. Un-supported PDF embedded contents includes 'Images', 'Fonts' and other dynamic contents;
 - Text and Form Styles:
-  - text and form elements styles has partial support. This means when you have client side renderer (say in HTML5 canvas or SVG renderer), the PDF content may not look exactly the same as how Acrobat renders. The reason is that we've used "style dictionary" in order to reduce the payload size over the wire, while "style dictionary" doesn't have all styles defined. This sort of partial support can be resolved by extending those 'style dictionaries'. Primary text style issues include:
-    - Font face: only limit to the font families defined in style dictionary
-    - Font size: only limit to 6, 8, 10, 12, 14, 18 that are defined in style dictionary, all other sized font are mapped to the closest size. For example: when a PDF defines a 7px sized font, the size will be mapped to 8px in the output;
-    - Color: either font color or fill colors, are limited to the entries in color dictionary
-    - Style combinations: when style combination is not supported, say in different size, face, bold and italic, the closest entry will be selected in the output;
-  - Note: v0.1.11 started to add support for actual font style (size, bold, italic), but still no full support on font family;
+    - text and form elements styles has partial support. This means when you have client side renderer (say in HTML5 canvas or SVG renderer), the PDF content may not look exactly the same as how Acrobat renders. The reason is that we've used "style dictionary" in order to reduce the payload size over the wire, while "style dictionary" doesn't have all styles defined. This sort of partial support can be resolved by extending those 'style dictionaries'. Primary text style issues include:
+        - Font face: only limit to the font families defined in style dictionary
+        - Font size: only limit to 6, 8, 10, 12, 14, 18 that are defined in style dictionary, all other sized font are mapped to the closest size. For example: when a PDF defines a 7px sized font, the size will be mapped to 8px in the output;
+        - Color: either font color or fill colors, are limited to the entries in color dictionary
+        - Style combinations: when style combination is not supported, say in different size, face, bold and italic, the closest entry will be selected in the output;
+    - Note: v0.1.11 started to add support for actual font style (size, bold, italic), but still no full support on font family;
 - Text positioning and spacing:
-  - Since embedded font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticeable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed json data in browser (HTML5 canvas and IE's SVG).
+    - Since embedded font and font styles are only honored if they defined in style dictionary, when they are not defined in there, the final output may have word positioning and spacing issues that's noticeable. I also found that even with specific font style support (added in v0.1.11), because of sometimes PDF text object data stream is breaking up into multiple blocks in the middle of a word, and text position is calculated based on the font settings, we still see some word breaking and extra spaces when rendering the parsed json data in browser (HTML5 canvas and IE's SVG).
 - User input data in form element:
-  - As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, including radio button selection, checkbox status, text input box value, etc., these values should be handled in client renderer as part of user data, so that we can treat parsed PDF data as form template.
+    - As for interactive forms elements, their type, positions, sizes, limited styles and control data are all parsed and served in output, but user interactive data are not parsed, including radio button selection, checkbox status, text input box value, etc., these values should be handled in client renderer as part of user data, so that we can treat parsed PDF data as form template.
 
 ## Run As a Commandline Utility
 
@@ -1066,36 +1063,46 @@ In order to support this auto merging capability, text block objects have an add
 
 **Breaking Changes:**
 
-- v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
+- v4.0.0 introduces several important changes that may affect existing implementations:
 
-  - event "pdfParser_dataError": {"parserError": errObj}
-  - event "pdfParser_dataReady": {"formImage": parseOutput} **note**: "formImage" is removed from v2.0.0, see breaking changes for details.
+    - **Text encoding removed**: Text in JSON output is no longer URI-encoded (fixes [#385](https://github.com/modesty/pdf2json/issues/385)). Chinese, CJK, and other Unicode characters now display directly as UTF-8 instead of percent-encoded strings. If your application was decoding text with `decodeURIComponent()`, you should remove that step.
 
-- v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
+    - **Text block spacing improvements**: Text block gaps and space widths are now calculated from fontMatrix for more accurate spacing (fixes [#355](https://github.com/modesty/pdf2json/issues/355), [#361](https://github.com/modesty/pdf2json/issues/361), [#319](https://github.com/modesty/pdf2json/issues/319)). This uses actual glyph-based width calculation with proper coordinate system handling and applies textHScale for compressed/expanded text. The spacing in both content.txt and JSON output will be more accurate but may differ from previous versions.
+
+    - **Text coordinate fixes**: Text block coordinate calculations have been corrected (fixes [#408](https://github.com/modesty/pdf2json/issues/408)), which may result in slightly different positioning values compared to v3.x.
+
+    - **Node.js version requirement**: Minimum Node.js version is now 20.18.0 or higher.
+
+- v3.0.0 converted commonJS to ES Modules, plus dependency update and other minor bug fixes. Please update your project configuration file to enable ES Module before upgrade, ex., in `tsconfig.json`, set `"compilerOptions":{"module":"ESNext"}`
 
 - v2.0.0 output data field, `Agency` and `Id` are replaced with `Meta`, JSON of the PDF's full metadata. (See above for details). Each page object also added `Width` property besides `Height`.
 
-- v3.0.0 converted commonJS to ES Modules, plus dependency update and other minor bug fixes. Please update your project configuration file to enable ES Module before upgrade, ex., in `tsconfig.json`, set `"compilerOptions":{"module":"ESNext"}`
+- v1.1.4 unified event data structure: **only when you handle these top level events, no change if you use commandline**
+
+    - event "pdfParser_dataError": {"parserError": errObj}
+    - event "pdfParser_dataReady": {"formImage": parseOutput} **note**: "formImage" is removed from v2.0.0, see breaking changes for details.
+
+- v1.0.8 fixed [issue 27](https://github.com/modesty/pdf2json/issues/27), it converts x coordinate with the same ratio as y, which is 24 (96/4), rather than 8.7 (96/11), please adjust client renderer accordingly when position all elements' x coordinate.
 
 ## Major Refactoring
 
 - v2.0.0 has the major refactoring since 2015. Primary updates including:
-  - Full PDF metadata support (see page format and breaking changes for details)
-  - Simplify root properties, besides the addition of `Meta` as root property, unnecessary "formImage" is removed from v2.0.0, also `Width` is move from root to each page object under `Pages`.
-  - Improved Stream support with test _`npm run parse-r`_, plus new events are added to PDF.js, including _`readable`_, _`data`_, _`end`_, _`error`_. These new Readable Stream like events can be optional replacement for customed events (_`pdfjs_parseDataReady`_, and _`pdfjs_parseDataError`_). It offers more granular data chunk flow control, like _`readable`_ with Meta, _`data`_ sequence for each PDF page result, instead of _`pdfjs_parseDataReady`_ combines all pages in one shot. See `./lib/parserstream.js` for more details
-  - Object with {clr:-1} (like HLines, VLines, Fills, etc.) is replaced with {oc: "#xxxxxx"}. If `clr` index value is valid, then `oc` (original color) field is removed.
-  - Greater performance, near ~20% improvements with PDFs under _test_ directory
-  - Better exception handling, fixes a few uncaught exception errors
-  - More test coverage, 4 more test scripts added, see _package.json_ for details
-  - Easier access to dictionaries, including color, font face and font style, see Dictionary reference section for details
-  - Refactor to ES6 class for major entry modules
-  - Dependencies removed: lodash, async and yargs
-  - Upgrade to Node v14.18.0 LTSs
+    - Full PDF metadata support (see page format and breaking changes for details)
+    - Simplify root properties, besides the addition of `Meta` as root property, unnecessary "formImage" is removed from v2.0.0, also `Width` is move from root to each page object under `Pages`.
+    - Improved Stream support with test _`npm run parse-r`_, plus new events are added to PDF.js, including _`readable`_, _`data`_, _`end`_, _`error`_. These new Readable Stream like events can be optional replacement for customed events (_`pdfjs_parseDataReady`_, and _`pdfjs_parseDataError`_). It offers more granular data chunk flow control, like _`readable`_ with Meta, _`data`_ sequence for each PDF page result, instead of _`pdfjs_parseDataReady`_ combines all pages in one shot. See `./lib/parserstream.js` for more details
+    - Object with {clr:-1} (like HLines, VLines, Fills, etc.) is replaced with {oc: "#xxxxxx"}. If `clr` index value is valid, then `oc` (original color) field is removed.
+    - Greater performance, near ~20% improvements with PDFs under _test_ directory
+    - Better exception handling, fixes a few uncaught exception errors
+    - More test coverage, 4 more test scripts added, see _package.json_ for details
+    - Easier access to dictionaries, including color, font face and font style, see Dictionary reference section for details
+    - Refactor to ES6 class for major entry modules
+    - Dependencies removed: lodash, async and yargs
+    - Upgrade to Node v14.18.0 LTSs
 - v3.0.0 converted commonJS to ES Modules
-  - v3.1.0 added build step to output both ES Module and CommonJS bundles
-    - `PDFParser` is no longer the default export, it's a named export that requires changes to import statement.
-    - test is written in Jest
-    - PR will require GitHub work flow check, currently is `npm ci` and `npm test`
+    - v3.1.0 added build step to output both ES Module and CommonJS bundles
+        - `PDFParser` is no longer the default export, it's a named export that requires changes to import statement.
+        - test is written in Jest
+        - PR will require GitHub work flow check, currently is `npm ci` and `npm test`
 
 ### Install on Ubuntu
 

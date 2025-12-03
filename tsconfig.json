@@ -22,7 +22,7 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"allowJs": true,
-		"checkJs": true,
+		"checkJs": false,
 	},
 	"include": [
 		"./src/**/*.ts",

@@ -2185,11 +2185,40 @@ var Font = (function FontClosure() {
     this.cmap = properties.cmap;
 
     this.fontMatrix = properties.fontMatrix;
-    if (properties.type == 'Type3') {
-      this.encoding = properties.baseEncoding;
-      return;
+      if (properties.type == 'Type3') {
+        this.encoding = properties.baseEncoding;
+        this.disableFontFace = true;
+        this.loadedName = this.loadedName || 'Type3Font';
+        
+        // Add ability to map Type3 font glyphs to Unicode characters
+        if (properties.toUnicode) {
+          this.toUnicode = properties.toUnicode;
+        } else {
+          // Create a basic toUnicode map for common glyph names
+          const toUnicode = {};
+          const encoding = properties.baseEncoding || [];
+          for (let i = 0; i < encoding.length; i++) {
+            const glyphName = encoding[i];
+            if (glyphName && GlyphsUnicode[glyphName]) {
+              toUnicode[i] = String.fromCharCode(GlyphsUnicode[glyphName]);
+            }
+          }
+          
+          // If there are differences, apply them too
+          if (properties.differences && properties.differences.length) {
+            for (let i = 0; i < 256; i++) {
+              if (properties.differences[i]) {
+                const glyphName = properties.differences[i];
+                if (typeof glyphName === 'string' && GlyphsUnicode[glyphName]) {
+                  toUnicode[i] = String.fromCharCode(GlyphsUnicode[glyphName]);
+                }
+              }
+            }
+          }
+          this.toUnicode = toUnicode;
+        }
+        return;
     }
-
     // Trying to fix encoding using glyph CIDSystemInfo.
     this.loadCidToUnicode(properties);
     this.cidEncoding = properties.cidEncoding;
@@ -4494,7 +4523,43 @@ var Font = (function FontClosure() {
         case 'Type3':
           var glyphName = this.differences[charcode] || this.encoding[charcode];
           operatorList = this.charProcOperatorList[glyphName];
-          fontCharCode = charcode;
+          
+          // For text extraction, map the glyph name to Unicode if possible
+          if (glyphName) {
+            fontCharCode = GlyphsUnicode[glyphName] || charcode;
+            
+            // Handle common symbolic glyphs
+            if (fontCharCode === charcode && typeof glyphName === 'string') {
+              // Special handling for specific glyphs
+              if (glyphName.startsWith('uni')) {
+                // Handle uniXXXX format
+                const hex = glyphName.substring(3);
+                if (/^[0-9A-F]{4,6}$/i.test(hex)) {
+                  fontCharCode = parseInt(hex, 16);
+                }
+              }
+              
+              // Check if it's a common symbol
+              const commonSymbols = {
+                'bullet': 0x2022,
+                'checkbox': 0x2610,
+                'checkmark': 0x2713,
+                'circle': 0x25CB,
+                'square': 0x25A1,
+                'triangle': 0x25B2,
+                'triangledown': 0x25BC,
+                'triangleleft': 0x25C0,
+                'triangleright': 0x25B6,
+                'star': 0x2605
+              };
+              
+              if (commonSymbols[glyphName.toLowerCase()]) {
+                fontCharCode = commonSymbols[glyphName.toLowerCase()];
+              }
+            }
+          } else {
+            fontCharCode = charcode;
+          }
           break;
         case 'TrueType':
           if (this.useToFontChar) {
