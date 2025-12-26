@@ -212,7 +212,10 @@ var ColorSpace = (function ColorSpaceClosure() {
         case 'CMYK':
           return 'DeviceCmykCS';
         case 'CalGray':
-          var params = cs[1].getAll();
+          var params = xref.fetchIfRef(cs[1]);
+          if (isDict(params)) {
+             params = params.getAll();
+          }
           return ['CalGrayCS', params];
         case 'CalRGB':
           return 'DeviceRgbCS';
@@ -253,7 +256,10 @@ var ColorSpace = (function ColorSpaceClosure() {
           var tintFnIR = PDFFunction.getIR(xref, xref.fetchIfRef(cs[3]));
           return ['AlternateCS', numComps, alt, tintFnIR];
         case 'Lab':
-          var params = cs[1].getAll();
+          var params = xref.fetchIfRef(cs[1]);
+          if (isDict(params)) {
+            params = params.getAll();
+          }
           return ['LabCS', params];
         default:
           error('unimplemented color space object "' + mode + '"');
