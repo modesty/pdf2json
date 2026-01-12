@@ -1,6 +1,6 @@
 {
 	"name": "pdf2json",
-	"version": "4.0.1",
+	"version": "4.0.2",
 	"description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
 	"keywords": [
 		"pdf",
@@ -47,7 +47,7 @@
 		"parse-tb": "./bin/pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
 		"parse-tc": "./bin/pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
 		"parse-rectFix": "./bin/pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
-		"parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i418_precompilato_fake.pdf -o ./test/target/misc",
+		"parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i418_precompilato_fake.pdf -o ./test/target/misc -c",
 		"build:rollup": "npx rollup -c ./rollup.config.js",
 		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
 		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
