@@ -10,6 +10,7 @@ import { ParserStream, StringifyStream } from "./lib/parserstream.js";
 import { kColors, kFontFaces, kFontStyles } from "./lib/pdfconst.js";
 import { pkInfo, _PARSER_SIG } from "./lib/pkinfo.js";
 import PDFUnit from "./lib/pdfunit.js";
+import { sortBidiTexts } from "./lib/pdftextsorter.js";
 
 /**
  * Class representing a PDF Parser.
@@ -78,6 +79,18 @@ export default class PDFParser extends EventEmitter {
 		return _PARSER_SIG;
 	}
 
+	/**
+	 * Utility: sort an array of bidiText objects into visual reading order.
+	 * Groups elements into horizontal lines by Y coordinate (with font-size-proportional
+	 * tolerance for subscripts/superscripts), then sorts lines top-to-bottom and
+	 * elements within each line left-to-right.
+	 *
+	 * @type {typeof import('./lib/pdftextsorter.js').sortBidiTexts}
+	 */
+	static get sortBidiTexts() {
+		return sortBidiTexts;
+	}
+
 	static #maxBinBufferCount = 10;
 	/** @type {Record<string, Buffer | null>} */
 	static #binBuffer = {};
@@ -142,12 +155,12 @@ export default class PDFParser extends EventEmitter {
 	 */
 	#startParsingPDF(buffer = null) {
 		this.#data = null;
-		
+
 		if (!this.#PDFJS) {
 			this.#onPDFJSParserDataError(new Error("PDFJS parser not initialized"));
 			return;
 		}
-		
+
 		this.#PDFJS.on("pdfjs_parseDataReady", (data) =>
 			this.#onPDFJSParseDataReady(data)
 		);
@@ -291,9 +304,9 @@ export default class PDFParser extends EventEmitter {
 	 * Retrieve all field data.
 	 * @returns {import('./src/types/pdfparser.js').FieldType[]} All field data
 	 */
-		getAllFieldData() {
-			return this.#PDFJS?.getAllFieldData() || [];
-		}
+	getAllFieldData() {
+		return this.#PDFJS?.getAllFieldData() || [];
+	}
 
 	/**
 	 * Retrieve all field types stream.
@@ -323,7 +336,7 @@ export default class PDFParser extends EventEmitter {
 	 * Destroys the current instance of PDFJS and sets a new one
 	 * @param {boolean} needRawText - Whether raw text is needed or not
 	 */
-	resetPDFJS(needRawText){
+	resetPDFJS(needRawText) {
 		this.#PDFJS?.destroy();
 		this.#PDFJS = new PDFJS(needRawText);
 		PDFParser.#instanceCounter++;

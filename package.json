@@ -1,6 +1,6 @@
 {
 	"name": "pdf2json",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
 	"keywords": [
 		"pdf",
@@ -71,17 +71,17 @@
 	"dependencies": {},
 	"bundleDependencies": [],
 	"devDependencies": {
-		"@eslint/js": "^9.37.0",
-		"@rollup/plugin-commonjs": "^28.0.6",
+		"@eslint/js": "^10.0.1",
+		"@rollup/plugin-commonjs": "^29.0.0",
 		"@rollup/plugin-eslint": "^9.1.0",
 		"@rollup/plugin-json": "^6.1.0",
 		"@rollup/plugin-node-resolve": "^16.0.2",
 		"@rollup/plugin-terser": "^0.4.4",
 		"@rollup/plugin-typescript": "^12.1.4",
-		"@types/node": "^24.7.2",
+		"@types/node": "^25.3.3",
 		"@typescript-eslint/eslint-plugin": "^8.46.0",
 		"@typescript-eslint/parser": "^8.46.0",
-		"eslint": "^9.37.0",
+		"eslint": "^10.0.2",
 		"jest": "^30.2.0",
 		"rollup": "^4.52.4",
 		"tslib": "^2.6.2",
@@ -120,5 +120,8 @@
 		"package.json",
 		"readme.md",
 		"license.txt"
-	]
+	],
+	"overrides": {
+		"eslint": "$eslint"
+	}
 }
