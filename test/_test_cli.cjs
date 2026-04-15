@@ -49,9 +49,9 @@ describe("CLI", () => {
 		expect(stderr).toContain("-f|--file parameter is required");
 	});
 
-	test("nonexistent file exits with code 2", async () => {
+	test("nonexistent file exits with code 3 (I/O error)", async () => {
 		const { exitCode, stderr } = await runCLI(["-f", "/nonexistent/file.pdf"]);
-		expect(exitCode).toBe(2);
+		expect(exitCode).toBe(3);
 		expect(stderr).toContain("Input path does not exist");
 	});
 

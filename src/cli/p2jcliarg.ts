@@ -196,7 +196,7 @@ export const yargs = new CLIArgParser(process.argv.slice(2))
 	.alias("si", "singleton",
 		"Reuse a single PDFParser instance across all files in a\n\t\t\tdirectory (reduces memory allocation for batch processing).")
 	.alias("j", "json",
-		"Output a structured JSON summary to stdout with version, file\n\t\t\tpaths, stats, and errors. Implies -s (suppresses verbose output).")
+		"Output a structured JSON summary to stdout with version, file\n\t\t\tpaths, stats, and errors. Implies -s. Note: the PDF engine may\n\t\t\tprint warnings to stdout; pipe through `grep '^{'` to isolate JSON.")
 	.alias("q", "quiet",
 		"Suppress all non-error output, including the timer and status\n\t\t\tmessages. Stricter than -s.")
 	.alias("v", "version",

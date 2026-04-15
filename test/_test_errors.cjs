@@ -65,16 +65,16 @@ describe("Error handling", () => {
 		const parser = new PDFParser();
 
 		const error = await new Promise((resolve) => {
-			let timeoutId;
-			parser.once("pdfParser_dataError", (err) => {
+			const timeoutId = setTimeout(() => {
+				parser.removeAllListeners();
+				resolve("timeout");
+			}, 10000);
+			const done = (val) => {
 				clearTimeout(timeoutId);
-				resolve(err);
-			});
-			parser.once("pdfParser_dataReady", () => {
-				clearTimeout(timeoutId);
-				resolve(null);
-			});
-			timeoutId = setTimeout(() => resolve("timeout"), 10000);
+				resolve(val);
+			};
+			parser.once("pdfParser_dataError", (err) => done(err));
+			parser.once("pdfParser_dataReady", () => done(null));
 			parser.loadPDF(ENCRYPTED_PDF, 0);
 		});
 

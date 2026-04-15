@@ -53,7 +53,8 @@ class PDFProcessor {
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private pdfParser: any = null;
-	private curCLI: PDFCLI;
+	private _curCLI: PDFCLI | null = null;
+	private get curCLI(): PDFCLI { return this._curCLI!; }
 
 	constructor(inputDir: string, inputFile: string, curCLI: PDFCLI, sharedParser?: unknown) {
 		this.inputDir = path.normalize(inputDir);
@@ -61,7 +62,7 @@ class PDFProcessor {
 		this.inputPath = path.join(this.inputDir, this.inputFile);
 		this.outputDir = path.normalize((argv.o as string) || inputDir);
 		this.pdfParser = sharedParser || null;
-		this.curCLI = curCLI;
+		this._curCLI = curCLI;
 	}
 
 	private generateMergedTextBlocksStream() {
@@ -228,6 +229,7 @@ class PDFProcessor {
 			this.pdfParser.destroy();
 		}
 		this.pdfParser = null;
+		this._curCLI = null;
 	}
 
 	async processFile(): Promise<ProcessingResult> {
@@ -271,7 +273,7 @@ export default class PDFCLI {
 		this.errorMessages = [];
 	}
 
-	initialize(): { success: boolean; error?: string } {
+	initialize(): { success: boolean; error?: string; exitCode?: number } {
 		try {
 			if (ONLY_SHOW_VERSION) {
 				console.log(pkInfo.version);
@@ -286,6 +288,7 @@ export default class PDFCLI {
 			if (!HAS_INPUT_DIR_OR_FILE) {
 				return {
 					success: false,
+					exitCode: EXIT_ARG_ERROR,
 					error: "-f|--file parameter is required to specify input directory or file."
 				};
 			}
@@ -293,6 +296,7 @@ export default class PDFCLI {
 			if (typeof INPUT_DIR_OR_FILE !== 'string' || (INPUT_DIR_OR_FILE as string).trim() === '') {
 				return {
 					success: false,
+					exitCode: EXIT_ARG_ERROR,
 					error: "-f|--file parameter must have a valid path value."
 				};
 			}
@@ -300,6 +304,7 @@ export default class PDFCLI {
 			if (Array.isArray(INPUT_DIR_OR_FILE)) {
 				return {
 					success: false,
+					exitCode: EXIT_ARG_ERROR,
 					error: `-f|--file parameter can only be specified once. Received multiple values: ${INPUT_DIR_OR_FILE.join(", ")}`
 				};
 			}
@@ -307,6 +312,7 @@ export default class PDFCLI {
 			if (!fs.existsSync(INPUT_DIR_OR_FILE as string)) {
 				return {
 					success: false,
+					exitCode: EXIT_IO_ERROR,
 					error: `Input path does not exist: ${INPUT_DIR_OR_FILE}`
 				};
 			}
@@ -316,6 +322,7 @@ export default class PDFCLI {
 			const error = e instanceof Error ? e : new Error(String(e));
 			return {
 				success: false,
+				exitCode: EXIT_ARG_ERROR,
 				error: `Exception during initialization: ${error.message}`
 			};
 		}
@@ -327,7 +334,7 @@ export default class PDFCLI {
 			if (initResult.error) {
 				yargs.showHelp();
 				console.error(`\nError: ${initResult.error}`);
-				process.exit(EXIT_ARG_ERROR);
+				process.exit(initResult.exitCode ?? EXIT_ARG_ERROR);
 			}
 			process.exit(EXIT_SUCCESS);
 		}
@@ -455,7 +462,7 @@ export default class PDFCLI {
 		return Promise.allSettled(allPromises);
 	}
 
-	async processOneDirectory(inputDir: string) {
+	async processOneDirectory(inputDir: string): Promise<PromiseSettledResult<unknown>[]> {
 		const files = await fs.promises.readdir(inputDir);
 		const pdfFiles = files.filter((file) => {
 			if (file.slice(-4).toLowerCase() !== ".pdf") return false;
@@ -472,7 +479,7 @@ export default class PDFCLI {
 			return this.processFiles(inputDir, pdfFiles);
 		}
 		this.addStatusMsg(true, `[${inputDir}] - No PDF files found`);
-		return 'no pdf files found';
+		return [];
 	}
 
 	addStatusMsg(error: boolean, oneMsg: string) {
@@ -482,6 +489,10 @@ export default class PDFCLI {
 	}
 
 	addResultCount(isError: boolean) {
-		isError ? this.failedCount++ : this.successCount++;
+		if (isError) {
+			this.failedCount++;
+		} else {
+			this.successCount++;
+		}
 	}
 }
