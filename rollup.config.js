@@ -19,6 +19,8 @@ const external = [
 ];
 
 export default [
+	// Build 1: Main library bundle (pdfparser.js -> dist/)
+	// Must complete before Build 2, as the CLI imports from dist/pdfparser.js
 	{
 		input: "./pdfparser.js",
 		external,
@@ -34,46 +36,43 @@ export default [
 				sourcemap: true,
 			},
 		],
-		treeshake: false,
+		treeshake: false, // Required: PDF.js base has global side effects that tree-shaking would break
 		plugins: [
 			json(),
 			eslint({
-				throwOnError: true
+				throwOnError: true,
 			}),
 			nodeResolve({
-      	preferBuiltins: true,  // Prefer Node.js built-in modules
-      	browser: false         // Set to true only if targeting browsers
-    	}),
-			terser()
-		]
+				preferBuiltins: true,
+				browser: false,
+			}),
+			terser(),
+		],
 	},
+	// Build 2: CLI bundle (src/cli/ -> bin/cli/)
+	// Depends on Build 1: imports dist/pdfparser.js as external at runtime
 	{
 		input: "./src/cli/p2jcli.ts",
 		external: [...external, "../../dist/pdfparser.js"],
 		output: [
-			// {
-			// 	file: "dist/pdfparser_cli.cjs",
-			// 	format: "cjs",
-			// 	sourcemap: true,
-			// },
 			{
 				file: "bin/cli/pdfparser_cli.js",
 				format: "es",
 				sourcemap: true,
 			},
 		],
-		treeshake: false,
+		treeshake: true,
 		plugins: [
-			typescript({ tsconfig: './tsconfig.json' }),
+			typescript({ tsconfig: "./tsconfig.json" }),
 			json(),
 			eslint({
-				throwOnError: true
+				throwOnError: true,
 			}),
 			nodeResolve({
-      	preferBuiltins: true,  // Prefer Node.js built-in modules
-      	browser: false         // Set to true only if targeting browsers
-    	}),
-			terser()
-		]
-	}
+				preferBuiltins: true,
+				browser: false,
+			}),
+			terser(),
+		],
+	},
 ];

@@ -1,4 +1,5 @@
 module.exports = {
-  ...require('prettier-config-standard'),
+  semi: false,
+  singleQuote: true,
   trailingComma: 'es5',
 }

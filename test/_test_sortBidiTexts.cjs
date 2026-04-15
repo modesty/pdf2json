@@ -5,7 +5,7 @@ const PDFParser = require("../dist/pdfparser.cjs");
 const { sortBidiTexts } = PDFParser;
 
 describe("sortBidiTexts", () => {
-  it("should return elements in left-to-right reading order regardless of stream order", () => {
+  test("should return elements in left-to-right reading order regardless of stream order", () => {
     const input = [
       { str: "4455", x: 60, y: 10, width: 20, spaceWidth: 4, textHScale: 1, fontSize: 12 },
       { str: "label", x: 20, y: 10, width: 20, spaceWidth: 4, textHScale: 1, fontSize: 12 },
@@ -18,7 +18,7 @@ describe("sortBidiTexts", () => {
     expect(result.map(t => t.str)).toEqual(["Some", "label", "12.3", "4455"]);
   });
 
-  it("should sort lines top-to-bottom when multiple Y positions are present", () => {
+  test("should sort lines top-to-bottom when multiple Y positions are present", () => {
     const input = [
       { str: "Line2", x: 5, y: 30, width: 10, spaceWidth: 4, textHScale: 1, fontSize: 12 },
       { str: "Line1", x: 5, y: 10, width: 10, spaceWidth: 4, textHScale: 1, fontSize: 12 },
@@ -29,7 +29,7 @@ describe("sortBidiTexts", () => {
     expect(result.map(t => t.str)).toEqual(["Line1", "Line2"]);
   });
 
-  it("should group subscripts/superscripts (y offset within tolerance) into the same line", () => {
+  test("should group subscripts/superscripts (y offset within tolerance) into the same line", () => {
     // H2O: '2' is a subscript, y=11 is within fontSize(12) * 0.15 = 1.8 of y=10
     const input = [
       { str: "O", x: 15, y: 10, width: 5, spaceWidth: 3, textHScale: 1, fontSize: 12 },
@@ -43,7 +43,7 @@ describe("sortBidiTexts", () => {
     expect(result.map(t => t.str)).toEqual(["H", "2", "O"]);
   });
 
-  it("should not group elements whose y difference exceeds the tolerance", () => {
+  test("should not group elements whose y difference exceeds the tolerance", () => {
     // 'super' at y=5 is 5 units above 'base' at y=10 — well beyond 12*0.15=1.8
     const input = [
       { str: "base", x: 5, y: 10, width: 20, spaceWidth: 4, textHScale: 1, fontSize: 12 },
@@ -56,11 +56,11 @@ describe("sortBidiTexts", () => {
     expect(result.map(t => t.str)).toEqual(["super", "base"]);
   });
 
-  it("should return an empty array when given an empty array", () => {
+  test("should return an empty array when given an empty array", () => {
     expect(sortBidiTexts([])).toEqual([]);
   });
 
-  it("should return the same reference when given null or undefined", () => {
+  test("should return the same reference when given null or undefined", () => {
     expect(sortBidiTexts(null)).toBeNull();
     expect(sortBidiTexts(undefined)).toBeUndefined();
   });

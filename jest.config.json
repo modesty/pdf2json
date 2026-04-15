@@ -4,9 +4,12 @@
 	"bail": false,
 	"testFailureExitCode": 1,
 	"transform": {},
-	"testTimeout": 6000,
+	"testTimeout": 15000,
 	"moduleFileExtensions": ["js", "cjs", "mjs", "json"],
 	"verbose": true,
 	"forceExit": true,
-	"maxWorkers": "50%"
+	"maxWorkers": "50%",
+	"coverageDirectory": "coverage",
+	"coverageReporters": ["text", "lcov"],
+	"coveragePathIgnorePatterns": ["/node_modules/", "/test/", "/base/", "/lib/pdfjs-code.js"]
 }

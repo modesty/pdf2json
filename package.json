@@ -31,9 +31,10 @@
 	},
 	"main": "./dist/pdfparser.cjs",
 	"module": "./dist/pdfparser.js",
-	"typings": "./dist/pdfparser.d.ts",
+	"types": "./dist/pdfparser.d.ts",
 	"scripts": {
 		"test:jest": "jest --config ./jest.config.json --detectOpenHandles",
+		"test:coverage": "jest --config ./jest.config.json --coverage --detectOpenHandles",
 		"test": "npm run test:jest && npm run parse-r && npm run parse-fd && npm run test:deno && npm run test:bun",
 		"test:forms": "cd ./test && sh p2j.forms.sh",
 		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 16 success, 6 fail exception with stack trace\" ",
@@ -84,7 +85,6 @@
 		"eslint": "^10.0.2",
 		"jest": "^30.2.0",
 		"rollup": "^4.52.4",
-		"tslib": "^2.6.2",
 		"typescript": "5.9.3"
 	},
 	"resolutions": {
@@ -105,9 +105,14 @@
 	"readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
 	"exports": {
 		".": {
-			"types": "./dist/pdfparser.d.ts",
-			"import": "./dist/pdfparser.js",
-			"require": "./dist/pdfparser.cjs"
+			"import": {
+				"types": "./dist/pdfparser.d.ts",
+				"default": "./dist/pdfparser.js"
+			},
+			"require": {
+				"types": "./dist/pdfparser.d.cts",
+				"default": "./dist/pdfparser.cjs"
+			}
 		}
 	},
 	"publishConfig": {
