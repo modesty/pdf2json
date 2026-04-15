@@ -194,9 +194,8 @@ class PDFProcessor {
 		else if (!fs.existsSync(this.outputDir)) {
 			try {
 				await fs.promises.mkdir(this.outputDir, { recursive: true });
-			} finally {
-				if (!fs.existsSync(this.outputDir))
-					retVal = `Input error: output directory doesn't exist and fails to create - ${this.outputDir}.`;
+			} catch {
+				retVal = `Input error: output directory doesn't exist and fails to create - ${this.outputDir}.`;
 			}
 		}
 
@@ -293,19 +292,19 @@ export default class PDFCLI {
 				};
 			}
 
-			if (typeof INPUT_DIR_OR_FILE !== 'string' || (INPUT_DIR_OR_FILE as string).trim() === '') {
-				return {
-					success: false,
-					exitCode: EXIT_ARG_ERROR,
-					error: "-f|--file parameter must have a valid path value."
-				};
-			}
-
 			if (Array.isArray(INPUT_DIR_OR_FILE)) {
 				return {
 					success: false,
 					exitCode: EXIT_ARG_ERROR,
 					error: `-f|--file parameter can only be specified once. Received multiple values: ${INPUT_DIR_OR_FILE.join(", ")}`
+				};
+			}
+
+			if (typeof INPUT_DIR_OR_FILE !== 'string' || (INPUT_DIR_OR_FILE as string).trim() === '') {
+				return {
+					success: false,
+					exitCode: EXIT_ARG_ERROR,
+					error: "-f|--file parameter must have a valid path value."
 				};
 			}
 
@@ -370,7 +369,8 @@ export default class PDFCLI {
 			this.errorMessages.push(errorMessage);
 			this.failedCount++;
 
-			if (error.message.includes("ENOENT") || error.message.includes("EACCES") || error.message.includes("EPERM")) {
+			const errCode = (e as { code?: string }).code;
+			if (errCode === "ENOENT" || errCode === "EACCES" || errCode === "EPERM") {
 				exitCode = EXIT_IO_ERROR;
 			} else {
 				exitCode = EXIT_PARSE_ERROR;

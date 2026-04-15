@@ -131,6 +131,9 @@ async function parseAndVerifyOnePDF(fileName, fromBuffer, pageCount) {
 		checkResult_pageCount(evtData.Pages, pageCount, fileName);
 		checkResult_pageContent(evtData.Pages, fileName);
 		checkResult_textCoordinates(evtData.Pages, fileName);
+	} catch (error) {
+		console.error(`Error parsing PDF ${fileName}:`, error);
+		throw error;
 	} finally {
 		try {
 			if (pdfParser) {

@@ -1,4 +1,5 @@
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const { Writable, Readable } = require("stream");
 
@@ -107,22 +108,25 @@ describe("Stream API", () => {
 	});
 
 	test("ParserStream.createOutputStream writes to a file", async () => {
-		const tmpFile = path.join(__dirname, "target", "stream_test_output.txt");
+		const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "stream-test-"));
+		const tmpFile = path.join(tmpDir, "stream_test_output.txt");
 		const testContent = "Hello from stream test";
 
-		await new Promise((resolve, reject) => {
-			const outStream = ParserStream.createOutputStream(tmpFile, resolve, reject);
-			const input = new Readable();
-			input.push(testContent);
-			input.push(null);
-			input.pipe(outStream);
-		});
+		try {
+			await new Promise((resolve, reject) => {
+				const outStream = ParserStream.createOutputStream(tmpFile, resolve, reject);
+				const input = new Readable();
+				input.push(testContent);
+				input.push(null);
+				input.pipe(outStream);
+			});
 
-		expect(fs.existsSync(tmpFile)).toBe(true);
-		const written = fs.readFileSync(tmpFile, "utf8");
-		expect(written).toBe(testContent);
-
-		// Cleanup
-		fs.unlinkSync(tmpFile);
+			expect(fs.existsSync(tmpFile)).toBe(true);
+			const written = fs.readFileSync(tmpFile, "utf8");
+			expect(written).toBe(testContent);
+		} finally {
+			// Cleanup
+			fs.rmSync(tmpDir, { recursive: true, force: true });
+		}
 	});
 });
