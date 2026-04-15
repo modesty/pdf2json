@@ -43,7 +43,7 @@ After install, run command line:
 
 > npm test
 
-`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The Jest test suit is defined in `./test/_test_.cjs` with commonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
+`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The Jest test suites (7 suites, 74+ tests) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
 
 The default Jest test suits are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
@@ -920,7 +920,7 @@ To use the command line utility to transcode a folder or a file:
 node pdf2json.js -f [input directory or pdf file]
 ```
 
-When -f is a PDF file, it'll be converted to json file with the same name and saved in the same directory. If -f is a directory, it'll scan all ".pdf" files within the specified directory to transcode them one by one.
+When -f is a PDF file, it'll be converted to json file with the same name and saved in the same directory. If -f is a directory, it'll scan all ".pdf" files within the specified directory to transcode them one by one (dotfiles are skipped).
 
 Optionally, you can specify the output directory: -o:
 
@@ -928,7 +928,7 @@ Optionally, you can specify the output directory: -o:
 node pdf2json.js -f [input directory or pdf file] -o [output directory]
 ```
 
-The output directory must exist, otherwise, it'll exit with an error.
+The output directory will be created automatically if it does not exist.
 
 Additionally, you can also use -v or --version to show version number or to display more help info with -h.
 
@@ -952,7 +952,57 @@ or
 pdf2json -f [input directory or pdf file] -o [output directory]
 ```
 
-v0.5.4 added "-s" or "--silent" command line argument to suppress informative logging output. When using pdf2json as a command line tool, the default verbosity is 5 (INFOS). While when running as a web service, default verbosity is 9 (ERRORS).
+### CLI Flags
+
+| Flag | Long | Description |
+|------|------|-------------|
+| `-f` | `--file` | (required) Path to a PDF file or a directory of PDF files to parse |
+| `-o` | `--output` | Output directory (created automatically if it doesn't exist; defaults to input directory) |
+| `-s` | `--silent` | Suppress informational output; only errors are printed |
+| `-t` | `--fieldTypes` | Generate a `.fields.json` file with form field ids and types |
+| `-c` | `--content` | Generate a `.content.txt` file with extracted text content |
+| `-m` | `--merge` | Generate a `.merged.json` file with auto-merged broken text blocks |
+| `-r` | `--stream` | Use stream-based parsing instead of loading the entire file into memory |
+| `-si` | `--singleton` | Reuse a single PDFParser instance across all files in a directory (reduces memory for batch processing) |
+| `-j` | `--json` | Output a structured JSON summary to stdout (version, file paths, stats, errors). Implies `-s` |
+| `-q` | `--quiet` | Suppress all non-error output including timer and status messages. Stricter than `-s` |
+| `-v` | `--version` | Print the version number and exit |
+| `-h` | `--help` | Print help message and exit |
+
+### Exit Codes
+
+| Code | Meaning |
+|------|---------|
+| `0`  | All files parsed successfully |
+| `1`  | One or more files failed to parse |
+| `2`  | Invalid arguments or usage error (e.g. missing `-f`) |
+| `3`  | I/O error (file not found, permission denied) |
+
+### `--json` Output Schema
+
+When using the `--json` flag, pdf2json outputs a structured JSON summary to stdout:
+
+```json
+{
+  "version": "4.0.3",
+  "input": "/path/to/input.pdf",
+  "outputs": [
+    { "type": "json", "path": "/path/to/output.json" },
+    { "type": "fields", "path": "/path/to/output.fields.json" },
+    { "type": "content", "path": "/path/to/output.content.txt" },
+    { "type": "merged", "path": "/path/to/output.merged.json" }
+  ],
+  "stats": { "input": 1, "success": 1, "failed": 0 },
+  "errors": [],
+  "elapsedMs": 234
+}
+```
+
+Note: The PDF engine may print warnings to stdout (e.g. `Warning: Setting up fake worker.`). Pipe through `grep '^{'` to isolate the JSON line.
+
+### Verbosity
+
+When using pdf2json as a command line tool, the default verbosity is 5 (INFOS). While when running as a web service, default verbosity is 9 (ERRORS).
 Examples to suppress logging info from command line:
 
 ```javascript
@@ -973,7 +1023,7 @@ var pdfParser = new PFParser();
 pdfParser.loadPDF(pdfFilePath, 5);
 ```
 
-v0.5.7 added the capability to skip input PDF files if filename begins with any one of "!@#$%^&\*()+=[]\\\';,/{}|\":<>?~`.-\_ ", usually these files are created by PDF authoring tools as backup files.
+When scanning a directory, pdf2json only skips hidden files (dotfiles). All other `.pdf` files are processed.
 
 v0.6.2 added "-t" command line argument to generate fields json file in addition to parsed json. The fields json file will contain one Array which contains fieldInfo object for each field, and each fieldInfo object will have 4 fields:
 

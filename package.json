@@ -51,7 +51,7 @@
 		"parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i418_precompilato_fake.pdf -o ./test/target/misc -c",
 		"build:rollup": "npx rollup -c ./rollup.config.js",
 		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
-		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
+		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup && cp dist/pdfparser.d.ts dist/pdfparser.d.cts",
 		"build:clean": "rm -rf node_modules && rm -f package-lock.json && npm i && npm run build",
 		"test:deno": "deno --allow-read --allow-write --allow-net --allow-env --no-check ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
 		"test:bun": "bun ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r"
@@ -77,7 +77,7 @@
 		"@rollup/plugin-eslint": "^9.1.0",
 		"@rollup/plugin-json": "^6.1.0",
 		"@rollup/plugin-node-resolve": "^16.0.2",
-		"@rollup/plugin-terser": "^0.4.4",
+		"@rollup/plugin-terser": "^1.0.0",
 		"@rollup/plugin-typescript": "^12.1.4",
 		"@types/node": "^25.3.3",
 		"@typescript-eslint/eslint-plugin": "^8.46.0",
