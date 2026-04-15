@@ -132,7 +132,7 @@ class PDFProcessor {
 		return new Promise((resolve, reject) => {
 			this.initParser();
 
-			this.pdfParser.on("pdfParser_dataError", (evtData: PDFParserError) => {
+			this.pdfParser.once("pdfParser_dataError", (evtData: PDFParserError) => {
 				this.curCLI.addResultCount(true);
 				reject(evtData.parserError);
 			});
@@ -162,12 +162,12 @@ class PDFProcessor {
 		return new Promise((resolve, reject) => {
 			this.initParser();
 
-			this.pdfParser.on("pdfParser_dataError", (evtData: PDFParserError) => {
+			this.pdfParser.once("pdfParser_dataError", (evtData: PDFParserError) => {
 				this.curCLI.addResultCount(true);
 				reject(evtData.parserError);
 			});
 
-			this.pdfParser.on("pdfParser_dataReady", async (evtData: PDFParserData) => {
+			this.pdfParser.once("pdfParser_dataReady", async (evtData: PDFParserData) => {
 				try {
 					await fs.promises.writeFile(this.outputPath, JSON.stringify(evtData), 'utf8');
 					this.curCLI.addResultCount(false);

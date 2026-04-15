@@ -115,18 +115,31 @@ export class CLIArgParser {
 		}
 	}
 
-	// Resolve a short flag string (after the leading '-') to its alias key.
-	// Handles multi-char short flags like "si" by checking the alias table first.
-	private resolveShortFlag(letters: string): string | null {
-		// Check if the full multi-char string is a known alias key
-		if (letters in this.aliases) return letters;
+	// Resolve a short flag string (after the leading '-') to its alias key(s).
+	// Handles multi-char short flags like "si" by checking the alias table first,
+	// then falls back to POSIX-style expansion (e.g. "-tcm" → ["-t", "-c", "-m"]).
+	private resolveShortFlags(letters: string): string[] {
+		// Check if the full multi-char string is a known alias key (e.g. "si")
+		if (letters in this.aliases) return [letters];
 		// Check if it matches a known alias name
 		for (const [akey, avalue] of Object.entries(this.aliases)) {
-			if (letters === avalue.name) return akey;
+			if (letters === avalue.name) return [akey];
 		}
-		// Fall back to last character (single-char flag)
-		if (letters.length > 0) return letters.slice(-1);
-		return null;
+		// POSIX-style: expand each character as an individual flag
+		if (letters.length > 1) {
+			const keys: string[] = [];
+			for (const ch of letters) {
+				if (ch in this.aliases) {
+					keys.push(ch);
+				} else {
+					console.warn(`Unknown short flag: -${ch} (in -${letters})`);
+				}
+			}
+			return keys;
+		}
+		// Single character
+		if (letters.length === 1) return [letters];
+		return [];
 	}
 
 	private parseArgv() {
@@ -155,8 +168,10 @@ export class CLIArgParser {
 				}
 			} else if (/^-[^-]+/.test(arg)) {
 				const letters = arg.slice(1);
-				const key = this.resolveShortFlag(letters);
-				if (key && key !== "-") {
+				const keys = this.resolveShortFlags(letters);
+				if (keys.length === 1 && keys[0] !== "-") {
+					// Single flag (or known multi-char alias like "si") — may consume next arg as value
+					const key = keys[0];
 					if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1])) {
 						this.setArg(key, args[i + 1], argv);
 						i++;
@@ -164,6 +179,11 @@ export class CLIArgParser {
 						this.setArg(key, args[i + 1] === "true", argv);
 						i++;
 					} else {
+						this.setArg(key, true, argv);
+					}
+				} else {
+					// Multiple combined flags (e.g. "-tcm") — all set to true (boolean flags)
+					for (const key of keys) {
 						this.setArg(key, true, argv);
 					}
 				}
