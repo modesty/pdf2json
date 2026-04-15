@@ -31,11 +31,11 @@ jobs:
       - name: Clean install dependencies
         run: rm -rf node_modules && npm i
 
-      - name: Type check
-        run: npx --no-install tsc --noEmit
-
       - name: Build project
         run: npm run build
+
+      - name: Type check
+        run: npx --no-install tsc --noEmit
 
       - name: Run tests (with coverage)
         run: npm run test
