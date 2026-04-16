@@ -17,7 +17,7 @@ echo "Update $AGENCY_NAME PDF"
 echo "-----------------------------------------------------"
 mkdir -p $OUT_DIR_BASE/$AGENCY_NAME/$FORM_BASE
 $PDF2JSON -f $IN_DIR_BASE/$AGENCY_NAME/$FORM_BASE -o $OUT_DIR_BASE/$AGENCY_NAME/$FORM_BASE -s -t -c -m
-# diff -rq $OUT_DIR_BASE$AGENCY_NAME/$FORM_BASE/ $DATA_DIR_BASE$AGENCY_NAME/$FORM_BASE/
+diff -rq $OUT_DIR_BASE/$AGENCY_NAME/$FORM_BASE/ $DATA_DIR_BASE/$AGENCY_NAME/$FORM_BASE/
 
 echo "-----------------------------------------------------"
 echo "$IN_DIR_BASE/$AGENCY_NAME/$FORM_BASE : $EXPECTED_RESULT"

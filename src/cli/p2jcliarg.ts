@@ -12,24 +12,16 @@ type AliasEntry = {
 };
 
 export type Argv = {
-	v?: string,
-	h?: string,
-	f?: string,
-	o?: string,
-	s?: string,
-	t?: string,
-	c?: string,
-	m?: string,
-	r?: string,
-	si?: string,
+	[key: string]: string | boolean | number | (string | boolean | number)[];
 };
 
 export class CLIArgParser {
 	args : string[] = [];
 	private aliases: Alias = {};
 
-	private usageMsg = ""; // Rename 'usage' to 'usageMsg'
-	private parsedArgv : object | null = null;
+	private usageMsg = "";
+	private examplesMsg = "";
+	private parsedArgv : Argv | null = null;
 
 	// constructor
 	constructor(args: string[]) {
@@ -37,7 +29,7 @@ export class CLIArgParser {
 	}
 
 	usage(usageMsg:string) {
-		this.usageMsg = `${usageMsg}\n\nOptions:\n`; // Rename 'usage' to 'usageMsg'
+		this.usageMsg = `${usageMsg}\n\nOptions:\n`;
 		return this;
 	}
 
@@ -46,11 +38,19 @@ export class CLIArgParser {
 		return this;
 	}
 
+	examples(msg: string) {
+		this.examplesMsg = msg;
+		return this;
+	}
+
 	showHelp() {
 		let helpMsg = this.usageMsg;
 		for (const [key, value] of Object.entries(this.aliases)) {
 			const { name, description } = value;
-			helpMsg += `-${key},--${name}\t ${description}\n`;
+			helpMsg += `  -${key}, --${name}\t${description}\n`;
+		}
+		if (this.examplesMsg) {
+			helpMsg += this.examplesMsg;
 		}
 		console.log(helpMsg);
 	}
@@ -115,9 +115,36 @@ export class CLIArgParser {
 		}
 	}
 
+	// Resolve a short flag string (after the leading '-') to its alias key(s).
+	// Handles multi-char short flags like "si" by checking the alias table first,
+	// then falls back to POSIX-style expansion (e.g. "-tcm" → ["-t", "-c", "-m"]).
+	private resolveShortFlags(letters: string): string[] {
+		// Check if the full multi-char string is a known alias key (e.g. "si")
+		if (letters in this.aliases) return [letters];
+		// Check if it matches a known alias name
+		for (const [akey, avalue] of Object.entries(this.aliases)) {
+			if (letters === avalue.name) return [akey];
+		}
+		// POSIX-style: expand each character as an individual flag
+		if (letters.length > 1) {
+			const keys: string[] = [];
+			for (const ch of letters) {
+				if (ch in this.aliases) {
+					keys.push(ch);
+				} else {
+					console.warn(`Unknown short flag: -${ch} (in -${letters})`);
+				}
+			}
+			return keys;
+		}
+		// Single character
+		if (letters.length === 1) return [letters];
+		return [];
+	}
+
 	private parseArgv() {
-		const { args } = this; // aliases = this.#aliases,
-		const argv = {};
+		const { args } = this;
+		const argv: Argv = {};
 
 		for (let i = 0; i < args.length; i++) {
 			const arg = args[i];
@@ -125,8 +152,8 @@ export class CLIArgParser {
 			if (/^--.+/.test(arg)) {
 				const extractKey = arg.match(/^--(.+)/);
 				if (!Array.isArray(extractKey)) {
-					console.warn("Unknow CLI options:", arg);
-					continue; // continue if no match
+					console.warn("Unknown CLI options:", arg);
+					continue;
 				}
 				const key = extractKey[1];
 				const next = args[i + 1];
@@ -140,8 +167,11 @@ export class CLIArgParser {
 					this.setArg(key, true, argv);
 				}
 			} else if (/^-[^-]+/.test(arg)) {
-				const key = arg.slice(-1)[0];
-				if (key !== "-") {
+				const letters = arg.slice(1);
+				const keys = this.resolveShortFlags(letters);
+				if (keys.length === 1 && keys[0] !== "-") {
+					// Single flag (or known multi-char alias like "si") — may consume next arg as value
+					const key = keys[0];
 					if (args[i + 1] && !/^(-|--)[^-]/.test(args[i + 1])) {
 						this.setArg(key, args[i + 1], argv);
 						i++;
@@ -151,9 +181,14 @@ export class CLIArgParser {
 					} else {
 						this.setArg(key, true, argv);
 					}
+				} else {
+					// Multiple combined flags (e.g. "-tcm") — all set to true (boolean flags)
+					for (const key of keys) {
+						this.setArg(key, true, argv);
+					}
 				}
 			} else {
-				console.warn("Unknow CLI options:", arg);
+				console.warn("Unknown CLI options:", arg);
 			}
 		}
 
@@ -163,45 +198,58 @@ export class CLIArgParser {
 }
 
 export const yargs = new CLIArgParser(process.argv.slice(2))
-	.usage(`\n${_PRO_TIMER}\n\nUsage: ${pkInfo.name} -f|--file [-o|output_dir]`)
-	.alias("v", "version", "Display version.")
-	.alias("h", "help", "Display brief help information.")
-	.alias(
-		"f",
-		"file",
-		"(required) Full path of input PDF file or a directory to scan for all PDF files.\n\t\t When specifying a PDF file name, it must end with .PDF, otherwise it would be treated as a input directory."
-	)
-	.alias(
-		"o",
-		"output",
-		"(optional) Full path of output directory, must already exist.\n\t\t Current JSON file in the output folder will be replaced when file name is same."
-	)
-	.alias(
-		"s",
-		"silent",
-		"(optional) when specified, will only log errors, otherwise verbose."
-	)
-	.alias(
-		"t",
-		"fieldTypes",
-		"(optional) when specified, will generate .fields.json that includes fields ids and types."
-	)
-	.alias(
-		"c",
-		"content",
-		"(optional) when specified, will generate .content.txt that includes text content from PDF."
-	)
-	.alias(
-		"m",
-		"merge",
-		"(optional) when specified, will generate .merged.json that includes auto-merged broken text blocks from PDF."
-	)
-	.alias(
-		"r",
-		"stream",
-		"(optional) when specified, will process and parse with buffer/object transform stream rather than file system."
-	).alias(
-		"si",
-		"singleton",
-		"(optional) when specified, only an instance of PDFParser will be initialized."
-	);
+	.usage(`\n${_PRO_TIMER}\n\nUsage: ${pkInfo.name} -f <file_or_dir> [options]`)
+	.alias("f", "file",
+		"(required) Path to a PDF file or a directory of PDF files to parse.")
+	.alias("o", "output",
+		"Output directory for generated files. Created automatically if it\n\t\t\tdoes not exist. Defaults to the same directory as the input file.")
+	.alias("s", "silent",
+		"Suppress informational output; only errors are printed.")
+	.alias("t", "fieldTypes",
+		"Generate a .fields.json file with form field ids and types.")
+	.alias("c", "content",
+		"Generate a .content.txt file with extracted text content.")
+	.alias("m", "merge",
+		"Generate a .merged.json file with auto-merged broken text blocks.")
+	.alias("r", "stream",
+		"Use stream-based parsing (read/transform/write pipeline)\n\t\t\tinstead of loading the entire file into memory first.")
+	.alias("si", "singleton",
+		"Reuse a single PDFParser instance across all files in a\n\t\t\tdirectory (reduces memory allocation for batch processing).")
+	.alias("j", "json",
+		"Output a structured JSON summary to stdout with version, file\n\t\t\tpaths, stats, and errors. Implies -s. Note: the PDF engine may\n\t\t\tprint warnings to stdout; pipe through `grep '^{'` to isolate JSON.")
+	.alias("q", "quiet",
+		"Suppress all non-error output, including the timer and status\n\t\t\tmessages. Stricter than -s.")
+	.alias("v", "version",
+		"Print the version number and exit.")
+	.alias("h", "help",
+		"Print this help message and exit.")
+	.examples(`
+Examples:
+
+  Parse a single PDF to JSON:
+    pdf2json -f input.pdf
+
+  Parse with a specific output directory:
+    pdf2json -f input.pdf -o ./output
+
+  Parse and generate all output formats (JSON + fields + text + merged):
+    pdf2json -f input.pdf -o ./output -t -c -m
+
+  Parse an entire directory of PDFs:
+    pdf2json -f ./pdf_folder -o ./output -s
+
+  Parse using stream mode (lower memory for large files):
+    pdf2json -f input.pdf -o ./output -r
+
+  Get structured JSON summary for scripting:
+    pdf2json -f input.pdf -o ./output --json
+
+  Batch directory parse, silent, all outputs:
+    pdf2json -f ./pdf_folder -o ./output -s -t -c -m -r
+
+Exit Codes:
+  0  All files parsed successfully
+  1  One or more files failed to parse
+  2  Invalid arguments or usage error
+  3  I/O error (file not found, permission denied)
+`);

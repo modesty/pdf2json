@@ -207,8 +207,6 @@ export default [
 					destructuredArrayIgnorePattern: "^_?"
 				}
 			],
-			"@typescript-eslint/no-extra-semi": "off",
-			"@typescript-eslint/no-var-requires": "off",
 			"arrow-body-style": ["error", "as-needed"],
 			"dot-notation": ["error"],
 			"eqeqeq": ["error", "always"],
