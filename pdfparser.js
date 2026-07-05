@@ -270,7 +270,7 @@ export default class PDFParser extends EventEmitter {
 		}
 		let pdfBufferParse = pdfBuffer;
 		if (pdfBufferParse.buffer.byteLength !== pdfBufferParse.length) {
-			pdfBufferParse = Buffer.from(pdfBufferParse.buffer, 0, pdfBufferParse.byteLength);
+			pdfBufferParse = Buffer.from(pdfBufferParse.buffer, pdfBufferParse.byteOffset, pdfBufferParse.byteLength);
 		}
 
 		this.#startParsingPDF(pdfBufferParse);
