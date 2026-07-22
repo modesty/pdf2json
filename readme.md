@@ -349,8 +349,10 @@ Each page object within 'Pages' array describes page elements and attributes wit
     - v0.4.4 added dashed line support. Default is 'solid', if line style is dashed line, {dsh:1} is added to line object;
 - 'Fills': an array of rectangular area with solid color fills, same as lines, each 'fill' object has 'x', 'y' in relative coordinates for positioning, 'w' and 'h' for width and height in page unit, plus 'clr' to reference a color with index in color dictionary. More info about 'color dictionary' can be found at 'Dictionary Reference' section.
 - 'Texts': an array of text blocks with position, actual text and styling information:
-    - 'x' and 'y': relative coordinates for positioning
-    - 'h': rendered text box height in page unit (vertical metric, independent of horizontal text squeeze)
+    - 'x' and 'y': relative coordinates for positioning (in page units)
+    - 'w': logical character width in page units (before any text squeezing/transformation)
+    - 'rw': rendered width in page units (actual visual width accounting for horizontal text scaling/squeezing)
+    - 'rh': rendered height in page units (vertical metric, accounts for text transformation matrix)
     - 'clr': a color index in color dictionary, same 'clr' field as in 'Fill' object. If a color can't be found in color dictionary, 'oc' field will be added to the field as 'original color" value.
     - 'A': text alignment, including:
         - left
