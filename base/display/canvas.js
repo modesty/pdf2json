@@ -1132,15 +1132,16 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         if (type3Text) {
           info(`render Type3 text: '${type3Text}', disableFontFace: ${font.disableFontFace}`);
           var curFontSize = fontSize;
+          var renderedHeight = curFontSize;
             switch (current.textRenderingMode) {
               case TextRenderingMode.FILL:
-                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize);
+                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize, renderedHeight);
                   break;
               case TextRenderingMode.STROKE:
-                  ctx.strokeText(type3Text, 0, 0, canvasWidth, curFontSize);
+                  ctx.strokeText(type3Text, 0, 0, canvasWidth, curFontSize, renderedHeight);
                   break;
               case TextRenderingMode.FILL_STROKE:
-                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize);
+                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize, renderedHeight);
                   break;
               case TextRenderingMode.INVISIBLE:
               case TextRenderingMode.ADD_TO_PATH:
@@ -1276,15 +1277,16 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       // Text rendering for regular fonts (Type3 fonts are handled in their own context above)
       if (str && !font.disableFontFace && !font.coded) {
           var curFontSize = fontSize * scale * textHScale + 3;
+          var renderedHeight = fontSize * scale + 3;
           switch (current.textRenderingMode) {
             case TextRenderingMode.FILL:
-                ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
+                ctx.fillText(str, 0, 0, canvasWidth, curFontSize, renderedHeight);
                 break;
             case TextRenderingMode.STROKE:
-                ctx.strokeText(str, 0, 0, canvasWidth, curFontSize);
+                ctx.strokeText(str, 0, 0, canvasWidth, curFontSize, renderedHeight);
                 break;
             case TextRenderingMode.FILL_STROKE:
-                ctx.fillText(str, 0, 0, canvasWidth, curFontSize);
+                ctx.fillText(str, 0, 0, canvasWidth, curFontSize, renderedHeight);
                 break;
             case TextRenderingMode.INVISIBLE:
             case TextRenderingMode.ADD_TO_PATH:
@@ -2003,4 +2005,3 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
   return CanvasGraphics;
 })();
-
