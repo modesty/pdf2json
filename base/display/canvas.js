@@ -1171,7 +1171,9 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
         var lineWidth = current.lineWidth;
         var a1 = current.textMatrix[0], b1 = current.textMatrix[1];
+        var c1 = current.textMatrix[2], d1 = current.textMatrix[3];
         var scale = Math.sqrt(a1 * a1 + b1 * b1);
+        var scaleY = Math.sqrt(c1 * c1 + d1 * d1);
         if (scale === 0 || lineWidth === 0)
           lineWidth = this.getSinglePixelWidth();
         else
@@ -1277,7 +1279,7 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
       // Text rendering for regular fonts (Type3 fonts are handled in their own context above)
       if (str && !font.disableFontFace && !font.coded) {
           var curFontSize = fontSize * scale * textHScale + 3;
-          var renderedHeight = fontSize * scale + 3;
+          var renderedHeight = fontSize * scaleY + 3;
           switch (current.textRenderingMode) {
             case TextRenderingMode.FILL:
                 ctx.fillText(str, 0, 0, canvasWidth, curFontSize, renderedHeight);
