@@ -1131,17 +1131,21 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
         // Render Type3 text within the transformation context
         if (type3Text) {
           info(`render Type3 text: '${type3Text}', disableFontFace: ${font.disableFontFace}`);
-          var curFontSize = fontSize;
+          var viewportScaleT3 = this.baseTransform
+            ? Math.sqrt(this.baseTransform[0] * this.baseTransform[0] +
+                        this.baseTransform[1] * this.baseTransform[1])
+            : 1.0;
+          var curFontSize = fontSize * viewportScaleT3;
           var renderedHeight = curFontSize;
             switch (current.textRenderingMode) {
               case TextRenderingMode.FILL:
-                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize, renderedHeight);
+                  ctx.fillText(type3Text, 0, 0, canvasWidth * viewportScaleT3, curFontSize, renderedHeight);
                   break;
               case TextRenderingMode.STROKE:
-                  ctx.strokeText(type3Text, 0, 0, canvasWidth, curFontSize, renderedHeight);
+                  ctx.strokeText(type3Text, 0, 0, canvasWidth * viewportScaleT3, curFontSize, renderedHeight);
                   break;
               case TextRenderingMode.FILL_STROKE:
-                  ctx.fillText(type3Text, 0, 0, canvasWidth, curFontSize, renderedHeight);
+                  ctx.fillText(type3Text, 0, 0, canvasWidth * viewportScaleT3, curFontSize, renderedHeight);
                   break;
               case TextRenderingMode.INVISIBLE:
               case TextRenderingMode.ADD_TO_PATH:
@@ -1278,17 +1282,24 @@ var CanvasGraphics = (function CanvasGraphicsClosure() {
 
       // Text rendering for regular fonts (Type3 fonts are handled in their own context above)
       if (str && !font.disableFontFace && !font.coded) {
-          var curFontSize = fontSize * scale * textHScale + 3;
-          var renderedHeight = fontSize * scaleY + 3;
+          // Scale from PDF text-space to viewport pixels so that rw/rh are
+          // in the same coordinate space as x/y (which come from getCoords_).
+          var viewportScale = this.baseTransform
+            ? Math.sqrt(this.baseTransform[0] * this.baseTransform[0] +
+                        this.baseTransform[1] * this.baseTransform[1])
+            : 1.0;
+          var curFontSize = fontSize * scale * textHScale * viewportScale + 3;
+          var renderedHeight = fontSize * scaleY * viewportScale + 3;
+          var scaledCanvasWidth = canvasWidth * viewportScale;
           switch (current.textRenderingMode) {
             case TextRenderingMode.FILL:
-                ctx.fillText(str, 0, 0, canvasWidth, curFontSize, renderedHeight);
+                ctx.fillText(str, 0, 0, scaledCanvasWidth, curFontSize, renderedHeight);
                 break;
             case TextRenderingMode.STROKE:
-                ctx.strokeText(str, 0, 0, canvasWidth, curFontSize, renderedHeight);
+                ctx.strokeText(str, 0, 0, scaledCanvasWidth, curFontSize, renderedHeight);
                 break;
             case TextRenderingMode.FILL_STROKE:
-                ctx.fillText(str, 0, 0, canvasWidth, curFontSize, renderedHeight);
+                ctx.fillText(str, 0, 0, scaledCanvasWidth, curFontSize, renderedHeight);
                 break;
             case TextRenderingMode.INVISIBLE:
             case TextRenderingMode.ADD_TO_PATH:
