@@ -1,7 +1,5 @@
 
 import json from "@rollup/plugin-json";
-import eslint from "@rollup/plugin-eslint";
-import nodeResolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
 
@@ -16,6 +14,7 @@ const external = [
 	"url",
 	"buffer",
 	"stream",
+	/^node:.*/,
 ];
 
 export default [
@@ -39,14 +38,6 @@ export default [
 		treeshake: false, // Required: PDF.js base has global side effects that tree-shaking would break
 		plugins: [
 			json(),
-			eslint({
-				throwOnError: true,
-			}),
-			nodeResolve({
-				preferBuiltins: true,
-				browser: false,
-			}),
-			terser(),
 		],
 	},
 	// Build 2: CLI bundle (src/cli/ -> bin/cli/)
@@ -64,14 +55,6 @@ export default [
 		treeshake: true,
 		plugins: [
 			typescript({ tsconfig: "./tsconfig.json" }),
-			json(),
-			eslint({
-				throwOnError: true,
-			}),
-			nodeResolve({
-				preferBuiltins: true,
-				browser: false,
-			}),
 			terser(),
 		],
 	},

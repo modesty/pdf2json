@@ -1,4 +1,6 @@
 const fs = require("fs");
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 
 const PDFParser = require("../dist/pdfparser.cjs");
 
@@ -25,50 +27,50 @@ function pdfParserRunner(fileName, fromBuffer) {
 }
 
 function checkResult_parseStatus(err, stat, fileName) {
-	expect(err === null || typeof err === "undefined").toBe(true);
-	expect(typeof stat === "object" && stat !== null).toBe(true);
+	assert.ok(err === null || typeof err === "undefined");
+	assert.ok(typeof stat === "object" && stat !== null);
 }
 
 function checkResult_mainFields(parsedData, fileName) {
-	expect(parsedData).toHaveProperty("Transcoder");
-	expect(parsedData).toHaveProperty("Meta");
-	expect(parsedData.Meta).toHaveProperty("Metadata");
-	expect(parsedData).toHaveProperty("Pages");
+	assert.ok("Transcoder" in parsedData);
+	assert.ok("Meta" in parsedData);
+	assert.ok("Metadata" in parsedData.Meta);
+	assert.ok("Pages" in parsedData);
 }
 
 function checkResult_pageCount(Pages, count, fileName) {
-	expect(Array.isArray(Pages)).toBe(true);
-	expect(Pages.length).toBe(count);
+	assert.ok(Array.isArray(Pages));
+	assert.strictEqual(Pages.length, count);
 
 	const baseParsedFilePath = __dirname + "/data/fd/form/" + fileName + ".json";
 	const { formImage: baseParsed } = JSON.parse(fs.readFileSync(baseParsedFilePath, "utf8"));
 
-	expect(baseParsed.Pages.length).toBe(count);
+	assert.strictEqual(baseParsed.Pages.length, count);
 
 	for (let i = 0; i < count; i++) {
-		expect(Pages[i].Height).toBe(baseParsed.Pages[i].Height);
-		expect(Pages[i].VLines.length).toBe(baseParsed.Pages[i].VLines.length);
-		expect(Pages[i].HLines.length).toBe(baseParsed.Pages[i].HLines.length);
-		expect(Pages[i].Fills.length).toBe(baseParsed.Pages[i].Fills.length);
-		expect(Pages[i].Texts.length).toBe(baseParsed.Pages[i].Texts.length);
-		expect(Pages[i].Fields.length).toBe(baseParsed.Pages[i].Fields.length);
-		expect(Pages[i].Boxsets.length).toBe(baseParsed.Pages[i].Boxsets.length);
+		assert.strictEqual(Pages[i].Height, baseParsed.Pages[i].Height);
+		assert.strictEqual(Pages[i].VLines.length, baseParsed.Pages[i].VLines.length);
+		assert.strictEqual(Pages[i].HLines.length, baseParsed.Pages[i].HLines.length);
+		assert.strictEqual(Pages[i].Fills.length, baseParsed.Pages[i].Fills.length);
+		assert.strictEqual(Pages[i].Texts.length, baseParsed.Pages[i].Texts.length);
+		assert.strictEqual(Pages[i].Fields.length, baseParsed.Pages[i].Fields.length);
+		assert.strictEqual(Pages[i].Boxsets.length, baseParsed.Pages[i].Boxsets.length);
 	}
 }
 
 function checkResult_pageContent(Pages, fileName) {
-	Pages.forEach((page, index) => {
-		expect(page).toHaveProperty("Height");
-		expect(page).toHaveProperty("HLines");
-		expect(page).toHaveProperty("VLines");
-		expect(page).toHaveProperty("Fills");
-		expect(page).toHaveProperty("Texts");
-		expect(page).toHaveProperty("Width");
+	Pages.forEach((page) => {
+		assert.ok("Height" in page);
+		assert.ok("HLines" in page);
+		assert.ok("VLines" in page);
+		assert.ok("Fills" in page);
+		assert.ok("Texts" in page);
+		assert.ok("Width" in page);
 	});
 }
 
 function checkResult_textCoordinates(Pages, fileName) {
-	Pages.forEach((page, pageIndex) => {
+	Pages.forEach((page) => {
 		const texts = page.Texts || [];
 		if (texts.length === 0) return;
 
@@ -77,14 +79,14 @@ function checkResult_textCoordinates(Pages, fileName) {
 
 		// Regression test for issue #408: all text elements had identical coordinates
 		if (texts.length > 5) {
-			expect(uniqueCoords.size).toBeGreaterThan(1);
+			assert.ok(uniqueCoords.size > 1);
 		}
 
 		texts.forEach((text) => {
-			expect(typeof text.x).toBe('number');
-			expect(isNaN(text.x)).toBe(false);
-			expect(typeof text.y).toBe('number');
-			expect(isNaN(text.y)).toBe(false);
+			assert.strictEqual(typeof text.x, 'number');
+			assert.ok(!isNaN(text.x));
+			assert.strictEqual(typeof text.y, 'number');
+			assert.ok(!isNaN(text.y));
 		});
 	});
 }
@@ -125,7 +127,7 @@ async function parseAndVerifyOnePDF(fileName, fromBuffer, pageCount) {
 			}, 15000);
 		});
 
-		expect(evtData).toBeDefined();
+		assert.ok(evtData !== undefined);
 		checkResult_parseStatus(null, evtData, fileName);
 		checkResult_mainFields(evtData, fileName);
 		checkResult_pageCount(evtData.Pages, pageCount, fileName);
@@ -161,9 +163,11 @@ describe("Federal main forms", () => {
 		{ name: "1040V from buffer", fileName: "F1040V", fromBuffer: true, pageCount: 1 }
 	];
 
-	test.each(testCases)('$name', async ({ fileName, fromBuffer, pageCount }) => {
-		await parseAndVerifyOnePDF(fileName, fromBuffer, pageCount);
-	});
+	for (const tc of testCases) {
+		it(tc.name, { timeout: 30000 }, async () => {
+			await parseAndVerifyOnePDF(tc.fileName, tc.fromBuffer, tc.pageCount);
+		});
+	}
 });
 
 describe("Federal schedules", () => {
@@ -186,9 +190,11 @@ describe("Federal schedules", () => {
 		{ name: "Fed Schedule R", fileName: "FSCHR", fromBuffer: true, pageCount: 2 }
 	];
 
-	test.each(scheduleTestCases)('$name', async ({ fileName, fromBuffer, pageCount }) => {
-		await parseAndVerifyOnePDF(fileName, fromBuffer, pageCount);
-	});
+	for (const tc of scheduleTestCases) {
+		it(tc.name, { timeout: 30000 }, async () => {
+			await parseAndVerifyOnePDF(tc.fileName, tc.fromBuffer, tc.pageCount);
+		});
+	}
 });
 
 describe("Federal other forms", () => {
@@ -211,7 +217,9 @@ describe("Federal other forms", () => {
 		{ name: "F2555EZS", fileName: "F2555EZS", fromBuffer: false, pageCount: 2 }
 	];
 
-	test.each(otherFormsTestCases)('$name', async ({ fileName, fromBuffer, pageCount }) => {
-		await parseAndVerifyOnePDF(fileName, fromBuffer, pageCount);
-	});
+	for (const tc of otherFormsTestCases) {
+		it(tc.name, { timeout: 30000 }, async () => {
+			await parseAndVerifyOnePDF(tc.fileName, tc.fromBuffer, tc.pageCount);
+		});
+	}
 });

@@ -2,6 +2,8 @@ const { execFile } = require("child_process");
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
+const { describe, it, beforeEach, afterEach } = require("node:test");
+const assert = require("node:assert/strict");
 
 const CLI_PATH = path.join(__dirname, "../bin/pdf2json.js");
 const TEST_PDF = path.join(__dirname, "pdf/fd/form/F1040.pdf");
@@ -30,90 +32,90 @@ describe("CLI", () => {
 		fs.rmSync(tmpDir, { recursive: true, force: true });
 	});
 
-	test("--version outputs version and exits 0", async () => {
+	it("--version outputs version and exits 0", async () => {
 		const { stdout, exitCode } = await runCLI(["-v"]);
-		expect(stdout.trim()).toMatch(/^\d+\.\d+\.\d+$/);
-		expect(exitCode).toBe(0);
+		assert.match(stdout.trim(), /^\d+\.\d+\.\d+$/);
+		assert.strictEqual(exitCode, 0);
 	});
 
-	test("--help outputs usage info and exits 0", async () => {
+	it("--help outputs usage info and exits 0", async () => {
 		const { stdout, exitCode } = await runCLI(["-h"]);
-		expect(stdout).toContain("Usage:");
-		expect(stdout).toContain("-f, --file");
-		expect(exitCode).toBe(0);
+		assert.ok(stdout.includes("Usage:"));
+		assert.ok(stdout.includes("-f, --file"));
+		assert.strictEqual(exitCode, 0);
 	});
 
-	test("no args exits with code 2", async () => {
+	it("no args exits with code 2", async () => {
 		const { exitCode, stderr } = await runCLI([]);
-		expect(exitCode).toBe(2);
-		expect(stderr).toContain("-f|--file parameter is required");
+		assert.strictEqual(exitCode, 2);
+		assert.ok(stderr.includes("-f|--file parameter is required"));
 	});
 
-	test("nonexistent file exits with code 3 (I/O error)", async () => {
+	it("nonexistent file exits with code 3 (I/O error)", async () => {
 		const { exitCode, stderr } = await runCLI(["-f", "/nonexistent/file.pdf"]);
-		expect(exitCode).toBe(3);
-		expect(stderr).toContain("Input path does not exist");
+		assert.strictEqual(exitCode, 3);
+		assert.ok(stderr.includes("Input path does not exist"));
 	});
 
-	test("single file processing produces output JSON", async () => {
+	it("single file processing produces output JSON", async () => {
 		const { exitCode } = await runCLI(["-f", TEST_PDF, "-o", tmpDir, "-s"]);
-		expect(exitCode).toBe(0);
+		assert.strictEqual(exitCode, 0);
 
 		const outputFile = path.join(tmpDir, "F1040.json");
-		expect(fs.existsSync(outputFile)).toBe(true);
+		assert.ok(fs.existsSync(outputFile));
 
 		const content = JSON.parse(fs.readFileSync(outputFile, "utf8"));
-		expect(content).toHaveProperty("Pages");
-		expect(content.Pages.length).toBeGreaterThan(0);
+		assert.ok("Pages" in content);
+		assert.ok(content.Pages.length > 0);
 	});
 
-	test("directory processing produces output for all PDFs", async () => {
+	it("directory processing produces output for all PDFs", async () => {
 		const { exitCode } = await runCLI(["-f", TEST_PDF_DIR, "-o", tmpDir, "-s"]);
-		expect(exitCode).toBe(0);
+		assert.strictEqual(exitCode, 0);
 
 		const files = fs.readdirSync(tmpDir).filter(f => f.endsWith(".json"));
-		expect(files.length).toBeGreaterThan(0);
+		assert.ok(files.length > 0);
 	});
 
-	test("--json flag outputs structured JSON to stdout", async () => {
+	it("--json flag outputs structured JSON to stdout", async () => {
 		const { stdout, exitCode } = await runCLI(["-f", TEST_PDF, "-o", tmpDir, "--json"]);
-		expect(exitCode).toBe(0);
+		assert.strictEqual(exitCode, 0);
 
 		// Extract the JSON line (last line of stdout)
 		const lines = stdout.trim().split("\n");
 		const jsonLine = lines.find(l => l.startsWith("{"));
-		expect(jsonLine).toBeDefined();
+		assert.ok(jsonLine);
 
 		const result = JSON.parse(jsonLine);
-		expect(result).toHaveProperty("version");
-		expect(result).toHaveProperty("stats");
-		expect(result.stats.success).toBe(1);
-		expect(result.stats.failed).toBe(0);
-		expect(result).toHaveProperty("outputs");
-		expect(result.outputs.length).toBeGreaterThan(0);
+		assert.ok("version" in result);
+		assert.ok("stats" in result);
+		assert.strictEqual(result.stats.success, 1);
+		assert.strictEqual(result.stats.failed, 0);
+		assert.ok("outputs" in result);
+		assert.ok(result.outputs.length > 0);
 	});
 
-	test("-t flag generates fields.json output", async () => {
+	it("-t flag generates fields.json output", async () => {
 		const { exitCode } = await runCLI(["-f", TEST_PDF, "-o", tmpDir, "-s", "-t"]);
-		expect(exitCode).toBe(0);
+		assert.strictEqual(exitCode, 0);
 
-		expect(fs.existsSync(path.join(tmpDir, "F1040.json"))).toBe(true);
-		expect(fs.existsSync(path.join(tmpDir, "F1040.fields.json"))).toBe(true);
+		assert.ok(fs.existsSync(path.join(tmpDir, "F1040.json")));
+		assert.ok(fs.existsSync(path.join(tmpDir, "F1040.fields.json")));
 	});
 
-	test("-c flag generates content.txt output", async () => {
+	it("-c flag generates content.txt output", async () => {
 		const { exitCode } = await runCLI(["-f", TEST_PDF, "-o", tmpDir, "-s", "-c"]);
-		expect(exitCode).toBe(0);
+		assert.strictEqual(exitCode, 0);
 
-		expect(fs.existsSync(path.join(tmpDir, "F1040.json"))).toBe(true);
-		expect(fs.existsSync(path.join(tmpDir, "F1040.content.txt"))).toBe(true);
+		assert.ok(fs.existsSync(path.join(tmpDir, "F1040.json")));
+		assert.ok(fs.existsSync(path.join(tmpDir, "F1040.content.txt")));
 	});
 
-	test("-q flag suppresses non-error output", async () => {
+	it("-q flag suppresses non-error output", async () => {
 		const { stdout, exitCode } = await runCLI(["-f", TEST_PDF, "-o", tmpDir, "-q"]);
-		expect(exitCode).toBe(0);
+		assert.strictEqual(exitCode, 0);
 		// Quiet mode should not print the timer or status messages
-		expect(stdout).not.toContain("pdf2json@");
-		expect(stdout).not.toContain("Success");
+		assert.ok(!stdout.includes("pdf2json@"));
+		assert.ok(!stdout.includes("Success"));
 	});
 });

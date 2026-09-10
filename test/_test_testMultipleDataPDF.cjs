@@ -1,4 +1,6 @@
 const fs = require("fs");
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 
 const PDFParser = require("../dist/pdfparser.cjs");
 
@@ -16,12 +18,12 @@ function parsePDF(parser, pdfBuffer) {
 }
 
 describe("Multiple PDFs with same structure", () => {
-	test("Read different values", async () => {
+	it("Read different values", async () => {
 		const parser = new PDFParser();
 		const firstPDFBuffer = fs.readFileSync(__dirname + "/pdf/mpf/testPDF.pdf");
 		const secondPDFBuffer = fs.readFileSync(__dirname + "/pdf/mpf/testPDF2.pdf");
 
-		expect(firstPDFBuffer).not.toBe(secondPDFBuffer);
+		assert.notStrictEqual(firstPDFBuffer, secondPDFBuffer);
 
 		const firstData = await parsePDF(parser, firstPDFBuffer);
 
@@ -31,20 +33,20 @@ describe("Multiple PDFs with same structure", () => {
 		const secondData = await parsePDF(parser, secondPDFBuffer);
 
 		// Verify files were read
-		expect(firstData).toBeDefined();
-		expect(firstData.Pages[0]).toBeDefined();
-		expect(firstData.Pages[0].Fields).toBeDefined();
-		expect(secondData).toBeDefined();
-		expect(secondData.Pages[0]).toBeDefined();
-		expect(secondData.Pages[0].Fields).toBeDefined();
+		assert.ok(firstData);
+		assert.ok(firstData.Pages[0]);
+		assert.ok(firstData.Pages[0].Fields);
+		assert.ok(secondData);
+		assert.ok(secondData.Pages[0]);
+		assert.ok(secondData.Pages[0].Fields);
 
 		// Verify correct values from each PDF
-		expect(firstData.Pages[0].Fields[0].V).toBe("Mario");
-		expect(firstData.Pages[0].Fields[1].V).toBe("Rossi");
-		expect(firstData.Pages[0].Fields[2].V).toBe("01/01/1990");
-		expect(secondData.Pages[0].Fields[0].V).toBe("Luigi");
-		expect(secondData.Pages[0].Fields[1].V).toBe("Verdi");
-		expect(secondData.Pages[0].Fields[2].V).toBe("01/01/1991");
+		assert.strictEqual(firstData.Pages[0].Fields[0].V, "Mario");
+		assert.strictEqual(firstData.Pages[0].Fields[1].V, "Rossi");
+		assert.strictEqual(firstData.Pages[0].Fields[2].V, "01/01/1990");
+		assert.strictEqual(secondData.Pages[0].Fields[0].V, "Luigi");
+		assert.strictEqual(secondData.Pages[0].Fields[1].V, "Verdi");
+		assert.strictEqual(secondData.Pages[0].Fields[2].V, "01/01/1991");
 
 		parser.removeAllListeners();
 		parser.destroy();

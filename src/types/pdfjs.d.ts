@@ -27,7 +27,6 @@ export interface PDFJSAPI {
 
 // Global variable when PDFJS core is loaded in the runtime
 declare global {
-  // eslint-disable-next-line no-var
   var PDFJS: PDFJSAPI;
 }
 

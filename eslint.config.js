@@ -1,10 +1,10 @@
 import js from "@eslint/js";
-import tseslint from "@typescript-eslint/eslint-plugin";
-import tsparser from "@typescript-eslint/parser";
+import tseslint from "typescript-eslint";
 
 export default [
 	{
 		ignores: [
+			".mosey/**",
 			"dist/**",
 			"bin/**",
 			"test/**",
@@ -108,7 +108,7 @@ export default [
 	{
 		files: ["**/*.ts"],
 		languageOptions: {
-			parser: tsparser,
+			parser: tseslint.parser,
 			parserOptions: {
 				ecmaVersion: 2022,
 				sourceType: "module"
@@ -132,11 +132,11 @@ export default [
 			}
 		},
 		plugins: {
-			"@typescript-eslint": tseslint
+			"@typescript-eslint": tseslint.plugin
 		},
 		rules: {
 			...js.configs.recommended.rules,
-			...tseslint.configs.recommended.rules,
+			...tseslint.plugin.configs.recommended.rules,
 			"@typescript-eslint/no-unused-expressions": [
 				"error",
 				{
@@ -191,6 +191,14 @@ export default [
 				{
 					selector: "enumMember",
 					format: ["camelCase", "PascalCase", "UPPER_CASE"]
+				},
+				{
+					selector: "typeMethod",
+					format: null,
+					filter: {
+						regex: "^pdfParser_",
+						match: true
+					}
 				},
 				{
 					selector: "typeLike",

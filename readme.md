@@ -43,9 +43,9 @@ After install, run command line:
 
 > npm test
 
-`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The Jest test suites (7 suites, 74+ tests) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
+`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The unit test suites (7 suites, 74+ tests, built with Node.js built-in `node:test` runner) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
 
-The default Jest test suits are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
+The default unit test suites are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
 > npm run test:forms
 
@@ -53,9 +53,9 @@ It'll scan and parse _260_ PDF AcroForm files under _*./test/pdf*_, runs with _*
 
 _update on 4/27/2024_: parsing 260 PDFs by `npm run test:forms` on M2 Mac takes 7~8s
 
-To run Jest test suits with commonJS bundle only
+To run unit test suites with CommonJS bundle only
 
-> npm run test:jest
+> npm run test:unit
 
 ### Test Exception Handlings
 

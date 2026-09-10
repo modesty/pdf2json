@@ -58,7 +58,7 @@ const _pdfjsFiles = [
 
 const _baseCode = _pdfjsFiles.reduce(
 	(preContent, fileName) =>
-		(preContent += fs.readFileSync(path.join(baseDir, fileName), "utf8")),
+		preContent + fs.readFileSync(path.join(baseDir, fileName), "utf8"),
 	""
 );
 
@@ -81,12 +81,8 @@ if (fs.existsSync(targetDir)) {
 }
 fs.mkdirSync(targetDir);
 
-// copy and patch the type definition file
+// copy the type definition files
 const typeDefSrcPath = path.join(__dirname, "../src/types/pdfparser.d.ts");
 fs.copyFileSync(typeDefSrcPath, path.join(targetDir, "pdfparser.d.ts"));
-// .d.cts should have "export =" instead of "export default"
-const typeDefContent = fs.readFileSync(typeDefSrcPath, "utf8");
-fs.writeFileSync(
-	path.join(targetDir, "pdfparser.d.cts"),
-	typeDefContent.replace("export default", "export =")
-);
+const typeDefCtsSrcPath = path.join(__dirname, "../src/types/pdfparser.d.cts");
+fs.copyFileSync(typeDefCtsSrcPath, path.join(targetDir, "pdfparser.d.cts"));
