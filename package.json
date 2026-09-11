@@ -38,7 +38,7 @@
 		"test": "npm run test:unit && npm run parse-r && npm run parse-fd && npm run test:deno && npm run test:bun",
 		"lint": "eslint .",
 		"test:forms": "cd ./test && bash p2j.forms.sh",
-		"test:misc": "cd ./test && bash p2j.one.sh misc . \"Expected: 16 success, 6 fail exception with stack trace\"",
+		"test:misc": "cd ./test && bash p2j.one.sh misc .",
 		"parse": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
 		"parse-s": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
 		"parse-t": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",

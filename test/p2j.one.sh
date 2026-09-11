@@ -4,7 +4,6 @@ OUT_DIR_BASE=./target
 PDF2JSON=../bin/pdf2json.js
 AGENCY_NAME=$1
 FORM_BASE=$2
-EXPECTED_RESULT=$3
 
 echo "-----------------------------------------------------"
 echo "Clean up existing $AGENCY_NAME JSON"
@@ -41,8 +40,4 @@ else
 		exit 1
 	fi
 fi
-
-echo "-----------------------------------------------------"
-echo "$IN_DIR_BASE/$AGENCY_NAME/$FORM_BASE : $EXPECTED_RESULT"
-echo "-----------------------------------------------------"
 

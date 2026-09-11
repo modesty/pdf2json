@@ -4,7 +4,7 @@ AGENCIES=("dc" "de" "ef" "fd" "nd" "or" "pa" "sc" "va")
 FAILED_AGENCIES=()
 for i in "${AGENCIES[@]}"
 do
-	bash ./p2j.one.sh "$i" form "Expected: NO Exception, All Parsed OK"
+	bash ./p2j.one.sh "$i" form
 	STATUS=$?
 	if [ $STATUS -ne 0 ]; then
 		FAILED_AGENCIES+=("$i")
