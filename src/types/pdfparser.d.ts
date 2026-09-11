@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { EventEmitter } from "node:events";
 import { Transform, Readable, TransformOptions, TransformCallback } from "node:stream";
-import fs from "node:fs";
+import type { WriteStream } from "node:fs";
 
 
 export declare class StringifyStream extends Transform {
@@ -12,7 +12,7 @@ export declare class StringifyStream extends Transform {
 
 export declare class ParserStream extends Transform {
     static createContentStream(jsonObj: any): Readable;
-    static createOutputStream(outputPath: string, resolve: (value: string) => void, reject: (reason?: any) => void): fs.WriteStream;
+    static createOutputStream(outputPath: string, resolve: (value: string) => void, reject: (reason?: any) => void): WriteStream;
     constructor(pdfParser: any, options?: TransformOptions);
     _transform(chunk: any, enc: string, callback: TransformCallback): void;
     _flush(callback: TransformCallback): void;

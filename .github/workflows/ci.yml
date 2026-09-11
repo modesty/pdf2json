@@ -7,8 +7,15 @@ on:
 
 jobs:
   setup:
-    name: Build and Test
-    runs-on: ubuntu-latest
+    name: Build and Test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -23,13 +30,13 @@ jobs:
         with:
           bun-version: 1.2.19
 
-      - name: Setup Node.js 20.18.0
+      - name: Setup Node.js 22.23.2
         uses: actions/setup-node@v4
         with:
-          node-version: 20.18.0
+          node-version: 22.23.2
 
       - name: Clean install dependencies
-        run: rm -rf node_modules && npm i
+        run: npm ci
 
       - name: Build project
         run: npm run build
@@ -37,5 +44,9 @@ jobs:
       - name: Type check
         run: npx --no-install tsc --noEmit
 
+      - name: Lint
+        run: npm run lint
+
       - name: Run tests (with coverage)
-        run: npm run test
+        run: npm run test:coverage && npm run parse-r && npm run parse-fd && npm run test:deno && npm run test:bun
+

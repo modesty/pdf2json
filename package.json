@@ -1,6 +1,6 @@
 {
 	"name": "pdf2json",
-	"version": "4.0.3",
+	"version": "4.1.0",
 	"description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
 	"keywords": [
 		"pdf",
@@ -33,63 +33,54 @@
 	"module": "./dist/pdfparser.js",
 	"types": "./dist/pdfparser.d.ts",
 	"scripts": {
-		"test:jest": "jest --config ./jest.config.json --detectOpenHandles",
-		"test:coverage": "jest --config ./jest.config.json --coverage --detectOpenHandles",
-		"test": "npm run test:jest && npm run parse-r && npm run parse-fd && npm run test:deno && npm run test:bun",
+		"test:unit": "node --test --test-timeout=15000 test/_test_.cjs test/_test_cli.cjs test/_test_errors.cjs test/_test_sortBidiTexts.cjs test/_test_stream.cjs test/_test_testMultipleDataPDF.cjs test/_test_type3glyph.cjs",
+		"test:coverage": "node -e \"fs.mkdirSync('coverage',{recursive:true})\" && node --test --test-timeout=15000 --experimental-test-coverage --test-coverage-exclude=\"test/**\" --test-coverage-exclude=\"base/**\" --test-coverage-exclude=\"lib/pdfjs-code.js\" --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=coverage/lcov.info test/_test_.cjs test/_test_cli.cjs test/_test_errors.cjs test/_test_sortBidiTexts.cjs test/_test_stream.cjs test/_test_testMultipleDataPDF.cjs test/_test_type3glyph.cjs",
+		"test": "npm run test:unit && npm run parse-r && npm run parse-fd && npm run test:deno && npm run test:bun",
+		"lint": "eslint .",
 		"test:forms": "cd ./test && sh p2j.forms.sh",
 		"test:misc": "cd ./test && sh p2j.one.sh misc . \"Expected: 16 success, 6 fail exception with stack trace\" ",
-		"parse": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
-		"parse-s": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
-		"parse-t": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
-		"parse-c": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
-		"parse-m": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
-		"parse-r": "./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
-		"parse-fd": "./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
-		"parse-tb": "./bin/pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
-		"parse-tc": "./bin/pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
-		"parse-rectFix": "./bin/pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
-		"parse-e": "./bin/pdf2json.js -f ./test/pdf/misc/i418_precompilato_fake.pdf -o ./test/target/misc -c",
+		"parse": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form",
+		"parse-s": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s",
+		"parse-t": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t",
+		"parse-c": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c",
+		"parse-m": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -s -t -c -m",
+		"parse-r": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/F1040.pdf -o ./test/target/fd/form -t -c -m -r",
+		"parse-fd": "node ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
+		"parse-tb": "node ./bin/pdf2json.js -f ./test/pdf/misc/i242_testingWithTable.pdf -o ./test/target/misc",
+		"parse-tc": "node ./bin/pdf2json.js -f ./test/pdf/misc/i293_pdfpac.pdf -o ./test/target/misc",
+		"parse-rectFix": "node ./bin/pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
+		"parse-e": "node ./bin/pdf2json.js -f ./test/pdf/misc/i418_precompilato_fake.pdf -o ./test/target/misc -c",
 		"build:rollup": "npx rollup -c ./rollup.config.js",
 		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
-		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup && cp dist/pdfparser.d.ts dist/pdfparser.d.cts",
-		"build:clean": "rm -rf node_modules && rm -f package-lock.json && npm i && npm run build",
+		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
+		"build:clean": "node -e \"delete process.env.npm_config_allow_scripts; require('node:child_process').execSync('npm ci && npm run build', {stdio: 'inherit'})\"",
 		"test:deno": "deno --allow-read --allow-write --allow-net --allow-env --no-check ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
 		"test:bun": "bun ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r"
 	},
 	"engines": {
-		"node": ">=20.18.0"
+		"node": ">=22.23.2"
 	},
 	"devEngines": {
 		"packageManager": {
 			"name": "npm",
-			"version": ">=10.2.3"
+			"version": ">=10.8.2"
 		}
 	},
 	"type": "module",
 	"bin": {
 		"pdf2json": "bin/pdf2json.js"
 	},
-	"dependencies": {},
-	"bundleDependencies": [],
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
-		"@rollup/plugin-commonjs": "^29.0.0",
-		"@rollup/plugin-eslint": "^9.1.0",
 		"@rollup/plugin-json": "^6.1.0",
-		"@rollup/plugin-node-resolve": "^16.0.2",
 		"@rollup/plugin-terser": "^1.0.0",
 		"@rollup/plugin-typescript": "^12.1.4",
-		"@types/node": "^25.3.3",
-		"@typescript-eslint/eslint-plugin": "^8.46.0",
-		"@typescript-eslint/parser": "^8.46.0",
+		"@types/node": "^22.20.2",
 		"eslint": "^10.0.2",
-		"jest": "^30.2.0",
 		"rollup": "^4.52.4",
-		"tslib": "^2.6.2",
-		"typescript": "5.9.3"
-	},
-	"resolutions": {
-		"typescript": "5.9.3"
+		"tslib": "^2.8.1",
+		"typescript": "5.9.3",
+		"typescript-eslint": "^8.70.0"
 	},
 	"maintainers": [
 		{
@@ -126,8 +117,5 @@
 		"package.json",
 		"readme.md",
 		"license.txt"
-	],
-	"overrides": {
-		"eslint": "$eslint"
-	}
+	]
 }

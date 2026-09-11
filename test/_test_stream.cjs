@@ -2,6 +2,8 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { Writable, Readable } = require("stream");
+const { describe, it } = require("node:test");
+const assert = require("node:assert/strict");
 
 const PDFParser = require("../dist/pdfparser.cjs");
 const { ParserStream, StringifyStream } = PDFParser;
@@ -33,7 +35,7 @@ function parsePDFFile(pdfPath, needRawText = true) {
 }
 
 describe("Stream API", () => {
-	test("createParserStream pipes PDF input to parsed JSON output", async () => {
+	it("createParserStream pipes PDF input to parsed JSON output", async () => {
 		const parser = new PDFParser(null, false);
 		const parserStream = parser.createParserStream();
 
@@ -58,13 +60,13 @@ describe("Stream API", () => {
 		});
 
 		const parsed = JSON.parse(collected);
-		expect(parsed).toHaveProperty("Pages");
-		expect(parsed.Pages.length).toBeGreaterThan(0);
+		assert.ok("Pages" in parsed);
+		assert.ok(parsed.Pages.length > 0);
 
 		parser.destroy();
 	});
 
-	test("StringifyStream converts object to JSON string", async () => {
+	it("StringifyStream converts object to JSON string", async () => {
 		const testData = { key: "value", nested: { arr: [1, 2, 3] } };
 		const stringify = new StringifyStream();
 
@@ -74,40 +76,40 @@ describe("Stream API", () => {
 
 		const result = await collectStream(input.pipe(stringify));
 		const parsed = JSON.parse(result);
-		expect(parsed).toEqual(testData);
+		assert.deepStrictEqual(parsed, testData);
 	});
 
-	test("getRawTextContentStream returns readable text content", async () => {
+	it("getRawTextContentStream returns readable text content", async () => {
 		const { parser } = await parsePDFFile(TEST_PDF);
 		const stream = parser.getRawTextContentStream();
 
-		expect(stream).toBeDefined();
+		assert.ok(stream);
 		const content = await collectStream(stream);
 
-		expect(typeof content).toBe("string");
-		expect(content.length).toBeGreaterThan(0);
+		assert.strictEqual(typeof content, "string");
+		assert.ok(content.length > 0);
 		// F1040 should contain "Form" and "1040" somewhere in its text
-		expect(content).toContain("1040");
+		assert.ok(content.includes("1040"));
 
 		parser.destroy();
 	});
 
-	test("getAllFieldsTypesStream returns readable fields data", async () => {
+	it("getAllFieldsTypesStream returns readable fields data", async () => {
 		const { parser } = await parsePDFFile(TEST_PDF);
 		const stream = parser.getAllFieldsTypesStream();
 
-		expect(stream).toBeDefined();
+		assert.ok(stream);
 		const stringify = new StringifyStream();
 		const content = await collectStream(stream.pipe(stringify));
 
 		const parsed = JSON.parse(content);
-		expect(Array.isArray(parsed)).toBe(true);
-		expect(parsed.length).toBeGreaterThan(0);
+		assert.ok(Array.isArray(parsed));
+		assert.ok(parsed.length > 0);
 
 		parser.destroy();
 	});
 
-	test("ParserStream.createOutputStream writes to a file", async () => {
+	it("ParserStream.createOutputStream writes to a file", async () => {
 		const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), "stream-test-"));
 		const tmpFile = path.join(tmpDir, "stream_test_output.txt");
 		const testContent = "Hello from stream test";
@@ -121,9 +123,9 @@ describe("Stream API", () => {
 				input.pipe(outStream);
 			});
 
-			expect(fs.existsSync(tmpFile)).toBe(true);
+			assert.ok(fs.existsSync(tmpFile));
 			const written = fs.readFileSync(tmpFile, "utf8");
-			expect(written).toBe(testContent);
+			assert.strictEqual(written, testContent);
 		} finally {
 			// Cleanup
 			fs.rmSync(tmpDir, { recursive: true, force: true });

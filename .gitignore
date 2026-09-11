@@ -12,3 +12,4 @@ lib/pdfjs-code.js
 src/**/*.js
 /dist/
 /bin/cli/
+coverage/
