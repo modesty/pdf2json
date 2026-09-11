@@ -895,21 +895,52 @@ var PartialEvaluator = (function PartialEvaluatorClosure() {
                                 args[3], args[4], args[5]);
               break;
             case 'TJ':
+              // PDF 32000-1 §9.4.3: each numeric element is subtracted from the
+              // current horizontal coordinate (thousandths of a text-space unit).
+              // Positive number → cursor moves LEFT, negative → cursor moves RIGHT.
+              // Some generators lay glyphs out right-to-left using large positive
+              // jumps between strings; track each string's x position in text
+              // space and emit them in left-to-right reading order.
               var items = args[0];
+              var tjX = 0;
+              var pieces = [];
               for (var j = 0, jj = items.length; j < jj; j++) {
                 if (typeof items[j] === 'string') {
-                  chunk += fontCharsToUnicode(items[j], font);
-                } else if (items[j] < 0 && font.spaceWidth > 0) {
-                  var fakeSpaces = -items[j] / font.spaceWidth;
-                  if (fakeSpaces > MULTI_SPACE_FACTOR) {
-                    fakeSpaces = Math.round(fakeSpaces);
-                    while (fakeSpaces--) {
+                  var pieceText = fontCharsToUnicode(items[j], font);
+                  var pieceWidth = 0;
+                  var pieceGlyphs = font.charsToGlyphs(items[j]);
+                  for (var k = 0, kk = pieceGlyphs.length; k < kk; k++) {
+                    var pg = pieceGlyphs[k];
+                    pieceWidth += (pg && pg.width) || font.defaultWidth || 0;
+                  }
+                  pieces.push({ text: pieceText, x: tjX, width: pieceWidth });
+                  tjX += pieceWidth;
+                } else {
+                  tjX -= items[j];
+                }
+              }
+              // Stable sort by x so reverse-laid runs come out in reading order
+              // while same-x or already-forward pieces keep their original order.
+              pieces.sort(function (a, b) { return a.x - b.x; });
+              var prevEnd = null;
+              for (var p = 0, pp = pieces.length; p < pp; p++) {
+                var piece = pieces[p];
+                if (prevEnd !== null && font.spaceWidth > 0) {
+                  var gap = piece.x - prevEnd;
+                  if (gap > 0) {
+                    var fakeSpaces = gap / font.spaceWidth;
+                    if (fakeSpaces > MULTI_SPACE_FACTOR) {
+                      fakeSpaces = Math.round(fakeSpaces);
+                      while (fakeSpaces--) {
+                        chunk += ' ';
+                      }
+                    } else if (fakeSpaces > SPACE_FACTOR) {
                       chunk += ' ';
                     }
-                  } else if (fakeSpaces > SPACE_FACTOR) {
-                    chunk += ' ';
                   }
                 }
+                chunk += piece.text;
+                prevEnd = piece.x + piece.width;
               }
               break;
             case 'Tj':
