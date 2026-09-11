@@ -100,6 +100,8 @@ export declare interface Text {
     x: number;
     y: number;
     w: number;
+    rw: number;
+    rh: number;
     sw: number;
     A: 'left' | 'center' | 'right';
     R: TextRun[];
