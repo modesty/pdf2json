@@ -1,6 +1,6 @@
 {
 	"name": "pdf2json",
-	"version": "4.1.0",
+	"version": "4.1.1",
 	"description": "PDF file parser that converts PDF binaries to JSON and text, powered by porting a fork of PDF.JS to Node.js",
 	"keywords": [
 		"pdf",
@@ -22,12 +22,15 @@
 	"author": {
 		"name": "Modesty Zhang",
 		"email": "modestyz@hotmail.com",
-		"url": "https://www.google.com/search?q=modesty+zhang+site%3Acodeproject.com"
+		"url": "https://www.linkedin.com/in/modesty-zhang-9a43771/"
 	},
 	"homepage": "https://github.com/modesty/pdf2json",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/modesty/pdf2json.git"
+		"url": "git+https://github.com/modesty/pdf2json.git"
+	},
+	"bugs": {
+		"url": "https://github.com/modesty/pdf2json/issues"
 	},
 	"main": "./dist/pdfparser.cjs",
 	"module": "./dist/pdfparser.js",
@@ -82,19 +85,7 @@
 		"typescript": "5.9.3",
 		"typescript-eslint": "^8.70.0"
 	},
-	"maintainers": [
-		{
-			"name": "Modesty Zhang",
-			"email": "modestyz@hotmail.com",
-			"url": "https://www.google.com/search?q=modesty+zhang+site%3Acodeproject.com"
-		}
-	],
-	"contributors": [],
-	"bugs": {
-		"url": "http://github.com/modesty/pdf2json/issues"
-	},
 	"license": "Apache-2.0",
-	"readme": "https://github.com/modesty/pdf2json/blob/master/readme.md",
 	"exports": {
 		".": {
 			"import": {
@@ -105,7 +96,8 @@
 				"types": "./dist/pdfparser.d.cts",
 				"default": "./dist/pdfparser.cjs"
 			}
-		}
+		},
+		"./package.json": "./package.json"
 	},
 	"publishConfig": {
 		"registry": "https://registry.npmjs.org/",
@@ -113,9 +105,6 @@
 	},
 	"files": [
 		"bin/",
-		"dist/",
-		"package.json",
-		"readme.md",
-		"license.txt"
+		"dist/"
 	]
 }
