@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import { readFile } from "node:fs/promises";
 import { EventEmitter } from "node:events";
-import { Buffer } from "node:buffer";
 // eslint-disable-next-line no-unused-vars
 import { Readable } from "node:stream";
 
@@ -268,12 +267,7 @@ export default class PDFParser extends EventEmitter {
 			PJS.error("Error: empty PDF buffer, nothing to parse.");
 			return;
 		}
-		let pdfBufferParse = pdfBuffer;
-		if (pdfBufferParse.buffer.byteLength !== pdfBufferParse.length) {
-			pdfBufferParse = Buffer.from(pdfBufferParse.buffer, 0, pdfBufferParse.byteLength);
-		}
-
-		this.#startParsingPDF(pdfBufferParse);
+		this.#startParsingPDF(pdfBuffer);
 	}
 
 	/**
