@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import { readFile } from "node:fs/promises";
 import { EventEmitter } from "node:events";
-import { Buffer } from "node:buffer";
 // eslint-disable-next-line no-unused-vars
 import { Readable } from "node:stream";
 
@@ -268,12 +267,12 @@ export default class PDFParser extends EventEmitter {
 			PJS.error("Error: empty PDF buffer, nothing to parse.");
 			return;
 		}
-		let pdfBufferParse = pdfBuffer;
-		if (pdfBufferParse.buffer.byteLength !== pdfBufferParse.length) {
-			pdfBufferParse = Buffer.from(pdfBufferParse.buffer, 0, pdfBufferParse.byteLength);
-		}
-
-		this.#startParsingPDF(pdfBufferParse);
+		// Non-byte typed arrays (Uint16Array, Float32Array, ...) are reinterpreted as a byte view
+		// over the same memory; indexing them directly would truncate each element to 8 bits.
+		const bytes = pdfBuffer instanceof Uint8Array
+			? pdfBuffer
+			: new Uint8Array(pdfBuffer.buffer, pdfBuffer.byteOffset, pdfBuffer.byteLength);
+		this.#startParsingPDF(bytes);
 	}
 
 	/**
