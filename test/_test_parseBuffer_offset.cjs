@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const vm = require("vm");
 const { describe, it, before } = require("node:test");
 const assert = require("node:assert/strict");
 
@@ -25,28 +26,19 @@ const fixtures = [
 
 const OFFSET = 1024;
 
-function parseBuffer(buffer) {
-	return new Promise((resolve, reject) => {
-		const pdfParser = new PDFParser(null, 1);
-		pdfParser.on("pdfParser_dataError", (errData) =>
-			reject(new Error(`parseBuffer failed: ${errData.parserError}`))
-		);
-		pdfParser.on("pdfParser_dataReady", (pdfData) => {
-			pdfParser.destroy();
-			resolve(pdfData);
+async function parseBuffer(buffer) {
+	const pdfParser = new PDFParser(null, 1);
+	try {
+		return await new Promise((resolve, reject) => {
+			pdfParser.once("pdfParser_dataError", (errData) =>
+				reject(new Error(`parseBuffer failed: ${errData.parserError}`))
+			);
+			pdfParser.once("pdfParser_dataReady", resolve);
+			pdfParser.parseBuffer(buffer, 0);
 		});
-		pdfParser.parseBuffer(buffer, 0);
-	});
-}
-
-// Field tab indexes (TI) come from a process-wide counter, so they differ between
-// parses of the same document and are not meaningful for comparing results.
-function withoutTabIndexes(pdfData) {
-	return JSON.parse(JSON.stringify(pdfData, (key, value) => (key === "TI" ? undefined : value)));
-}
-
-function assertSameParse(actual, expected) {
-	assert.deepStrictEqual(withoutTabIndexes(actual), withoutTabIndexes(expected));
+	} finally {
+		pdfParser.destroy();
+	}
 }
 
 function readFixture(file) {
@@ -85,6 +77,28 @@ function typedArrayView(bytes, TypedArray) {
 	return new TypedArray(backing.buffer, OFFSET, length);
 }
 
+function dataView(bytes) {
+	const backing = new Uint8Array(bytes.length + OFFSET * 2);
+	backing.set(bytes, OFFSET);
+	return new DataView(backing.buffer, OFFSET, bytes.length);
+}
+
+// Buffer.from only copies inputs smaller than half of Buffer.poolSize into the slab shared by the
+// whole process. The default pool size differs between Node versions (8 KiB on Node 22) and both
+// fixtures are larger than 4 KiB, so the pool size is raised while allocating; this makes the
+// copy pooled, at a non-zero offset, on every supported Node version.
+function pooledCopy(bytes) {
+	const { poolSize } = Buffer;
+	Buffer.poolSize = 1024 * 1024;
+	try {
+		Buffer.allocUnsafe(poolSize); // uses up the current pool, so a 1 MiB pool is started next
+		Buffer.allocUnsafe(OFFSET); // takes the start of the pool that the copy will share
+		return Buffer.from(bytes);
+	} finally {
+		Buffer.poolSize = poolSize;
+	}
+}
+
 describe("parseBuffer with buffers that do not own their ArrayBuffer", () => {
 	for (const { kind, file, checkContent } of fixtures) {
 		describe(`${kind} (${file})`, () => {
@@ -109,7 +123,7 @@ describe("parseBuffer with buffers that do not own their ArrayBuffer", () => {
 				assert.strictEqual(view.byteOffset, OFFSET);
 				assert.notStrictEqual(view.buffer.byteLength, view.length);
 
-				assertSameParse(await parseBuffer(view), expected);
+				assert.deepStrictEqual(await parseBuffer(view), expected);
 			});
 
 			it("parses a subarray surrounded by non-PDF bytes", async () => {
@@ -117,7 +131,7 @@ describe("parseBuffer with buffers that do not own their ArrayBuffer", () => {
 				// Buffer.concat may itself be pooled, so the offset is at least OFFSET, not exactly.
 				assert.ok(view.byteOffset >= OFFSET);
 
-				assertSameParse(await parseBuffer(view), expected);
+				assert.deepStrictEqual(await parseBuffer(view), expected);
 			});
 
 			it("parses a plain Uint8Array view at a non-zero byteOffset", async () => {
@@ -125,7 +139,7 @@ describe("parseBuffer with buffers that do not own their ArrayBuffer", () => {
 				assert.ok(!Buffer.isBuffer(view));
 				assert.strictEqual(view.byteOffset, OFFSET);
 
-				assertSameParse(await parseBuffer(view), expected);
+				assert.deepStrictEqual(await parseBuffer(view), expected);
 			});
 
 			for (const TypedArray of [Uint16Array, Int32Array, Float32Array]) {
@@ -135,14 +149,23 @@ describe("parseBuffer with buffers that do not own their ArrayBuffer", () => {
 					assert.strictEqual(view.byteOffset, OFFSET);
 					assert.notStrictEqual(view.length, view.byteLength);
 
-					assertSameParse(await parseBuffer(view), expected);
+					assert.deepStrictEqual(await parseBuffer(view), expected);
 				});
 			}
 
-			it("parses a Buffer.from copy, which may be carved out of the shared pool", async () => {
-				const pooled = Buffer.from(bytes);
-				// The pool is shared process-wide, so the offset depends on prior allocations.
-				assertSameParse(await parseBuffer(pooled), expected);
+			it("parses a DataView over the PDF bytes", async () => {
+				const view = dataView(bytes);
+				assert.strictEqual(view.byteOffset, OFFSET);
+
+				assert.deepStrictEqual(await parseBuffer(view), expected);
+			});
+
+			it("parses a Buffer.from copy carved out of the shared pool", async () => {
+				const pooled = pooledCopy(bytes);
+				assert.ok(pooled.byteOffset > 0);
+				assert.ok(pooled.buffer.byteLength > pooled.length);
+
+				assert.deepStrictEqual(await parseBuffer(pooled), expected);
 			});
 
 			it("does not mutate the caller's buffer", async () => {
@@ -154,4 +177,36 @@ describe("parseBuffer with buffers that do not own their ArrayBuffer", () => {
 			});
 		});
 	}
+});
+
+// Stream is internal to the bundled PDF.js engine, so its source is evaluated on its own; it only
+// needs other engine globals when decoding, which these tests do not exercise.
+function loadPdfJsStream() {
+	const context = vm.createContext({});
+	vm.runInContext(fs.readFileSync(path.join(__dirname, "../base/core/stream.js"), "utf8"), context);
+	return context.Stream;
+}
+
+describe("PDF.js Stream sub-streams", () => {
+	const Stream = loadPdfJsStream();
+	const bytes = Uint8Array.from([10, 11, 12, 13, 14, 15]);
+	const view = new Uint8Array(new ArrayBuffer(bytes.length + OFFSET), OFFSET, bytes.length);
+	view.set(bytes);
+
+	it("is empty when zero bytes long at offset 0", () => {
+		assert.strictEqual(new Stream(bytes, 0, 0).length, 0);
+		assert.strictEqual(new Stream(bytes).makeSubStream(0, 0).getByte(), -1);
+	});
+
+	it("is empty when zero bytes long at a non-zero offset", () => {
+		assert.strictEqual(new Stream(bytes).makeSubStream(3, 0).length, 0);
+	});
+
+	it("runs to the end of the bytes when no length is given", () => {
+		assert.deepStrictEqual(Array.from(new Stream(view).makeSubStream(4).getBytes()), [14, 15]);
+	});
+
+	it("addresses a view's bytes, not its backing ArrayBuffer", () => {
+		assert.deepStrictEqual(Array.from(new Stream(view).makeSubStream(1, 2).getBytes()), [11, 12]);
+	});
 });

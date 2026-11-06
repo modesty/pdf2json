@@ -52,3 +52,51 @@ describe("Multiple PDFs with same structure", () => {
 		parser.destroy();
 	});
 });
+
+// Field tab indexes (TI) are numbered per document, so repeated or concurrent parses in the
+// same process must not continue each other's numbering.
+function tabIndexes(pdfData) {
+	return pdfData.Pages.flatMap((page) => [
+		...page.Fields.map((field) => field.TI),
+		...page.Boxsets.flatMap((boxset) => boxset.boxes.map((box) => box.TI)),
+	]);
+}
+
+describe("Field tab indexes", () => {
+	const pdfBuffer = fs.readFileSync(__dirname + "/pdf/mpf/testPDF.pdf");
+
+	async function parseWithNewParser() {
+		const parser = new PDFParser();
+		try {
+			return await parsePDF(parser, pdfBuffer);
+		} finally {
+			parser.destroy();
+		}
+	}
+
+	it("start at 0 for every document parsed in the same process", async () => {
+		const first = tabIndexes(await parseWithNewParser());
+		const second = tabIndexes(await parseWithNewParser());
+
+		assert.deepStrictEqual(first, first.map((_, index) => index));
+		assert.ok(first.length > 0);
+		assert.deepStrictEqual(second, first);
+	});
+
+	it("restart at 0 when the same parser instance parses again", async () => {
+		const parser = new PDFParser();
+		const first = tabIndexes(await parsePDF(parser, pdfBuffer));
+		parser.removeAllListeners();
+		const second = tabIndexes(await parsePDF(parser, pdfBuffer));
+		parser.destroy();
+
+		assert.deepStrictEqual(second, first);
+	});
+
+	it("are not shared between concurrent parses", async () => {
+		const expected = tabIndexes(await parseWithNewParser());
+		const concurrent = (await Promise.all([parseWithNewParser(), parseWithNewParser()])).map(tabIndexes);
+
+		assert.deepStrictEqual(concurrent, [expected, expected]);
+	});
+});

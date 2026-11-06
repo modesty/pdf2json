@@ -150,7 +150,7 @@ export default class PDFParser extends EventEmitter {
 	}
 
 	/**
-	 * @param {Buffer|null} buffer - The PDF buffer
+	 * @param {Uint8Array|null} buffer - The PDF bytes; null parses the cached file buffer for binBufferKey
 	 */
 	#startParsingPDF(buffer = null) {
 		this.#data = null;
@@ -234,7 +234,7 @@ export default class PDFParser extends EventEmitter {
 	 * @returns {Promise<void>} Promise that resolves when PDF is loaded
 	 */
 	async loadPDF(pdfFilePath, verbosity) {
-		PJS.verbosity(verbosity || 1); // 1: default to WARNINGS if not specified or invalid
+		PJS.verbosity(verbosity ?? 1); // 1: default to WARNINGS if not specified; 0 (ERRORS) must be honored
 		PJS.info(`about to load PDF file ${pdfFilePath}`);
 
 		this.#pdfFilePath = pdfFilePath;
@@ -258,16 +258,17 @@ export default class PDFParser extends EventEmitter {
 
 	/**
 	 * Parse PDF buffer. Introduce a way to directly process buffers without the need to write it to a temporary file
-	 * @param {Buffer} pdfBuffer - PDF buffer
+	 * @param {ArrayBufferView} pdfBuffer - PDF bytes: a Buffer, Uint8Array, any other typed array or a DataView
 	 * @param {number} verbosity - Verbosity level, ERRORS = 0, WARNINGS = 1, INFOS = 5;
+	 * @throws {Error} If pdfBuffer is not a non-empty ArrayBufferView
 	 */
 	parseBuffer(pdfBuffer, verbosity) {
-		PJS.verbosity(verbosity || 1); // 1: default to WARNINGS if not specified or invalid
-		if ((!pdfBuffer?.length) || (!pdfBuffer.buffer)) {
+		PJS.verbosity(verbosity ?? 1); // 1: default to WARNINGS if not specified; 0 (ERRORS) must be honored
+		if (!ArrayBuffer.isView(pdfBuffer) || !pdfBuffer.byteLength) {
 			PJS.error("Error: empty PDF buffer, nothing to parse.");
 			return;
 		}
-		// Non-byte typed arrays (Uint16Array, Float32Array, ...) are reinterpreted as a byte view
+		// Other views (Uint16Array, Float32Array, DataView, ...) are reinterpreted as a byte view
 		// over the same memory; indexing them directly would truncate each element to 8 bits.
 		const bytes = pdfBuffer instanceof Uint8Array
 			? pdfBuffer
