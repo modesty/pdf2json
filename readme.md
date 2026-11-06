@@ -43,7 +43,7 @@ After install, run command line:
 
 > npm test
 
-`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The unit test suites (7 suites, 74+ tests, built with Node.js built-in `node:test` runner) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
+`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The unit test suites (8 suites, 100+ tests, built with Node.js built-in `node:test` runner) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
 
 The default unit test suites are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
@@ -268,11 +268,23 @@ See [p2jcmd.js](https://github.com/modesty/pdf2json/blob/master/lib/p2jcmd.js) f
 - start to parse PDF file from specified file path asynchronously:
 
 ```javascript
-    function loadPDF(pdfFilePath);
+    function loadPDF(pdfFilePath, verbosity);
 ```
+
+`verbosity` is optional: 0 = ERRORS, 1 = WARNINGS (default when not specified), 5 = INFOS.
 
 If failed, event "pdfParser_dataError" will be raised with error object: {"parserError": errObj};
 If success, event "pdfParser_dataReady" will be raised with output data object: {"formImage": parseOutput}, which can be saved as json file (in command line) or serialized to json when running in web service. **note**: "formImage" is removed from v2.0.0, see breaking changes for details.
+
+- start to parse PDF bytes already in memory, without writing a temporary file:
+
+```javascript
+    function parseBuffer(pdfBuffer, verbosity);
+```
+
+`pdfBuffer` can be any `ArrayBufferView` over the PDF bytes: a `Buffer`, `Uint8Array`, other typed array or `DataView`, including views at a non-zero `byteOffset` (such as pooled `Buffer`s or `subarray()` results). Only the viewed bytes are read and the caller's buffer is not modified. `verbosity` works the same as in `loadPDF`. Parsing results are raised with the same events as `loadPDF`; an empty buffer, or a value that is not an `ArrayBufferView` (e.g. a raw `ArrayBuffer`; wrap it with `new Uint8Array(arrayBuffer)`), throws an `Error` synchronously.
+
+- Field tab indexes: the `TI` of every field and box is numbered from 0 per parsed document, in page order, regardless of how many documents were parsed before in the same process.
 
 - Get all textual content from "pdfParser_dataReady" event handler:
 

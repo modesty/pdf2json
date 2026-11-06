@@ -25,7 +25,7 @@ var Stream = (function StreamClosure() {
       new Uint8Array(arrayBuffer);
     this.start = start || 0;
     this.pos = this.start;
-    this.end = (start + length) || this.bytes.length;
+    this.end = length !== undefined ? this.start + length : this.bytes.length;
     this.dict = dict;
   }
 
