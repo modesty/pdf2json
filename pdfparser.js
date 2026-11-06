@@ -7,7 +7,7 @@ import { Readable } from "node:stream";
 import PDFJS, { PJS } from "./lib/pdf.js";
 import { ParserStream, StringifyStream } from "./lib/parserstream.js";
 import { kColors, kFontFaces, kFontStyles } from "./lib/pdfconst.js";
-import { pkInfo, _PARSER_SIG } from "./lib/pkinfo.js";
+import { pkInfo, PARSER_SIG } from "./lib/pkinfo.js";
 import PDFUnit from "./lib/pdfunit.js";
 import { sortBidiTexts } from "./lib/pdftextsorter.js";
 
@@ -71,11 +71,11 @@ export default class PDFParser extends EventEmitter {
 	}
 
 	/**
-	 * static property to expose _PARSER_SIG string
+	 * static property to expose the parser signature string (public name kept for back-compat)
 	 */
 	// Underscore prefix convention for internal constants
 	static get _PARSER_SIG() {
-		return _PARSER_SIG;
+		return PARSER_SIG;
 	}
 
 	/**
@@ -160,22 +160,15 @@ export default class PDFParser extends EventEmitter {
 			return;
 		}
 
-		this.#PDFJS.on("pdfjs_parseDataReady", (data) =>
-			this.#onPDFJSParseDataReady(data)
-		);
-		this.#PDFJS.on("pdfjs_parseDataError", (err) =>
-			this.#onPDFJSParserDataError(err)
-		);
+		this.#PDFJS.on("pdfjs_parseDataReady", (data) => this.#onPDFJSParseDataReady(data));
+		this.#PDFJS.on("pdfjs_parseDataError", (err) => this.#onPDFJSParserDataError(err));
 
 		//v1.3.0 the following Readable Stream-like events are replacement for the top two custom events
 		this.#PDFJS.on("readable", (meta) => this.emit("readable", meta));
 		this.#PDFJS.on("data", (data) => this.emit("data", data));
 		this.#PDFJS.on("error", (err) => this.#onPDFJSParserDataError(err));
 
-		this.#PDFJS.parsePDFData(
-			buffer || PDFParser.#binBuffer[this.binBufferKey],
-			this.#password
-		);
+		this.#PDFJS.parsePDFData(buffer || PDFParser.#binBuffer[this.binBufferKey], this.#password);
 	}
 
 	/**
@@ -270,9 +263,10 @@ export default class PDFParser extends EventEmitter {
 		}
 		// Other views (Uint16Array, Float32Array, DataView, ...) are reinterpreted as a byte view
 		// over the same memory; indexing them directly would truncate each element to 8 bits.
-		const bytes = pdfBuffer instanceof Uint8Array
-			? pdfBuffer
-			: new Uint8Array(pdfBuffer.buffer, pdfBuffer.byteOffset, pdfBuffer.byteLength);
+		const bytes =
+			pdfBuffer instanceof Uint8Array
+				? pdfBuffer
+				: new Uint8Array(pdfBuffer.buffer, pdfBuffer.byteOffset, pdfBuffer.byteLength);
 		this.#startParsingPDF(bytes);
 	}
 

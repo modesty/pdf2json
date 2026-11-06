@@ -5,9 +5,11 @@ import { yargs } from "./p2jcliarg.js";
 import PDFParser from "../../dist/pdfparser.js";
 
 // Type definitions for CLI operations
-type PDFParserError = { parserError: Error };
+interface PDFParserError {
+	parserError: Error;
+}
 type PDFParserData = Record<string, unknown>;
-type ProcessingResult = PromiseSettledResult<unknown>[];
+type ProcessingResult = PromiseSettledResult<string>[];
 
 // Exit codes
 const EXIT_SUCCESS = 0;
@@ -15,12 +17,12 @@ const EXIT_PARSE_ERROR = 1;
 const EXIT_ARG_ERROR = 2;
 const EXIT_IO_ERROR = 3;
 
-const { ParserStream, StringifyStream, pkInfo, _PARSER_SIG: _PRO_TIMER } = PDFParser;
+const { ParserStream, StringifyStream, pkInfo, _PARSER_SIG: PRO_TIMER } = PDFParser;
 
 const { argv } = yargs;
 const ONLY_SHOW_VERSION = "v" in argv;
 const ONLY_SHOW_HELP = "h" in argv;
-const VERBOSITY_LEVEL = ("s" in argv || "q" in argv || "j" in argv) ? 0 : 5;
+const VERBOSITY_LEVEL = "s" in argv || "q" in argv || "j" in argv ? 0 : 5;
 const HAS_INPUT_DIR_OR_FILE = "f" in argv;
 
 const PROCESS_RAW_TEXT_CONTENT = "c" in argv;
@@ -43,203 +45,195 @@ function logWarn(...args: unknown[]) {
 }
 
 class PDFProcessor {
-	private inputDir = '';
-	private inputFile = '';
-	private inputPath = '';
+	#inputDir = "";
+	#inputFile = "";
+	#inputPath = "";
 
-	private outputDir = '';
-	private outputFile = '';
-	private outputPath = '';
+	#outputDir = "";
+	#outputFile = "";
+	#outputPath = "";
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	private pdfParser: any = null;
-	private _curCLI: PDFCLI | null = null;
-	private get curCLI(): PDFCLI { return this._curCLI!; }
-
-	constructor(inputDir: string, inputFile: string, curCLI: PDFCLI, sharedParser?: unknown) {
-		this.inputDir = path.normalize(inputDir);
-		this.inputFile = inputFile;
-		this.inputPath = path.join(this.inputDir, this.inputFile);
-		this.outputDir = path.normalize((argv.o as string) || inputDir);
-		this.pdfParser = sharedParser || null;
-		this._curCLI = curCLI;
+	#pdfParser: PDFParser | null = null;
+	#cli: PDFCLI | null = null;
+	get #curCLI(): PDFCLI {
+		// eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- A7: null after destroy(); a stale listener on a shared parser would throw here
+		return this.#cli!;
 	}
 
-	private generateMergedTextBlocksStream() {
-		return new Promise((resolve, reject) => {
-			if (!this.pdfParser) {
-				reject(new Error("PDFParser instance is not available."));
-				return;
-			}
+	constructor(inputDir: string, inputFile: string, curCLI: PDFCLI, sharedParser: PDFParser | null) {
+		this.#inputDir = path.normalize(inputDir);
+		this.#inputFile = inputFile;
+		this.#inputPath = path.join(this.#inputDir, this.#inputFile);
+		this.#outputDir = path.normalize((argv.o as string) || inputDir);
+		this.#pdfParser = sharedParser;
+		this.#cli = curCLI;
+	}
+
+	#generateMergedTextBlocksStream(pdfParser: PDFParser) {
+		return new Promise<string>((resolve, reject) => {
 			const outputStream = ParserStream.createOutputStream(
-				this.outputPath.replace(".json", ".merged.json"),
+				this.#outputPath.replace(".json", ".merged.json"),
 				resolve,
 				reject
 			);
-			this.pdfParser
-				.getMergedTextBlocksStream()
-				.pipe(new StringifyStream())
-				.pipe(outputStream);
+			pdfParser.getMergedTextBlocksStream().pipe(new StringifyStream()).pipe(outputStream);
 		});
 	}
 
-	private generateRawTextContentStream() {
-		return new Promise((resolve, reject) => {
+	#generateRawTextContentStream(pdfParser: PDFParser) {
+		return new Promise<string>((resolve, reject) => {
 			const outputStream = ParserStream.createOutputStream(
-				this.outputPath.replace(".json", ".content.txt"),
+				this.#outputPath.replace(".json", ".content.txt"),
 				resolve,
 				reject
 			);
-			this.pdfParser.getRawTextContentStream().pipe(outputStream);
+			pdfParser.getRawTextContentStream().pipe(outputStream);
 		});
 	}
 
-	private generateFieldsTypesStream() {
-		return new Promise((resolve, reject) => {
+	#generateFieldsTypesStream(pdfParser: PDFParser) {
+		return new Promise<string>((resolve, reject) => {
 			const outputStream = ParserStream.createOutputStream(
-				this.outputPath.replace(".json", ".fields.json"),
+				this.#outputPath.replace(".json", ".fields.json"),
 				resolve,
 				reject
 			);
-			this.pdfParser
-				.getAllFieldsTypesStream()
-				.pipe(new StringifyStream())
-				.pipe(outputStream);
+			pdfParser.getAllFieldsTypesStream().pipe(new StringifyStream()).pipe(outputStream);
 		});
 	}
 
-	private processAdditionalStreams() {
-		const outputTasks: Promise<unknown>[] = [];
+	#processAdditionalStreams(pdfParser: PDFParser) {
+		const outputTasks: Promise<string>[] = [];
 		if (PROCESS_FIELDS_CONTENT) {
-			outputTasks.push(this.generateFieldsTypesStream());
+			outputTasks.push(this.#generateFieldsTypesStream(pdfParser));
 		}
 		if (PROCESS_RAW_TEXT_CONTENT) {
-			outputTasks.push(this.generateRawTextContentStream());
+			outputTasks.push(this.#generateRawTextContentStream(pdfParser));
 		}
 		if (PROCESS_MERGE_BROKEN_TEXT_BLOCKS) {
-			outputTasks.push(this.generateMergedTextBlocksStream());
+			outputTasks.push(this.#generateMergedTextBlocksStream(pdfParser));
 		}
 		return Promise.allSettled(outputTasks);
 	}
 
-	private initParser() {
-		if (!this.pdfParser) {
-			this.pdfParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
-		}
+	#initParser(): PDFParser {
+		this.#pdfParser ??= new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
+		return this.#pdfParser;
 	}
 
-	private parseOnePDFStream(): Promise<ProcessingResult> {
+	#parseOnePDFStream(): Promise<ProcessingResult> {
 		return new Promise((resolve, reject) => {
-			this.initParser();
+			const pdfParser = this.#initParser();
 
-			this.pdfParser.once("pdfParser_dataError", (evtData: PDFParserError) => {
-				this.curCLI.addResultCount(true);
+			pdfParser.once("pdfParser_dataError", (evtData: PDFParserError) => {
+				this.#curCLI.addResultCount(true);
 				reject(evtData.parserError);
 			});
 
-			const outputStream = fs.createWriteStream(this.outputPath, { encoding: 'utf8' });
+			const outputStream = fs.createWriteStream(this.#outputPath, { encoding: "utf8" });
 			outputStream.on("finish", () => {
-				this.curCLI.addResultCount(false);
-				this.processAdditionalStreams()
-					.then((retVal) => resolve(retVal))
-					.catch((err) => reject(err));
+				this.#curCLI.addResultCount(false);
+				this.#processAdditionalStreams(pdfParser)
+					.then((retVal) => {
+						resolve(retVal);
+					})
+					.catch((err: unknown) => {
+						reject(err);
+					});
 			});
 			outputStream.on("error", (err) => {
-				this.curCLI.addResultCount(true);
+				this.#curCLI.addResultCount(true);
 				reject(err);
 			});
 
-			logInfo(`Transcoding Stream ${this.inputFile} to - ${this.outputPath}`);
-			const inputStream = fs.createReadStream(this.inputPath);
-			inputStream
-				.pipe(this.pdfParser.createParserStream())
-				.pipe(new StringifyStream())
-				.pipe(outputStream);
+			logInfo(`Transcoding Stream ${this.#inputFile} to - ${this.#outputPath}`);
+			const inputStream = fs.createReadStream(this.#inputPath);
+			inputStream.pipe(pdfParser.createParserStream()).pipe(new StringifyStream()).pipe(outputStream);
 		});
 	}
 
-	private parseOnePDF(): Promise<ProcessingResult> {
+	#parseOnePDF(): Promise<ProcessingResult> {
 		return new Promise((resolve, reject) => {
-			this.initParser();
+			const pdfParser = this.#initParser();
 
-			this.pdfParser.once("pdfParser_dataError", (evtData: PDFParserError) => {
-				this.curCLI.addResultCount(true);
+			pdfParser.once("pdfParser_dataError", (evtData: PDFParserError) => {
+				this.#curCLI.addResultCount(true);
 				reject(evtData.parserError);
 			});
 
-			this.pdfParser.once("pdfParser_dataReady", async (evtData: PDFParserData) => {
+			// eslint-disable-next-line @typescript-eslint/no-misused-promises -- the handler catches every error and settles the outer promise itself
+			pdfParser.once("pdfParser_dataReady", async (evtData: PDFParserData) => {
 				try {
-					await fs.promises.writeFile(this.outputPath, JSON.stringify(evtData), 'utf8');
-					this.curCLI.addResultCount(false);
-					const result = await this.processAdditionalStreams();
+					await fs.promises.writeFile(this.#outputPath, JSON.stringify(evtData), "utf8");
+					this.#curCLI.addResultCount(false);
+					const result = await this.#processAdditionalStreams(pdfParser);
 					resolve(result);
 				} catch (err) {
-					this.curCLI.addResultCount(true);
+					this.#curCLI.addResultCount(true);
 					reject(err);
 				}
 			});
 
-			logInfo(`Transcoding File ${this.inputFile} to - ${this.outputPath}`);
-			this.pdfParser.loadPDF(this.inputPath, VERBOSITY_LEVEL);
+			logInfo(`Transcoding File ${this.#inputFile} to - ${this.#outputPath}`);
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises -- A7: loadPDF can reject (PJS.error throws); handling it changes CLI exit behavior
+			pdfParser.loadPDF(this.#inputPath, VERBOSITY_LEVEL);
 		});
 	}
 
 	async validateParams() {
-		let retVal = '';
+		let retVal = "";
 
-		if (!fs.existsSync(this.inputDir))
-			retVal = `Input error: input directory doesn't exist - ${this.inputDir}.`;
-		else if (!fs.existsSync(this.inputPath))
-			retVal = `Input error: input file doesn't exist - ${this.inputPath}.`;
-		else if (!fs.existsSync(this.outputDir)) {
+		if (!fs.existsSync(this.#inputDir)) retVal = `Input error: input directory doesn't exist - ${this.#inputDir}.`;
+		else if (!fs.existsSync(this.#inputPath)) retVal = `Input error: input file doesn't exist - ${this.#inputPath}.`;
+		else if (!fs.existsSync(this.#outputDir)) {
 			try {
-				await fs.promises.mkdir(this.outputDir, { recursive: true });
+				await fs.promises.mkdir(this.#outputDir, { recursive: true });
 			} catch {
-				retVal = `Input error: output directory doesn't exist and fails to create - ${this.outputDir}.`;
+				retVal = `Input error: output directory doesn't exist and fails to create - ${this.#outputDir}.`;
 			}
 		}
 
-		if (retVal !== '') {
-			this.curCLI.addResultCount(true);
+		if (retVal !== "") {
+			this.#curCLI.addResultCount(true);
 			return retVal;
 		}
 
-		const inExtName = path.extname(this.inputFile).toLowerCase();
+		const inExtName = path.extname(this.#inputFile).toLowerCase();
 		if (inExtName !== ".pdf") {
-			retVal = `Input error: input file name doesn't have pdf extension - ${this.inputFile}.`;
+			retVal = `Input error: input file name doesn't have pdf extension - ${this.#inputFile}.`;
 		} else {
-			this.outputFile = `${path.basename(this.inputPath, inExtName)}.json`;
-			this.outputPath = path.normalize(`${this.outputDir}/${this.outputFile}`);
-			if (fs.existsSync(this.outputPath)) {
-				logWarn(`Output file will be replaced - ${this.outputPath}`);
+			this.#outputFile = `${path.basename(this.#inputPath, inExtName)}.json`;
+			this.#outputPath = path.normalize(`${this.#outputDir}/${this.#outputFile}`);
+			if (fs.existsSync(this.#outputPath)) {
+				logWarn(`Output file will be replaced - ${this.#outputPath}`);
 			}
 		}
 		return retVal;
 	}
 
 	destroy() {
-		this.inputDir = '';
-		this.inputFile = '';
-		this.inputPath = '';
-		this.outputDir = '';
-		this.outputPath = '';
+		this.#inputDir = "";
+		this.#inputFile = "";
+		this.#inputPath = "";
+		this.#outputDir = "";
+		this.#outputPath = "";
 
-		if (this.pdfParser && !SINGLETON_PDF_PARSER) {
-			this.pdfParser.destroy();
+		if (this.#pdfParser && !SINGLETON_PDF_PARSER) {
+			this.#pdfParser.destroy();
 		}
-		this.pdfParser = null;
-		this._curCLI = null;
+		this.#pdfParser = null;
+		this.#cli = null;
 	}
 
 	async processFile(): Promise<ProcessingResult> {
 		const validateMsg = await this.validateParams();
-		if (validateMsg !== '') {
+		if (validateMsg !== "") {
 			throw new Error(validateMsg);
 		}
-		return PROCESS_WITH_STREAM ? this.parseOnePDFStream() : this.parseOnePDF();
+		return PROCESS_WITH_STREAM ? this.#parseOnePDFStream() : this.#parseOnePDF();
 	}
 
-	getOutputFile = () => path.join(this.outputDir, this.outputFile);
+	getOutputFile = () => path.join(this.#outputDir, this.#outputFile);
 }
 
 // Structured result for --json output
@@ -257,19 +251,18 @@ export default class PDFCLI {
 	successCount = 0;
 	failedCount = 0;
 	statusMsgs: string[] = [];
-	private outputPaths: { type: string; path: string }[] = [];
-	private errorMessages: string[] = [];
-	private startTime = 0;
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	private sharedParser: any = null;
+	#outputPaths: { type: string; path: string }[] = [];
+	#errorMessages: string[] = [];
+	#startTime = 0;
+	#sharedParser: PDFParser | null = null;
 
 	constructor() {
 		this.inputCount = 0;
 		this.successCount = 0;
 		this.failedCount = 0;
 		this.statusMsgs = [];
-		this.outputPaths = [];
-		this.errorMessages = [];
+		this.#outputPaths = [];
+		this.#errorMessages = [];
 	}
 
 	initialize(): { success: boolean; error?: string; exitCode?: number } {
@@ -288,7 +281,7 @@ export default class PDFCLI {
 				return {
 					success: false,
 					exitCode: EXIT_ARG_ERROR,
-					error: "-f|--file parameter is required to specify input directory or file."
+					error: "-f|--file parameter is required to specify input directory or file.",
 				};
 			}
 
@@ -296,23 +289,23 @@ export default class PDFCLI {
 				return {
 					success: false,
 					exitCode: EXIT_ARG_ERROR,
-					error: `-f|--file parameter can only be specified once. Received multiple values: ${INPUT_DIR_OR_FILE.join(", ")}`
+					error: `-f|--file parameter can only be specified once. Received multiple values: ${INPUT_DIR_OR_FILE.join(", ")}`,
 				};
 			}
 
-			if (typeof INPUT_DIR_OR_FILE !== 'string' || (INPUT_DIR_OR_FILE as string).trim() === '') {
+			if (typeof INPUT_DIR_OR_FILE !== "string" || INPUT_DIR_OR_FILE.trim() === "") {
 				return {
 					success: false,
 					exitCode: EXIT_ARG_ERROR,
-					error: "-f|--file parameter must have a valid path value."
+					error: "-f|--file parameter must have a valid path value.",
 				};
 			}
 
-			if (!fs.existsSync(INPUT_DIR_OR_FILE as string)) {
+			if (!fs.existsSync(INPUT_DIR_OR_FILE)) {
 				return {
 					success: false,
 					exitCode: EXIT_IO_ERROR,
-					error: `Input path does not exist: ${INPUT_DIR_OR_FILE}`
+					error: `Input path does not exist: ${INPUT_DIR_OR_FILE}`,
 				};
 			}
 
@@ -322,7 +315,7 @@ export default class PDFCLI {
 			return {
 				success: false,
 				exitCode: EXIT_ARG_ERROR,
-				error: `Exception during initialization: ${error.message}`
+				error: `Exception during initialization: ${error.message}`,
 			};
 		}
 	}
@@ -338,12 +331,12 @@ export default class PDFCLI {
 			process.exit(EXIT_SUCCESS);
 		}
 
-		this.startTime = Date.now();
-		logInfo(_PRO_TIMER);
-		if (!SUPPRESS_LOG) console.time(_PRO_TIMER);
+		this.#startTime = Date.now();
+		logInfo(PRO_TIMER);
+		if (!SUPPRESS_LOG) console.time(PRO_TIMER);
 
 		if (SINGLETON_PDF_PARSER) {
-			this.sharedParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
+			this.#sharedParser = new PDFParser(null, PROCESS_RAW_TEXT_CONTENT);
 		}
 
 		let hasError = false;
@@ -366,7 +359,7 @@ export default class PDFCLI {
 			const error = e instanceof Error ? e : new Error(String(e));
 			errorMessage = `Exception during processing: ${error.message}`;
 			this.addStatusMsg(true, errorMessage);
-			this.errorMessages.push(errorMessage);
+			this.#errorMessages.push(errorMessage);
 			this.failedCount++;
 
 			const errCode = (e as { code?: string }).code;
@@ -383,23 +376,23 @@ export default class PDFCLI {
 		}
 	}
 
-	complete(hasError: boolean = false, errorMessage?: string, exitCode: number = EXIT_SUCCESS) {
+	complete(hasError = false, errorMessage?: string, exitCode: number = EXIT_SUCCESS) {
 		if (JSON_OUTPUT) {
 			const jsonOutput: JsonOutput = {
 				version: pkInfo.version,
 				input: INPUT_DIR_OR_FILE as string,
-				outputs: this.outputPaths,
+				outputs: this.#outputPaths,
 				stats: {
 					input: this.inputCount,
 					success: this.successCount,
 					failed: this.failedCount,
 				},
-				errors: this.errorMessages,
-				elapsedMs: Date.now() - this.startTime,
+				errors: this.#errorMessages,
+				elapsedMs: Date.now() - this.#startTime,
 			};
 			console.log(JSON.stringify(jsonOutput));
 		} else {
-			const stdioFunc = (hasError || this.failedCount > 0) ? console.error : logInfo;
+			const stdioFunc = hasError || this.failedCount > 0 ? console.error : logInfo;
 
 			if (errorMessage) {
 				stdioFunc(`\nError: ${errorMessage}`);
@@ -407,47 +400,45 @@ export default class PDFCLI {
 			if (this.statusMsgs.length > 0) {
 				stdioFunc(this.statusMsgs);
 			}
-			stdioFunc(
-				`\n${this.inputCount} input files\t${this.successCount} success\t${this.failedCount} fail`
-			);
+			stdioFunc(`\n${this.inputCount} input files\t${this.successCount} success\t${this.failedCount} fail`);
 		}
 
-		if (this.sharedParser) {
-			this.sharedParser.destroy();
-			this.sharedParser = null;
+		if (this.#sharedParser) {
+			this.#sharedParser.destroy();
+			this.#sharedParser = null;
 		}
 
 		process.nextTick(() => {
-			if (!SUPPRESS_LOG) console.timeEnd(_PRO_TIMER);
+			if (!SUPPRESS_LOG) console.timeEnd(PRO_TIMER);
 			process.exit(exitCode);
 		});
 	}
 
 	async processOneFile(inputDir: string, inputFile: string): Promise<ProcessingResult> {
-		const p2j = new PDFProcessor(inputDir, inputFile, this, this.sharedParser);
+		const p2j = new PDFProcessor(inputDir, inputFile, this, this.#sharedParser);
 		try {
 			const result = await p2j.processFile();
 			const outputFile = p2j.getOutputFile();
 			this.addStatusMsg(false, `${path.join(inputDir, inputFile)} => ${outputFile}`);
-			this.outputPaths.push({ type: "json", path: outputFile });
+			this.#outputPaths.push({ type: "json", path: outputFile });
 
-			result.forEach((ret: PromiseSettledResult<unknown>) => {
-				if (ret.status === 'fulfilled' && ret.value) {
-					const filePath = String(ret.value);
+			result.forEach((ret: PromiseSettledResult<string>) => {
+				if (ret.status === "fulfilled" && ret.value) {
+					const filePath = ret.value;
 					this.addStatusMsg(false, `+ ${filePath}`);
 					const ext = path.extname(filePath);
 					let type = "unknown";
 					if (ext === ".json" && filePath.includes(".fields.")) type = "fields";
 					else if (ext === ".json" && filePath.includes(".merged.")) type = "merged";
 					else if (ext === ".txt") type = "content";
-					this.outputPaths.push({ type, path: filePath });
+					this.#outputPaths.push({ type, path: filePath });
 				}
 			});
 			return result;
 		} catch (error) {
 			const errMsg = error instanceof Error ? error.message : String(error);
 			this.addStatusMsg(true, `${path.join(inputDir, inputFile)} => ${errMsg}`);
-			this.errorMessages.push(errMsg);
+			this.#errorMessages.push(errMsg);
 			throw error;
 		} finally {
 			p2j.destroy();
@@ -456,9 +447,7 @@ export default class PDFCLI {
 
 	processFiles(inputDir: string, files: string[]): Promise<PromiseSettledResult<unknown>[]> {
 		const allPromises: Promise<unknown>[] = [];
-		files.forEach((file: string) =>
-			allPromises.push(this.processOneFile(inputDir, file))
-		);
+		files.forEach((file: string) => allPromises.push(this.processOneFile(inputDir, file)));
 		return Promise.allSettled(allPromises);
 	}
 
@@ -483,9 +472,7 @@ export default class PDFCLI {
 	}
 
 	addStatusMsg(error: boolean, oneMsg: string) {
-		this.statusMsgs.push(
-			error ? `✗ Error : ${oneMsg}` : `✓ Success : ${oneMsg}`
-		);
+		this.statusMsgs.push(error ? `✗ Error : ${oneMsg}` : `✓ Success : ${oneMsg}`);
 	}
 
 	addResultCount(isError: boolean) {

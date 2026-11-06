@@ -57,12 +57,12 @@ const _pdfjsFiles = [
 ];
 
 const _baseCode = _pdfjsFiles.reduce(
-	(preContent, fileName) =>
-		preContent + fs.readFileSync(path.join(baseDir, fileName), "utf8"),
+	(preContent, fileName) => preContent + fs.readFileSync(path.join(baseDir, fileName), "utf8"),
 	""
 );
 
-fs.writeFileSync(path.join(__dirname, "../lib/pdfjs-code.js"),
+fs.writeFileSync(
+	path.join(__dirname, "../lib/pdfjs-code.js"),
 	`
   ${"import { Blob } from 'node:buffer';import { DOMParser } from './simpleXmlParser.js';import PDFAnno from './pdfanno.js';import Image from './pdfimage.js';import { createScratchCanvas } from './pdfcanvas.js';"}
   ${"export const PDFJS = { disableWorker: true };"}

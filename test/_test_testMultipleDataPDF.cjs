@@ -20,8 +20,8 @@ function parsePDF(parser, pdfBuffer) {
 describe("Multiple PDFs with same structure", () => {
 	it("Read different values", async () => {
 		const parser = new PDFParser();
-		const firstPDFBuffer = fs.readFileSync(__dirname + "/pdf/mpf/testPDF.pdf");
-		const secondPDFBuffer = fs.readFileSync(__dirname + "/pdf/mpf/testPDF2.pdf");
+		const firstPDFBuffer = fs.readFileSync(`${__dirname}/pdf/mpf/testPDF.pdf`);
+		const secondPDFBuffer = fs.readFileSync(`${__dirname}/pdf/mpf/testPDF2.pdf`);
 
 		assert.notStrictEqual(firstPDFBuffer, secondPDFBuffer);
 
@@ -63,7 +63,7 @@ function tabIndexes(pdfData) {
 }
 
 describe("Field tab indexes", () => {
-	const pdfBuffer = fs.readFileSync(__dirname + "/pdf/mpf/testPDF.pdf");
+	const pdfBuffer = fs.readFileSync(`${__dirname}/pdf/mpf/testPDF.pdf`);
 
 	async function parseWithNewParser() {
 		const parser = new PDFParser();
@@ -78,7 +78,10 @@ describe("Field tab indexes", () => {
 		const first = tabIndexes(await parseWithNewParser());
 		const second = tabIndexes(await parseWithNewParser());
 
-		assert.deepStrictEqual(first, first.map((_, index) => index));
+		assert.deepStrictEqual(
+			first,
+			first.map((_, index) => index)
+		);
 		assert.ok(first.length > 0);
 		assert.deepStrictEqual(second, first);
 	});

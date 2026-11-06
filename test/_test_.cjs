@@ -5,33 +5,33 @@ const assert = require("node:assert/strict");
 const PDFParser = require("../dist/pdfparser.cjs");
 
 // Add event listener for unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  process.exit(1);
+process.on("unhandledRejection", (reason, promise) => {
+	console.error("Unhandled Rejection at:", promise, "reason:", reason);
+	process.exit(1);
 });
 
 function pdfParserRunner(fileName, fromBuffer) {
 	const pdfParser = new PDFParser();
-	const pdfFilePath = __dirname + "/pdf/fd/form/" + fileName + ".pdf";
+	const pdfFilePath = `${__dirname}/pdf/fd/form/${fileName}.pdf`;
 
 	if (fromBuffer) {
-		console.log("Parsing PDF from buffer: " + pdfFilePath);
+		console.log(`Parsing PDF from buffer: ${pdfFilePath}`);
 		const pdf = fs.readFileSync(pdfFilePath);
 		pdfParser.parseBuffer(pdf);
 	} else {
-		console.log("Parsing PDF from file: " + pdfFilePath);
+		console.log(`Parsing PDF from file: ${pdfFilePath}`);
 		pdfParser.loadPDF(pdfFilePath);
 	}
 
 	return pdfParser;
 }
 
-function checkResult_parseStatus(err, stat, fileName) {
+function checkResult_parseStatus(err, stat, _fileName) {
 	assert.ok(err === null || typeof err === "undefined");
 	assert.ok(typeof stat === "object" && stat !== null);
 }
 
-function checkResult_mainFields(parsedData, fileName) {
+function checkResult_mainFields(parsedData, _fileName) {
 	assert.ok("Transcoder" in parsedData);
 	assert.ok("Meta" in parsedData);
 	assert.ok("Metadata" in parsedData.Meta);
@@ -42,7 +42,7 @@ function checkResult_pageCount(Pages, count, fileName) {
 	assert.ok(Array.isArray(Pages));
 	assert.strictEqual(Pages.length, count);
 
-	const baseParsedFilePath = __dirname + "/data/fd/form/" + fileName + ".json";
+	const baseParsedFilePath = `${__dirname}/data/fd/form/${fileName}.json`;
 	const { formImage: baseParsed } = JSON.parse(fs.readFileSync(baseParsedFilePath, "utf8"));
 
 	assert.strictEqual(baseParsed.Pages.length, count);
@@ -58,7 +58,7 @@ function checkResult_pageCount(Pages, count, fileName) {
 	}
 }
 
-function checkResult_pageContent(Pages, fileName) {
+function checkResult_pageContent(Pages, _fileName) {
 	Pages.forEach((page) => {
 		assert.ok("Height" in page);
 		assert.ok("HLines" in page);
@@ -69,13 +69,13 @@ function checkResult_pageContent(Pages, fileName) {
 	});
 }
 
-function checkResult_textCoordinates(Pages, fileName) {
+function checkResult_textCoordinates(Pages, _fileName) {
 	Pages.forEach((page) => {
 		const texts = page.Texts || [];
 		if (texts.length === 0) return;
 
-		const coords = texts.map(t => ({ x: t.x, y: t.y }));
-		const uniqueCoords = new Set(coords.map(c => `${c.x},${c.y}`));
+		const coords = texts.map((t) => ({ x: t.x, y: t.y }));
+		const uniqueCoords = new Set(coords.map((c) => `${c.x},${c.y}`));
 
 		// Regression test for issue #408: all text elements had identical coordinates
 		if (texts.length > 5) {
@@ -83,10 +83,10 @@ function checkResult_textCoordinates(Pages, fileName) {
 		}
 
 		texts.forEach((text) => {
-			assert.strictEqual(typeof text.x, 'number');
-			assert.ok(!isNaN(text.x));
-			assert.strictEqual(typeof text.y, 'number');
-			assert.ok(!isNaN(text.y));
+			assert.strictEqual(typeof text.x, "number");
+			assert.ok(!Number.isNaN(text.x));
+			assert.strictEqual(typeof text.y, "number");
+			assert.ok(!Number.isNaN(text.y));
 		});
 	});
 }
@@ -160,7 +160,7 @@ describe("Federal main forms", () => {
 		{ name: "1040st from file", fileName: "F1040ST", fromBuffer: false, pageCount: 2 },
 		{ name: "1040st from buffer", fileName: "F1040ST", fromBuffer: true, pageCount: 2 },
 		{ name: "1040V from file", fileName: "F1040V", fromBuffer: false, pageCount: 1 },
-		{ name: "1040V from buffer", fileName: "F1040V", fromBuffer: true, pageCount: 1 }
+		{ name: "1040V from buffer", fileName: "F1040V", fromBuffer: true, pageCount: 1 },
 	];
 
 	for (const tc of testCases) {
@@ -187,7 +187,7 @@ describe("Federal schedules", () => {
 		{ name: "Fed Schedule HS", fileName: "FSCHHS", fromBuffer: true, pageCount: 2 },
 		{ name: "Fed Schedule HT", fileName: "FSCHHT", fromBuffer: true, pageCount: 2 },
 		{ name: "Fed Schedule J", fileName: "FSCHJ", fromBuffer: true, pageCount: 2 },
-		{ name: "Fed Schedule R", fileName: "FSCHR", fromBuffer: true, pageCount: 2 }
+		{ name: "Fed Schedule R", fileName: "FSCHR", fromBuffer: true, pageCount: 2 },
 	];
 
 	for (const tc of scheduleTestCases) {
@@ -214,7 +214,7 @@ describe("Federal other forms", () => {
 		{ name: "F2441", fileName: "F2441", fromBuffer: false, pageCount: 2 },
 		{ name: "F2441DEP", fileName: "F2441DEP", fromBuffer: false, pageCount: 1 },
 		{ name: "F2555EZ", fileName: "F2555EZ", fromBuffer: false, pageCount: 2 },
-		{ name: "F2555EZS", fileName: "F2555EZS", fromBuffer: false, pageCount: 2 }
+		{ name: "F2555EZS", fileName: "F2555EZS", fromBuffer: false, pageCount: 2 },
 	];
 
 	for (const tc of otherFormsTestCases) {

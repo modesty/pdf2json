@@ -1,0 +1,2 @@
+# LF in every checkout (incl. Windows core.autocrlf) so Prettier's format check is platform-independent
+* text=auto eol=lf

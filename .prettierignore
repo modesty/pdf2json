@@ -1,0 +1,10 @@
+# Vendored PDF.js fork and generated code are never reformatted.
+base/
+lib/pdfjs-code.js
+dist/
+bin/cli/
+coverage/
+.mosey/
+test/data/
+test/pdf/
+test/target/
