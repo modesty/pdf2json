@@ -58,8 +58,9 @@
 		"parse-rectFix": "node ./bin/pdf2json.js -f ./test/pdf/misc/pr298_rect_fix_from_upstream.pdf -o ./test/target/misc",
 		"parse-e": "node ./bin/pdf2json.js -f ./test/pdf/misc/i418_precompilato_fake.pdf -o ./test/target/misc -c",
 		"build:rollup": "rollup -c ./rollup.config.js",
-		"build:bundle-pdfjs-base": "npm run lint && npm run format:check && npm run typecheck && node rollup/bundle-pdfjs-base.js",
-		"build": "npm run build:bundle-pdfjs-base && npm run build:rollup",
+		"build:bundle-pdfjs-base": "node rollup/bundle-pdfjs-base.js",
+		"check": "npm run lint && npm run format:check && npm run typecheck",
+		"build": "npm run build:bundle-pdfjs-base && npm run check && npm run build:rollup",
 		"build:clean": "unset npm_config_allow_scripts && npm ci && npm run build",
 		"test:deno": "deno --allow-read --allow-write --allow-net --allow-env --no-check ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r",
 		"test:bun": "bun ./bin/pdf2json.js -f ./test/pdf/fd/form/ -o ./test/target/fd/form -t -c -m -r"

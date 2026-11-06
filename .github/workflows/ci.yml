@@ -40,22 +40,12 @@ jobs:
       - name: Clean install dependencies
         run: npm ci
 
-      - name: Build project
+      - name: Build project (lint, format check, typecheck, bundle)
         run: npm run build
-
-      - name: Type check
-        run: npm run typecheck
 
       - name: Type check (TypeScript 7, non-blocking trial)
         continue-on-error: true
         run: npm exec --yes --package=typescript@7 -- tsc --noEmit
-
-      - name: Lint
-        run: npm run lint
-
-      - name: Format check
-        if: runner.os == 'Linux' # Windows checkouts use CRLF (core.autocrlf); formatting is platform-independent
-        run: npm run format:check
 
       - name: Run tests (with coverage)
         run: npm run test:coverage && npm run parse-r && npm run parse-fd && npm run test:deno && npm run test:bun

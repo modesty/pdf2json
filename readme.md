@@ -43,7 +43,7 @@ After install, run command line:
 
 > npm test
 
-Tests run against the built bundles, so run `npm run build` first: it builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The unit test suites (8 suites, 100+ tests, built with Node.js built-in `node:test` runner) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
+Tests run against the built bundles, so run `npm run build` first: it lints, format-checks and type-checks the sources (`npm run check`), then builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The unit test suites (8 suites, 100+ tests, built with Node.js built-in `node:test` runner) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
 
 The default unit test suites are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
