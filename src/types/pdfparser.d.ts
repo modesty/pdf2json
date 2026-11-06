@@ -38,7 +38,7 @@ export declare class PDFParser extends EventEmitter {
 
     createParserStream(): ParserStream;
     loadPDF(pdfFilePath: string, verbosity?: number): Promise<void>;
-    parseBuffer(pdfBuffer: Buffer, verbosity?: number): void;
+    parseBuffer(pdfBuffer: Uint8Array, verbosity?: number): void;
     getRawTextContent(): string;
     getRawTextContentStream(): Readable;
     getAllFieldsTypes(): FieldType[];
