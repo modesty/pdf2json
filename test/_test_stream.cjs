@@ -53,10 +53,7 @@ describe("Stream API", () => {
 
 			parser.on("pdfParser_dataError", reject);
 
-			fs.createReadStream(TEST_PDF)
-				.pipe(parserStream)
-				.pipe(stringify)
-				.pipe(writable);
+			fs.createReadStream(TEST_PDF).pipe(parserStream).pipe(stringify).pipe(writable);
 		});
 
 		const parsed = JSON.parse(collected);

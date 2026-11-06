@@ -1,271 +1,130 @@
 import js from "@eslint/js";
+import { defineConfig, globalIgnores } from "eslint/config";
+import globals from "globals";
 import tseslint from "typescript-eslint";
 
-export default [
+// Node stream subclass hooks are framework contracts, not privacy markers.
+const STREAM_HOOKS = "^_(transform|flush|destroy|final|read|write|writev|construct)$";
+
+const noUnusedVarsOptions = {
+	args: "after-used",
+	argsIgnorePattern: "^_",
+	destructuredArrayIgnorePattern: "^_",
+	ignoreRestSiblings: true,
+};
+
+const sharedRules = {
+	"arrow-body-style": ["error", "as-needed"],
+	"dot-notation": "error",
+	eqeqeq: ["error", "always"],
+	"no-duplicate-imports": "error",
+	"no-else-return": ["error", { allowElseIf: true }],
+	"no-eval": ["error", { allowIndirect: false }],
+	"no-iterator": "error",
+	"no-multi-assign": "error",
+	"no-new-func": "error",
+	"no-new-wrappers": "error",
+	"no-object-constructor": "error",
+	"no-restricted-globals": [
+		"error",
+		{ name: "isNaN", message: "Use Number.isNaN() — the global coerces its argument." },
+		{ name: "isFinite", message: "Use Number.isFinite() — the global coerces its argument." },
+	],
+	"no-restricted-syntax": [
+		"error",
+		{
+			selector: "PrivateIdentifier[name=/^_/]",
+			message: "`#` already marks the member private; drop the leading underscore.",
+		},
+	],
+	"no-throw-literal": "error",
+	"no-unused-vars": ["error", noUnusedVarsOptions],
+	"no-useless-call": "error",
+	"no-var": "error",
+	"object-shorthand": ["error", "always", { avoidExplicitReturnArrows: true }],
+	"prefer-arrow-callback": ["error", { allowNamedFunctions: true }],
+	"prefer-const": "error",
+	"prefer-destructuring": ["error", { object: true, array: false }],
+	"prefer-object-has-own": "error",
+	"prefer-object-spread": "error",
+	"prefer-rest-params": "error",
+	"prefer-spread": "error",
+	"prefer-template": "error",
+};
+
+export default defineConfig([
+	globalIgnores([
+		".mosey/**",
+		"base/**",
+		"bin/cli/**",
+		"coverage/**",
+		"dist/**",
+		"lib/pdfjs-code.js",
+		"test/data/**",
+		"test/pdf/**",
+		"test/target/**",
+	]),
 	{
-		ignores: [
-			".mosey/**",
-			"dist/**",
-			"bin/**",
-			"test/**",
-			"node_modules/**",
-			"base/**",
-			"lib/pdfjs-code.js",
-			"**/*.json"
-		]
+		files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
+		extends: [js.configs.recommended],
+		languageOptions: { globals: globals.nodeBuiltin },
+		rules: sharedRules,
 	},
-	// Configuration for JavaScript files - basic ESLint rules only
 	{
-		files: ["**/*.js"],
-		languageOptions: {
-			ecmaVersion: 2022,
-			sourceType: "module",
-			globals: {
-				console: "readonly",
-				process: "readonly",
-				Buffer: "readonly",
-				__dirname: "readonly",
-				__filename: "readonly",
-				module: "readonly",
-				require: "readonly",
-				exports: "writable",
-				global: "readonly",
-				setImmediate: "readonly",
-				clearImmediate: "readonly",
-				setTimeout: "readonly",
-				clearTimeout: "readonly",
-				setInterval: "readonly",
-				clearInterval: "readonly"
-			}
-		},
-		rules: {
-			...js.configs.recommended.rules,
-			"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
-			"arrow-body-style": ["error", "as-needed"],
-			"dot-notation": ["error"],
-			"eqeqeq": ["error", "always"],
-			"no-case-declarations": "error",
-			"no-duplicate-imports": ["error"],
-			"no-else-return": [
-				"error",
-				{
-					allowElseIf: true
-				}
-			],
-			"no-eval": [
-				"error",
-				{
-					allowIndirect: false
-				}
-			],
-			"no-iterator": ["error"],
-			"no-multi-assign": ["error"],
-			"no-new-func": ["error"],
-			"no-new-wrappers": ["error"],
-			"no-object-constructor": ["error"],
-			"no-param-reassign": "off",
-			"no-restricted-imports": ["error", "lodash", "moment"],
-			"no-throw-literal": "warn",
-			"no-unused-vars": [
-				"error",
-				{
-					vars: "all",
-					args: "after-used",
-					argsIgnorePattern: "(^_?|fs|uri|options|opts|source|signal|destination|Uri$|args|jsonObj|outputPath|resolve|reject|meta|page|evtData)",
-					ignoreRestSiblings: true,
-					destructuredArrayIgnorePattern: "^_?"
-				}
-			],
-			"no-useless-call": ["error"],
-			"object-curly-spacing": ["error", "always"],
-			"object-shorthand": [
-				"error",
-				"always",
-				{
-					avoidExplicitReturnArrows: true
-				}
-			],
-			"prefer-arrow-callback": [
-				"error",
-				{
-					allowNamedFunctions: true
-				}
-			],
-			"prefer-const": ["error"],
-			"prefer-destructuring": [
-				"error",
-				{
-					object: true,
-					array: false
-				}
-			],
-			"prefer-rest-params": ["error"],
-			"prefer-spread": ["error"],
-			"prefer-template": ["error"]
-		}
+		files: ["**/*.cjs"],
+		languageOptions: { sourceType: "commonjs", globals: globals.node },
 	},
-	// Configuration for TypeScript files - full TypeScript ESLint rules
 	{
-		files: ["**/*.ts"],
-		languageOptions: {
-			parser: tseslint.parser,
-			parserOptions: {
-				ecmaVersion: 2022,
-				sourceType: "module"
-			},
-			globals: {
-				console: "readonly",
-				process: "readonly",
-				Buffer: "readonly",
-				__dirname: "readonly",
-				__filename: "readonly",
-				module: "readonly",
-				require: "readonly",
-				exports: "writable",
-				global: "readonly",
-				setImmediate: "readonly",
-				clearImmediate: "readonly",
-				setTimeout: "readonly",
-				clearTimeout: "readonly",
-				setInterval: "readonly",
-				clearInterval: "readonly"
-			}
-		},
-		plugins: {
-			"@typescript-eslint": tseslint.plugin
-		},
+		files: ["**/*.{ts,mts,cts}"],
+		extends: [tseslint.configs.strictTypeChecked, tseslint.configs.stylisticTypeChecked],
+		languageOptions: { parserOptions: { projectService: true, tsconfigRootDir: import.meta.dirname } },
 		rules: {
-			...js.configs.recommended.rules,
-			...tseslint.plugin.configs.recommended.rules,
+			"no-unused-vars": "off",
+			"@typescript-eslint/no-unused-vars": ["error", noUnusedVarsOptions],
 			"@typescript-eslint/no-unused-expressions": [
 				"error",
-				{
-					allowShortCircuit: true,
-					allowTernary: true,
-					allowTaggedTemplates: true
-				}
+				{ allowShortCircuit: true, allowTernary: true, allowTaggedTemplates: true },
 			],
-			"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
+			"@typescript-eslint/explicit-member-accessibility": ["error", { accessibility: "no-public" }],
+			"@typescript-eslint/prefer-promise-reject-errors": ["error", { allowThrowingUnknown: true }],
+			"@typescript-eslint/restrict-template-expressions": ["error", { allowNumber: true }],
+			"no-restricted-syntax": [
+				"error",
+				...sharedRules["no-restricted-syntax"].slice(1),
+				{
+					selector:
+						":matches(PropertyDefinition, MethodDefinition, TSAbstractPropertyDefinition)[accessibility='private']",
+					message: "Use an ECMAScript `#private` member instead of the TypeScript `private` modifier.",
+				},
+			],
 			"@typescript-eslint/naming-convention": [
 				"error",
+				{ selector: "variable", format: ["camelCase", "PascalCase", "UPPER_CASE"], leadingUnderscore: "forbid" },
+				{ selector: "function", format: ["camelCase", "PascalCase"] },
+				{ selector: "parameter", format: ["camelCase", "PascalCase"], leadingUnderscore: "allow" },
+				{ selector: "classMethod", filter: { regex: STREAM_HOOKS, match: true }, format: null },
+				{ selector: "typeMethod", filter: { regex: `${STREAM_HOOKS}|^pdfParser_`, match: true }, format: null },
 				{
-					selector: "variable",
+					selector: ["classProperty", "classMethod", "accessor", "typeProperty", "typeMethod"],
 					format: ["camelCase", "PascalCase", "UPPER_CASE"],
-					filter: {
-						regex: "^_",
-						match: false
-					}
+					leadingUnderscore: "forbid",
 				},
-				{
-					selector: "function",
-					format: ["camelCase", "PascalCase"]
-				},
-				{
-					selector: "parameter",
-					format: ["camelCase", "PascalCase"],
-					filter: {
-						regex: "^_",
-						match: false
-					}
-				},
-				{
-					selector: "property",
-					format: ["camelCase", "PascalCase", "UPPER_CASE"],
-					filter: {
-						regex: "(x-ide-git-auth|^_|^sys_*|app_id)",
-						match: false
-					}
-				},
-				{
-					selector: "method",
-					format: ["camelCase", "PascalCase"],
-					filter: {
-						regex: "^_",
-						match: false
-					}
-				},
-				{
-					selector: "accessor",
-					format: ["camelCase", "PascalCase"]
-				},
-				{
-					selector: "enumMember",
-					format: ["camelCase", "PascalCase", "UPPER_CASE"]
-				},
-				{
-					selector: "typeMethod",
-					format: null,
-					filter: {
-						regex: "^pdfParser_",
-						match: true
-					}
-				},
-				{
-					selector: "typeLike",
-					format: ["PascalCase"]
-				}
+				{ selector: "enumMember", format: ["camelCase", "PascalCase", "UPPER_CASE"] },
+				{ selector: "typeLike", format: ["PascalCase"] },
 			],
-			"@typescript-eslint/no-unused-vars": [
-				"error",
-				{
-					vars: "all",
-					args: "after-used",
-					argsIgnorePattern: "(^_?|fs|uri|options|opts|source|signal|destination|Uri$|args)",
-					ignoreRestSiblings: true,
-					destructuredArrayIgnorePattern: "^_?"
-				}
-			],
-			"arrow-body-style": ["error", "as-needed"],
-			"dot-notation": ["error"],
-			"eqeqeq": ["error", "always"],
-			"no-case-declarations": "error",
-			"no-duplicate-imports": ["error"],
-			"no-else-return": [
-				"error",
-				{
-					allowElseIf: true
-				}
-			],
-			"no-eval": [
-				"error",
-				{
-					allowIndirect: false
-				}
-			],
-			"no-iterator": ["error"],
-			"no-multi-assign": ["error"],
-			"no-new-func": ["error"],
-			"no-new-wrappers": ["error"],
-			"no-object-constructor": ["error"],
-			"no-param-reassign": "off",
-			"no-restricted-imports": ["error", "lodash", "moment"],
-			"no-throw-literal": "warn",
-			"no-useless-call": ["error"],
-			"object-curly-spacing": ["error", "always"],
-			"object-shorthand": [
-				"error",
-				"always",
-				{
-					avoidExplicitReturnArrows: true
-				}
-			],
-			"prefer-arrow-callback": [
-				"error",
-				{
-					allowNamedFunctions: true
-				}
-			],
-			"prefer-const": ["error"],
-			"prefer-destructuring": [
-				"error",
-				{
-					object: true,
-					array: false
-				}
-			],
-			"prefer-rest-params": ["error"],
-			"prefer-spread": ["error"],
-			"prefer-template": ["error"]
-		}
-	}
-];
+		},
+	},
+	{
+		// Hand-maintained public declarations: keep their published shapes until B1.4 generates them from source.
+		files: ["src/types/**"],
+		rules: {
+			"@typescript-eslint/consistent-indexed-object-style": "off",
+			"@typescript-eslint/consistent-type-definitions": "off",
+		},
+	},
+	{
+		// Hand-rolled argv parser, replaced by util.parseArgs in B6 — delete this block with the file.
+		files: ["src/cli/p2jcliarg.ts"],
+		extends: [tseslint.configs.disableTypeChecked],
+	},
+]);

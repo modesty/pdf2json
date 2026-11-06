@@ -1,4 +1,3 @@
-
 import json from "@rollup/plugin-json";
 import terser from "@rollup/plugin-terser";
 import typescript from "@rollup/plugin-typescript";
@@ -36,9 +35,7 @@ export default [
 			},
 		],
 		treeshake: false, // Required: PDF.js base has global side effects that tree-shaking would break
-		plugins: [
-			json(),
-		],
+		plugins: [json()],
 	},
 	// Build 2: CLI bundle (src/cli/ -> bin/cli/)
 	// Depends on Build 1: imports dist/pdfparser.js as external at runtime
@@ -53,9 +50,6 @@ export default [
 			},
 		],
 		treeshake: true,
-		plugins: [
-			typescript({ tsconfig: "./tsconfig.json" }),
-			terser(),
-		],
+		plugins: [typescript({ tsconfig: "./tsconfig.json" }), terser()],
 	},
 ];

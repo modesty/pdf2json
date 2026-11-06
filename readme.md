@@ -43,7 +43,7 @@ After install, run command line:
 
 > npm test
 
-`pretest` step builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The unit test suites (8 suites, 100+ tests, built with Node.js built-in `node:test` runner) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
+Tests run against the built bundles, so run `npm run build` first: it builds bundles and source maps for both ES Module and CommonJS, output to `./dist` directory. The unit test suites (8 suites, 100+ tests, built with Node.js built-in `node:test` runner) are defined in `./test/_test_*.cjs` with CommonJS, test run will also cover `parse-r` and `parse-fd` with ES Modules via command line.
 
 The default unit test suites are essential tests for all PRs. But it only covers a portion of all testing PDFs, for more broader coverage, run:
 
@@ -57,17 +57,27 @@ To run unit test suites with CommonJS bundle only
 
 > npm run test:unit
 
+### Lint, Format and Type Check
+
+PRs must pass the same checks CI runs:
+
+> npm run lint && npm run format:check && npm run typecheck
+
+`npm run format` and `npm run lint:fix` apply fixes. Coding conventions (for example, `#name` for private members) are documented in `AGENTS.md`.
+
 ### Test Exception Handlings
 
 After install, run command line:
 
 > npm run test:misc
 
-It'll scan and parse all PDF files under _*./test/pdf/misc*_, also runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 15 PDF fields, 12 are expected to success while the other three's exceptions are expected to catch with stack trace for:
+It'll scan and parse all PDF files under _*./test/pdf/misc*_, also runs with _*-s -t -c -m*_ command line options, generates primary output JSON, additional text content JSON, form fields JSON and merged text JSON file for 22 PDF files, 16 are expected to success while the other six's exceptions are expected to catch with stack trace for:
 
-- _bad XRef entry_ for `pdf/misc/i200_test.pdf`
-- _unsupported encryption algorithm_ for `pdf/misc/i43_encrypted.pdf`
-- _Invalid XRef stream header_ for `pdf/misc/i243_problem_file_anon.pdf`
+- _bad XRef entry_ for `pdf/misc/i200_err_test.pdf`
+- _unsupported encryption algorithm_ for `pdf/misc/i43_err_encrypted.pdf`
+- _Invalid XRef stream header_ for `pdf/misc/i243_err_file_anon.pdf` and `pdf/misc/i274_err.pdf`
+- _Missing endstream or invalid stream_ for `pdf/misc/i306_err_invalid.pdf`
+- _Bad encoding in flate stream_ for `pdf/misc/i373_err_broken.pdf`
 
 ### Test Streams
 
@@ -1062,48 +1072,33 @@ If all you need is the textual content of the PDF, "-c" essentially converts PDF
 
 ## Run Unit Test (commandline)
 
-It takes less than 1 minutes for pdf2json to parse 261 PDFs under `test/pdf` directory. Usually, it takes about 40 seconds or so to parses all of them. Besides the primary JSON for each PDF, it also generates text content JSON and form fields JSON file (by `-c` and `-t` parameters) for further testing.
+The form PDFs under `test/pdf/<agency>/form` are fill-able tax forms from government agencies for tax year 2013 (165 of them federal forms under `fd`). Besides the primary JSON for each PDF, the scripts also generate text content, form fields and merged text output (`-s -t -c -m`) under `test/target`.
 
-The 265 PDFs are all fill-able tax forms from government agencies for tax year 2013, including 165 federal forms, 23 efile instructions and 9 other state tax forms.
-
-Shell script is current driver for unit test. To parse one agency's PDFs, run the command line:
+The bash scripts in `test/` are the driver; run `npm run build` first. To parse one agency's forms, pass the 2-character agency name and the `form` sub-directory:
 
 ```terminal
  cd test
- sh p2f.one.sh [2_character_agency_name]
+ bash p2j.one.sh [2_character_agency_name] form
 ```
 
-For example, to parse and generate all 165 federal forms together with text content and forms fields:
+For example, to parse all federal forms, or all VA forms:
 
 ```terminal
  cd test
- sh p2f.one.sh fd
+ bash p2j.one.sh fd form
+ bash p2j.one.sh va form
 ```
 
-To parse and generate all VA forms together with text content and forms fields:
+To parse every agency's forms:
 
 ```terminal
- cd test
- sh p2f.one.sh va
-```
-
-Additionally, to parse all 261 PDFs from commandline:
-
-```terminal
- cd test
- sh p2f.forms.sh
-```
-
-Or, from `npm scripts`:
-
-```terminal
- npm test
+ npm run test:forms
 ```
 
 Some testing PDFs are provided by bug reporters, like the "unsupported encryption" ([#43](https://github.com/modesty/pdf2json/issues/43)), "read property num from undefined" ([#26](https://github.com/modesty/pdf2json/issues/26)), and "excessive line breaks in text content" ([#28](https://github.com/modesty/pdf2json/issues/28)), their PDFs are all stored in `test/pdf/misc` directory. To run tests against these community contributed PDFs, run commandline:
 
 ```terminal
- npm run-script test-misc
+ npm run test:misc
 ```
 
 ## Upgrade to ~v1.x.x

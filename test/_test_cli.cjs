@@ -73,7 +73,7 @@ describe("CLI", () => {
 		const { exitCode } = await runCLI(["-f", TEST_PDF_DIR, "-o", tmpDir, "-s"]);
 		assert.strictEqual(exitCode, 0);
 
-		const files = fs.readdirSync(tmpDir).filter(f => f.endsWith(".json"));
+		const files = fs.readdirSync(tmpDir).filter((f) => f.endsWith(".json"));
 		assert.ok(files.length > 0);
 	});
 
@@ -83,7 +83,7 @@ describe("CLI", () => {
 
 		// Extract the JSON line (last line of stdout)
 		const lines = stdout.trim().split("\n");
-		const jsonLine = lines.find(l => l.startsWith("{"));
+		const jsonLine = lines.find((l) => l.startsWith("{"));
 		assert.ok(jsonLine);
 
 		const result = JSON.parse(jsonLine);
