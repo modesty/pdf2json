@@ -85,8 +85,12 @@ describe("Stream API", () => {
 
 		assert.strictEqual(typeof content, "string");
 		assert.ok(content.length > 0);
-		// F1040 should contain "Form" and "1040" somewhere in its text
+		// F1040 should contain "1040" and emit its header before its footer (top-to-bottom order)
 		assert.ok(content.includes("1040"));
+		const headerIndex = content.indexOf("Department of the Treasury");
+		const footerIndex = content.indexOf("Cat. No. 11320B");
+		assert.ok(headerIndex >= 0, "expected F1040 header in raw text");
+		assert.ok(footerIndex > headerIndex, "expected F1040 header before footer");
 
 		parser.destroy();
 	});
