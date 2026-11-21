@@ -39,10 +39,10 @@ describe("sortBidiTexts", () => {
 	});
 
 	it("should group subscripts/superscripts (y offset within tolerance) into the same line", () => {
-		// H2O: '2' is a subscript, y=11 is within fontSize(12) * 0.15 = 1.8 of y=10
+		// H2O: '2' is a subscript (below baseline in PDF user space); |9 - 10| = 1 <= fontSize(10) * 0.15 = 1.5
 		const input = [
 			{ str: "O", x: 15, y: 10, width: 5, spaceWidth: 3, textHScale: 1, fontSize: 12 },
-			{ str: "2", x: 10, y: 11, width: 5, spaceWidth: 3, textHScale: 1, fontSize: 10 },
+			{ str: "2", x: 10, y: 9, width: 5, spaceWidth: 3, textHScale: 1, fontSize: 10 },
 			{ str: "H", x: 5, y: 10, width: 5, spaceWidth: 3, textHScale: 1, fontSize: 12 },
 		];
 
@@ -124,7 +124,10 @@ describe("getRawTextContent line order", () => {
 		const pdfParser = new PDFParser(null, true);
 		try {
 			await new Promise((resolve, reject) => {
-				pdfParser.once("pdfParser_dataError", (errData) => reject(errData.parserError));
+				pdfParser.once("pdfParser_dataError", (errData) => {
+					const err = errData?.parserError ?? errData;
+					reject(err instanceof Error ? err : new Error(String(err)));
+				});
 				pdfParser.once("pdfParser_dataReady", resolve);
 				pdfParser.parseBuffer(buildPdf(content), 0);
 			});
@@ -156,5 +159,12 @@ describe("getRawTextContent line order", () => {
 			"1 0 0 -1 0 792 cm BT /F1 12 Tf 1 0 0 -1 72 92 Tm (First line) Tj 1 0 0 -1 72 112 Tm (Second line) Tj ET"
 		);
 		assert.strictEqual(text, `First line\r\nSecond line\r\n${pageBreak}`);
+	});
+
+	it("should sort both lines top to bottom and segments left to right when emitted out of order", async () => {
+		const text = await rawText(
+			"BT /F1 12 Tf 1 0 0 1 102 680 Tm (Right2) Tj 1 0 0 1 72 680 Tm (Left2) Tj 1 0 0 1 102 700 Tm (Right1) Tj 1 0 0 1 72 700 Tm (Left1) Tj ET"
+		);
+		assert.strictEqual(text, `Left1 Right1\r\nLeft2 Right2\r\n${pageBreak}`);
 	});
 });

@@ -81,8 +81,9 @@ export default class PDFParser extends EventEmitter {
 	/**
 	 * Utility: sort an array of bidiText objects into visual reading order.
 	 * Groups elements into horizontal lines by Y coordinate (with font-size-proportional
-	 * tolerance for subscripts/superscripts), then sorts lines top-to-bottom and
-	 * elements within each line left-to-right.
+	 * tolerance for subscripts/superscripts), then sorts lines top-to-bottom (descending Y,
+	 * as bidiText Y coordinates are in PDF user space where Y grows upward) and
+	 * elements within each line left-to-right (ascending X).
 	 *
 	 * @type {typeof import('./lib/pdftextsorter.js').sortBidiTexts}
 	 */
